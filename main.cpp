@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file main.cpp
  * @author ryanl
@@ -11,3 +12,12 @@
 */
 wxIMPLEMENT_APP(SpartyGnomeApp);
 
+=======
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+>>>>>>> 4f184d8 (Setup project. Add .gitignore.)
