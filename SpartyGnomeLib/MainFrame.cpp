@@ -11,7 +11,7 @@
  */
 void MainFrame::Initialize()
 {
-    Create(nullptr, wxID_ANY, L"SpartyGnome",
+    Create(nullptr, wxID_ANY, L"Sparty Gnome",
             wxDefaultPosition,  wxSize( 1000,800 ));
 
 }
