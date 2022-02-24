@@ -1,7 +1,13 @@
-#include <iostream>
+/**
+ * @file main.cpp
+ * @author ryanl
+ */
 
-int main()
-{
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
-}
+#include "pch.h"
+#include "SpartyGnomeApp.h"
+
+/**
+* Executes AquariumApp as a wxWidgets app
+*/
+wxIMPLEMENT_APP(SpartyGnomeApp);
+
