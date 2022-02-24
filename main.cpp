@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @author ryanl
+ * @author Gabriel Misajlovski
  */
 
 #include "pch.h"
