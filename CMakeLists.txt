@@ -3,6 +3,9 @@ set(APPLICATION_LIBRARY SpartyGnomeLib)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Request the required wxWidgets libs
+# Turn off wxWidgets own precompiled header system, since
+# it doesn't seem to work. The CMake version works much better.
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
 
@@ -13,7 +16,7 @@ add_subdirectory(${APPLICATION_LIBRARY})
 include_directories(${APPLICATION_LIBRARY})
 
 # Define a variable containing a list of source files for the project
-set(SOURCE_FILES main.cpp SpartyGnomeApp.cpp SpartyGnomeApp.h pch.h)
+set(SOURCE_FILES main.cpp pch.h SpartyGnomeApp.cpp SpartyGnomeApp.h)
 
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCE_FILES})
 
