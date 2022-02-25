@@ -32,10 +32,10 @@ private:
     /// The aquarium this item is contained in
     Game *mGame;
 
-    /// The underlying fish image
+    /// The underlying image
     std::unique_ptr<wxImage> mItemImage;
 
-    /// The bitmap we can display for this fish
+    /// The bitmap we can display for this item
     std::unique_ptr<wxBitmap> mItemBitmap;
 
 public:
