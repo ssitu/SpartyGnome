@@ -12,6 +12,9 @@
 
 using namespace std;
 
+/// Game area height in virtual pixels
+    const static int Height = 1024;
+
 Game::Game()
 {
 
