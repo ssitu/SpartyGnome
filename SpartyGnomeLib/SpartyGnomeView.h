@@ -5,14 +5,18 @@
  *
  */
 
-#ifndef PROJECT1_SPARTYGNOMEVIEW_H
-#define PROJECT1_SPARTYGNOMEVIEW_H
+#ifndef SPARTYGNOME_SPARTYGNOMEVIEW_H
+#define SPARTYGNOME_SPARTYGNOMEVIEW_H
 
-class SpartyGnomeView {
+#include "Game.h"
+
+class SpartyGnomeView : public wxWindow {
 private:
 
 public:
+    void Initialize(wxFrame *mainFrame);
+    void AddMenus(wxFrame* mainFrame, wxMenuBar* menuBar, wxMenu* fileMenu, wxMenu* viewMenu);
 
 };
 
-#endif //PROJECT1_SPARTYGNOMEVIEW_H
+#endif //SPARTYGNOME_SPARTYGNOMEVIEW_H
