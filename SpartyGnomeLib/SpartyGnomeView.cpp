@@ -10,6 +10,7 @@ void SpartyGnomeView::Initialize(wxFrame* mainFrame)
 {
     Create(mainFrame, wxID_ANY);
 
+    SetBackgroundColour(*wxWHITE);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
 }

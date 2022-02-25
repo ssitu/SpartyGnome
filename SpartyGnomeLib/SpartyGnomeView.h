@@ -12,7 +12,7 @@
 
 class SpartyGnomeView : public wxWindow {
 private:
-
+    Game mGame;
 public:
     void Initialize(wxFrame *mainFrame);
     void AddMenus(wxFrame* mainFrame, wxMenuBar* menuBar, wxMenu* fileMenu, wxMenu* viewMenu);
