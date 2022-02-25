@@ -14,3 +14,8 @@ void SpartyGnomeView::Initialize(wxFrame* mainFrame)
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
 }
+
+void SpartyGnomeView::Update()
+{
+    //Refresh Function
+}
