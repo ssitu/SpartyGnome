@@ -17,6 +17,8 @@ using namespace std;
 
 Game::Game()
 {
+    mBackground = make_unique<wxBitmap>(
+            L"images/backgroundForest.png", wxBITMAP_TYPE_ANY);
 
 }
 
@@ -27,8 +29,9 @@ Game::Game()
  * @param width Width of the client window
  * @param height Height of the client window
  */
-void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
+void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height, wxDC *dc)
 {
+    dc->DrawBitmap(*mBackground, 0, 0);
     //
     // Automatic Scaling
     //
