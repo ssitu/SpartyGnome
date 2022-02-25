@@ -13,9 +13,19 @@
 class SpartyGnomeView : public wxWindow {
 private:
     Game mGame;
+
+    /// The timer that allows for animation
+    wxTimer mTimer;
+
+    /// Stopwatch used to measure elapsed time
+    wxStopWatch mStopWatch;
+
+    /// The last stopwatch time
+    long mTime = 0;
+
 public:
     void Initialize(wxFrame *mainFrame);
-    //void AddMenus(wxFrame* mainFrame, wxMenuBar* menuBar, wxMenu* fileMenu, wxMenu* viewMenu);
+    void AddMenus(wxFrame* mainFrame, wxMenuBar* menuBar, wxMenu* fileMenu, wxMenu* viewMenu);
 
 };
 
