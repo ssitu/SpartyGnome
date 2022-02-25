@@ -23,6 +23,7 @@ const static int Height = 1024;
 void SpartyGnomeView::Initialize(wxFrame* parent)
 {
     Create(parent, wxID_ANY);
+    SetBackgroundColour(*wxWHITE);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_PAINT, &SpartyGnomeView::OnPaint, this);
