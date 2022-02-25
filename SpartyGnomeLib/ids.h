@@ -12,7 +12,10 @@
  * List of IDs for adding items
  */
 enum IDs {
-    IDM_ADDSPARTYGNOME = wxID_HIGHEST + 1
+    IDM_ADDSPARTYGNOME = wxID_HIGHEST + 1,
+    IDM_ADDPLATFORM = wxID_HIGHEST + 2,
+    IDM_ADDWALL = wxID_HIGHEST + 3,
+    IDM_ADDENEMEY = wxID_HIGHEST + 4
 };
 
 
