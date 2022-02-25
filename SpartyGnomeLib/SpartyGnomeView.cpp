@@ -48,7 +48,7 @@ void SpartyGnomeView::OnPaint(wxPaintEvent& event)
 
     auto size = GetClientSize();
     auto graphics = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
-    mGame.OnDraw(graphics, size->GetWidth(), size->GetHeight());
+    mGame.OnDraw(graphics, size->GetWidth(), size->GetHeight(), &dc);
 }
 
 void SpartyGnomeView::OnTimer(wxTimerEvent& event) { Refresh(); }

@@ -36,8 +36,8 @@ private:
     /// The last stopwatch time
     long mTime = 0;
 
-    int mHeight = this->GetHeight();
-    int mWidth = this->GetWidth();
+    int mHeight = 800;
+    int mWidth = 1000;
 
 
 
