@@ -1,6 +1,6 @@
 project(SpartyGnomeLib)
 
-set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnomeView.h Game.cpp Game.h ids.h Item.cpp Item.h)
+set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnomeView.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
