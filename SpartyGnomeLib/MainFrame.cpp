@@ -12,7 +12,7 @@
  */
 void MainFrame::Initialize()
 {
-    Create(nullptr, wxID_ANY, L"SpartyGnome",wxDefaultPosition,  wxSize( 1000,800 ));
+    Create(nullptr, wxID_ANY, L"Sparty Gnome",wxDefaultPosition,  wxSize( 1000,800 ));
 
     auto spartygnomeview = new SpartyGnomeView();
     spartygnomeview->Initialize(this);
