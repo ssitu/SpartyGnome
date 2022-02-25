@@ -12,6 +12,7 @@
  * List of IDs for adding items
  */
 enum IDs {
+    IDM_ADDSPARTYGNOME = wxID_HIGHEST + 1
 };
 
 
