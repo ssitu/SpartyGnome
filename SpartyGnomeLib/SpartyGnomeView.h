@@ -23,6 +23,8 @@ private:
     /// The last stopwatch time
     long mTime = 0;
 
+    void OnPaint(wxPaintEvent& parent);
+
 public:
     void Initialize(wxFrame *mainFrame);
     void AddMenus(wxFrame* mainFrame, wxMenuBar* menuBar, wxMenu* fileMenu, wxMenu* viewMenu);
