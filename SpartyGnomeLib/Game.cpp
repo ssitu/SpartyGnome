@@ -29,7 +29,7 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
     //
     // Automatic Scaling
     //
-    mScale = double(height) / double(height);
+    mScale = double(height) / double(Height);
     graphics->Scale(mScale, mScale);
 
     auto virtualWidth = (double)width/mScale;
