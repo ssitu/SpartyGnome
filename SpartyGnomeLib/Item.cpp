@@ -5,6 +5,8 @@
 
 #include "pch.h"
 
+#include <wx/graphics.h>
+
 #include "Item.h"
 #include "Game.h"
 
@@ -29,15 +31,18 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
 }
 
 /**
- * Draw this fish
- * @param dc Device context to draw on
+ * Draw this item
+ * @param gc Graphics context to draw on
  */
-void Item::Draw(wxDC *dc)
+void Item::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
-    dc->DrawBitmap(*mItemBitmap,
+    gc->DrawBitmap(*mItemBitmap,
             int(GetX() - wid / 2),
-            int(GetY() - hit / 2));
+            int(GetY() - hit / 2),
+            wid + 1,
+            hit
+            );
 }
 

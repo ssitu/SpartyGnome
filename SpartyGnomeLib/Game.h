@@ -9,6 +9,7 @@
 #define SPARTYGNOME_GAME_H
 
 #include "Item.h"
+#include "ItemSpartyGnome.h"
 
 class Game {
 private:
@@ -19,8 +20,11 @@ private:
     /// All of the items to populate our aquarium
     std::vector<std::shared_ptr<Item>> mItems;
 
+    /// Pointer to the gnome
+    std::shared_ptr<ItemSpartyGnome> mGnome;
+
 public:
-    // Constructor
+    /// Constructor
     Game();
 
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxDC* dc);

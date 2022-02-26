@@ -74,7 +74,7 @@ public:
      */
     double GetHeight() const { return mItemImage->GetHeight(); }
 
-    void Draw(wxDC *dc);
+    void Draw(std::shared_ptr<wxGraphicsContext> gc);
 
     /**
      * Handle updates for animation
