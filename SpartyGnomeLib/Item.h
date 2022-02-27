@@ -81,6 +81,13 @@ public:
      * @param elapsed The time since the last update
      */
     void Update(double elapsed) {}
+
+    /**
+     * Set the item location
+     * @param x X location in pixels
+     * @param y Y location in pixels
+     */
+    virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 };
 
 #endif //SPARTYGNOME_ITEM_H

@@ -31,6 +31,10 @@ public:
 
     void Update(double elapsed);
 
+    void Add(std::shared_ptr<Item> item);
+
+    void AddGnome(std::shared_ptr<Item> item);
+
 };
 
 #endif //SPARTYGNOME_GAME_H

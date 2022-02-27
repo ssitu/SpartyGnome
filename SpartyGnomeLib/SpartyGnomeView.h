@@ -5,20 +5,12 @@
  *
  */
 
-#ifndef PROJECT1_SPARTYGNOMEVIEW_H
-#define PROJECT1_SPARTYGNOMEVIEW_H
+#ifndef SPARTYGNOME_SPARTYGNOMEVIEW_H
+#define SPARTYGNOME_SPARTYGNOMEVIEW_H
 
 #include "Game.h"
 
 class SpartyGnomeView : public wxWindow {
-public:
-    void Initialize(wxFrame* parent);
-    SpartyGnomeView* GetClientSize() { return this; };
-
-    int GetHeight() { return mHeight; }
-
-    int GetWidth() { return mWidth; }
-
 private:
     void OnPaint(wxPaintEvent& event);
 
@@ -39,8 +31,19 @@ private:
     int mHeight = 800;
     int mWidth = 1000;
 
+public:
+    void Initialize(wxFrame* parent);
+    void OnAddSpartyGnome(wxCommandEvent& event);
+    SpartyGnomeView* GetClientSize() { return this; };
+
+    int GetHeight() { return mHeight; }
+
+    int GetWidth() { return mWidth; }
+
+
+
 
 
 };
 
-#endif //PROJECT1_SPARTYGNOMEVIEW_H
+#endif //SPARTYGNOME_SPARTYGNOMEVIEW_H

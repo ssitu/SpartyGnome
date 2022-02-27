@@ -10,10 +10,20 @@
 
 #include "Item.h"
 
-class ItemSpartyGnome:public Item {
+class ItemSpartyGnome : public Item {
 private:
 
 public:
+    /// Default constructor (disabled)
+    ItemSpartyGnome() = delete;
+
+    /// Copy constructor (disabled)
+    ItemSpartyGnome(const ItemSpartyGnome &) = delete;
+
+    /// Assignment operator
+    void operator=(const ItemSpartyGnome &) = delete;
+
+    ItemSpartyGnome(Game* game);
 
 };
 

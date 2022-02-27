@@ -27,10 +27,18 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_PAINT, &SpartyGnomeView::OnPaint, this);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
     mStopWatch.Start();
+}
+
+void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
+{
+    auto gnome = make_shared<ItemSpartyGnome>(&mGame);
+    mGame.AddGnome(gnome);
+    Refresh();
 }
 
 void SpartyGnomeView::OnPaint(wxPaintEvent& event)
