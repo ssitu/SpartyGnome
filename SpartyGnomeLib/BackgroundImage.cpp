@@ -5,3 +5,6 @@
  */
 
 #include "BackgroundImage.h"
+#include<string>
+using namespace std;
+const wstring BackGroundImageName = L"images/backgroundForest.png";
