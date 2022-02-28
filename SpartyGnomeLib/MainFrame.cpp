@@ -31,6 +31,7 @@ void MainFrame::Initialize()
     fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
 
     itemMenu->Append(IDM_ADDSPARTYGNOME, L"&Sparty Gnome", L"Add a Sparty Gnome");
+    itemMenu->Append(IDM_ADDPLATFORM, L"&Platform", L"Add a Platform");
 
     SetMenuBar( menuBar );
 

@@ -10,6 +10,7 @@
 
 #include "Item.h"
 #include "ItemSpartyGnome.h"
+#include "Platform.h"
 
 class Game {
 private:
@@ -32,8 +33,7 @@ public:
     void Update(double elapsed);
 
     void Add(std::shared_ptr<Item> item);
-
-    void AddGnome(std::shared_ptr<ItemSpartyGnome> gnome);
+    void AddGnome(std::shared_ptr<Item> item);
 
 };
 

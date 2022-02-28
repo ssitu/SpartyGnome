@@ -31,6 +31,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     //TODO: Causes the window to not be able to be closed
 //    Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -43,6 +44,13 @@ void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
 {
     auto gnome = make_shared<ItemSpartyGnome>(&mGame);
     mGame.AddGnome(gnome);
+    Refresh();
+}
+
+void SpartyGnomeView::OnAddPlatform(wxCommandEvent& event)
+{
+    auto platform = make_shared<Platform>(&mGame);
+    mGame.Add(platform);
     Refresh();
 }
 
