@@ -4,7 +4,8 @@
  * @author Simon Situ
  */
 
+#include "pch.h"
+#include <string>
 #include "BackgroundImage.h"
-#include<string>
 using namespace std;
 const wstring BackGroundImageName = L"images/backgroundForest.png";
