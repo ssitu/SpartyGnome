@@ -15,8 +15,8 @@ using namespace std;
 /// Game area height in virtual pixels
 const static int Height = 1024;
 
-const int InitialX = 1024/2;
-const int InitialY = 1024/2;
+const int InitialX = 200;
+const int InitialY = 200;
 
 Game::Game()
 {
@@ -83,6 +83,16 @@ void Game::Update(double elapsed)
  * @param item New item to add
  */
 void Game::AddGnome(std::shared_ptr<Item> item)
+{
+    item->SetLocation(InitialX,InitialY);
+    mItems.push_back(item);
+}
+
+/**
+ * Add an item to the game
+ * @param item New item to add
+ */
+void Game::Add(std::shared_ptr<Item> item)
 {
     item->SetLocation(InitialX,InitialY);
     mItems.push_back(item);

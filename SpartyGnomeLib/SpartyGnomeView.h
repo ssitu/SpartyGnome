@@ -34,6 +34,7 @@ private:
 public:
     void Initialize(wxFrame* parent);
     void OnAddSpartyGnome(wxCommandEvent& event);
+    void OnAddPlatform(wxCommandEvent& event);
     SpartyGnomeView* GetClientSize() { return this; };
 
     int GetHeight() { return mHeight; }

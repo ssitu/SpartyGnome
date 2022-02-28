@@ -30,6 +30,7 @@ void MainFrame::Initialize()
     menuBar->Append(helpMenu, L"&Help");
 
     itemMenu->Append(IDM_ADDSPARTYGNOME, L"&Sparty Gnome", L"Add a Sparty Gnome");
+    itemMenu->Append(IDM_ADDPLATFORM, L"&Platform", L"Add a Platform");
 
     SetMenuBar( menuBar );
 

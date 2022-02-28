@@ -4,7 +4,7 @@
  */
 #include "pch.h"
 #include "ItemSpartyGnome.h"
-#include<string>
+#include <string>
 using namespace std;
 const wstring SpartyGnomeImageName = L"images/gnome.png";
 
