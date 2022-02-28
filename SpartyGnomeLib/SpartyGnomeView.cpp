@@ -27,11 +27,16 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_PAINT, &SpartyGnomeView::OnPaint, this);
+    //Bind the timer event handler
+    //TODO: Causes the window to not be able to be closed
+//    Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
     mStopWatch.Start();
+
+    mParent = parent;
 }
 
 void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
@@ -41,6 +46,9 @@ void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
     Refresh();
 }
 
+/**
+ *
+ */
 void SpartyGnomeView::OnPaint(wxPaintEvent& event)
 {
     auto newTime = mStopWatch.Time();
@@ -56,8 +64,12 @@ void SpartyGnomeView::OnPaint(wxPaintEvent& event)
 
     auto size = GetClientSize();
     auto graphics = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
-    mGame.OnDraw(graphics, size->GetWidth(), size->GetHeight(), &dc);
+    mGame.OnDraw(graphics, size.GetWidth(), size.GetHeight(), &dc);
 }
 
+/**
+ * OnTimer event handler
+ * @param event The wx event
+ */
 void SpartyGnomeView::OnTimer(wxTimerEvent& event) { Refresh(); }
 

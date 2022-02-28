@@ -16,6 +16,9 @@ private:
 
     void OnTimer(wxTimerEvent &event);
 
+    /// The pointer to the parent frame
+    wxFrame* mParent;
+
     /// An object that describes our game
     Game mGame;
 
@@ -28,21 +31,14 @@ private:
     /// The last stopwatch time
     long mTime = 0;
 
-    int mHeight = 800;
-    int mWidth = 1000;
-
 public:
     void Initialize(wxFrame* parent);
     void OnAddSpartyGnome(wxCommandEvent& event);
-    SpartyGnomeView* GetClientSize() { return this; };
-
-    int GetHeight() { return mHeight; }
-
-    int GetWidth() { return mWidth; }
-
-
-
-
+    /**
+     * Obtains the size of the window
+     * @return A wxSize object representing the size of the window
+     */
+    wxSize GetClientSize() { return mParent->GetClientSize(); };
 
 };
 

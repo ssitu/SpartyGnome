@@ -15,6 +15,7 @@
 class MainFrame : public wxFrame {
 public:
     void Initialize();
+    void OnExit(wxCommandEvent& event);
 };
 
 #endif //SPARTYGNOME_MAINFRAME_H

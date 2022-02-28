@@ -33,7 +33,7 @@ public:
 
     void Add(std::shared_ptr<Item> item);
 
-    void AddGnome(std::shared_ptr<Item> item);
+    void AddGnome(std::shared_ptr<ItemSpartyGnome> gnome);
 
 };
 

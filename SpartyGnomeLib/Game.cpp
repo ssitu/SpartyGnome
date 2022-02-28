@@ -82,8 +82,9 @@ void Game::Update(double elapsed)
  * Add an item to the game
  * @param item New item to add
  */
-void Game::AddGnome(std::shared_ptr<Item> item)
+void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> gnome)
 {
-    item->SetLocation(InitialX,InitialY);
-    mItems.push_back(item);
+    gnome->SetLocation(InitialX,InitialY);
+    mItems.push_back(gnome);
+    mGnome = gnome;
 }

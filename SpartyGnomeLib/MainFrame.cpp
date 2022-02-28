@@ -28,6 +28,7 @@ void MainFrame::Initialize()
     menuBar->Append(fileMenu, L"&File" );
     menuBar->Append(itemMenu, L"&Add Item");
     menuBar->Append(helpMenu, L"&Help");
+    fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
 
     itemMenu->Append(IDM_ADDSPARTYGNOME, L"&Sparty Gnome", L"Add a Sparty Gnome");
 
@@ -39,5 +40,15 @@ void MainFrame::Initialize()
             this);
 
 
-
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 }
+
+/**
+ * Exit menu option handlers
+ * @param event The wx event
+ */
+void MainFrame::OnExit(wxCommandEvent& event)
+{
+    Close(true);
+}
+
