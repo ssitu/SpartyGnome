@@ -22,9 +22,6 @@ Game::Game()
 {
     mBackground = make_unique<wxBitmap>(
             L"images/backgroundForest.png", wxBITMAP_TYPE_ANY);
-    //TODO need ItemSpartyGnome finished
-//    mGnome = std::make_shared<ItemSpartyGnome>(this);
-//    mItems.push_back(mGnome);
 }
 
 
@@ -53,15 +50,19 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height,
     // Draw static items
 
 
-    // Draw scrolling items
-    // TODO: ItemSpartyGnome needs to call the Item constructor so that GetX() can be called
-//    auto xOffset = (double)-mGnome->GetX() + virtualWidth / 2.0f;
-//    graphics->Translate(xOffset, 0);
-//    for (const auto& item : mItems)
-//    {
-//        item->Draw(graphics);
-//    }
+    // There must be a gnome in a level, but avoid crash if there isn't
+    if (mGnome != nullptr)
+    {
+        auto xOffset = (double)-mGnome->GetX() + virtualWidth / 2.0f;
+        graphics->Translate(xOffset, 0);
+    }
 
+    // Draw scrolling items
+    // Drawing every item for now
+    for (const auto& item : mItems)
+    {
+        item->Draw(graphics);
+    }
     graphics->PopState();
 }
 

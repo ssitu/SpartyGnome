@@ -20,8 +20,8 @@ private:
     /// All of the items to populate our aquarium
     std::vector<std::shared_ptr<Item>> mItems;
 
-    /// Pointer to the gnome
-    std::shared_ptr<ItemSpartyGnome> mGnome;
+    /// Pointer to the gnome, given at level load
+    std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
 
 public:
     /// Constructor
