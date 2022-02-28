@@ -1,6 +1,6 @@
 /**
  * @file ItemSpartyGnome.cpp
- * @author ryanl
+ * @author ryanl, ashrey
  */
 #include "pch.h"
 #include "ItemSpartyGnome.h"
