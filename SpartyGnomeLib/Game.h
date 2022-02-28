@@ -33,7 +33,7 @@ public:
     void Update(double elapsed);
 
     void Add(std::shared_ptr<Item> item);
-    void AddGnome(std::shared_ptr<Item> item);
+    void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
 
 };
 
