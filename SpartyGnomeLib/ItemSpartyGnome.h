@@ -15,6 +15,7 @@ class ItemSpartyGnome : public Item {
 private:
     Vector mV;
 
+    bool mGravityEnable = false;
 
 public:
     /// Default constructor (disabled)
