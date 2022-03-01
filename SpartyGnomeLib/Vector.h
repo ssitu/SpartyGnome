@@ -1,45 +1,87 @@
 /**
  * @file Vector.h
- * @author Gabriel Misajlovski
  *
- * Vector Class (Used for movement of objects)
+ * @author Charles Owen
+ *
+ * Simple 2D vector class
  */
 
-#ifndef SPARTYGNOME_VECTOR_H
-#define SPARTYGNOME_VECTOR_H
+#ifndef _VECTOR_H
+#define _VECTOR_H
 
-class Vector {
-private:
-    double mX;
-    double mY;
-
+/**
+ * Simple 2D vector class
+ *
+ * This class implements vector operations and operator overloading
+ * to simplify the use of 2d vectors in a C++ program.
+ */
+class Vector
+{
 public:
-    /// Default constructor
-    Vector() { mX = 0; mY = 0; }
+	Vector(double x, double y);
+	Vector();
 
-    /// New Constructor
-    Vector(double x, double y) { mX = x; mY = y; }
+    /**
+     * Destructor
+     */
+	virtual ~Vector() = default;
 
-    /// Assignment operator
-    Vector operator=(Vector other) { return Vector(other.X(), other.Y()); }
+	Vector operator*(double d) const;
 
-    /// Multiplication operator
-    Vector operator*(double z) { return Vector(mX * z, mY * z); }
+	Vector & operator+=(const Vector & a);
 
-    /// Addition operator
-    Vector operator+(Vector other) { return Vector(mX + other.X(), mY + other.Y()); }
+	Vector & operator*=(double d);
 
-    /// Destructor
-    ~Vector();
+	Vector & operator/=(double d);
 
-    /// Setters for x and y coordinates
-    void SetX(double x) { mX = x; }
-    void SetY(double y) { mY = y; }
+    /**
+     * Assignment operator.
+     * @param a Value to assign to this object
+     * @return (*this)
+     */
+	Vector& operator=(const Vector& a) = default;
 
-    /// Getters for x and y coordinates
-    double X() { return mX; }
-    double Y() { return mY; }
+	/// Get the X value
+	/// @return X
+	[[nodiscard]] auto X() const { return mX; }
 
+	/// Get the Y value
+	/// @return Y
+	[[nodiscard]] auto Y() const { return mY; }
+
+	/// Set the vector
+	/// @param x X value
+	/// @param y Y value
+	void Set(double x, double y) { mX = x; mY = y; }
+
+	/// Set the vector from another vector
+	/// @param x Other vector
+	void Set(const Vector &x) { mX = x.mX; mY = x.mY; }
+
+	/// Set the X component of the vector
+	/// @param x X value
+	void SetX(double x) { mX = x; }
+
+	/// Set the Y component of the vector
+	/// @param y Y value
+	void SetY(double y) { mY = y; }
+
+	[[nodiscard]] double Length() const;
+
+	[[nodiscard]] double Distance(const Vector & other) const;
+
+	Vector & Normalize();
+
+private:
+	/// X component of vector
+	double mX;
+
+	/// Y component of vector
+	double mY;
 };
 
-#endif //SPARTYGNOME_VECTOR_H
+Vector operator+(const Vector & a, const Vector & b);
+Vector operator-(const Vector & a, const Vector & b);
+Vector operator/(const Vector & a, double d);
+
+#endif // _VECTOR_H
