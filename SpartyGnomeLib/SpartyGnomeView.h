@@ -45,6 +45,9 @@ public:
     void OnLeftDown(wxMouseEvent &event);
     void OnLeftUp(wxMouseEvent &event);
     void OnMouseMove(wxMouseEvent &event);
+
+    void OnKeyDown(wxMouseEvent &event);
+    void OnKeyUp(wxMouseEvent &event);
     /**
      * Obtains the size of the window
      * @return A wxSize object representing the size of the window
