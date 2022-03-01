@@ -16,9 +16,12 @@ ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 {
 }
 
+/**
+ * Jump Event Handler
+ * @author Gabriel Misajlovski
+ */
 void ItemSpartyGnome::Jump()
 {
-
     mSpeedY = -300;
 }
 
