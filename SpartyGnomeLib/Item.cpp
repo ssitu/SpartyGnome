@@ -22,7 +22,7 @@ Item::~Item()
 
 /**
  * Constructor
- * @param aquarium The aquarium this item is a member of
+ * @param game The game this item is a member of
  */
 Item::Item(Game *game, const wstring &filename) : mGame(game)
 {

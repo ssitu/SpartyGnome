@@ -17,7 +17,7 @@ class Game;
  */
 class Item {
 private:
-    /// The aquarium this item is contained in
+    /// The game this item is contained in
     Game *mGame;
 
     // Item location in the game
@@ -92,8 +92,8 @@ public:
 
     /**
      * Test this item to see if it has been clicked on
-     * @param x X location on the aquarium to test in pixels
-     * @param y Y location on the aquarium to test in pixels
+     * @param x X location on the game to test in pixels
+     * @param y Y location on the game to test in pixels
      * @return true if clicked on
      */
     bool HitTest(int x, int y);

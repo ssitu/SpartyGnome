@@ -18,7 +18,7 @@ private:
 
     std::unique_ptr<wxBitmap> mBackground;  ///< Background image to use
 
-    /// All of the items to populate our aquarium
+    /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 
     /// Pointer to the gnome, given at level load

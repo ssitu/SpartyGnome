@@ -68,7 +68,7 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height,
 
 /**
  * Test an x,y click location to see if it clicked
- * on some item in the aquarium.
+ * on some item in the game.
  * @param x X location in pixels
  * @param y Y location in pixels
  * @returns Pointer to item we clicked on or nullptr if none.
