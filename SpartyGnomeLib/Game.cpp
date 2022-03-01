@@ -8,7 +8,6 @@
 #include <wx/graphics.h>
 
 #include "Item.h"
-#include "BackgroundImage.h"
 #include "Game.h"
 
 using namespace std;

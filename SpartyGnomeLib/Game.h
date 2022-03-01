@@ -37,6 +37,8 @@ public:
     void Add(std::shared_ptr<Item> item);
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
 
+    std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
+
 };
 
 #endif //SPARTYGNOME_GAME_H

@@ -12,7 +12,7 @@
 
 class ItemSpartyGnome : public Item {
 private:
-
+    int mSpeedY = 0;
 public:
     /// Default constructor (disabled)
     ItemSpartyGnome() = delete;
@@ -24,6 +24,8 @@ public:
     void operator=(const ItemSpartyGnome &) = delete;
 
     ItemSpartyGnome(Game* game);
+
+    void Jump();
 
 };
 

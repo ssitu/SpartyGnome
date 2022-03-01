@@ -11,6 +11,7 @@
 #include "ids.h"
 #include "Game.h"
 #include "BackgroundImage.h"
+#include "ItemSpartyGnome.h"
 #include "SpartyGnomeView.h"
 
 using namespace std;
@@ -32,7 +33,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_UP, &SpartyGnomeView::OnLeftUp, this);
     Bind(wxEVT_MOTION, &SpartyGnomeView::OnMouseMove, this);
     Bind(wxEVT_KEY_DOWN, &SpartyGnomeView::OnKeyDown, this);
-    Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
+    //Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
     //Bind the timer event handler
     Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
@@ -140,9 +141,14 @@ void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
     }
 }
 
-void SpartyGnomeView::OnKeyDown(wxMouseEvent& event)
+void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
 {
-    int key = event.GetKeyCode();
+    wxChar uc = event.GetUnicodeKey();
+    if ( uc != WXK_NONE && mGame.GetGnome() != nullptr) {
+        if (uc == WXK_SPACE) {
+            mGame.GetGnome()->Jump();
+        }
+    }
 
 }
 

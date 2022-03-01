@@ -15,3 +15,8 @@ const wstring SpartyGnomeImageName = L"images/gnome.png";
 ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 {
 }
+
+void ItemSpartyGnome::Jump()
+{
+    mSpeedY = 100;
+}
