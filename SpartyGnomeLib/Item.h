@@ -32,7 +32,6 @@ protected:
      * @param filename name of the file saving to or loading from
      */
     Item(Game *game, const std::wstring &filename);
-
     /// The underlying image
     std::unique_ptr<wxImage> mItemImage;
 
@@ -89,6 +88,12 @@ public:
      * @param y Y location in pixels
      */
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
+
+    /**
+     * Get the pointer to the Game object
+     * @return Pointer to Game object
+     */
+    virtual Game *GetGame() { return mGame; }
 
     /**
      * Test this item to see if it has been clicked on
