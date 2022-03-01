@@ -8,11 +8,14 @@
 #ifndef SPARTYGNOME_ITEMSPARTYGNOME_H
 #define SPARTYGNOME_ITEMSPARTYGNOME_H
 
+#include "Vector.h"
 #include "Item.h"
 
 class ItemSpartyGnome : public Item {
 private:
-    int mSpeedY = 0;
+    Vector mV;
+
+
 public:
     /// Default constructor (disabled)
     ItemSpartyGnome() = delete;
