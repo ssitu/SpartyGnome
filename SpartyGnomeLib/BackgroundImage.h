@@ -27,6 +27,9 @@ public:
     /// disabled assignment
     void operator=(const BackgroundImage&) = delete;
 
+    /// New constructor
+    BackgroundImage(Game* game);
+
 };
 
 #endif //SPARTYGNOME_BACKGROUNDIMAGE_H

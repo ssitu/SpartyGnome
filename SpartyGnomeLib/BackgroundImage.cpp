@@ -9,3 +9,8 @@
 #include "BackgroundImage.h"
 using namespace std;
 const wstring BackGroundImageName = L"images/backgroundForest.png";
+
+BackgroundImage::BackgroundImage(Game* game) : Item(game, BackGroundImageName)
+{
+
+}
