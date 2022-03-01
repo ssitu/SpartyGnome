@@ -8,10 +8,13 @@
 #ifndef SPARTYGNOME_ITEMSPARTYGNOME_H
 #define SPARTYGNOME_ITEMSPARTYGNOME_H
 
+#include "Vector.h"
 #include "Item.h"
 
 class ItemSpartyGnome : public Item {
 private:
+    Vector mV;
+
 
 public:
     /// Default constructor (disabled)
@@ -24,6 +27,10 @@ public:
     void operator=(const ItemSpartyGnome &) = delete;
 
     ItemSpartyGnome(Game* game);
+
+    void Jump();
+
+    void Update(double elapsed);
 
 };
 

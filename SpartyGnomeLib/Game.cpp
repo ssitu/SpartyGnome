@@ -8,7 +8,6 @@
 #include <wx/graphics.h>
 
 #include "Item.h"
-#include "BackgroundImage.h"
 #include "Game.h"
 
 using namespace std;
@@ -21,10 +20,6 @@ const int InitialY = 1024/2;
 
 Game::Game()
 {
-    mBackground = make_unique<wxBitmap>(
-            L"images/backgroundForest.png", wxBITMAP_TYPE_ANY);
-
-
 }
 
 
