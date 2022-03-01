@@ -18,7 +18,7 @@ private:
 
     std::unique_ptr<wxBitmap> mBackground;  ///< Background image to use
 
-    /// All of the items to populate our aquarium
+    /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 
     /// Pointer to the gnome, given at level load
@@ -31,6 +31,8 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxDC* dc);
 
     void Update(double elapsed);
+    void NewOrder(std::shared_ptr<Item> mGrabbedItem);
+    std::shared_ptr<Item>HitTest(int x, int y);
 
     void Add(std::shared_ptr<Item> item);
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);

@@ -16,6 +16,14 @@ class Game;
  * Declaration of Item Class
  */
 class Item {
+private:
+    /// The game this item is contained in
+    Game *mGame;
+
+    // Item location in the game
+    double  mX = 0;     ///< X location for the center of the item
+    double  mY = 0;     ///< Y location for the center of the item
+
 protected:
     /**
      * A variable to pass down to derived classes.
@@ -24,13 +32,6 @@ protected:
      * @param filename name of the file saving to or loading from
      */
     Item(Game *game, const std::wstring &filename);
-
-    // Item location in the game
-    double  mX = 0;     ///< X location for the center of the item
-    double  mY = 0;     ///< Y location for the center of the item
-private:
-    /// The aquarium this item is contained in
-    Game *mGame;
 
     /// The underlying image
     std::unique_ptr<wxImage> mItemImage;
@@ -80,7 +81,7 @@ public:
      * Handle updates for animation
      * @param elapsed The time since the last update
      */
-    void Update(double elapsed) {}
+    virtual void Update(double elapsed) {}
 
     /**
      * Set the item location
@@ -88,6 +89,14 @@ public:
      * @param y Y location in pixels
      */
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
+
+    /**
+     * Test this item to see if it has been clicked on
+     * @param x X location on the game to test in pixels
+     * @param y Y location on the game to test in pixels
+     * @return true if clicked on
+     */
+    bool HitTest(int x, int y);
 };
 
 #endif //SPARTYGNOME_ITEM_H
