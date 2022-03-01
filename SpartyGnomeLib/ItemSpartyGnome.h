@@ -1,8 +1,8 @@
 /**
  * @file ItemSpartyGnome.h
- * @author ashre
+ * @author ashre, Gabriel Misajlovski
  *
- *
+ * The class for our Gnome
  */
 
 #ifndef SPARTYGNOME_ITEMSPARTYGNOME_H

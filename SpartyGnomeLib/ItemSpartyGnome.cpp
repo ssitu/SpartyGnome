@@ -6,7 +6,6 @@
 
 #include <string>
 
-#include "Vector.h"
 #include "ItemSpartyGnome.h"
 
 using namespace std;
