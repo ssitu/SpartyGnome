@@ -31,6 +31,8 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_DOWN, &SpartyGnomeView::OnLeftDown, this);
     Bind(wxEVT_LEFT_UP, &SpartyGnomeView::OnLeftUp, this);
     Bind(wxEVT_MOTION, &SpartyGnomeView::OnMouseMove, this);
+    Bind(wxEVT_KEY_DOWN, &SpartyGnomeView::OnKeyDown, this);
+    Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
     //Bind the timer event handler
     Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
@@ -136,5 +138,11 @@ void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
         // Force the screen to redraw
         Refresh();
     }
+}
+
+void SpartyGnomeView::OnKeyDown(wxMouseEvent& event)
+{
+    int key = event.GetKeyCode();
+
 }
 
