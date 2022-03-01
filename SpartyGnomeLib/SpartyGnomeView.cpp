@@ -27,6 +27,9 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_PAINT, &SpartyGnomeView::OnPaint, this);
+    Bind(wxEVT_LEFT_DOWN, &SpartyGnomeView::OnLeftDown, this);
+    Bind(wxEVT_LEFT_UP, &SpartyGnomeView::OnLeftUp, this);
+    Bind(wxEVT_MOTION, &SpartyGnomeView::OnMouseMove, this);
     //Bind the timer event handler
     //TODO: Causes the window to not be able to be closed
 //    Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
@@ -80,4 +83,57 @@ void SpartyGnomeView::OnPaint(wxPaintEvent& event)
  * @param event The wx event
  */
 void SpartyGnomeView::OnTimer(wxTimerEvent& event) { Refresh(); }
+
+
+/**
+ * Handle the left mouse button down event
+ * @param event
+ */
+void SpartyGnomeView::OnLeftDown(wxMouseEvent &event)
+{
+    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
+    if (mGrabbedItem != nullptr)
+    {
+        // We have selected an item
+        // Move it to the end of the list of items
+        // you'll need code here to do that...
+        mGame.NewOrder(mGrabbedItem);
+    }
+}
+
+/**
+* Handle the left mouse button down event
+* @param event
+*/
+void SpartyGnomeView::OnLeftUp(wxMouseEvent &event)
+{
+    OnMouseMove(event);
+}
+
+/**
+* Handle the left mouse button down event
+* @param event
+*/
+void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
+{
+    // See if an item is currently being moved by the mouse
+    if (mGrabbedItem != nullptr)
+    {
+        // If an item is being moved, we only continue to
+        // move it while the left button is down.
+        if (event.LeftIsDown())
+        {
+            mGrabbedItem->SetLocation(event.GetX(), event.GetY());
+        }
+        else
+        {
+            // When the left button is released, we release the
+            // item.
+            mGrabbedItem = nullptr;
+        }
+
+        // Force the screen to redraw
+        Refresh();
+    }
+}
 

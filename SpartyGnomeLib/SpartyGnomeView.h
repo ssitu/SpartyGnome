@@ -34,10 +34,17 @@ private:
     int mHeight = 800;
     int mWidth = 1000;
 
+    /// Any item we are currently dragging
+    std::shared_ptr<Item> mGrabbedItem;
+
 public:
     void Initialize(wxFrame* parent);
     void OnAddSpartyGnome(wxCommandEvent& event);
     void OnAddPlatform(wxCommandEvent& event);
+
+    void OnLeftDown(wxMouseEvent &event);
+    void OnLeftUp(wxMouseEvent &event);
+    void OnMouseMove(wxMouseEvent &event);
     /**
      * Obtains the size of the window
      * @return A wxSize object representing the size of the window

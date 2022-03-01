@@ -31,6 +31,8 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxDC* dc);
 
     void Update(double elapsed);
+    void NewOrder(std::shared_ptr<Item> mGrabbedItem);
+    std::shared_ptr<Item>HitTest(int x, int y);
 
     void Add(std::shared_ptr<Item> item);
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);

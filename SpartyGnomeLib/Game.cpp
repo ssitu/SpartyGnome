@@ -67,6 +67,26 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height,
 }
 
 /**
+ * Test an x,y click location to see if it clicked
+ * on some item in the aquarium.
+ * @param x X location in pixels
+ * @param y Y location in pixels
+ * @returns Pointer to item we clicked on or nullptr if none.
+*/
+std::shared_ptr<Item> Game::HitTest(int x, int y)
+{
+    for (auto i = mItems.rbegin(); i != mItems.rend();  i++)
+    {
+        if ((*i)->HitTest(x, y))
+        {
+            return *i;
+        }
+    }
+
+    return  nullptr;
+}
+
+/**
  * Handle updates for animation
  * @param elapsed The time since the last update
  */
@@ -97,4 +117,17 @@ void Game::Add(std::shared_ptr<Item> item)
 {
     item->SetLocation(InitialX,InitialY);
     mItems.push_back(item);
+}
+
+/**
+ * Make a item appear on top of the rest of the items.
+ * @param mGrabbedItem shared pointer to an item, item to be appeared on top of other items.
+*/
+void Game::NewOrder(std::shared_ptr<Item> mGrabbedItem)
+{
+    auto loc = find(begin(mItems), end(mItems), mGrabbedItem);
+    if (loc!=end(mItems)) {
+        mItems.erase(loc);
+    }
+    mItems.push_back(mGrabbedItem);
 }
