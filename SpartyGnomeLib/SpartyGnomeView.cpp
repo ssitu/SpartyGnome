@@ -95,14 +95,14 @@ void SpartyGnomeView::OnTimer(wxTimerEvent& event) { Refresh(); }
  */
 void SpartyGnomeView::OnLeftDown(wxMouseEvent &event)
 {
-    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
-    if (mGrabbedItem != nullptr)
-    {
-        // We have selected an item
-        // Move it to the end of the list of items
-        // you'll need code here to do that...
-        mGame.NewOrder(mGrabbedItem);
-    }
+//    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
+//    if (mGrabbedItem != nullptr)
+//    {
+//        // We have selected an item
+//        // Move it to the end of the list of items
+//        // you'll need code here to do that...
+//        mGame.NewOrder(mGrabbedItem);
+//    }
 }
 
 /**
@@ -111,7 +111,7 @@ void SpartyGnomeView::OnLeftDown(wxMouseEvent &event)
 */
 void SpartyGnomeView::OnLeftUp(wxMouseEvent &event)
 {
-    OnMouseMove(event);
+//    OnMouseMove(event);
 }
 
 /**
@@ -120,25 +120,25 @@ void SpartyGnomeView::OnLeftUp(wxMouseEvent &event)
 */
 void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
 {
-    // See if an item is currently being moved by the mouse
-    if (mGrabbedItem != nullptr)
-    {
-        // If an item is being moved, we only continue to
-        // move it while the left button is down.
-        if (event.LeftIsDown())
-        {
-            mGrabbedItem->SetLocation(event.GetX(), event.GetY());
-        }
-        else
-        {
-            // When the left button is released, we release the
-            // item.
-            mGrabbedItem = nullptr;
-        }
-
-        // Force the screen to redraw
-        Refresh();
-    }
+//    // See if an item is currently being moved by the mouse
+//    if (mGrabbedItem != nullptr)
+//    {
+//        // If an item is being moved, we only continue to
+//        // move it while the left button is down.
+//        if (event.LeftIsDown())
+//        {
+//            mGrabbedItem->SetLocation(event.GetX(), event.GetY());
+//        }
+//        else
+//        {
+//            // When the left button is released, we release the
+//            // item.
+//            mGrabbedItem = nullptr;
+//        }
+//
+//        // Force the screen to redraw
+//        Refresh();
+//    }
 }
 
 void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
