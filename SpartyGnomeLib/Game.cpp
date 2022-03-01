@@ -20,10 +20,6 @@ const int InitialY = 1024/2;
 
 Game::Game()
 {
-    mBackground = make_unique<wxBitmap>(
-            L"images/backgroundForest.png", wxBITMAP_TYPE_ANY);
-
-
 }
 
 

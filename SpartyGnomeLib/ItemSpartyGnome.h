@@ -27,6 +27,8 @@ public:
 
     void Jump();
 
+    void Update(double elapsed);
+
 };
 
 #endif //SPARTYGNOME_ITEMSPARTYGNOME_H
