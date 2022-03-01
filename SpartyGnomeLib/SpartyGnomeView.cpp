@@ -141,14 +141,33 @@ void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
 //    }
 }
 
+
 void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
 {
-    wxChar uc = event.GetUnicodeKey();
-    if ( uc != WXK_NONE && mGame.GetGnome() != nullptr) {
-        if (uc == WXK_SPACE) {
-            mGame.GetGnome()->Jump();
-        }
-    }
+    switch (event.GetKeyCode())
+    {
+    case WXK_RIGHT:
+        // right arrow pressed
+        break;
 
+    case WXK_LEFT:
+        // left arrow pressed
+        break;
+
+    case WXK_SPACE:
+        // space bar pressed
+        mGame.GetGnome()->Jump();
+        break;
+    }
 }
 
+void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
+{
+    switch (event.GetKeyCode())
+    {
+    case WXK_RIGHT:
+    case WXK_LEFT:
+        // left or right arrow released
+        break;
+    }
+}

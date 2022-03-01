@@ -47,7 +47,7 @@ public:
     void OnMouseMove(wxMouseEvent &event);
 
     void OnKeyDown(wxKeyEvent &event);
-    //void OnKeyUp(wxMouseEvent &event);
+    void OnKeyUp(wxKeyEvent &event);
     /**
      * Obtains the size of the window
      * @return A wxSize object representing the size of the window
