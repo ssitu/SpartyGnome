@@ -34,7 +34,7 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
  * Draw this item
  * @param gc Graphics context to draw on
  */
-void Item::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void Item::Draw(shared_ptr<wxGraphicsContext> gc)
 {
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
