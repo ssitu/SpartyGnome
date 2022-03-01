@@ -13,7 +13,6 @@
  */
 void MainFrame::Initialize()
 {
-    CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
     Create(nullptr, wxID_ANY, L"Sparty Gnome",wxDefaultPosition,  wxSize( 1000,800 ));
 
     auto spartygnomeview = new SpartyGnomeView();
@@ -40,6 +39,9 @@ void MainFrame::Initialize()
             wxOK,
             this);
 
+
+    // Creating a Status Bar
+    CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 }
