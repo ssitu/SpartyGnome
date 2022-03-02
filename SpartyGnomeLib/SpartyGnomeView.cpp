@@ -36,11 +36,14 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     //Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
     //Bind the timer event handler
     Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
-    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
+//    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
     auto bg = make_shared<BackgroundImage>(&mGame);
     mGame.Add(bg);
+
+    auto spartyGnome = make_shared<ItemSpartyGnome>(&mGame);
+    mGame.AddGnome(spartyGnome);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -49,11 +52,11 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     mParent = parent;
 }
 
-void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
-{
-    auto gnome = make_shared<ItemSpartyGnome>(&mGame);
-    mGame.AddGnome(gnome);
-}
+//void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
+//{
+//    auto gnome = make_shared<ItemSpartyGnome>(&mGame);
+//    mGame.AddGnome(gnome);
+//}
 
 void SpartyGnomeView::OnAddPlatform(wxCommandEvent& event)
 {
@@ -79,7 +82,7 @@ void SpartyGnomeView::OnPaint(wxPaintEvent& event)
 
     auto size = GetClientSize();
     auto graphics = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
-    mGame.OnDraw(graphics, size.GetWidth(), size.GetHeight(), &dc);
+    mGame.OnDraw(graphics, size.GetWidth(), size.GetHeight());
 }
 
 /**
