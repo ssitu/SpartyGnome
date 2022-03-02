@@ -39,6 +39,8 @@ public:
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
+    void Save(const wxString &filename);
+
 };
 
 #endif //SPARTYGNOME_GAME_H

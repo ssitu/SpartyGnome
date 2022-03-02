@@ -36,6 +36,8 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
+
     auto bg = make_shared<BackgroundImage>(&mGame);
     mGame.Add(bg, 512, 512);
 
@@ -174,4 +176,21 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
         // left or right arrow released
         break;
     }
+}
+
+/**
+ * Saves the file containing the game and its objects.
+ * @param event
+ */
+void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
+{
+    wxFileDialog saveFileDialog(this, _("Save Aquarium file"), "", "",
+            "Aquarium Files (*.aqua)|*.aqua", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    if (saveFileDialog.ShowModal() == wxID_CANCEL)
+    {
+        return;
+    }
+
+    auto filename = saveFileDialog.GetPath();
+    mGame.Save(filename);
 }
