@@ -39,8 +39,8 @@ private:
 
 public:
     void Initialize(wxFrame* parent);
-    void OnAddSpartyGnome(wxCommandEvent& event);
-    void OnAddPlatform(wxCommandEvent& event);
+    // void OnAddSpartyGnome(wxCommandEvent& event);
+    // void OnAddPlatform(wxCommandEvent& event);
 
     void OnLeftDown(wxMouseEvent &event);
     void OnLeftUp(wxMouseEvent &event);
