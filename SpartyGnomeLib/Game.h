@@ -34,7 +34,7 @@ public:
     void NewOrder(std::shared_ptr<Item> mGrabbedItem);
     std::shared_ptr<Item>HitTest(int x, int y);
 
-    void Add(std::shared_ptr<Item> item);
+    void Add(std::shared_ptr<Item> item, double x, double y);
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }

@@ -109,10 +109,12 @@ void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
 /**
  * Add an item to the game
  * @param item New item to add
+ * @param x
+ * @param y
  */
-void Game::Add(std::shared_ptr<Item> item)
+void Game::Add(std::shared_ptr<Item> item, double x, double y)
 {
-    item->SetLocation(InitialX,InitialY);
+    item->SetLocation(x,y);
     mItems.push_back(item);
 }
 

@@ -40,7 +40,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
     auto bg = make_shared<BackgroundImage>(&mGame);
-    mGame.Add(bg);
+    mGame.Add(bg, 512, 512);
 
     auto spartyGnome = make_shared<ItemSpartyGnome>(&mGame);
     mGame.AddGnome(spartyGnome);
@@ -61,7 +61,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 void SpartyGnomeView::OnAddPlatform(wxCommandEvent& event)
 {
     auto platform = make_shared<Platform>(&mGame);
-    mGame.Add(platform);
+    mGame.Add(platform, 512,512 + (mGame.GetGnome()->GetHeight() / 2) + (platform->GetHeight() / 2));
 }
 
 /**
