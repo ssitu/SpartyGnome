@@ -184,8 +184,8 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
  */
 void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
 {
-    wxFileDialog saveFileDialog(this, _("Save Aquarium file"), "", "",
-            "Aquarium Files (*.aqua)|*.aqua", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    wxFileDialog saveFileDialog(this, _("Save Game file"), "", "",
+            "Game Files (*.game)|*.game", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
     if (saveFileDialog.ShowModal() == wxID_CANCEL)
     {
         return;
