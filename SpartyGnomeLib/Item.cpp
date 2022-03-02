@@ -36,14 +36,33 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
  */
 void Item::Draw(shared_ptr<wxGraphicsContext> gc)
 {
+
+    if(mItemBitmap->IsNull())
+
+    mItemBitmap = make_shared<wxBitmap>(*mItemImage);
+
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
+
+    gc->PushState();
+    gc->Translate(0, 0);
+
     gc->DrawBitmap(*mItemBitmap,
-            int(GetX() - wid / 2),
-            int(GetY() - hit / 2),
+            int(GetX()- wid / 2),
+            int(GetY()- hit / 2),
             wid + 1,
-            hit
-            );
+            hit);
+    gc->PopState();
+//    );
+
+//    double wid = mItemBitmap->GetWidth();
+//    double hit = mItemBitmap->GetHeight();
+//    gc->DrawBitmap(*mItemBitmap,
+//            int(GetX() - wid / 2),
+//            int(GetY() - hit / 2),
+//            wid + 1,
+//            hit
+//            );
 }
 
 /**

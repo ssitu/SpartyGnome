@@ -33,10 +33,11 @@ protected:
      */
     Item(Game *game, const std::wstring &filename);
     /// The underlying image
-    std::unique_ptr<wxImage> mItemImage;
-
+//    std::unique_ptr<wxImage> mItemImage;
+    std::shared_ptr<wxImage> mItemImage;
     /// The bitmap we can display for this item
-    std::unique_ptr<wxBitmap> mItemBitmap;
+//    std::unique_ptr<wxBitmap> mItemBitmap;
+    std::shared_ptr<wxBitmap> mItemBitmap;
 
 public:
     /// Default constructor (disabled)

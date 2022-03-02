@@ -28,7 +28,7 @@ public:
     /// Constructor
     Game();
 
-    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height, wxDC* dc);
+    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     void Update(double elapsed);
     void NewOrder(std::shared_ptr<Item> mGrabbedItem);
