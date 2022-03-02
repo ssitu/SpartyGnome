@@ -19,9 +19,6 @@ using namespace std;
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
 
-/// Game area height in virtual pixels
-const static int Height = 1024;
-
 void SpartyGnomeView::Initialize(wxFrame* parent)
 {
     Create(parent, wxID_ANY);
@@ -66,6 +63,7 @@ void SpartyGnomeView::OnAddPlatform(wxCommandEvent& event)
 
 /**
  *
+ * @param event
  */
 void SpartyGnomeView::OnPaint(wxPaintEvent& event)
 {
