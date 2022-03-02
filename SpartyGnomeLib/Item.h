@@ -105,6 +105,8 @@ public:
      * @return true if clicked on
      */
     bool HitTest(int x, int y);
+
+    Item(const wxXmlNode* declaration, const wxXmlNode* item);
 };
 
 #endif //SPARTYGNOME_ITEM_H

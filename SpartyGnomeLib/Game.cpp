@@ -8,6 +8,7 @@
 #include <wx/graphics.h>
 
 #include "Item.h"
+#include "BackgroundImage.h"
 #include "Game.h"
 
 using namespace std;
@@ -18,8 +19,17 @@ const static int Height = 1024;
 const int InitialX = 1024/2;
 const int InitialY = 1024/2;
 
+const wstring LevelsDir = L"levels/";
+
+const bool ErrorMessages = true;
+
 Game::Game()
 {
+    //Add SpartyGnome
+    mGnome = make_shared<ItemSpartyGnome>(this);
+    mItems.push_back(mGnome);
+    //Load the default level
+    LevelLoad(LevelsDir + "level0.xml");
 }
 
 
@@ -60,6 +70,8 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
     {
         item->Draw(graphics);
     }
+    // Draw Gnome last, so that it stays on top of other items
+    mGnome->Draw(graphics);
     graphics->PopState();
 }
 
@@ -109,6 +121,15 @@ void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
 /**
  * Add an item to the game
  * @param item New item to add
+ */
+void Game::Add(std::shared_ptr<Item> item)
+{
+    mItems.push_back(item);
+}
+
+/**
+ * Add an item to the game
+ * @param item New item to add
  * @param x
  * @param y
  */
@@ -129,6 +150,115 @@ void Game::NewOrder(std::shared_ptr<Item> mGrabbedItem)
         mItems.erase(loc);
     }
     mItems.push_back(mGrabbedItem);
+}
+
+/**
+ * Clears the list of items, except for the Gnome
+ */
+void Game::Clear()
+{
+    mItems.clear();
+    mItems.push_back(mGnome);
+}
+
+/**
+ * Load a level from an xml file
+ *
+ * @param filename The wxString of the file path
+ */
+void Game::LevelLoad(const wxString& filename)
+{
+    wxXmlDocument xml;
+    if(!xml.Load(filename))
+    {
+        if (ErrorMessages)
+        {
+            wxMessageBox(L"Error loading XML: cannot load XML file\nfile: " + filename);
+        }
+        return;
+    }
+
+    Clear();
+
+    // Get the root node, should be level
+    auto root = xml.GetRoot();
+    wxASSERT(root->GetName() == L"level");
+    // <level width="1024" height="1024" start-y="572" start-x="468">
+    long width;
+    root->GetAttribute(L"width", L"-1").ToLong(&width);
+    long height;
+    root->GetAttribute(L"height", L"-1").ToLong(&height);
+    long startY;
+    root->GetAttribute(L"start-y", L"-1").ToLong(&startY);
+    long startX;
+    root->GetAttribute(L"start-x", L"-1").ToLong(&startX);
+
+    // Use the loaded start location
+    mGnome->SetLocation(startX, startY);
+
+    // Get item declarations
+    auto declarations = root->GetChildren();
+    wxASSERT(declarations->GetName() == L"declarations");
+
+    // Need a way to store the id with its respective information for that item type
+    // Using hashtable to map ids to its respective XML node
+    std::unordered_map<wxString, wxXmlNode*> declarations_table;
+    // Iterate over declarations
+    for(auto decl = declarations->GetChildren(); decl; decl=decl->GetNext())
+    {
+        // Store info
+        // item type
+        auto type = decl->GetName(); // Can be used to test for correct format of the XML, unused for now
+
+        // iterate over attributes and add them to the table
+        // first attribute is id of declarations
+        wstring id = decl->GetAttribute(L"id").ToStdWstring();
+        // Map id to list
+        declarations_table[id] = decl;
+    }
+
+    // Get item list
+    auto items = declarations->GetNext();
+    wxASSERT(items->GetName() == L"items");
+
+    // Iterate over items
+    for(auto item = items->GetChildren(); item; item=item->GetNext())
+    {
+        LoadXmlItem(declarations_table, item);
+    }
+}
+
+/**
+ * Loads an item into the game, given a table for the item declarations and the XML node with item info
+ *
+ * @param declarations_table The table, mapping ids to declarations
+ * @param item The particular item to load
+ */
+void Game::LoadXmlItem(const std::unordered_map<wxString,
+        wxXmlNode*>& declarations_table, const wxXmlNode* item)
+{
+    auto type = item->GetName(); // Type of item
+    //Get the id for the item declaration
+    auto id = item->GetAttribute(L"id");
+    //Get the declaration for the item id
+    auto declaration = declarations_table.at(id);
+    std::shared_ptr<Item> loadedItem = nullptr;
+    //Choose which Item to make based on the type given
+    if(type == L"background")
+    {
+        loadedItem = make_shared<BackgroundImage>(declaration, item);
+    }
+    else
+    {
+        if (ErrorMessages)
+        {
+            wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
+        }
+    }
+    if (loadedItem != nullptr)
+    {
+        Add(loadedItem);
+    }
 }
 
 

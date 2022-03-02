@@ -12,6 +12,8 @@
 
 using namespace std;
 
+const wstring ImageDir = L"images/";
+
 /**
  * Destructor
  */
@@ -109,5 +111,30 @@ bool Item::HitTest(int x, int y)
     // If the location is transparent, we are not in the drawn
     // part of the image
     return !mItemImage->IsTransparent((int)testX, (int)testY);
+}
+
+/**
+ * The constructor to create an item from loading an XML file
+ * @param declaration The declaration of the item
+ * @param item The item specifications
+ */
+Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
+{
+    // Example format:
+    // declaration: <background id="i001" image="backgroundForest.png"/>
+    // item: <background id="i001" x="512" y="512"/>
+    // Get image path
+    wstring imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
+    // Creating and storing the image and bitmap
+    mItemImage = make_unique<wxImage>(ImageDir + imageFileName, wxBITMAP_TYPE_ANY);
+    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+
+    // Item location
+    long x = -1;
+    item->GetAttribute(L"x").ToLong(&x);
+    long y = -1;
+    item->GetAttribute(L"x").ToLong(&y);
+    SetLocation(x, y);
+
 }
 
