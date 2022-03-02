@@ -9,3 +9,16 @@ Wall::Wall(Game* game, const std::wstring& imagePath) : Item(game, imagePath)
 {
 
 }
+
+/**
+ * Save this item to an XML node
+ * @param node The parent node we are going to be a child of
+ * @return
+ */
+wxXmlNode* Wall::XmlSave(wxXmlNode* node)
+{
+    auto itemNode = Wall::XmlSave(node);
+    itemNode->AddAttribute(L"type", L"wall");
+
+    return itemNode;
+}

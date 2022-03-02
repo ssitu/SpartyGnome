@@ -66,6 +66,22 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
 }
 
 /**
+ * Save this item to an XML node
+ * @param node The parent node we are going to be a child of
+ * @return wxXmlNode that we saved the item into
+ */
+wxXmlNode *Item::XmlSave(wxXmlNode *node)
+{
+    auto itemNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"item");
+    node->AddChild(itemNode);
+
+    itemNode->AddAttribute(L"x", wxString::FromDouble(mX));
+    itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
+
+    return itemNode;
+}
+
+/**
  * Test to see if we hit this object with a mouse.
  * @param x X position to test
  * @param y Y position to test

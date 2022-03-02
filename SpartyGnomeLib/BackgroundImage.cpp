@@ -14,3 +14,16 @@ BackgroundImage::BackgroundImage(Game* game) : Item(game, BackGroundImageName)
 {
 
 }
+
+/**
+ * Save this item to an XML node
+ * @param node The parent node we are going to be a child of
+ * @return
+ */
+wxXmlNode* BackgroundImage::XmlSave(wxXmlNode* node)
+{
+    auto itemNode = BackgroundImage::XmlSave(node);
+    itemNode->AddAttribute(L"type", L"background");
+
+    return itemNode;
+}

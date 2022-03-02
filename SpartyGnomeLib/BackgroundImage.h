@@ -30,6 +30,8 @@ public:
     /// New constructor
     BackgroundImage(Game* game);
 
+    wxXmlNode* XmlSave(wxXmlNode* node) override;
+
 };
 
 #endif //SPARTYGNOME_BACKGROUNDIMAGE_H

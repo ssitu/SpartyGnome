@@ -18,6 +18,7 @@ public:
     void operator=(const Wall&) = delete;
 
     Wall(Game* game, const std::wstring& imagePath);
+    wxXmlNode* XmlSave(wxXmlNode* node) override;
 
 };
 

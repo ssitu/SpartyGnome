@@ -94,7 +94,9 @@ public:
      * Get the pointer to the Game object
      * @return Pointer to Game object
      */
-    virtual Game *GetGame() { return mGame; }
+    virtual Game* GetGame() { return mGame; }
+
+    virtual wxXmlNode* XmlSave(wxXmlNode *node);
 
     /**
      * Test this item to see if it has been clicked on

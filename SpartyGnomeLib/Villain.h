@@ -25,6 +25,8 @@ public:
 
     Villain(Game* game, const std::wstring& imagePath);
 
+    wxXmlNode* XmlSave(wxXmlNode* node) override;
+
 };
 
 #endif //SPARTYGNOME_VILLAIN_H
