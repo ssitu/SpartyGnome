@@ -38,8 +38,12 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
 
-    auto bg = make_shared<BackgroundImage>(&mGame);
-    mGame.Add(bg, 512, 512);
+    /// This is to make 4 backgrounds, extended by side to side
+    for (int i = 0; i<5; i++)
+    {
+        auto bg = make_shared<BackgroundImage>(&mGame);
+        mGame.Add(bg, -1024+1024*i, 512);
+    }
 
     auto spartyGnome = make_shared<ItemSpartyGnome>(&mGame);
     mGame.AddGnome(spartyGnome);
