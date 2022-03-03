@@ -44,6 +44,7 @@ void MainFrame::Initialize()
     // Creating a Status Bar
     CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 
+
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 }
 

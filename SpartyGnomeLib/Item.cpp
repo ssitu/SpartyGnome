@@ -130,11 +130,9 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 
     // Item location
-    long x = -1;
-    item->GetAttribute(L"x").ToLong(&x);
-    long y = -1;
-    item->GetAttribute(L"x").ToLong(&y);
-    SetLocation(x, y);
-
+    auto xstring = item->GetAttribute(L"x");
+    xstring.ToDouble(&mX);
+    auto ystring = item->GetAttribute(L"y");
+    ystring.ToDouble(&mY);
 }
 

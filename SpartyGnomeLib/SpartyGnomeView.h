@@ -16,6 +16,11 @@ private:
 
     void OnTimer(wxTimerEvent &event);
 
+    /**
+     * Stop the timer so the window can close
+     */
+    void Stop() {mTimer.Stop();}
+
     /// The pointer to the parent frame
     wxFrame* mParent;
 
@@ -40,7 +45,7 @@ private:
 public:
     void Initialize(wxFrame* parent);
     // void OnAddSpartyGnome(wxCommandEvent& event);
-    // void OnAddPlatform(wxCommandEvent& event);
+    void OnAddPlatform(double x, double y);
 
     void OnLeftDown(wxMouseEvent &event);
     void OnLeftUp(wxMouseEvent &event);
@@ -55,6 +60,8 @@ public:
     wxSize GetClientSize() { return mParent->GetClientSize(); };
 
     void OnFileSaveas(wxCommandEvent& event);
+
+    void OnClose(wxCloseEvent& event);
 
 
 

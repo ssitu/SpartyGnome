@@ -8,6 +8,7 @@
 #ifndef SPARTYGNOME_MAINFRAME_H
 #define SPARTYGNOME_MAINFRAME_H
 
+class SpartyGnomeView;
 
 /**
 * The top-level (main) frame of the application
@@ -15,6 +16,7 @@
 class MainFrame : public wxFrame {
 public:
     void Initialize();
+
     void OnExit(wxCommandEvent& event);
 };
 

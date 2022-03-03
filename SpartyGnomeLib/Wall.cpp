@@ -17,7 +17,7 @@ Wall::Wall(Game* game, const std::wstring& imagePath) : Item(game, imagePath)
  */
 wxXmlNode* Wall::XmlSave(wxXmlNode* node)
 {
-    auto itemNode = Wall::XmlSave(node);
+    auto itemNode = Item::XmlSave(node);
     itemNode->AddAttribute(L"type", L"wall");
 
     return itemNode;

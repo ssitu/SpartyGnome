@@ -16,8 +16,8 @@ using namespace std;
 /// Game area height in virtual pixels
 const static int Height = 1024;
 
-const int InitialX = 1024/2;
-const int InitialY = 1024/2;
+const int InitialX = 512;
+const int InitialY = 512;
 
 const wstring LevelsDir = L"levels/";
 
@@ -121,15 +121,6 @@ void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
 /**
  * Add an item to the game
  * @param item New item to add
- */
-void Game::Add(std::shared_ptr<Item> item)
-{
-    mItems.push_back(item);
-}
-
-/**
- * Add an item to the game
- * @param item New item to add
  * @param x
  * @param y
  */
@@ -171,11 +162,11 @@ void Game::LevelLoad(const wxString& filename)
     wxXmlDocument xml;
     if(!xml.Load(filename))
     {
-        if (ErrorMessages)
-        {
-            wxMessageBox(L"Error loading XML: cannot load XML file\nfile: " + filename);
-        }
-        return;
+        // if (ErrorMessages)
+        // {
+        //     wxMessageBox(L"Error loading XML: cannot load XML file\nfile: " + filename);
+        // }
+        // return;
     }
 
     Clear();
@@ -250,10 +241,10 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     }
     else
     {
-        if (ErrorMessages)
-        {
-            wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
-        }
+        // if (ErrorMessages)
+        // {
+        //    wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
+        // }
     }
     if (loadedItem != nullptr)
     {
@@ -273,7 +264,7 @@ void Game::Save(const wxString &filename)
 {
     wxXmlDocument xmlDoc;
 
-    auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"game");
+    auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"level");
     xmlDoc.SetRoot(root);
 
     // Iterate over all items and save them

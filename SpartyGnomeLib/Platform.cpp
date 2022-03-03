@@ -8,6 +8,9 @@
 #include <string>
 using namespace std;
 const wstring PlatformName = L"images/snow.png";
+const wstring left_image = L"images/snow-left.png";
+const wstring mid_image = L"images/snow-mid.png";
+const wstring right_image = L"images/snow-right.png";
 
 /**
  * Constructor
@@ -24,7 +27,7 @@ Platform::Platform(Game *game) : Item(game, PlatformName)
  */
 wxXmlNode* Platform::XmlSave(wxXmlNode* node)
 {
-    auto itemNode = Platform::XmlSave(node);
+    auto itemNode = Item::XmlSave(node);
     itemNode->AddAttribute(L"type", L"platform");
 
     return itemNode;

@@ -37,6 +37,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
+    parent->Bind(wxEVT_CLOSE_WINDOW, &SpartyGnomeView::OnClose, this, wxID_CLOSE);
 
     /// This is to make 4 backgrounds, extended by side to side
     for (int i = 0; i<5; i++)
@@ -64,11 +65,11 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    mGame.AddGnome(gnome);
 //}
 
-//void SpartyGnomeView::OnAddPlatform(wxCommandEvent& event)
-//{
-//    auto platform = make_shared<Platform>(&mGame);
-//    mGame.Add(platform, 512,512 + (mGame.GetGnome()->GetHeight() / 2) + (platform->GetHeight() / 2));
-//}
+void SpartyGnomeView::OnAddPlatform(double x, double y)
+{
+    auto platform = make_shared<Platform>(&mGame);
+    mGame.Add(platform, x, y);
+}
 
 /**
  *
@@ -188,8 +189,8 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
  */
 void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
 {
-    wxFileDialog saveFileDialog(this, _("Save Game file"), "", "",
-            "Game Files (*.game)|*.game", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    wxFileDialog saveFileDialog(this, _("Save Level file"), "", "",
+            "Game Files (*.xml)|*.xml", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
     if (saveFileDialog.ShowModal() == wxID_CANCEL)
     {
         return;
@@ -197,4 +198,14 @@ void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
 
     auto filename = saveFileDialog.GetPath();
     mGame.Save(filename);
+}
+
+/**
+ * Handle a close event. Stop the animation and destroy this window.
+ * @param event The Close event
+ */
+void SpartyGnomeView::OnClose(wxCloseEvent& event)
+{
+    this->Stop();
+    Destroy();
 }
