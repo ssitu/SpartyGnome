@@ -37,7 +37,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
-    parent->Bind(wxEVT_CLOSE_WINDOW, &SpartyGnomeView::OnClose, this, wxID_CLOSE);
+    parent->Bind(wxEVT_CLOSE_WINDOW, &SpartyGnomeView::OnClose, this, wxID_CLOSE_ALL);
 
     /// This is to make 4 backgrounds, extended by side to side
     for (int i = 0; i<5; i++)
@@ -206,6 +206,6 @@ void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
  */
 void SpartyGnomeView::OnClose(wxCloseEvent& event)
 {
-    this->Stop();
+    Stop();
     Destroy();
 }

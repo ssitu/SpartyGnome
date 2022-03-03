@@ -12,7 +12,7 @@
 using namespace std;
 
 const wstring directory = L"images/";
-const wstring PlatformName = L"images/composite.png";
+wstring PlatformName = L"images/composite.png";
 
 /**
  * Constructor
@@ -50,6 +50,11 @@ wxXmlNode* Platform::XmlSave(wxXmlNode* node)
     return itemNode;
 }
 
+/**
+ * A currently Failed attempt at trying to turn 3 images into a single
+ * bitmap.
+ * @param item
+ */
 void Platform::SaveCompositeImage(wxXmlNode* item)
 {
     if ((directory + item->GetAttribute(L"mid-image") != L"images/")
