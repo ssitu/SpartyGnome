@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.20)
 project(Tests)
 
 set(TEST_FILES
         gtest_main.cpp
+        GameTest.cpp
         )
 # Google tests
 include(FetchContent)

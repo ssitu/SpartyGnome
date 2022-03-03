@@ -10,9 +10,15 @@
 #include "Item.h"
 class Wall : Item {
 private:
-    int height;
-    int width;
+
 public:
+    /// Disable defaults
+    Wall() = delete;
+    Wall(const Wall&) = delete;
+    void operator=(const Wall&) = delete;
+
+    Wall(Game* game, const std::wstring& imagePath);
+    wxXmlNode* XmlSave(wxXmlNode* node) override;
 
 };
 

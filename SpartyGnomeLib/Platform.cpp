@@ -17,3 +17,16 @@ Platform::Platform(Game *game) : Item(game, PlatformName)
 {
 }
 
+/**
+ * Save this item to an XML node
+ * @param node The parent node we are going to be a child of
+ * @return
+ */
+wxXmlNode* Platform::XmlSave(wxXmlNode* node)
+{
+    auto itemNode = Platform::XmlSave(node);
+    itemNode->AddAttribute(L"type", L"platform");
+
+    return itemNode;
+}
+

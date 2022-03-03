@@ -36,8 +36,14 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
-    auto bg = make_shared<BackgroundImage>(&mGame);
-    mGame.Add(bg, 512, 512);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
+
+    /// This is to make 4 backgrounds, extended by side to side
+    for (int i = 0; i<5; i++)
+    {
+        auto bg = make_shared<BackgroundImage>(&mGame);
+        mGame.Add(bg, -1024+1024*i, 512);
+    }
 
     auto spartyGnome = make_shared<ItemSpartyGnome>(&mGame);
     mGame.AddGnome(spartyGnome);
@@ -174,4 +180,21 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
         // left or right arrow released
         break;
     }
+}
+
+/**
+ * Saves the file containing the game and its objects.
+ * @param event
+ */
+void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
+{
+    wxFileDialog saveFileDialog(this, _("Save Game file"), "", "",
+            "Game Files (*.game)|*.game", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    if (saveFileDialog.ShowModal() == wxID_CANCEL)
+    {
+        return;
+    }
+
+    auto filename = saveFileDialog.GetPath();
+    mGame.Save(filename);
 }

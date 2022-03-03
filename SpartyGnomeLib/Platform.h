@@ -25,6 +25,8 @@ public:
 
     Platform(Game* game);
 
+    wxXmlNode* XmlSave(wxXmlNode* node) override;
+
 };
 
 

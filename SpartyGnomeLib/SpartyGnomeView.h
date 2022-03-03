@@ -54,6 +54,8 @@ public:
      */
     wxSize GetClientSize() { return mParent->GetClientSize(); };
 
+    void OnFileSaveas(wxCommandEvent& event);
+
 
 
 

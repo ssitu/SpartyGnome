@@ -94,7 +94,9 @@ public:
      * Get the pointer to the Game object
      * @return Pointer to Game object
      */
-    virtual Game *GetGame() { return mGame; }
+    virtual Game* GetGame() { return mGame; }
+
+    virtual wxXmlNode* XmlSave(wxXmlNode *node);
 
     /**
      * Test this item to see if it has been clicked on
@@ -103,6 +105,8 @@ public:
      * @return true if clicked on
      */
     bool HitTest(int x, int y);
+
+    Item(const wxXmlNode* declaration, const wxXmlNode* item);
 };
 
 #endif //SPARTYGNOME_ITEM_H
