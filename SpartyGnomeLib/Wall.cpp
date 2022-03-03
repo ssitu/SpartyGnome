@@ -1,13 +1,23 @@
 /**
  * @file Wall.cpp
- * @author cro56
+ * @authors cro56, Gabriel Misajlovski
  */
 #include "pch.h"
+
+#include <string>
+
 #include "Wall.h"
 
-Wall::Wall(Game* game, const std::wstring& imagePath) : Item(game, imagePath)
-{
+using namespace std;
 
+const wstring imageWallName = L"images/wall1.png";
+
+/**
+ * Constructor
+ * @param game Game this item is a member of
+ */
+Wall::Wall(Game* game) : Item(game, imageWallName)
+{
 }
 
 /**
@@ -22,3 +32,5 @@ wxXmlNode* Wall::XmlSave(wxXmlNode* node)
 
     return itemNode;
 }
+
+

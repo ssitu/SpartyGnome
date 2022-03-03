@@ -98,6 +98,8 @@ public:
 
     virtual wxXmlNode* XmlSave(wxXmlNode *node);
 
+    virtual void XmlLoad(wxXmlNode *node);
+
     /**
      * Test this item to see if it has been clicked on
      * @param x X location on the game to test in pixels

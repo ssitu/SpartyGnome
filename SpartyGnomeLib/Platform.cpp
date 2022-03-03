@@ -51,6 +51,17 @@ wxXmlNode* Platform::XmlSave(wxXmlNode* node)
 }
 
 /**
+ * Load this platform from an XML node
+ * @param node The node we want to load in
+ */
+void Platform::XmlLoad(wxXmlNode* item)
+{
+    Item::XmlLoad(item);
+
+    SaveCompositeImage(item);
+}
+
+/**
  * A currently Failed attempt at trying to turn 3 images into a single
  * bitmap.
  * @param item

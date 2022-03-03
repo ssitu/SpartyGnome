@@ -15,8 +15,6 @@
  * The class for the background item
  */
 class BackgroundImage : public Item {
-private:
-
 public:
     /// disabled default constructor
     BackgroundImage() = delete;

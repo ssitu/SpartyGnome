@@ -84,6 +84,21 @@ wxXmlNode *Item::XmlSave(wxXmlNode *node)
 }
 
 /**
+ * Load the attributes for an item node.
+ *
+ * This is the  base class version that loads the attributes
+ * common to all items. Override this to load custom attributes
+ * for specific items.
+ *
+ * @param node The Xml node we are loading the item from
+ */
+void Item::XmlLoad(wxXmlNode *node)
+{
+    node->GetAttribute(L"x", L"0").ToDouble(&mX);
+    node->GetAttribute(L"y", L"0").ToDouble(&mY);
+}
+
+/**
  * Test to see if we hit this object with a mouse.
  * @param x X position to test
  * @param y Y position to test
