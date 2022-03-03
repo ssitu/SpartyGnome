@@ -1,8 +1,8 @@
 /**
  * @file Platform.h
- * @author ryanl
+ * @author ryanl, Gabriel Misajlovski
  *
- *
+ * Platform Class
  */
 
 #ifndef SPARTYGNOME_PLATFORM_H
@@ -12,6 +12,9 @@
 
 class Platform : public Item {
 private:
+    std::wstring mLeftImage;
+    std::wstring mRightImage;
+    std::wstring mMidImage;
 
 public:
     /// Default constructor (disabled)
@@ -28,6 +31,8 @@ public:
     Platform(const wxXmlNode* declaration, const wxXmlNode* item);
 
     wxXmlNode* XmlSave(wxXmlNode* node) override;
+
+    void SaveCompositeImage(wxXmlNode* item);
 
 };
 
