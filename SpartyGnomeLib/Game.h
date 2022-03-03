@@ -24,6 +24,8 @@ private:
     /// Pointer to the gnome, given at level load
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
 
+    void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
+
 public:
     /// Constructor
     Game();
@@ -34,12 +36,22 @@ public:
     void NewOrder(std::shared_ptr<Item> mGrabbedItem);
     std::shared_ptr<Item>HitTest(int x, int y);
 
+    void Add(std::shared_ptr<Item> item);
     void Add(std::shared_ptr<Item> item, double x, double y);
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
+    void Clear();
+
+    void LevelLoad(const wxString& filename);
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
     void Save(const wxString &filename);
+
+    /**
+     * Returns the number of items loaded in the game
+     * @return The number of items
+     */
+    unsigned int GetNumItems() { return mItems.size(); }
 
 };
 
