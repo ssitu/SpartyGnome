@@ -65,11 +65,11 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    mGame.AddGnome(gnome);
 //}
 
-void SpartyGnomeView::OnAddPlatform(double x, double y)
-{
-    auto platform = make_shared<Platform>(&mGame);
-    mGame.Add(platform, x, y);
-}
+// void SpartyGnomeView::OnAddPlatform(double x, double y)
+// {
+//     auto platform = make_shared<Platform>(&mGame);
+//     mGame.Add(platform, x, y);
+// }
 
 /**
  *

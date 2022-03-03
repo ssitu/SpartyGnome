@@ -118,6 +118,11 @@ void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
     mGnome = item;
 }
 
+void Game::Add(std::shared_ptr<Item> item)
+{
+    mItems.push_back(item);
+}
+
 /**
  * Add an item to the game
  * @param item New item to add
