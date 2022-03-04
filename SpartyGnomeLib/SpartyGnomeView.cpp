@@ -10,8 +10,6 @@
 
 #include "ids.h"
 #include "Game.h"
-#include "BackgroundImage.h"
-#include "ItemSpartyGnome.h"
 #include "SpartyGnomeView.h"
 
 using namespace std;
@@ -39,18 +37,8 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
     parent->Bind(wxEVT_CLOSE_WINDOW, &SpartyGnomeView::OnClose, this, wxID_CLOSE_ALL);
 
-    /// This is to make 4 backgrounds, extended by side to side
-    for (int i = 0; i<5; i++)
-    {
-        auto bg = make_shared<BackgroundImage>(&mGame);
-        mGame.Add(bg, -1024+1024*i, 512);
-    }
-
     auto spartyGnome = make_shared<ItemSpartyGnome>(&mGame);
     mGame.AddGnome(spartyGnome);
-
-    auto platform = make_shared<Platform>(&mGame);
-    mGame.Add(platform, 512, 512 + (mGame.GetGnome()->GetHeight() / 2) + (platform->GetHeight() / 2));
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
