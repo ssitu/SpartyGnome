@@ -77,6 +77,8 @@ wxXmlNode *Item::XmlSave(wxXmlNode *node)
     auto itemNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"item");
     node->AddChild(itemNode);
 
+    itemNode->AddAttribute(L"id", mId);
+
     itemNode->AddAttribute(L"x", wxString::FromDouble(mX));
     itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
 
@@ -125,9 +127,13 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     // declaration: <background id="i001" image="backgroundForest.png"/>
     // item: <background id="i001" x="512" y="512"/>
     // Get image path
-    if (item->GetName() != "platform") {
+    if (item->GetName() != L"platform") {
         imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
-    } else { imageFileName = declaration->GetAttribute(L"mid-image").ToStdWstring(); }
+    } else {
+        double width = item->GetAttribute(L"width").ToDouble(&width);
+        double tiles = width / 32;
+
+        imageFileName = declaration->GetAttribute(L"mid-image").ToStdWstring(); }
 
     // Creating and storing the image and bitmap
     mItemImage = make_unique<wxImage>(ImageDir + imageFileName, wxBITMAP_TYPE_ANY);
@@ -138,5 +144,6 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     xstring.ToDouble(&mX);
     auto ystring = item->GetAttribute(L"y");
     ystring.ToDouble(&mY);
+    SetLocation(mX, mY);
 }
 

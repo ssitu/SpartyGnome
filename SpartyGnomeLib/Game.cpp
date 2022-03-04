@@ -174,7 +174,7 @@ void Game::LevelLoad(const wxString& filename)
         // return;
     }
 
-    Clear();
+    this->Clear();
 
     // Get the root node, should be level
     auto root = xml.GetRoot();
@@ -270,27 +270,27 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
  */
 void Game::Save(const wxString &filename)
 {
-//    wxXmlDocument xmlDoc;
+    wxXmlDocument xmlDoc;
 
-//    auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"level");
-//    xmlDoc.SetRoot(root);
+    auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"level");
+    xmlDoc.SetRoot(root);
 
-//    auto declarations = new wxXmlNode(wxXML_ELEMENT_NODE, L"declarations");
-//    auto items = new wxXmlNode(wxXML_ELEMENT_NODE, L"items");
+    auto declarations = new wxXmlNode(wxXML_ELEMENT_NODE, L"declarations");
+    auto items = new wxXmlNode(wxXML_ELEMENT_NODE, L"items");
 
-//    root->SetChildren(declarations);
-//    root->SetNext(items);
+    root->SetChildren(declarations);
+    root->SetChildren(items);
 
     // Iterate over all items and save them
-//    for (auto item : mItems)
-//    {
-//        item->XmlSave(items);
-//    }
+    for (auto item : mItems)
+    {
+        item->XmlSave(items);
+    }
 
 
-//    if(!xmlDoc.Save(filename, wxXML_NO_INDENTATION))
-//    {
-//        wxMessageBox(L"Write to XML failed");
-//        return;
-//    }
+    if(!xmlDoc.Save(filename, wxXML_NO_INDENTATION))
+    {
+        wxMessageBox(L"Write to XML failed");
+        return;
+    }
 }

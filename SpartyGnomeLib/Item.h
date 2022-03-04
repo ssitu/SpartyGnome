@@ -24,6 +24,8 @@ private:
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
+    std::wstring mId = L"i000";
+
 protected:
     /**
      * A variable to pass down to derived classes.
@@ -88,7 +90,7 @@ public:
      * @param x X location in pixels
      * @param y Y location in pixels
      */
-    virtual void SetLocation(double x, double y) { mX = x; mY = y; }
+    void SetLocation(double x, double y) { mX = x; mY = y; }
 
     /**
      * Get the pointer to the Game object
