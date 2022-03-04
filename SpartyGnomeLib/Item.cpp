@@ -50,28 +50,27 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
     gc->Translate(0, 0);
 
     if (mItemBitmap2 != nullptr && mItemBitmap3 != nullptr) {
-        int size = 32;
         gc->DrawBitmap(*mItemBitmap,
                 int(GetX()-mWidth/2),
                 int(GetY()-hit/2),
-                34,
+                mItemImage->GetWidth()+1,
                 hit);
-        for (int i = size; i<mWidth; i += size) {
-            if (i>wid-size*2) {
-                gc->DrawBitmap(*mItemBitmap3,
-                        int(GetX()-mWidth/2+i),
-                        int(GetY()-hit/2),
-                        34,
-                        hit);
-            }
-            else {
-                gc->DrawBitmap(*mItemBitmap2,
-                        int(GetX()-mWidth/2+i),
-                        int(GetY()-hit/2),
-                        34,
-                        hit);
-            }
+
+        if (mWidth > 64) {
+            gc->DrawBitmap(*mItemBitmap2,
+                    int(GetX()-(mWidth/2)+mItemImage->GetWidth()),
+                    int(GetY()-hit/2),
+                    (mWidth-mItemImage->GetWidth()-mItemImage3->GetWidth()+2),
+                    hit);
         }
+
+        gc->DrawBitmap(*mItemBitmap3,
+                int(GetX()+(mWidth/2)-32),
+                int(GetY()-hit/2),
+                mItemImage3->GetWidth()+1,
+                hit);
+
+
     } else {
         gc->DrawBitmap(*mItemBitmap,
                 int(GetX()-wid/2),
