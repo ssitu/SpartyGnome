@@ -39,7 +39,7 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
 void Item::Draw(shared_ptr<wxGraphicsContext> gc)
 {
 
-    if(mItemBitmap->IsNull())
+    if(mItemBitmap->IsNull()) {}
 
     mItemBitmap = make_shared<wxBitmap>(*mItemImage);
 
@@ -52,23 +52,23 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
     if (mItemBitmap2 != nullptr && mItemBitmap3 != nullptr) {
         int size = 32;
         gc->DrawBitmap(*mItemBitmap,
-                int(GetX()-wid/2),
+                int(GetX()-mWidth/2),
                 int(GetY()-hit/2),
-                33,
+                34,
                 hit);
         for (int i = size; i<mWidth; i += size) {
             if (i>wid-size*2) {
                 gc->DrawBitmap(*mItemBitmap3,
-                        int(GetX()+i-wid/2),
+                        int(GetX()-mWidth/2+i),
                         int(GetY()-hit/2),
-                        33,
+                        34,
                         hit);
             }
             else {
                 gc->DrawBitmap(*mItemBitmap2,
-                        int(GetX()+i-wid/2),
+                        int(GetX()-mWidth/2+i),
                         int(GetY()-hit/2),
-                        33,
+                        34,
                         hit);
             }
         }
@@ -80,16 +80,6 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
                 hit);
     }
     gc->PopState();
-//    );
-
-//    double wid = mItemBitmap->GetWidth();
-//    double hit = mItemBitmap->GetHeight();
-//    gc->DrawBitmap(*mItemBitmap,
-//            int(GetX() - wid / 2),
-//            int(GetY() - hit / 2),
-//            wid + 1,
-//            hit
-//            );
 }
 
 /**
@@ -161,12 +151,12 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
         mItemBitmap = make_unique<wxBitmap>(*mItemImage);
     }
     else {
-        mItemImage = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"left-image"), wxBITMAP_TYPE_ANY);
+        mItemImage = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"left-image").ToStdWstring(), wxBITMAP_TYPE_ANY);
         mItemBitmap = make_unique<wxBitmap>(*mItemImage);
-        mItemImage2 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"mid-image"), wxBITMAP_TYPE_ANY);
-        mItemBitmap2 = make_unique<wxBitmap>(*mItemImage);
-        mItemImage3 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"right-image"), wxBITMAP_TYPE_ANY);
-        mItemBitmap3 = make_unique<wxBitmap>(*mItemImage);
+        mItemImage2 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"mid-image").ToStdWstring(), wxBITMAP_TYPE_ANY);
+        mItemBitmap2 = make_unique<wxBitmap>(*mItemImage2);
+        mItemImage3 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"right-image").ToStdWstring(), wxBITMAP_TYPE_ANY);
+        mItemBitmap3 = make_unique<wxBitmap>(*mItemImage3);
     }
 
 

@@ -40,8 +40,8 @@ protected:
     /// The underlying image
 //    std::unique_ptr<wxImage> mItemImage;
     std::shared_ptr<wxImage> mItemImage;
-    std::shared_ptr<wxImage> mItemImage2;
-    std::shared_ptr<wxImage> mItemImage3;
+    std::shared_ptr<wxImage> mItemImage2 = nullptr;
+    std::shared_ptr<wxImage> mItemImage3 = nullptr;
     /// The bitmap we can display for this item
 //    std::unique_ptr<wxBitmap> mItemBitmap;
     std::shared_ptr<wxBitmap> mItemBitmap;
