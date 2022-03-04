@@ -11,11 +11,6 @@
 #include "Item.h"
 
 class Platform : public Item {
-private:
-    std::wstring mLeftImage;
-    std::wstring mRightImage;
-    std::wstring mMidImage;
-
 public:
     /// Default constructor (disabled)
     Platform() = delete;
@@ -31,8 +26,6 @@ public:
     Platform(const wxXmlNode* declaration, const wxXmlNode* item);
 
     wxXmlNode* XmlSave(wxXmlNode* node) override;
-
-    void SaveCompositeImage(wxXmlNode* item);
 
 };
 

@@ -37,9 +37,6 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
     parent->Bind(wxEVT_CLOSE_WINDOW, &SpartyGnomeView::OnClose, this, wxID_CLOSE_ALL);
 
-    auto spartyGnome = make_shared<ItemSpartyGnome>(&mGame);
-    mGame.AddGnome(spartyGnome);
-
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
     mStopWatch.Start();

@@ -37,9 +37,13 @@ protected:
     /// The underlying image
 //    std::unique_ptr<wxImage> mItemImage;
     std::shared_ptr<wxImage> mItemImage;
+    std::shared_ptr<wxImage> mItemImage2;
+    std::shared_ptr<wxImage> mItemImage3;
     /// The bitmap we can display for this item
 //    std::unique_ptr<wxBitmap> mItemBitmap;
     std::shared_ptr<wxBitmap> mItemBitmap;
+    std::shared_ptr<wxBitmap> mItemBitmap2;
+    std::shared_ptr<wxBitmap> mItemBitmap3;
 
 public:
     /// Default constructor (disabled)
@@ -90,7 +94,7 @@ public:
      * @param x X location in pixels
      * @param y Y location in pixels
      */
-    void SetLocation(double x, double y) { mX = x; mY = y; }
+    virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 
     /**
      * Get the pointer to the Game object

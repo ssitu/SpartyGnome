@@ -32,9 +32,6 @@ Platform::Platform(Game *game) : Item(game, PlatformName)
 Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item)
         :Item(declaration, item)
 {
-    mLeftImage = Directory + declaration->GetAttribute(L"left-image", L"snowLeft.png").ToStdWstring();
-    mMidImage = Directory + declaration->GetAttribute(L"mid-image", L"snowMid.png").ToStdWstring();
-    mRightImage = Directory + declaration->GetAttribute(L"right-image", L"snowRight.png").ToStdWstring();
 
 }
 

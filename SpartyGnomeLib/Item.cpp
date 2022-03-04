@@ -127,23 +127,34 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     // declaration: <background id="i001" image="backgroundForest.png"/>
     // item: <background id="i001" x="512" y="512"/>
     // Get image path
-    if (item->GetName() != L"platform") {
+    if (item->GetName()!=L"platform") {
         imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
-    } else {
-        double width = item->GetAttribute(L"width").ToDouble(&width);
-        double tiles = width / 32;
+    }
+    else {
+        double width = item->GetAttribute(L"width", L"32").ToDouble(&width);
+        double tiles = width/32;
 
-        imageFileName = declaration->GetAttribute(L"mid-image").ToStdWstring(); }
+        if (tiles==1) {
+            imageFileName = declaration->GetAttribute(L"mid-image", L"snow.png").ToStdWstring();
+        }
+        else if (tiles==2) {
+            imageFileName = declaration->GetAttribute(L"left-image").ToStdWstring();
+        } else {
+            imageFileName = declaration->GetAttribute(L"mid-image", L"snow.png").ToStdWstring();
+        }
+        shared_ptr<Platform> platform;
+        double x = item->GetAttribute(L"x", "0").ToDouble(&x);
+        double y = item->GetAttribute(L"y", "0").ToDouble(&y);
+        // mGame->Add(platform, x+width, y);
+    }
 
-    // Creating and storing the image and bitmap
-    mItemImage = make_unique<wxImage>(ImageDir + imageFileName, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+        // Creating and storing the image and bitmap
+        mItemImage = make_unique<wxImage>(ImageDir+imageFileName, wxBITMAP_TYPE_ANY);
+        mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 
-    // Item location
-    auto xstring = item->GetAttribute(L"x");
-    xstring.ToDouble(&mX);
-    auto ystring = item->GetAttribute(L"y");
-    ystring.ToDouble(&mY);
-    SetLocation(mX, mY);
+        // Item location
+        item->GetAttribute(L"x").ToDouble(&mX);
+        item->GetAttribute(L"y").ToDouble(&mY);
+
+
 }
-

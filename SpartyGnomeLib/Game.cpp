@@ -167,11 +167,11 @@ void Game::LevelLoad(const wxString& filename)
     wxXmlDocument xml;
     if(!xml.Load(filename))
     {
-        // if (ErrorMessages)
-        // {
-        //     wxMessageBox(L"Error loading XML: cannot load XML file\nfile: " + filename);
-        // }
-        // return;
+        if (ErrorMessages)
+        {
+             wxMessageBox(L"Error loading XML: cannot load XML file\nfile: " + filename);
+        }
+        return;
     }
 
     this->Clear();
@@ -240,7 +240,7 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     auto declaration = declarations_table.at(id);
     std::shared_ptr<Item> loadedItem = nullptr;
     //Choose which Item to make based on the type given
-    if(type == L"background")
+    if (type == L"background")
     {
         loadedItem = make_shared<BackgroundImage>(declaration, item);
     }

@@ -8,12 +8,5 @@
         <item id="i000" x="432" y="848" type="platform"/>
         <item id="i000" x="448" y="784" type="platform"/>
         <item id="i000" x="464" y="720" type="platform"/>
-        <item id="i000" x="-1024" y="512" type="background"/>
-        <item id="i000" x="0" y="512" type="background"/>
-        <item id="i000" x="1024" y="512" type="background"/>
-        <item id="i000" x="2048" y="512" type="background"/>
-        <item id="i000" x="3072" y="512" type="background"/>
-        <item id="i000" x="512" y="512"/>
-        <item id="i000" x="512" y="628" type="platform"/>
     </items>
 </level>
