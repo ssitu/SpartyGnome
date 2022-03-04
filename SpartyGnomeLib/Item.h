@@ -24,6 +24,9 @@ private:
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
+    double mWidth = 0;
+    double mHeight = 0;
+
     std::wstring mId = L"i000";
 
 protected:
@@ -42,8 +45,8 @@ protected:
     /// The bitmap we can display for this item
 //    std::unique_ptr<wxBitmap> mItemBitmap;
     std::shared_ptr<wxBitmap> mItemBitmap;
-    std::shared_ptr<wxBitmap> mItemBitmap2;
-    std::shared_ptr<wxBitmap> mItemBitmap3;
+    std::shared_ptr<wxBitmap> mItemBitmap2 = nullptr;
+    std::shared_ptr<wxBitmap> mItemBitmap3 = nullptr;
 
 public:
     /// Default constructor (disabled)
@@ -73,7 +76,7 @@ public:
      * The width of the item
      * @return Width of image in pixels
      */
-    double GetWidth() const { return mItemImage->GetWidth(); }
+    double GetWidth() const { return mWidth; }
 
     /**
      * The height of the item

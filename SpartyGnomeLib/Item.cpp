@@ -49,11 +49,36 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
     gc->PushState();
     gc->Translate(0, 0);
 
-    gc->DrawBitmap(*mItemBitmap,
-            int(GetX()- wid / 2),
-            int(GetY()- hit / 2),
-            wid + 1,
-            hit);
+    if (mItemBitmap2 != nullptr && mItemBitmap3 != nullptr) {
+        int size = 32;
+        gc->DrawBitmap(*mItemBitmap,
+                int(GetX()-wid/2),
+                int(GetY()-hit/2),
+                33,
+                hit);
+        for (int i = size; i<mWidth; i += size) {
+            if (i>wid-size*2) {
+                gc->DrawBitmap(*mItemBitmap3,
+                        int(GetX()+i-wid/2),
+                        int(GetY()-hit/2),
+                        33,
+                        hit);
+            }
+            else {
+                gc->DrawBitmap(*mItemBitmap2,
+                        int(GetX()+i-wid/2),
+                        int(GetY()-hit/2),
+                        33,
+                        hit);
+            }
+        }
+    } else {
+        gc->DrawBitmap(*mItemBitmap,
+                int(GetX()-wid/2),
+                int(GetY()-hit/2),
+                wid+1,
+                hit);
+    }
     gc->PopState();
 //    );
 
@@ -81,6 +106,8 @@ wxXmlNode *Item::XmlSave(wxXmlNode *node)
 
     itemNode->AddAttribute(L"x", wxString::FromDouble(mX));
     itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
+    itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
+    itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
 
     return itemNode;
 }
@@ -129,32 +156,25 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     // Get image path
     if (item->GetName()!=L"platform") {
         imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
-    }
-    else {
-        double width = item->GetAttribute(L"width", L"32").ToDouble(&width);
-        double tiles = width/32;
-
-        if (tiles==1) {
-            imageFileName = declaration->GetAttribute(L"mid-image", L"snow.png").ToStdWstring();
-        }
-        else if (tiles==2) {
-            imageFileName = declaration->GetAttribute(L"left-image").ToStdWstring();
-        } else {
-            imageFileName = declaration->GetAttribute(L"mid-image", L"snow.png").ToStdWstring();
-        }
-        shared_ptr<Platform> platform;
-        double x = item->GetAttribute(L"x", "0").ToDouble(&x);
-        double y = item->GetAttribute(L"y", "0").ToDouble(&y);
-        // mGame->Add(platform, x+width, y);
-    }
-
         // Creating and storing the image and bitmap
         mItemImage = make_unique<wxImage>(ImageDir+imageFileName, wxBITMAP_TYPE_ANY);
         mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+    }
+    else {
+        mItemImage = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"left-image"), wxBITMAP_TYPE_ANY);
+        mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+        mItemImage2 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"mid-image"), wxBITMAP_TYPE_ANY);
+        mItemBitmap2 = make_unique<wxBitmap>(*mItemImage);
+        mItemImage3 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"right-image"), wxBITMAP_TYPE_ANY);
+        mItemBitmap3 = make_unique<wxBitmap>(*mItemImage);
+    }
 
-        // Item location
-        item->GetAttribute(L"x").ToDouble(&mX);
-        item->GetAttribute(L"y").ToDouble(&mY);
+
+    // Item location
+    item->GetAttribute(L"x").ToDouble(&mX);
+    item->GetAttribute(L"y").ToDouble(&mY);
+    item->GetAttribute(L"width").ToDouble(&mWidth);
+    item->GetAttribute(L"height").ToDouble(&mHeight);
 
 
 }

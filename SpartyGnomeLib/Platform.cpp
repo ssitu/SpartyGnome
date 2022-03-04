@@ -11,7 +11,6 @@
 
 using namespace std;
 
-const string Directory = "images/";
 const wstring PlatformName = L"images/snow.png";
 
 class Game;
