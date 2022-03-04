@@ -16,9 +16,6 @@ using namespace std;
 /// Game area height in virtual pixels
 const static int Height = 1024;
 
-const int InitialGnomeX = 512;
-const int InitialGnomeY = 512;
-
 const wstring LevelsDir = L"levels/";
 
 const bool ErrorMessages = true;
@@ -113,7 +110,6 @@ void Game::Update(double elapsed)
  */
 void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
 {
-    item->SetLocation(InitialGnomeX,InitialGnomeY);
     mItems.push_back(item);
     mGnome = item;
 }
@@ -181,13 +177,13 @@ void Game::LevelLoad(const wxString& filename)
     wxASSERT(root->GetName() == L"level");
     // <level width="1024" height="1024" start-y="572" start-x="468">
     long width;
-    root->GetAttribute(L"width", L"1").ToLong(&width);
+    root->GetAttribute(L"width").ToLong(&width);
     long height;
-    root->GetAttribute(L"height", L"1").ToLong(&height);
+    root->GetAttribute(L"height").ToLong(&height);
     long startY;
-    root->GetAttribute(L"start-y", L"1").ToLong(&startY);
+    root->GetAttribute(L"start-y").ToLong(&startY);
     long startX;
-    root->GetAttribute(L"start-x", L"1").ToLong(&startX);
+    root->GetAttribute(L"start-x").ToLong(&startX);
 
     // Use the loaded start location
     mGnome->SetLocation(startX, startY);
