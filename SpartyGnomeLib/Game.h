@@ -16,8 +16,6 @@ class Game {
 private:
     double mScale;
 
-    std::unique_ptr<wxBitmap> mBackground;  ///< Background image to use
-
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 

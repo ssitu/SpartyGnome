@@ -16,8 +16,8 @@ using namespace std;
 /// Game area height in virtual pixels
 const static int Height = 1024;
 
-const int InitialX = 512;
-const int InitialY = 512;
+const int InitialGnomeX = 512;
+const int InitialGnomeY = 512;
 
 const wstring LevelsDir = L"levels/";
 
@@ -113,12 +113,12 @@ void Game::Update(double elapsed)
  */
 void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
 {
-    item->SetLocation(InitialX,InitialY);
+    item->SetLocation(InitialGnomeX,InitialGnomeY);
     mItems.push_back(item);
     mGnome = item;
 }
 
-void Game::Add(std::shared_ptr<Item> item)
+void Game::Add(shared_ptr<Item> item)
 {
     mItems.push_back(item);
 }
@@ -126,8 +126,8 @@ void Game::Add(std::shared_ptr<Item> item)
 /**
  * Add an item to the game
  * @param item New item to add
- * @param x
- * @param y
+ * @param x x location of item
+ * @param y y location of item
  */
 void Game::Add(std::shared_ptr<Item> item, double x, double y)
 {
@@ -181,13 +181,13 @@ void Game::LevelLoad(const wxString& filename)
     wxASSERT(root->GetName() == L"level");
     // <level width="1024" height="1024" start-y="572" start-x="468">
     long width;
-    root->GetAttribute(L"width", L"-1").ToLong(&width);
+    root->GetAttribute(L"width", L"1").ToLong(&width);
     long height;
-    root->GetAttribute(L"height", L"-1").ToLong(&height);
+    root->GetAttribute(L"height", L"1").ToLong(&height);
     long startY;
-    root->GetAttribute(L"start-y", L"-1").ToLong(&startY);
+    root->GetAttribute(L"start-y", L"1").ToLong(&startY);
     long startX;
-    root->GetAttribute(L"start-x", L"-1").ToLong(&startX);
+    root->GetAttribute(L"start-x", L"1").ToLong(&startX);
 
     // Use the loaded start location
     mGnome->SetLocation(startX, startY);
@@ -244,19 +244,22 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     {
         loadedItem = make_shared<BackgroundImage>(declaration, item);
     }
+    else if (type == L"platform")
+    {
+        loadedItem = make_shared<Platform>(declaration, item);
+    }
     else
     {
-        // if (ErrorMessages)
-        // {
-        //    wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
-        // }
+        if (ErrorMessages)
+        {
+            wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
+        }
     }
     if (loadedItem != nullptr)
     {
         Add(loadedItem);
     }
 }
-
 
 /**
  * Save the game as a .game XML file.
@@ -267,21 +270,27 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
  */
 void Game::Save(const wxString &filename)
 {
-    wxXmlDocument xmlDoc;
+//    wxXmlDocument xmlDoc;
 
-    auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"level");
-    xmlDoc.SetRoot(root);
+//    auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"level");
+//    xmlDoc.SetRoot(root);
+
+//    auto declarations = new wxXmlNode(wxXML_ELEMENT_NODE, L"declarations");
+//    auto items = new wxXmlNode(wxXML_ELEMENT_NODE, L"items");
+
+//    root->SetChildren(declarations);
+//    root->SetNext(items);
 
     // Iterate over all items and save them
-    for (auto item : mItems)
-    {
-        item->XmlSave(root);
-    }
+//    for (auto item : mItems)
+//    {
+//        item->XmlSave(items);
+//    }
 
 
-    if(!xmlDoc.Save(filename, wxXML_NO_INDENTATION))
-    {
-        wxMessageBox(L"Write to XML failed");
-        return;
-    }
+//    if(!xmlDoc.Save(filename, wxXML_NO_INDENTATION))
+//    {
+//        wxMessageBox(L"Write to XML failed");
+//        return;
+//    }
 }

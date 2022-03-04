@@ -84,21 +84,6 @@ wxXmlNode *Item::XmlSave(wxXmlNode *node)
 }
 
 /**
- * Load the attributes for an item node.
- *
- * This is the  base class version that loads the attributes
- * common to all items. Override this to load custom attributes
- * for specific items.
- *
- * @param node The Xml node we are loading the item from
- */
-void Item::XmlLoad(wxXmlNode *node)
-{
-    node->GetAttribute(L"x", L"0").ToDouble(&mX);
-    node->GetAttribute(L"y", L"0").ToDouble(&mY);
-}
-
-/**
  * Test to see if we hit this object with a mouse.
  * @param x X position to test
  * @param y Y position to test
@@ -135,11 +120,15 @@ bool Item::HitTest(int x, int y)
  */
 Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
 {
+    wstring imageFileName;
     // Example format:
     // declaration: <background id="i001" image="backgroundForest.png"/>
     // item: <background id="i001" x="512" y="512"/>
     // Get image path
-    wstring imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
+    if (item->GetName() != "platform") {
+        imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
+    } else { imageFileName = declaration->GetAttribute(L"mid-image").ToStdWstring(); }
+
     // Creating and storing the image and bitmap
     mItemImage = make_unique<wxImage>(ImageDir + imageFileName, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);

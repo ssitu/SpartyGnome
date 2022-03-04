@@ -32,8 +32,6 @@ public:
 
     wxXmlNode* XmlSave(wxXmlNode* node) override;
 
-    void XmlLoad(wxXmlNode* item);
-
     void SaveCompositeImage(wxXmlNode* item);
 
 };
