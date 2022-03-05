@@ -28,6 +28,7 @@ private:
     double mHeight = 0;
 
     std::wstring mId = L"i000";
+    std::wstring mType = L"background";
 
 protected:
     /**
@@ -82,7 +83,7 @@ public:
      * The height of the item
      * @return Width of image in pixels
      */
-    double GetHeight() const { return mItemImage->GetHeight(); }
+    double GetHeight() const { return mHeight; }
 
     void Draw(std::shared_ptr<wxGraphicsContext> gc);
 

@@ -55,6 +55,7 @@ public:
     wxSize GetClientSize() { return mParent->GetClientSize(); };
 
     void OnFileSaveas(wxCommandEvent& event);
+    void OnFileOpen(wxCommandEvent& event);
 
     /**
      * Stop the timer so the window can close

@@ -34,7 +34,9 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
+    // Binding Save and Load functions.
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileOpen, this, wxID_OPEN);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -182,4 +184,21 @@ void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
 
     auto filename = saveFileDialog.GetPath();
     mGame.Save(filename);
+}
+
+/**
+ * Loads a chosen XML file
+ * @param event
+ */
+void SpartyGnomeView::OnFileOpen(wxCommandEvent& event)
+{
+    wxFileDialog loadFileDialog(this, _("Load Level file"), "", "",
+            "", wxFD_OPEN);
+    if (loadFileDialog.ShowModal() == wxID_CANCEL)
+    {
+        return;
+    }
+
+    auto filename = loadFileDialog.GetPath();
+    mGame.LevelLoad(filename);
 }

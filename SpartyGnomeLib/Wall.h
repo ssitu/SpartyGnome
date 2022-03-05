@@ -19,6 +19,8 @@ public:
 
     Wall(Game* game);
 
+    Wall(const wxXmlNode* declaration, const wxXmlNode* item);
+
     wxXmlNode* XmlSave(wxXmlNode* node) override;
 
 };

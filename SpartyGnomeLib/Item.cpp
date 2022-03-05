@@ -49,7 +49,7 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
     gc->PushState();
     gc->Translate(0, 0);
 
-    if (mItemBitmap2 != nullptr && mItemBitmap3 != nullptr) {
+    if (mType == L"platform") {
         gc->DrawBitmap(*mItemBitmap,
                 int(GetX()-mWidth/2),
                 int(GetY()-hit/2),
@@ -60,7 +60,7 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
             gc->DrawBitmap(*mItemBitmap2,
                     int(GetX()-(mWidth/2)+mItemImage->GetWidth()),
                     int(GetY()-hit/2),
-                    (mWidth-mItemImage->GetWidth()-mItemImage3->GetWidth()+2),
+                    (mWidth-mItemImage->GetWidth()+2),
                     hit);
         }
 
@@ -71,6 +71,12 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
                 hit);
 
 
+    } else if (mType==L"wall") {
+        gc->DrawBitmap(*mItemBitmap,
+                int(GetX()-wid/2),
+                int(GetY()-mHeight/2),
+                wid+1,
+                mHeight+2);
     } else {
         gc->DrawBitmap(*mItemBitmap,
                 int(GetX()-wid/2),
@@ -139,11 +145,13 @@ bool Item::HitTest(int x, int y)
 Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
 {
     wstring imageFileName;
+    mId = declaration->GetAttribute(L"id").ToStdWstring();
+    mType = item->GetName();
     // Example format:
     // declaration: <background id="i001" image="backgroundForest.png"/>
     // item: <background id="i001" x="512" y="512"/>
     // Get image path
-    if (item->GetName()!=L"platform") {
+    if (mType!=L"platform") {
         imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
         // Creating and storing the image and bitmap
         mItemImage = make_unique<wxImage>(ImageDir+imageFileName, wxBITMAP_TYPE_ANY);
@@ -159,7 +167,7 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     }
 
 
-    // Item location
+    // Item location, height, and photo ID
     item->GetAttribute(L"x").ToDouble(&mX);
     item->GetAttribute(L"y").ToDouble(&mY);
     item->GetAttribute(L"width").ToDouble(&mWidth);

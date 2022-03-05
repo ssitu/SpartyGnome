@@ -9,6 +9,7 @@
 
 #include "Item.h"
 #include "BackgroundImage.h"
+#include "Wall.h"
 #include "Game.h"
 
 using namespace std;
@@ -18,7 +19,7 @@ const static int Height = 1024;
 
 const wstring LevelsDir = L"levels/";
 
-const bool ErrorMessages = true;
+const bool ErrorMessages = false;
 
 Game::Game()
 {
@@ -177,13 +178,13 @@ void Game::LevelLoad(const wxString& filename)
     wxASSERT(root->GetName() == L"level");
     // <level width="1024" height="1024" start-y="572" start-x="468">
     long width;
-    root->GetAttribute(L"width").ToLong(&width);
+    root->GetAttribute(L"width", L"100").ToLong(&width);
     long height;
-    root->GetAttribute(L"height").ToLong(&height);
+    root->GetAttribute(L"height", L"100").ToLong(&height);
     long startY;
-    root->GetAttribute(L"start-y").ToLong(&startY);
+    root->GetAttribute(L"start-y", L"100").ToLong(&startY);
     long startX;
-    root->GetAttribute(L"start-x").ToLong(&startX);
+    root->GetAttribute(L"start-x", L"100").ToLong(&startX);
 
     // Use the loaded start location
     mGnome->SetLocation(startX, startY);
@@ -243,8 +244,10 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     else if (type == L"platform")
     {
         loadedItem = make_shared<Platform>(declaration, item);
-    }
-    else
+    } else if (type == L"wall")
+    {
+        loadedItem = make_shared<Wall>(declaration, item);
+    } else
     {
         if (ErrorMessages)
         {

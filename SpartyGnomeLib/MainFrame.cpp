@@ -29,6 +29,7 @@ void MainFrame::Initialize()
     menuBar->Append(helpMenu, L"&Help");
     fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
     fileMenu->Append(wxID_SAVEAS, "Save &As...\tCtrl-S", L"Save game as...");
+    fileMenu->Append(wxID_OPEN, "Open &File...\tCtrl-F", L"Open xml level file...");
 
     itemMenu->Append(IDM_ADDSPARTYGNOME, L"&Sparty Gnome", L"Add a Sparty Gnome");
     itemMenu->Append(IDM_ADDPLATFORM, L"&Platform", L"Add a Platform");
