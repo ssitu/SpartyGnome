@@ -35,7 +35,6 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
-    parent->Bind(wxEVT_CLOSE_WINDOW, &SpartyGnomeView::OnClose, this, wxID_CLOSE_ALL);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -183,14 +182,4 @@ void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
 
     auto filename = saveFileDialog.GetPath();
     mGame.Save(filename);
-}
-
-/**
- * Handle a close event. Stop the animation and destroy this window.
- * @param event The Close event
- */
-void SpartyGnomeView::OnClose(wxCloseEvent& event)
-{
-    Stop();
-    Destroy();
 }

@@ -16,11 +16,6 @@ private:
 
     void OnTimer(wxTimerEvent &event);
 
-    /**
-     * Stop the timer so the window can close
-     */
-    void Stop() {mTimer.Stop();}
-
     /// The pointer to the parent frame
     wxFrame* mParent;
 
@@ -61,9 +56,10 @@ public:
 
     void OnFileSaveas(wxCommandEvent& event);
 
-    void OnClose(wxCloseEvent& event);
-
-
+    /**
+     * Stop the timer so the window can close
+     */
+    void Stop() { mTimer.Stop(); }
 
 
 

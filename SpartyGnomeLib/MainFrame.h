@@ -14,6 +14,11 @@ class SpartyGnomeView;
 * The top-level (main) frame of the application
 */
 class MainFrame : public wxFrame {
+private:
+    /// The pointer to the game view
+    SpartyGnomeView* mGameView;
+
+    void OnClose(wxCloseEvent& event);
 public:
     void Initialize();
 

@@ -15,8 +15,8 @@ void MainFrame::Initialize()
 {
     Create(nullptr, wxID_ANY, L"Sparty Gnome",wxDefaultPosition,  wxSize( 1000,800 ));
 
-    auto spartygnomeview = new SpartyGnomeView();
-    spartygnomeview->Initialize(this);
+    mGameView = new SpartyGnomeView();
+    mGameView->Initialize(this);
 
     auto menuBar = new wxMenuBar( );
 
@@ -46,6 +46,7 @@ void MainFrame::Initialize()
 
 
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
+    Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 }
 
 /**
@@ -57,3 +58,12 @@ void MainFrame::OnExit(wxCommandEvent& event)
     Close(true);
 }
 
+/**
+ * Handle a close event. Stop the animation and destroy this window.
+ * @param event The Close event
+ */
+void MainFrame::OnClose(wxCloseEvent& event)
+{
+    mGameView->Stop();
+    Destroy();
+}
