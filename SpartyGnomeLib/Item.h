@@ -24,30 +24,60 @@ private:
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
+    /// The width of this item
     double mWidth = 0;
+
+    /// The height of this item
     double mHeight = 0;
 
+    /// The XML id of this item
     std::wstring mId = L"i000";
+
+    /// The XML name for this item
     std::wstring mType = L"background";
 
-protected:
-    /**
-     * A variable to pass down to derived classes.
-     *
-     * @param game game the item is in
-     * @param filename name of the file saving to or loading from
-     */
-    Item(Game *game, const std::wstring &filename);
-    /// The underlying image
-//    std::unique_ptr<wxImage> mItemImage;
+    /// The image for this item
     std::shared_ptr<wxImage> mItemImage;
-    std::shared_ptr<wxImage> mItemImage2 = nullptr;
-    std::shared_ptr<wxImage> mItemImage3 = nullptr;
-    /// The bitmap we can display for this item
-//    std::unique_ptr<wxBitmap> mItemBitmap;
+
+    /// The bitmap for this item
     std::shared_ptr<wxBitmap> mItemBitmap;
-    std::shared_ptr<wxBitmap> mItemBitmap2 = nullptr;
-    std::shared_ptr<wxBitmap> mItemBitmap3 = nullptr;
+
+protected:
+    Item(Game *game, const std::wstring &filename);
+//    /// The underlying image
+//    std::unique_ptr<wxImage> mItemImage;
+//    std::shared_ptr<wxImage> mItemImage;
+//    std::shared_ptr<wxImage> mItemImage2 = nullptr;
+//    std::shared_ptr<wxImage> mItemImage3 = nullptr;
+//    /// The bitmap we can display for this item
+//    std::unique_ptr<wxBitmap> mItemBitmap;
+//    std::shared_ptr<wxBitmap> mItemBitmap;
+//    std::shared_ptr<wxBitmap> mItemBitmap2 = nullptr;
+//    std::shared_ptr<wxBitmap> mItemBitmap3 = nullptr;
+
+    /**
+     * Get the image for this item
+     * @return The item image
+     */
+    std::shared_ptr<wxImage> GetImage() {return mItemImage;}
+
+    /**
+     * Set the image for this item
+     * @param image
+     */
+    void SetImage(const std::shared_ptr<wxImage>& image) {mItemImage = image;}
+
+    /**
+     * Get the bitmap for this item
+     * @return The item bitmap
+     */
+    std::shared_ptr<wxBitmap> GetBitmap() {return mItemBitmap;}
+
+    /**
+     * Set the bitmap for this item
+     * @param bitmap
+     */
+    void SetBitmap(const std::shared_ptr<wxBitmap>& bitmap) {mItemBitmap = bitmap;}
 
 public:
     /// Default constructor (disabled)
@@ -85,7 +115,7 @@ public:
      */
     double GetHeight() const { return mHeight; }
 
-    void Draw(std::shared_ptr<wxGraphicsContext> gc);
+    virtual void Draw(std::shared_ptr<wxGraphicsContext> gc);
 
     /**
      * Handle updates for animation

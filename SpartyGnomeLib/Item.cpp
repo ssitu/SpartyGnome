@@ -28,8 +28,8 @@ Item::~Item()
  */
 Item::Item(Game *game, const wstring &filename) : mGame(game)
 {
-    mItemImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+    mItemImage = make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY);
+    mItemBitmap = make_shared<wxBitmap>(*mItemImage);
 }
 
 /**
@@ -38,53 +38,14 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
  */
 void Item::Draw(shared_ptr<wxGraphicsContext> gc)
 {
-
-    if(mItemBitmap->IsNull()) {}
-
-    mItemBitmap = make_shared<wxBitmap>(*mItemImage);
-
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
 
-    gc->PushState();
-    gc->Translate(0, 0);
-
-    if (mType == L"platform") {
-        gc->DrawBitmap(*mItemBitmap,
-                int(GetX()-mWidth/2),
-                int(GetY()-hit/2),
-                mItemImage->GetWidth()+1,
-                hit);
-
-        if (mWidth > 64) {
-            gc->DrawBitmap(*mItemBitmap2,
-                    int(GetX()-(mWidth/2)+mItemImage->GetWidth()),
-                    int(GetY()-hit/2),
-                    (mWidth-mItemImage->GetWidth()+2),
-                    hit);
-        }
-
-        gc->DrawBitmap(*mItemBitmap3,
-                int(GetX()+(mWidth/2)-32),
-                int(GetY()-hit/2),
-                mItemImage3->GetWidth()+1,
-                hit);
-
-
-    } else if (mType==L"wall") {
-        gc->DrawBitmap(*mItemBitmap,
-                int(GetX()-wid/2),
-                int(GetY()-mHeight/2),
-                wid+1,
-                mHeight+2);
-    } else {
-        gc->DrawBitmap(*mItemBitmap,
-                int(GetX()-wid/2),
-                int(GetY()-hit/2),
-                wid+1,
-                hit);
-    }
-    gc->PopState();
+    gc->DrawBitmap(*mItemBitmap,
+            int(GetX() - wid / 2),
+            int(GetY() - hit / 2),
+            wid + 1,
+            hit);
 }
 
 /**
@@ -139,39 +100,32 @@ bool Item::HitTest(int x, int y)
 
 /**
  * The constructor to create an item from loading an XML file
- * @param declaration The declaration of the item
- * @param item The item specifications
+ * @param declaration The item tag in the declaration section
+ * @param item TThe item tag in the item section
  */
 Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
 {
-    wstring imageFileName;
-    mId = declaration->GetAttribute(L"id").ToStdWstring();
-    mType = item->GetName();
     // Example format:
     // declaration: <background id="i001" image="backgroundForest.png"/>
     // item: <background id="i001" x="512" y="512"/>
     // Get image path
-    if (mType!=L"platform") {
-        imageFileName = declaration->GetAttribute(L"image").ToStdWstring();
-        // Creating and storing the image and bitmap
-        mItemImage = make_unique<wxImage>(ImageDir+imageFileName, wxBITMAP_TYPE_ANY);
-        mItemBitmap = make_unique<wxBitmap>(*mItemImage);
-    }
-    else {
-        mItemImage = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"left-image").ToStdWstring(), wxBITMAP_TYPE_ANY);
-        mItemBitmap = make_unique<wxBitmap>(*mItemImage);
-        mItemImage2 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"mid-image").ToStdWstring(), wxBITMAP_TYPE_ANY);
-        mItemBitmap2 = make_unique<wxBitmap>(*mItemImage2);
-        mItemImage3 = make_unique<wxImage>(ImageDir+declaration->GetAttribute(L"right-image").ToStdWstring(), wxBITMAP_TYPE_ANY);
-        mItemBitmap3 = make_unique<wxBitmap>(*mItemImage3);
+
+    auto imageAttribute = declaration->GetAttribute(L"image");
+    if (imageAttribute != wxEmptyString)
+    {
+        //TODO: image loading should not be here to avoid loading an image more than once
+        auto imagePath = ImageDir + imageAttribute.ToStdWstring();
+        auto image = make_shared<wxImage>(imagePath, wxBITMAP_TYPE_ANY);
+        mItemBitmap = make_shared<wxBitmap>(*image);
     }
 
-
-    // Item location, height, and photo ID
+    // Loading generic item information
     item->GetAttribute(L"x").ToDouble(&mX);
     item->GetAttribute(L"y").ToDouble(&mY);
     item->GetAttribute(L"width").ToDouble(&mWidth);
     item->GetAttribute(L"height").ToDouble(&mHeight);
+    mId = declaration->GetAttribute(L"id").ToStdWstring();
+    mType = item->GetName();
 
 
 }

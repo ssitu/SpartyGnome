@@ -11,6 +11,19 @@
 #include "Item.h"
 
 class Platform : public Item {
+private:
+    /// The image for the middle segment
+    std::shared_ptr<wxImage> mMidImage;
+
+    /// The bitmap for the middle segment
+    std::shared_ptr<wxBitmap> mMidBitmap;
+
+    /// The image for the middle segment
+    std::shared_ptr<wxImage> mRightImage;
+
+    /// The bitmap for the middle segment
+    std::shared_ptr<wxBitmap> mRightBitmap;
+
 public:
     /// Default constructor (disabled)
     Platform() = delete;
@@ -26,6 +39,8 @@ public:
     Platform(const wxXmlNode* declaration, const wxXmlNode* item);
 
     wxXmlNode* XmlSave(wxXmlNode* node) override;
+
+    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
 };
 

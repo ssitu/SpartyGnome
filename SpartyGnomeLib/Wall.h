@@ -23,6 +23,8 @@ public:
 
     wxXmlNode* XmlSave(wxXmlNode* node) override;
 
+    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
+
 };
 
 #endif //SPARTYGNOME_WALL_H

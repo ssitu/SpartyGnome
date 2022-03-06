@@ -5,6 +5,7 @@
 #include "pch.h"
 
 #include <string>
+#include <wx/graphics.h>
 
 #include "Wall.h"
 
@@ -41,6 +42,19 @@ wxXmlNode* Wall::XmlSave(wxXmlNode* node)
     itemNode->AddAttribute(L"type", L"wall");
 
     return itemNode;
+}
+
+/**
+ * Draws this wall to the given graphics context
+ * @param gc The graphics context
+ */
+void Wall::Draw(std::shared_ptr<wxGraphicsContext> gc)
+{
+    gc->DrawBitmap(*GetBitmap(),
+                int(GetX()-GetWidth()/2),
+                int(GetY()-GetHeight()/2),
+                GetWidth()+1,
+                GetHeight()+2);
 }
 
 

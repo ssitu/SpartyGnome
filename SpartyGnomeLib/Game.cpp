@@ -18,6 +18,7 @@ using namespace std;
 const static int Height = 1024;
 
 const wstring LevelsDir = L"levels/";
+const wstring DefaultLevel = LevelsDir + L"level0.xml";
 
 const bool ErrorMessages = false;
 
@@ -27,7 +28,7 @@ Game::Game()
     mGnome = make_shared<ItemSpartyGnome>(this);
     mItems.push_back(mGnome);
     //Load the default level
-    LevelLoad(LevelsDir + "level0.xml");
+    LevelLoad(DefaultLevel);
 }
 
 
