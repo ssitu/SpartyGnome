@@ -71,35 +71,35 @@ wxXmlNode* Platform::XmlSave(wxXmlNode* node)
  */
 void Platform::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
-    int leftStart = Item::GetX() - Item::GetWidth() / 2;
-    int middleStart = leftStart + TileSize;
-    int middleSize = Item::GetWidth() - TileSize;
-    int rightStart = Item::GetX() + Item::GetWidth() / 2 - TileSize;
-    int height = Item::GetY() - Item::GetHeight() / 2;
+    int leftStart = Item::GetX()-(Item::GetWidth()/2);
+    int height = Item::GetY()-(Item::GetHeight()/2);
     //Draw the left tile
     gc->DrawBitmap(*Item::GetBitmap(),
         leftStart,
         height,
-        TileSize + 1,
+        TileSize+1,
         Item::GetHeight());
-    //Only draw middle if the size of the platform is bigger than 2 tiles
-    if (Item::GetWidth() > 2 * TileSize)
-    {
-        gc->DrawBitmap(*mMidBitmap,
-            middleStart,
-            height,
-            middleSize,
-            Item::GetHeight());
+
+    // If only one tile needed then return here
+    if (Item::GetWidth() <= 32) {
+        return;
     }
-    //Draw the right if the size of the platform is bigger than 1 tile
-    if (Item::GetWidth() > TileSize)
-    {
-        gc->DrawBitmap(*mRightBitmap,
-            rightStart,
+
+    // While we are more than 32 pixels away from the right edge of the item...
+    for (int i=TileSize; i<=(Item::GetWidth()-(TileSize)); i += TileSize) {
+        // Draw a middle tile, then move 32 pixels to the right
+        gc->DrawBitmap(*mMidBitmap,
+                leftStart + i,
+                height,
+                TileSize + 1,
+                Item::GetHeight());
+    }
+    // Draw the final tile as a right tile and end the drawing process.
+    gc->DrawBitmap(*mRightBitmap,
+            Item::GetX()+(Item::GetWidth()/2)-TileSize,
             height,
             TileSize + 1,
             Item::GetHeight());
-    }
 
 }
 
