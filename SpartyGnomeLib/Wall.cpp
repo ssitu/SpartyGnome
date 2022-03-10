@@ -12,6 +12,7 @@
 using namespace std;
 
 const wstring imageWallName = L"images/wall1.png";
+const int TileSize = 32;
 
 /**
  * Constructor
@@ -50,11 +51,17 @@ wxXmlNode* Wall::XmlSave(wxXmlNode* node)
  */
 void Wall::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
-    gc->DrawBitmap(*GetBitmap(),
-                int(GetX()-GetWidth()/2),
-                int(GetY()-GetHeight()/2),
-                GetWidth()+1,
-                GetHeight()+2);
+    int startX = Item::GetX() - Item::GetWidth() / 2;
+    int startY = Item::GetY() - Item::GetHeight() / 2;
+    //Draw segments until the height is filled
+    for (int i = 0; i < Item::GetHeight(); i += TileSize)
+    {
+        gc->DrawBitmap(*GetBitmap(),
+                startX,
+                startY+i,
+                Item::GetWidth()+1,
+                TileSize+1);
+    }
 }
 
 
