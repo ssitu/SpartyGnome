@@ -61,6 +61,10 @@ Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item)
 wxXmlNode* Platform::XmlSave(wxXmlNode* node)
 {
     auto itemNode = Item::XmlSave(node);
+    // TODO add support to save each image file of platform
+    itemNode->AddAttribute(L"left-image", L"snowLeft.png");
+    itemNode->AddAttribute(L"mid-image", L"snowMid.png");
+    itemNode->AddAttribute(L"right-image", L"snowRight.png");
     itemNode->AddAttribute(L"type", L"platform");
     return itemNode;
 }
