@@ -55,3 +55,12 @@ void DrawScrollingVisitor::VisitDoor(ItemDoor* door)
     door->Draw(mGraphicsContext);
 }
 
+/**
+ * Visit a Background
+ * @param background Background to visit
+ */
+void DrawScrollingVisitor::VisitBackground(BackgroundImage* background)
+{
+    background->Draw(mGraphicsContext);
+}
+

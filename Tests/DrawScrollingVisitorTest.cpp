@@ -12,6 +12,7 @@
 #include <Wall.h>
 #include <ItemDoor.h>
 #include <Game.h>
+#include <BackgroundImage.h>
 
 #include "gtest/gtest.h"
 
@@ -28,12 +29,15 @@ public:
     bool mVisitedWall = false;
     /// Indicates if a door has been visited
     bool mVisitedDoor = false;
+    /// Indicates if a background has been visited
+    bool mVisitedBackground = false;
 
     DrawScrollingVisitorMock() : DrawScrollingVisitor(nullptr) {}
     void VisitVillain(Villain* villain) override { mVisitedVillain = true; }
     void VisitPlatform(Platform* platform) override { mVisitedPlatform = true; }
-    void VisitWall(Wall* wall) override { mVisitedPlatform = true; }
+    void VisitWall(Wall* wall) override { mVisitedWall = true; }
     void VisitDoor(ItemDoor* door) override { mVisitedDoor = true; }
+    void VisitBackground(BackgroundImage* background) override { mVisitedBackground = true; }
 };
 
 TEST(DrawScrollingVisitorTest, Visit)
@@ -44,6 +48,7 @@ TEST(DrawScrollingVisitorTest, Visit)
     Platform platform(game);
     ItemSpartyGnome gnome(game);
     Wall wall(game);
+    BackgroundImage background(game);
     //Cannot test door, unfinished class
 
     DrawScrollingVisitorMock visitor;
@@ -54,6 +59,7 @@ TEST(DrawScrollingVisitorTest, Visit)
     ASSERT_FALSE(visitor.mVisitedPlatform);
     ASSERT_FALSE(visitor.mVisitedWall);
     ASSERT_FALSE(visitor.mVisitedDoor);
+    ASSERT_FALSE(visitor.mVisitedBackground);
 
     platform.Accept(&visitor);
     //Only villain and platform should have been visited
@@ -61,6 +67,7 @@ TEST(DrawScrollingVisitorTest, Visit)
     ASSERT_TRUE(visitor.mVisitedPlatform);
     ASSERT_FALSE(visitor.mVisitedWall);
     ASSERT_FALSE(visitor.mVisitedDoor);
+    ASSERT_FALSE(visitor.mVisitedBackground);
 
     gnome.Accept(&visitor);
     //Gnome should not call any of the other visits
@@ -68,6 +75,7 @@ TEST(DrawScrollingVisitorTest, Visit)
     ASSERT_TRUE(visitor.mVisitedPlatform);
     ASSERT_FALSE(visitor.mVisitedWall);
     ASSERT_FALSE(visitor.mVisitedDoor);
+    ASSERT_FALSE(visitor.mVisitedBackground);
 
     wall.Accept(&visitor);
     //Only villain, platform, and wall should be visited
@@ -75,5 +83,14 @@ TEST(DrawScrollingVisitorTest, Visit)
     ASSERT_TRUE(visitor.mVisitedPlatform);
     ASSERT_TRUE(visitor.mVisitedWall);
     ASSERT_FALSE(visitor.mVisitedDoor);
+    ASSERT_FALSE(visitor.mVisitedBackground);
+
+    background.Accept(&visitor);
+    //Only villain, platform, wall, and background should be visited
+    ASSERT_TRUE(visitor.mVisitedVillain);
+    ASSERT_TRUE(visitor.mVisitedPlatform);
+    ASSERT_TRUE(visitor.mVisitedWall);
+    ASSERT_FALSE(visitor.mVisitedDoor);
+    ASSERT_TRUE(visitor.mVisitedBackground);
 
 }

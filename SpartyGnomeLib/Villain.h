@@ -27,6 +27,12 @@ public:
 
     wxXmlNode* XmlSave(wxXmlNode* node) override;
 
+    /**
+     * Accept a visitor
+     * @param visitor Visitor to accept
+     */
+    void Accept(ItemVisitor* visitor) override {visitor->VisitVillain(this);}
+
 };
 
 #endif //SPARTYGNOME_VILLAIN_H

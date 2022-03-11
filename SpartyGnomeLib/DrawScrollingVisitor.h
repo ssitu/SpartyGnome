@@ -10,6 +10,7 @@
 #define SPARTYGNOME_DRAWSCROLLINGVISITOR_H
 
 #include "ItemVisitor.h"
+#include "BackgroundImage.h"
 
 /**
  * The visitor class to draw scrolling items
@@ -25,6 +26,7 @@ public:
     void VisitPlatform(Platform* platform) override;
     void VisitWall(Wall* wall) override;
     void VisitDoor(ItemDoor* door) override;
+    void VisitBackground(BackgroundImage* background) override;
 };
 
 #endif //SPARTYGNOME_DRAWSCROLLINGVISITOR_H

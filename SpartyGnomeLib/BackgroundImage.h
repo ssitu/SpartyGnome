@@ -33,6 +33,11 @@ public:
     /// XML constructor
     BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item);
 
+    /**
+     * Accept a visitor
+     * @param visitor Visitor to accept
+     */
+    void Accept(ItemVisitor* visitor) override {visitor->VisitBackground(this);}
 };
 
 #endif //SPARTYGNOME_BACKGROUNDIMAGE_H
