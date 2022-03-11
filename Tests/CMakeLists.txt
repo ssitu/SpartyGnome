@@ -3,7 +3,7 @@ project(Tests)
 set(TEST_FILES
         gtest_main.cpp
         GameTest.cpp
-        )
+        DrawScrollingVisitorTest.cpp)
 # Google tests
 include(FetchContent)
 FetchContent_Declare(

@@ -14,7 +14,7 @@
 /**
  * The visitor class to draw scrolling items
  */
-class DrawScrollingVisitor : ItemVisitor {
+class DrawScrollingVisitor : public ItemVisitor {
 private:
     /// The graphics context used to draw the scrolling items
     std::shared_ptr<wxGraphicsContext> mGraphicsContext;
