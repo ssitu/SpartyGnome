@@ -10,7 +10,7 @@
 
 #include "Item.h"
 
-class ItemDoor : Item {
+class ItemDoor : public Item {
 private:
 
 public:

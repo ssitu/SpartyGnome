@@ -9,6 +9,7 @@
 #define SPARTYGNOME_ITEM_H
 
 #include <memory>
+#include "ItemVisitor.h"
 
 class Game;
 
@@ -147,6 +148,8 @@ public:
     bool HitTest(int x, int y);
 
     Item(const wxXmlNode* declaration, const wxXmlNode* item);
+
+    void Accept(ItemVisitor* visitor) {};
 };
 
 #endif //SPARTYGNOME_ITEM_H
