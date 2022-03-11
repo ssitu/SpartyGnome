@@ -18,7 +18,7 @@ using namespace std;
 const static int Height = 1024;
 
 const wstring LevelsDir = L"levels/";
-const wstring DefaultLevel = LevelsDir + L"level0.xml";
+const wstring DefaultLevel = LevelsDir+L"level0.xml";
 
 const bool ErrorMessages = false;
 
@@ -31,7 +31,6 @@ Game::Game()
     LevelLoad(DefaultLevel);
 }
 
-
 /**
  * Draw the game area
  * @param graphics The wxWidgets graphics context on which to draw
@@ -43,10 +42,10 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
     //
     // Automatic Scaling
     //
-    mScale = double(height) / double(Height);
+    mScale = double(height)/double(Height);
     graphics->Scale(mScale, mScale);
 
-    auto virtualWidth = (double)width/mScale;
+    auto virtualWidth = (double) width/mScale;
     graphics->PushState();
 
     //
@@ -57,16 +56,14 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
 
 
     // There must be a gnome in a level, but avoid crash if there isn't
-    if (mGnome != nullptr)
-    {
-        auto xOffset = (double)-mGnome->GetX() + virtualWidth / 2.0f;
+    if (mGnome!=nullptr) {
+        auto xOffset = (double) -mGnome->GetX()+virtualWidth/2.0f;
         graphics->Translate(xOffset, 0);
     }
 
     // Draw scrolling items
     // Drawing every item for now
-    for (const auto& item : mItems)
-    {
+    for (const auto& item: mItems) {
         item->Draw(graphics);
     }
     // Draw Gnome last, so that it stays on top of other items
@@ -83,15 +80,13 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
 */
 std::shared_ptr<Item> Game::HitTest(int x, int y)
 {
-    for (auto i = mItems.rbegin(); i != mItems.rend();  i++)
-    {
-        if ((*i)->HitTest(x, y))
-        {
+    for (auto i = mItems.rbegin(); i!=mItems.rend(); i++) {
+        if ((*i)->HitTest(x, y)) {
             return *i;
         }
     }
 
-    return  nullptr;
+    return nullptr;
 }
 
 /**
@@ -100,8 +95,7 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
  */
 void Game::Update(double elapsed)
 {
-    for (auto item : mItems)
-    {
+    for (auto item: mItems) {
         item->Update(elapsed);
     }
 }
@@ -129,7 +123,7 @@ void Game::Add(shared_ptr<Item> item)
  */
 void Game::Add(std::shared_ptr<Item> item, double x, double y)
 {
-    item->SetLocation(x,y);
+    item->SetLocation(x, y);
     mItems.push_back(item);
 }
 
@@ -163,11 +157,9 @@ void Game::Clear()
 void Game::LevelLoad(const wxString& filename)
 {
     wxXmlDocument xml;
-    if(!xml.Load(filename))
-    {
-        if (ErrorMessages)
-        {
-             wxMessageBox(L"Error loading XML: cannot load XML file\nfile: " + filename);
+    if (!xml.Load(filename)) {
+        if (ErrorMessages) {
+            wxMessageBox(L"Error loading XML: cannot load XML file\nfile: "+filename);
         }
         return;
     }
@@ -176,7 +168,7 @@ void Game::LevelLoad(const wxString& filename)
 
     // Get the root node, should be level
     auto root = xml.GetRoot();
-    wxASSERT(root->GetName() == L"level");
+    wxASSERT(root->GetName()==L"level");
     // <level width="1024" height="1024" start-y="572" start-x="468">
     long width;
     root->GetAttribute(L"width", L"100").ToLong(&width);
@@ -192,14 +184,13 @@ void Game::LevelLoad(const wxString& filename)
 
     // Get item declarations
     auto declarations = root->GetChildren();
-    wxASSERT(declarations->GetName() == L"declarations");
+    wxASSERT(declarations->GetName()==L"declarations");
 
     // Need a way to store the id with its respective information for that item type
     // Using hashtable to map ids to its respective XML node
     std::unordered_map<wxString, wxXmlNode*> declarations_table;
     // Iterate over declarations
-    for(auto decl = declarations->GetChildren(); decl; decl=decl->GetNext())
-    {
+    for (auto decl = declarations->GetChildren(); decl; decl = decl->GetNext()) {
         // Store info
         // item type
         auto type = decl->GetName(); // Can be used to test for correct format of the XML, unused for now
@@ -213,11 +204,10 @@ void Game::LevelLoad(const wxString& filename)
 
     // Get item list
     auto items = declarations->GetNext();
-    wxASSERT(items->GetName() == L"items");
+    wxASSERT(items->GetName()==L"items");
 
     // Iterate over items
-    for(auto item = items->GetChildren(); item; item=item->GetNext())
-    {
+    for (auto item = items->GetChildren(); item; item = item->GetNext()) {
         LoadXmlItem(declarations_table, item);
     }
 }
@@ -229,7 +219,7 @@ void Game::LevelLoad(const wxString& filename)
  * @param item The particular item to load
  */
 void Game::LoadXmlItem(const std::unordered_map<wxString,
-        wxXmlNode*>& declarations_table, const wxXmlNode* item)
+                                                wxXmlNode*>& declarations_table, const wxXmlNode* item)
 {
     auto type = item->GetName(); // Type of item
     //Get the id for the item declaration
@@ -238,25 +228,21 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     auto declaration = declarations_table.at(id);
     std::shared_ptr<Item> loadedItem = nullptr;
     //Choose which Item to make based on the type given
-    if (type == L"background")
-    {
+    if (type==L"background") {
         loadedItem = make_shared<BackgroundImage>(declaration, item);
     }
-    else if (type == L"platform")
-    {
+    else if (type==L"platform") {
         loadedItem = make_shared<Platform>(declaration, item);
-    } else if (type == L"wall")
-    {
+    }
+    else if (type==L"wall") {
         loadedItem = make_shared<Wall>(declaration, item);
-    } else
-    {
-        if (ErrorMessages)
-        {
-            wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
+    }
+    else {
+        if (ErrorMessages) {
+            wxMessageBox(L"Error loading XML: Item of type \""+type+L"\" is not implemented");
         }
     }
-    if (loadedItem != nullptr)
-    {
+    if (loadedItem!=nullptr) {
         Add(loadedItem);
     }
 }
@@ -268,7 +254,7 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
  *
  * @param filename The filename of the file to save the game to
  */
-void Game::Save(const wxString &filename)
+void Game::Save(const wxString& filename)
 {
     wxXmlDocument xmlDoc;
 
@@ -282,14 +268,11 @@ void Game::Save(const wxString &filename)
     root->SetChildren(items);
 
     // Iterate over all items and save them
-    for (auto item : mItems)
-    {
+    for (auto item: mItems) {
         item->XmlSave(items);
     }
 
-
-    if(!xmlDoc.Save(filename, wxXML_NO_INDENTATION))
-    {
+    if (!xmlDoc.Save(filename, wxXML_NO_INDENTATION)) {
         wxMessageBox(L"Write to XML failed");
         return;
     }

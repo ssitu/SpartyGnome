@@ -11,6 +11,10 @@
 #include "Item.h"
 
 class Platform : public Item {
+protected:
+    Platform(Game *game, const std::wstring &filename, const std::wstring &filename2,
+            const std::wstring &filename3);
+
 private:
     /// The image for the middle segment
     std::shared_ptr<wxImage> mMidImage;
@@ -23,6 +27,9 @@ private:
 
     /// The bitmap for the middle segment
     std::shared_ptr<wxBitmap> mRightBitmap;
+
+    std::wstring mMidPath;
+    std::wstring mRightPath;
 
 public:
     /// Default constructor (disabled)
@@ -41,6 +48,8 @@ public:
     wxXmlNode* XmlSave(wxXmlNode* node) override;
 
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
+
+    bool Platform::HitTest(int x, int y) { return Item::HitTest(x, y); }
 
 };
 

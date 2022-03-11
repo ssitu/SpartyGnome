@@ -30,6 +30,7 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
 {
     mItemImage = make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_shared<wxBitmap>(*mItemImage);
+    mPath = filename;
 }
 
 /**
@@ -64,6 +65,7 @@ wxXmlNode *Item::XmlSave(wxXmlNode *node)
     itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
     itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
     itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
+    itemNode->AddAttribute("image", mPath);
 
     return itemNode;
 }
@@ -76,17 +78,15 @@ wxXmlNode *Item::XmlSave(wxXmlNode *node)
  */
 bool Item::HitTest(int x, int y)
 {
-    double wid = mItemBitmap->GetWidth();
-    double hit = mItemBitmap->GetHeight();
 
     // Make x and y relative to the top-left corner of the bitmap image
     // Subtracting the center makes x, y relative to the image center
     // Adding half the size makes x, y relative to the image top corner
-    double testX = x - GetX() + wid / 2;
-    double testY = y - GetY() + hit / 2;
+    double testX = x - GetX() + mWidth / 2;
+    double testY = y - GetY() + mHeight / 2;
 
     // Test to see if x, y are in the image
-    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+    if (testX < 0 || testY < 0 || testX >= mWidth || testY >= mHeight)
     {
         // We are outside the image
         return false;
@@ -111,11 +111,17 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     // Get image path
 
     auto imageAttribute = declaration->GetAttribute(L"image");
+
+    auto imageAttribute2 = declaration->GetAttribute(L"left-image");
     if (imageAttribute != wxEmptyString)
     {
         //TODO: image loading should not be here to avoid loading an image more than once
-        auto imagePath = ImageDir + imageAttribute.ToStdWstring();
-        auto image = make_shared<wxImage>(imagePath, wxBITMAP_TYPE_ANY);
+        mPath = imageAttribute.ToStdWstring();
+        auto image = make_shared<wxImage>(ImageDir + mPath, wxBITMAP_TYPE_ANY);
+        mItemBitmap = make_shared<wxBitmap>(*image);
+    } else if (imageAttribute2 != wxEmptyString) {
+        mPath = imageAttribute2.ToStdWstring();
+        auto image = make_shared<wxImage>(ImageDir + mPath, wxBITMAP_TYPE_ANY);
         mItemBitmap = make_shared<wxBitmap>(*image);
     }
 
@@ -125,7 +131,6 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     item->GetAttribute(L"width").ToDouble(&mWidth);
     item->GetAttribute(L"height").ToDouble(&mHeight);
     mId = declaration->GetAttribute(L"id").ToStdWstring();
-    mType = item->GetName();
 
 
 }

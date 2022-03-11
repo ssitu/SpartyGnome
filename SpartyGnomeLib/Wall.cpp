@@ -40,7 +40,7 @@ Wall::Wall(const wxXmlNode* declaration, const wxXmlNode* item)
 wxXmlNode* Wall::XmlSave(wxXmlNode* node)
 {
     auto itemNode = Item::XmlSave(node);
-    itemNode->AddAttribute(L"type", L"wall");
+    itemNode->SetName(L"wall");
 
     return itemNode;
 }

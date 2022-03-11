@@ -21,6 +21,9 @@ private:
     /// The game this item is contained in
     Game *mGame;
 
+    /// Path of the image file
+    std::wstring mPath;
+
     // Item location in the game
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
@@ -34,9 +37,6 @@ private:
     /// The XML id of this item
     std::wstring mId = L"i000";
 
-    /// The XML name for this item
-    std::wstring mType = L"background";
-
     /// The image for this item
     std::shared_ptr<wxImage> mItemImage;
 
@@ -45,16 +45,19 @@ private:
 
 protected:
     Item(Game *game, const std::wstring &filename);
-//    /// The underlying image
-//    std::unique_ptr<wxImage> mItemImage;
-//    std::shared_ptr<wxImage> mItemImage;
-//    std::shared_ptr<wxImage> mItemImage2 = nullptr;
-//    std::shared_ptr<wxImage> mItemImage3 = nullptr;
-//    /// The bitmap we can display for this item
-//    std::unique_ptr<wxBitmap> mItemBitmap;
-//    std::shared_ptr<wxBitmap> mItemBitmap;
-//    std::shared_ptr<wxBitmap> mItemBitmap2 = nullptr;
-//    std::shared_ptr<wxBitmap> mItemBitmap3 = nullptr;
+
+    /**
+     * this is a constructor strictly for testing purposes of Platform
+     *
+     * @author Gabriel Misajlovski
+     *
+     * @param game game the item is in
+     * @param filename left image
+     * @param filename2 mid image
+     * @param filename3 right image
+     */
+    Item(Game* game, const std::wstring &filename, const std::wstring &filename2, const std::wstring &filename3)
+            : mGame(game) {}
 
     /**
      * Get the image for this item
@@ -67,6 +70,12 @@ protected:
      * @param image
      */
     void SetImage(const std::shared_ptr<wxImage>& image) {mItemImage = image;}
+
+    /**
+     * Set the image for this item
+     * @param image
+     */
+    std::wstring GetPath(const std::shared_ptr<wxImage>& image) { return mPath; }
 
     /**
      * Get the bitmap for this item
@@ -131,6 +140,10 @@ public:
      */
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 
+    virtual void SetWidth(double width) { mWidth = width; }
+
+    virtual void SetHeight(double height) { mHeight = height; }
+
     /**
      * Get the pointer to the Game object
      * @return Pointer to Game object
@@ -145,7 +158,7 @@ public:
      * @param y Y location on the game to test in pixels
      * @return true if clicked on
      */
-    bool HitTest(int x, int y);
+    virtual bool HitTest(int x, int y);
 
     Item(const wxXmlNode* declaration, const wxXmlNode* item);
 

@@ -25,7 +25,7 @@ Villain::Villain(Game* game, const std::wstring& imagePath) : Item(game, imagePa
 wxXmlNode* Villain::XmlSave(wxXmlNode* node)
 {
     auto itemNode = Item::XmlSave(node);
-    itemNode->AddAttribute(L"type", L"villain");
+    itemNode->SetName(L"villain");
 
     return itemNode;
 }

@@ -17,7 +17,7 @@ const wstring DoorImageName = L"images/door.png";
 wxXmlNode* ItemDoor::XmlSave(wxXmlNode* node)
 {
     auto itemNode = Item::XmlSave(node);
-    itemNode->AddAttribute(L"type", L"door");
+    itemNode->SetName(L"door");
 
     return itemNode;
 }

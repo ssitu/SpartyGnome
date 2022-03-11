@@ -37,7 +37,7 @@ BackgroundImage::BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* 
 wxXmlNode* BackgroundImage::XmlSave(wxXmlNode* node)
 {
     auto itemNode = Item::XmlSave(node);
-    itemNode->AddAttribute(L"type", L"background");
+    itemNode->SetName(L"background");
 
     return itemNode;
 }
