@@ -41,19 +41,20 @@ Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item)
             wxBITMAP_TYPE_ANY);
     SetBitmap(make_shared<wxBitmap>(*image));
 
-    mMidPath = ImageDir+declaration->GetAttribute(L"mid-image").ToStdWstring();
+    // Save the file path for saving into an xml.
+    mMidPath = declaration->GetAttribute(L"mid-image").ToStdWstring();
 
     //Load the middle image
     mMidImage = make_shared<wxImage>(
-            mMidPath,
+            ImageDir+mMidPath,
             wxBITMAP_TYPE_ANY);
     mMidBitmap = make_shared<wxBitmap>(*mMidImage);
 
-    mRightPath = ImageDir+declaration->GetAttribute(L"right-image").ToStdWstring();
+    mRightPath = declaration->GetAttribute(L"right-image").ToStdWstring();
 
     //Load the right image
     mRightImage = make_shared<wxImage>(
-            mRightPath,
+            ImageDir+mRightPath,
             wxBITMAP_TYPE_ANY);
     mRightBitmap = make_shared<wxBitmap>(*mRightImage);
 }

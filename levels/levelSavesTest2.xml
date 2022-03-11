@@ -1,47 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<level>
+<level width="1024" height="1024" start-y="572" start-x="468">
+    <declarations/>
     <items>
-        <item id="i000" x="852" y="540" width="0" height="0"/>
-        <item id="i001" x="512" y="512" width="0" height="0" type="background"/>
-        <item id="i001" x="1536" y="512" width="0" height="0" type="background"/>
-        <item id="i001" x="2560" y="512" width="0" height="0" type="background"/>
-        <item id="i001" x="3584" y="512" width="0" height="0" type="background"/>
-        <item id="i001" x="4608" y="512" width="0" height="0" type="background"/>
-        <item id="i001" x="5632" y="512" width="0" height="0" type="background"/>
-        <item id="i001" x="6656" y="512" width="0" height="0" type="background"/>
-        <item id="i001" x="7680" y="512" width="0" height="0" type="background"/>
-        <item id="i004" x="768" y="944" width="960" height="32" type="platform"/>
-        <item id="i005" x="848" y="688" width="288" height="32" type="platform"/>
-        <item id="i005" x="1120" y="432" width="256" height="32" type="platform"/>
-        <item id="i005" x="1456" y="528" width="288" height="32" type="platform"/>
-        <item id="i004" x="2080" y="944" width="1152" height="32" type="platform"/>
-        <item id="i006" x="1520" y="816" width="32" height="224" type="wall"/>
-        <item id="i006" x="1936" y="816" width="32" height="224" type="wall"/>
-        <item id="i005" x="2080" y="688" width="320" height="32" type="platform"/>
-        <item id="i005" x="2256" y="432" width="160" height="32" type="platform"/>
-        <item id="i005" x="2464" y="176" width="256" height="32" type="platform"/>
-        <item id="i005" x="2800" y="336" width="288" height="32" type="platform"/>
-        <item id="i006" x="2800" y="240" width="32" height="160" type="wall"/>
-        <item id="i004" x="3616" y="944" width="1408" height="32" type="platform"/>
-        <item id="i005" x="3072" y="560" width="256" height="32" type="platform"/>
-        <item id="i007" x="2992" y="752" width="32" height="352" type="wall"/>
-        <item id="i007" x="3152" y="752" width="32" height="352" type="wall"/>
-        <item id="i004" x="3264" y="752" width="128" height="32" type="platform"/>
-        <item id="i004" x="3648" y="752" width="128" height="32" type="platform"/>
-        <item id="i005" x="3840" y="560" width="256" height="32" type="platform"/>
-        <item id="i007" x="3760" y="752" width="32" height="352" type="wall"/>
-        <item id="i007" x="3920" y="752" width="32" height="352" type="wall"/>
-        <item id="i005" x="4032" y="688" width="192" height="32" type="platform"/>
-        <item id="i004" x="4416" y="784" width="192" height="32" type="platform"/>
-        <item id="i005" x="4528" y="432" width="224" height="32" type="platform"/>
-        <item id="i006" x="4432" y="352" width="32" height="128" type="wall"/>
-        <item id="i004" x="4672" y="688" width="192" height="32" type="platform"/>
-        <item id="i006" x="4624" y="352" width="32" height="128" type="wall"/>
-        <item id="i004" x="4928" y="592" width="256" height="32" type="platform"/>
-        <item id="i004" x="5184" y="496" width="192" height="32" type="platform"/>
-        <item id="i004" x="6224" y="944" width="1760" height="32" type="platform"/>
-        <item id="i004" x="5456" y="240" width="160" height="32" type="platform"/>
-        <item id="i006" x="5616" y="816" width="32" height="224" type="wall"/>
-        <item id="i004" x="5936" y="240" width="224" height="32" type="platform"/>
+        <item id="i000" x="852" y="540" width="0" height="0" image="images/gnome.png"/>
+        <background id="i001" x="512" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <background id="i001" x="1536" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <background id="i001" x="2560" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <background id="i001" x="3584" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <background id="i001" x="4608" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <background id="i001" x="5632" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <background id="i001" x="6656" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <background id="i001" x="7680" y="512" width="0" height="0" image="backgroundForest.png"/>
+        <platform id="i004" x="768" y="944" width="960" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i005" x="848" y="688" width="288" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <platform id="i005" x="1120" y="432" width="256" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <platform id="i005" x="1456" y="528" width="288" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <platform id="i004" x="2080" y="944" width="1152" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <wall id="i006" x="1520" y="816" width="32" height="224" image="wall1.png"/>
+        <wall id="i006" x="1936" y="816" width="32" height="224" image="wall1.png"/>
+        <platform id="i005" x="2080" y="688" width="320" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <platform id="i005" x="2256" y="432" width="160" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <platform id="i005" x="2464" y="176" width="256" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <platform id="i005" x="2800" y="336" width="288" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <wall id="i006" x="2800" y="240" width="32" height="160" image="wall1.png"/>
+        <platform id="i004" x="3616" y="944" width="1408" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i005" x="3072" y="560" width="256" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <wall id="i007" x="2992" y="752" width="32" height="352" image="wall2.png"/>
+        <wall id="i007" x="3152" y="752" width="32" height="352" image="wall2.png"/>
+        <platform id="i004" x="3264" y="752" width="128" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i004" x="3648" y="752" width="128" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i005" x="3840" y="560" width="256" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <wall id="i007" x="3760" y="752" width="32" height="352" image="wall2.png"/>
+        <wall id="i007" x="3920" y="752" width="32" height="352" image="wall2.png"/>
+        <platform id="i005" x="4032" y="688" width="192" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <platform id="i004" x="4416" y="784" width="192" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i005" x="4528" y="432" width="224" height="32" left-image="platformIndustrial_059.png"
+                  mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>
+        <wall id="i006" x="4432" y="352" width="32" height="128" image="wall1.png"/>
+        <platform id="i004" x="4672" y="688" width="192" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <wall id="i006" x="4624" y="352" width="32" height="128" image="wall1.png"/>
+        <platform id="i004" x="4928" y="592" width="256" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i004" x="5184" y="496" width="192" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i004" x="6224" y="944" width="1760" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <platform id="i004" x="5456" y="240" width="160" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
+        <wall id="i006" x="5616" y="816" width="32" height="224" image="wall1.png"/>
+        <platform id="i004" x="5936" y="240" width="224" height="32" left-image="snowLeft.png"
+                  mid-image="images/snowMid.png" right-image="images/snowRight.png"/>
     </items>
 </level>
