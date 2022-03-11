@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<level>
+<level width="1024" height="1024" start-y="572" start-x="468">
+    <declarations/>
     <items>
-        <item id="i000" x="468" y="572" width="0" height="0" image="images/gnome.png"/>
         <background id="i001" x="512" y="512" width="0" height="0" image="backgroundForest.png"/>
         <platform id="i005" x="400" y="976" width="32" height="32" left-image="platformIndustrial_059.png"
                   mid-image="images/platformIndustrial_060.png" right-image="images/platformIndustrial_061.png"/>

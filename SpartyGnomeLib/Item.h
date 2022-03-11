@@ -125,6 +125,9 @@ public:
      */
     double GetHeight() const { return mHeight; }
 
+    /// ID getter
+    std::wstring GetId() const { return mId; }
+
     virtual void Draw(std::shared_ptr<wxGraphicsContext> gc);
 
     /**

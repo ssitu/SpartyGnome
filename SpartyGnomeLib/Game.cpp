@@ -260,16 +260,23 @@ void Game::Save(const wxString& filename)
 
     auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"level");
     xmlDoc.SetRoot(root);
+    root->AddAttribute(L"width", L"1024");
+    root->AddAttribute(L"height", L"1024");
+    root->AddAttribute(L"start-y", L"572");
+    root->AddAttribute(L"start-x", L"468");
 
     auto declarations = new wxXmlNode(wxXML_ELEMENT_NODE, L"declarations");
     auto items = new wxXmlNode(wxXML_ELEMENT_NODE, L"items");
 
     root->SetChildren(declarations);
-    root->SetChildren(items);
+    declarations->SetNext(items);
 
     // Iterate over all items and save them
     for (auto item: mItems) {
-        item->XmlSave(items);
+        if (item->GetId() != L"i000")
+        {
+            item->XmlSave(items);
+        }
     }
 
     if (!xmlDoc.Save(filename, wxXML_NO_INDENTATION)) {
