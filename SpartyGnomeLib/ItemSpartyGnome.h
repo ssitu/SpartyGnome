@@ -33,6 +33,12 @@ public:
 
     void Update(double elapsed);
 
+    /**
+     * Accept a visitor
+     * @param visitor Visitor to accept
+     */
+    void Accept(ItemVisitor* visitor) override {visitor->VisitGnome(this);}
+
 };
 
 #endif //SPARTYGNOME_ITEMSPARTYGNOME_H

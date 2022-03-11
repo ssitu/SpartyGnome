@@ -162,7 +162,7 @@ public:
 
     Item(const wxXmlNode* declaration, const wxXmlNode* item);
 
-    void Accept(ItemVisitor* visitor) {};
+    virtual void Accept(ItemVisitor* visitor) = 0;
 };
 
 #endif //SPARTYGNOME_ITEM_H

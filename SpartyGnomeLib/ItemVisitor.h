@@ -9,12 +9,14 @@
 #ifndef SPARTYGNOME_ITEMVISITOR_H
 #define SPARTYGNOME_ITEMVISITOR_H
 
+
 // Forward references to all item types
 class ItemSpartyGnome;
 class Platform;
 class Wall;
 class Villain;
 class ItemDoor;
+class BackgroundImage;
 
 /**
  * The visitor class for item objects
@@ -53,6 +55,11 @@ public:
      */
     virtual void VisitDoor(ItemDoor* door) {}
 
+    /**
+     * Visit a Background
+     * @param background The Background to visit
+     */
+    virtual void VisitBackground(BackgroundImage* background) {}
 };
 
 #endif //SPARTYGNOME_ITEMVISITOR_H

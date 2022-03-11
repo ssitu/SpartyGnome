@@ -16,6 +16,12 @@ private:
 public:
 
     wxXmlNode* XmlSave(wxXmlNode* node) override;
+
+    /**
+     * Accept a visitor
+     * @param visitor Visitor to accept
+     */
+    void Accept(ItemVisitor* visitor) override {visitor->VisitDoor(this);}
 };
 
 #endif //SPARTYGNOME_ITEMDOOR_H

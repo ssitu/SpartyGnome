@@ -49,6 +49,12 @@ public:
 
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
+    /**
+     * Accept a visitor
+     * @param visitor Visitor to accept
+     */
+    void Accept(ItemVisitor* visitor) override {visitor->VisitPlatform(this);}
+
     bool Platform::HitTest(int x, int y) { return Item::HitTest(x, y); }
 
 };
