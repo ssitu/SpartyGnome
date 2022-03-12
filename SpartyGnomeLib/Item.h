@@ -166,6 +166,8 @@ public:
     Item(const wxXmlNode* declaration, const wxXmlNode* item);
 
     virtual void Accept(ItemVisitor* visitor) = 0;
+
+    bool CollisionTest(Item* item);
 };
 
 #endif //SPARTYGNOME_ITEM_H
