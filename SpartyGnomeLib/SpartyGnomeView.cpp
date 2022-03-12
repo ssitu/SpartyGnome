@@ -7,6 +7,7 @@
 
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <wx/file.h>
 
 #include "ids.h"
 #include "Game.h"
@@ -37,6 +38,10 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     // Binding Save and Load functions.
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileOpen, this, wxID_OPEN);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE1);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE2);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE3);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE4);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -192,7 +197,7 @@ void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
  */
 void SpartyGnomeView::OnFileOpen(wxCommandEvent& event)
 {
-    wxFileDialog loadFileDialog(this, _("Load Level file"), "", "",
+    wxFileDialog loadFileDialog(this, _("Load Level file"), "levels", "",
             "", wxFD_OPEN);
     if (loadFileDialog.ShowModal() == wxID_CANCEL)
     {
@@ -201,4 +206,23 @@ void SpartyGnomeView::OnFileOpen(wxCommandEvent& event)
 
     auto filename = loadFileDialog.GetPath();
     mGame.LevelLoad(filename);
+}
+
+void SpartyGnomeView::OnLevelOpen(wxCommandEvent& event)
+{
+    switch (event.GetId()) {
+    case wxID_FILE1:
+        mGame.LevelLoad(wxString("levels/level0.xml"));
+        break;
+    case wxID_FILE2:
+        mGame.LevelLoad(wxString("levels/level1.xml"));
+        break;
+    case wxID_FILE3:
+        mGame.LevelLoad(wxString("levels/level2.xml"));
+        break;
+    case wxID_FILE4:
+        mGame.LevelLoad(wxString("levels/level3.xml"));
+        break;
+
+    }
 }
