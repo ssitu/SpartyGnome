@@ -34,10 +34,14 @@ BackgroundImage::BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* 
  * @param node The parent node we are going to be a child of
  * @return
  */
-wxXmlNode* BackgroundImage::XmlSave(wxXmlNode* node)
+std::pair<wxXmlNode*, wxXmlNode*> BackgroundImage::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
-    auto itemNode = Item::XmlSave(node);
+    auto itemNode = Item::XmlSave(node1, node2).first;
+    auto declarationNode = Item::XmlSave(node1, node2).second;
+    itemNode->DeleteAttribute(L"width");
+    itemNode->DeleteAttribute(L"height");
     itemNode->SetName(L"background");
+    declarationNode->SetName(L"background");
 
-    return itemNode;
+    return make_pair(itemNode, declarationNode);
 }

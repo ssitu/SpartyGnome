@@ -22,10 +22,12 @@ Villain::Villain(Game* game, const std::wstring& imagePath) : Item(game, imagePa
  * @param node The parent node we are going to be a child of
  * @return
  */
-wxXmlNode* Villain::XmlSave(wxXmlNode* node)
+std::pair<wxXmlNode*, wxXmlNode*> Villain::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
-    auto itemNode = Item::XmlSave(node);
+    auto itemNode = Item::XmlSave(node1, node2).first;
+    auto declarationNode = Item::XmlSave(node1, node2).second;
     itemNode->SetName(L"villain");
+    declarationNode->SetName(L"villain");
 
-    return itemNode;
+    return std::make_pair(itemNode, declarationNode);
 }

@@ -28,7 +28,7 @@ public:
     /// New constructor
     BackgroundImage(Game* game);
 
-    wxXmlNode* XmlSave(wxXmlNode* node) override;
+    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 
     /// XML constructor
     BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item);

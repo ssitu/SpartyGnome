@@ -45,7 +45,7 @@ public:
 
     Platform(const wxXmlNode* declaration, const wxXmlNode* item);
 
-    wxXmlNode* XmlSave(wxXmlNode* node) override;
+    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 

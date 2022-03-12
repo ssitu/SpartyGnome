@@ -52,22 +52,25 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
 /**
  * Save this item to an XML node
  * @param node The parent node we are going to be a child of
- * @return wxXmlNode that we saved the item into
+ * @return pair of wxXmlNodes that we saved the item and declaration into
  */
-wxXmlNode *Item::XmlSave(wxXmlNode *node)
+pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
 {
     auto itemNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"item");
-    node->AddChild(itemNode);
+    auto declarationNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"declaration");
+    node1->AddChild(itemNode);
+    node2->AddChild(declarationNode);
 
     itemNode->AddAttribute(L"id", mId);
+    declarationNode->AddAttribute(L"id", mId);
 
     itemNode->AddAttribute(L"x", wxString::FromDouble(mX));
     itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
     itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
     itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
-    itemNode->AddAttribute("image", mPath);
+    declarationNode->AddAttribute("image", mPath);
 
-    return itemNode;
+    return make_pair(itemNode, declarationNode);
 }
 
 /**

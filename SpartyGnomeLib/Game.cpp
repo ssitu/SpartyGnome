@@ -156,6 +156,7 @@ void Game::Clear()
  */
 void Game::LevelLoad(const wxString& filename)
 {
+
     wxXmlDocument xml;
     if (!xml.Load(filename)) {
         if (ErrorMessages) {
@@ -268,16 +269,17 @@ void Game::Save(const wxString& filename)
     auto declarations = new wxXmlNode(wxXML_ELEMENT_NODE, L"declarations");
     auto items = new wxXmlNode(wxXML_ELEMENT_NODE, L"items");
 
-    root->SetChildren(declarations);
-    declarations->SetNext(items);
-
     // Iterate over all items and save them
     for (auto item: mItems) {
         if (item->GetId() != L"i000")
         {
-            item->XmlSave(items);
+            item->XmlSave(items, declarations);
         }
     }
+
+    root->SetChildren(declarations);
+
+    declarations->SetNext(items);
 
     if (!xmlDoc.Save(filename, wxXML_NO_INDENTATION)) {
         wxMessageBox(L"Write to XML failed");

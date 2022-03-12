@@ -15,7 +15,7 @@ private:
 
 public:
 
-    wxXmlNode* XmlSave(wxXmlNode* node) override;
+    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 
     /**
      * Accept a visitor

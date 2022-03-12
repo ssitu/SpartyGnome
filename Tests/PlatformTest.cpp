@@ -11,7 +11,6 @@
 #include <Platform.h>
 #include "gtest/gtest.h"
 
-const std::wstring ImageDir = L"images/";
 const std::wstring PlatformLeftImage = L"snowLeft.png";
 const std::wstring PlatformMidImage = L"snowMid.png";
 const std::wstring PlatformRightImage = L"snowRight.png";

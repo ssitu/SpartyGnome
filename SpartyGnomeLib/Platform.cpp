@@ -102,15 +102,20 @@ Platform::Platform(Game* game, const std::wstring& filename, const std::wstring&
  * @param node The parent node we are going to be a child of
  * @return The node we are doing to add to the parent.
  */
-wxXmlNode* Platform::XmlSave(wxXmlNode* node)
+std::pair<wxXmlNode*,wxXmlNode*> Platform::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
-    auto itemNode = Item::XmlSave(node);
+    auto itemNode = Item::XmlSave(node1, node2).first;
+    auto declarationNode = Item::XmlSave(node1, node2).second;
     itemNode->SetName(L"platform");
-    itemNode->AddAttribute(L"left-image", itemNode->GetAttribute("image").ToStdWstring());
+    declarationNode->SetName(L"platform");
+
+    declarationNode->AddAttribute(L"left-image", itemNode->GetAttribute("image").ToStdWstring());
     itemNode->DeleteAttribute("image");
-    itemNode->AddAttribute(L"mid-image", mMidPath);
-    itemNode->AddAttribute(L"right-image", mRightPath);
-    return itemNode;
+
+    declarationNode->AddAttribute(L"mid-image", mMidPath);
+    declarationNode->AddAttribute(L"right-image", mRightPath);
+
+    return make_pair(itemNode, declarationNode);
 }
 
 /**

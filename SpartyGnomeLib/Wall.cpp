@@ -37,12 +37,14 @@ Wall::Wall(const wxXmlNode* declaration, const wxXmlNode* item)
  * @param node The parent node we are going to be a child of
  * @return
  */
-wxXmlNode* Wall::XmlSave(wxXmlNode* node)
+pair<wxXmlNode*, wxXmlNode*> Wall::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
-    auto itemNode = Item::XmlSave(node);
+    auto itemNode = Item::XmlSave(node1, node2).first;
+    auto declarationNode = Item::XmlSave(node1, node2).second;
     itemNode->SetName(L"wall");
+    declarationNode->SetName(L"wall");
 
-    return itemNode;
+    return make_pair(itemNode, declarationNode);
 }
 
 /**

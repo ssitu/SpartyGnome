@@ -25,7 +25,7 @@ public:
 
     Villain(Game* game, const std::wstring& imagePath);
 
-    wxXmlNode* XmlSave(wxXmlNode* node) override;
+    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2) override;
 
     /**
      * Accept a visitor

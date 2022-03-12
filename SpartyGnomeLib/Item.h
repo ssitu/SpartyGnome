@@ -153,7 +153,7 @@ public:
      */
     Game* GetGame() { return mGame; }
 
-    virtual wxXmlNode* XmlSave(wxXmlNode *node);
+    virtual std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2);
 
     /**
      * Test this item to see if it has been clicked on
