@@ -1,25 +1,19 @@
 /**
- * @file Villain.cpp
- * 
- * @author Simon Situ, Gabriel Misajlovski
+ * @file ItemMoney.cpp
+ * @author Gabriel Misajlovski
  */
 
 #include "pch.h"
 
 #include <string>
 
-#include "Villain.h"
+#include "ItemMoney.h"
 
 using namespace std;
 
-const wstring villainImageName = L"images/UofM.png";
+const wstring MoneyImageName = L"images/money100.png";
 
-/**
- * Villain Constructor
- * @param game The game holding this item
- * @param imagePath The path to the image for this item
- */
-Villain::Villain(Game* game) : Item(game, villainImageName)
+ItemMoney::ItemMoney(Game* game) : Item(game, MoneyImageName)
 {
 
 }
@@ -27,9 +21,9 @@ Villain::Villain(Game* game) : Item(game, villainImageName)
 /**
  * The constructor used to load from XML
  * @param declaration The declaration of this item
- * @param item
+ * @param item The XML node holding item information
  */
-Villain::Villain(const wxXmlNode* declaration, const wxXmlNode* item)
+ItemMoney::ItemMoney(const wxXmlNode* declaration, const wxXmlNode* item)
         :Item(declaration, item)
 {
 
@@ -40,19 +34,19 @@ Villain::Villain(const wxXmlNode* declaration, const wxXmlNode* item)
  * @param node The parent node we are going to be a child of
  * @return
  */
-std::pair<wxXmlNode*, wxXmlNode*> Villain::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
+pair<wxXmlNode*, wxXmlNode*> ItemMoney::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
 {
     auto doubleNode = Item::XmlSave(node1, node2);
     auto itemNode = doubleNode.first;
     auto declarationNode = doubleNode.second;
-    itemNode->SetName(L"villain");
+    itemNode->SetName(L"money");
     itemNode->DeleteAttribute(L"width");
     itemNode->DeleteAttribute(L"height");
-
     if (declarationNode!=nullptr) {
-        declarationNode->SetName(L"villain");
+        declarationNode->SetName(L"money");
         return make_pair(itemNode, declarationNode);
     }
 
     return make_pair(itemNode, nullptr);
 }
+

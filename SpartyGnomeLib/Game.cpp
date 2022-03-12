@@ -10,6 +10,10 @@
 #include "Item.h"
 #include "BackgroundImage.h"
 #include "Wall.h"
+#include "ItemDoor.h"
+#include "ItemMoney.h"
+#include "Villain.h"
+#include "ItemTuitionUp.h"
 #include "Game.h"
 #include "DrawStaticVisitor.h"
 #include "DrawScrollingVisitor.h"
@@ -250,8 +254,15 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     }
     else if (type==L"wall") {
         loadedItem = make_shared<Wall>(declaration, item);
-    }
-    else {
+    } else if (type==L"door") {
+        loadedItem = make_shared<ItemDoor>(declaration, item);
+    } else if (type==L"money") {
+        loadedItem = make_shared<ItemMoney>(declaration, item);
+    } else if (type==L"villain"){
+        loadedItem = make_shared<Villain>(declaration, item);
+    } else if (type==L"tuition-up"){
+        loadedItem = make_shared<ItemTuitionUp>(declaration, item);
+    } else {
         if (ErrorMessages) {
             wxMessageBox(L"Error loading XML: Item of type \""+type+L"\" is not implemented");
         }

@@ -1,7 +1,7 @@
 /**
  * @file Villain.h
  * 
- * @author Simon Situ
+ * @author Simon Situ, Gabriel Misajlovski
  *
  * The villain class
  */
@@ -20,10 +20,16 @@ private:
 public:
     /// Disable defaults
     Villain() = delete;
+
+    /// disable copy
     Villain(const Villain&) = delete;
+
+    /// Disable = operator
     void operator=(const Villain&) = delete;
 
-    Villain(Game* game, const std::wstring& imagePath);
+    Villain(Game* game);
+
+    Villain(const wxXmlNode* declaration, const wxXmlNode* item);
 
     std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2) override;
 

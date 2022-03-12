@@ -1,6 +1,6 @@
 /**
  * @file ItemDoor.h
- * @author ashre
+ * @author ashre, Gabriel Misajlovski
  *
  *
  */
@@ -11,11 +11,23 @@
 #include "Item.h"
 
 class ItemDoor : public Item {
-private:
-
 public:
+    /// disabled default constructor
+    ItemDoor() = delete;
 
-    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
+    /// disabled copy
+    ItemDoor(const ItemDoor&) = delete;
+
+    /// disabled assignment
+    void operator=(const ItemDoor&) = delete;
+
+    /// New constructor
+    ItemDoor(Game* game);
+
+    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
+
+    /// XML constructor
+    ItemDoor(const wxXmlNode* declaration, const wxXmlNode* item);
 
     /**
      * Accept a visitor
