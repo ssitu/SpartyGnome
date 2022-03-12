@@ -58,19 +58,36 @@ pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
 {
     auto itemNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"item");
     auto declarationNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"declaration");
+    bool hasId = false;
     node1->AddChild(itemNode);
-    node2->AddChild(declarationNode);
 
     itemNode->AddAttribute(L"id", mId);
-    declarationNode->AddAttribute(L"id", mId);
-
     itemNode->AddAttribute(L"x", wxString::FromDouble(mX));
     itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
     itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
     itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
-    declarationNode->AddAttribute("image", mPath);
 
-    return make_pair(itemNode, declarationNode);
+
+    if (node2->GetChildren() == nullptr) {
+        node2->AddChild(declarationNode);
+        declarationNode->AddAttribute(L"id", mId);
+        declarationNode->AddAttribute("image", mPath);
+        return make_pair(itemNode, declarationNode);
+    } else {
+        for (auto node = node2->GetChildren(); node; node = node->GetNext()) {
+            if (node->GetAttribute(L"id")==mId) {
+                hasId = true;
+            }
+        }
+        if (!hasId) {
+            node2->AddChild(declarationNode);
+            declarationNode->AddAttribute(L"id", mId);
+            declarationNode->AddAttribute("image", mPath);
+            return make_pair(itemNode, declarationNode);
+        }
+    }
+
+    return make_pair(itemNode, nullptr);
 }
 
 /**

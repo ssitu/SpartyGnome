@@ -20,7 +20,10 @@ std::pair<wxXmlNode*, wxXmlNode*> ItemDoor::XmlSave(wxXmlNode *node1, wxXmlNode 
     auto itemNode = doubleNode.first;
     auto declarationNode = doubleNode.second;
     itemNode->SetName(L"door");
-    declarationNode->SetName(L"door");
+    if (declarationNode!=nullptr) {
+        declarationNode->SetName(L"door");
+        return make_pair(itemNode, declarationNode);
+    }
 
-    return make_pair(itemNode, declarationNode);
+    return make_pair(itemNode, nullptr);
 }

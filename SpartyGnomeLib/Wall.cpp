@@ -43,9 +43,13 @@ pair<wxXmlNode*, wxXmlNode*> Wall::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
     auto itemNode = doubleNode.first;
     auto declarationNode = doubleNode.second;
     itemNode->SetName(L"wall");
-    declarationNode->SetName(L"wall");
 
-    return make_pair(itemNode, declarationNode);
+    if (declarationNode!=nullptr) {
+        declarationNode->SetName(L"wall");
+        return make_pair(itemNode, declarationNode);
+    }
+
+    return make_pair(itemNode, nullptr);
 }
 
 /**

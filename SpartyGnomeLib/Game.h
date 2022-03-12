@@ -26,6 +26,9 @@ private:
     /// Pointer to the gnome, given at level load
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
 
+    long mStartY = 512;       ///<gnome x start location
+    long mStartX = 512;       ///<gnome y start location
+
     void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
 
 public:

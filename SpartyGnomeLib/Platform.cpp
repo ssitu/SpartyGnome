@@ -108,15 +108,19 @@ std::pair<wxXmlNode*,wxXmlNode*> Platform::XmlSave(wxXmlNode* node1, wxXmlNode* 
     auto itemNode = doubleNode.first;
     auto declarationNode = doubleNode.second;
     itemNode->SetName(L"platform");
-    declarationNode->SetName(L"platform");
 
-    declarationNode->AddAttribute(L"left-image", itemNode->GetAttribute("image").ToStdWstring());
+    if (declarationNode!=nullptr) {
+        declarationNode->SetName(L"platform");
+        declarationNode->AddAttribute(L"left-image", declarationNode->GetAttribute("image").ToStdWstring());
+        declarationNode->DeleteAttribute("image");
+        declarationNode->AddAttribute(L"mid-image", mMidPath);
+        declarationNode->AddAttribute(L"right-image", mRightPath);
+        return make_pair(itemNode, declarationNode);
+    }
+
     itemNode->DeleteAttribute("image");
 
-    declarationNode->AddAttribute(L"mid-image", mMidPath);
-    declarationNode->AddAttribute(L"right-image", mRightPath);
-
-    return make_pair(itemNode, declarationNode);
+    return make_pair(itemNode, nullptr);
 }
 
 /**

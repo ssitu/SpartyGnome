@@ -2,15 +2,7 @@
 <level width="1024" height="1024" start-y="572" start-x="468">
     <declarations>
         <background id="i001" image="backgroundForest.png"/>
-        <platform id="i005" image="platformIndustrial_059.png" left-image="" mid-image="platformIndustrial_060.png"
-                  right-image="platformIndustrial_061.png"/>
-        <platform id="i005" image="platformIndustrial_059.png" left-image="" mid-image="platformIndustrial_060.png"
-                  right-image="platformIndustrial_061.png"/>
-        <platform id="i005" image="platformIndustrial_059.png" left-image="" mid-image="platformIndustrial_060.png"
-                  right-image="platformIndustrial_061.png"/>
-        <platform id="i005" image="platformIndustrial_059.png" left-image="" mid-image="platformIndustrial_060.png"
-                  right-image="platformIndustrial_061.png"/>
-        <platform id="i005" image="platformIndustrial_059.png" left-image="" mid-image="platformIndustrial_060.png"
+        <platform id="i005" left-image="platformIndustrial_059.png" mid-image="platformIndustrial_060.png"
                   right-image="platformIndustrial_061.png"/>
     </declarations>
     <items>

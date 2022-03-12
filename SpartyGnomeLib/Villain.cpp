@@ -28,7 +28,11 @@ std::pair<wxXmlNode*, wxXmlNode*> Villain::XmlSave(wxXmlNode* node1, wxXmlNode* 
     auto itemNode = doubleNode.first;
     auto declarationNode = doubleNode.second;
     itemNode->SetName(L"villain");
-    declarationNode->SetName(L"villain");
 
-    return std::make_pair(itemNode, declarationNode);
+    if (declarationNode!=nullptr) {
+        declarationNode->SetName(L"villain");
+        return std::make_pair(itemNode, declarationNode);
+    }
+
+    return std::make_pair(itemNode, nullptr);
 }
