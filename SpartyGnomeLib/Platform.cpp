@@ -104,8 +104,9 @@ Platform::Platform(Game* game, const std::wstring& filename, const std::wstring&
  */
 std::pair<wxXmlNode*,wxXmlNode*> Platform::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
-    auto itemNode = Item::XmlSave(node1, node2).first;
-    auto declarationNode = Item::XmlSave(node1, node2).second;
+    auto doubleNode = Item::XmlSave(node1, node2);
+    auto itemNode = doubleNode.first;
+    auto declarationNode = doubleNode.second;
     itemNode->SetName(L"platform");
     declarationNode->SetName(L"platform");
 

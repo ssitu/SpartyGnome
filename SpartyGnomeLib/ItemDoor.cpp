@@ -16,8 +16,9 @@ const wstring DoorImageName = L"images/door.png";
  */
 std::pair<wxXmlNode*, wxXmlNode*> ItemDoor::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
 {
-    auto itemNode = Item::XmlSave(node1, node2).first;
-    auto declarationNode = Item::XmlSave(node1, node2).second;
+    auto doubleNode = Item::XmlSave(node1, node2);
+    auto itemNode = doubleNode.first;
+    auto declarationNode = doubleNode.second;
     itemNode->SetName(L"door");
     declarationNode->SetName(L"door");
 

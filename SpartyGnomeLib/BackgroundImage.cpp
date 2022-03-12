@@ -36,8 +36,9 @@ BackgroundImage::BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* 
  */
 std::pair<wxXmlNode*, wxXmlNode*> BackgroundImage::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
-    auto itemNode = Item::XmlSave(node1, node2).first;
-    auto declarationNode = Item::XmlSave(node1, node2).second;
+    auto doubleNode = Item::XmlSave(node1, node2);
+    auto itemNode = doubleNode.first;
+    auto declarationNode = doubleNode.second;
     itemNode->DeleteAttribute(L"width");
     itemNode->DeleteAttribute(L"height");
     itemNode->SetName(L"background");
