@@ -17,6 +17,8 @@ class Wall;
 class Villain;
 class ItemDoor;
 class BackgroundImage;
+class ItemMoney;
+class ItemTuitionUp;
 
 /**
  * The visitor class for item objects
@@ -60,6 +62,18 @@ public:
      * @param background The Background to visit
      */
     virtual void VisitBackground(BackgroundImage* background) {}
+
+    /**
+     * Visit Money
+     * @param money The money to visit
+     */
+    virtual void VisitMoney(ItemMoney* money) {}
+
+    /**
+     * Visit TuitionUp
+     * @param tu The object to visit
+     */
+    virtual void VisitTuitionUp(ItemTuitionUp* tu) {}
 };
 
 #endif //SPARTYGNOME_ITEMVISITOR_H
