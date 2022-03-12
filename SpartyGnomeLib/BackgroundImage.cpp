@@ -42,7 +42,11 @@ std::pair<wxXmlNode*, wxXmlNode*> BackgroundImage::XmlSave(wxXmlNode* node1, wxX
     itemNode->DeleteAttribute(L"width");
     itemNode->DeleteAttribute(L"height");
     itemNode->SetName(L"background");
-    declarationNode->SetName(L"background");
 
-    return make_pair(itemNode, declarationNode);
+    if (declarationNode!=nullptr) {
+        declarationNode->SetName(L"background");
+        return make_pair(itemNode, declarationNode);
+    }
+
+    return make_pair(itemNode, nullptr);
 }

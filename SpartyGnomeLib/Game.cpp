@@ -175,13 +175,11 @@ void Game::LevelLoad(const wxString& filename)
     root->GetAttribute(L"width", L"100").ToLong(&width);
     long height;
     root->GetAttribute(L"height", L"100").ToLong(&height);
-    long startY;
-    root->GetAttribute(L"start-y", L"100").ToLong(&startY);
-    long startX;
-    root->GetAttribute(L"start-x", L"100").ToLong(&startX);
+    root->GetAttribute(L"start-y", L"100").ToLong(&mStartY);
+    root->GetAttribute(L"start-x", L"100").ToLong(&mStartX);
 
     // Use the loaded start location
-    mGnome->SetLocation(startX, startY);
+    mGnome->SetLocation(mStartX, mStartY);
 
     // Get item declarations
     auto declarations = root->GetChildren();
@@ -263,8 +261,8 @@ void Game::Save(const wxString& filename)
     xmlDoc.SetRoot(root);
     root->AddAttribute(L"width", L"1024");
     root->AddAttribute(L"height", L"1024");
-    root->AddAttribute(L"start-y", L"572");
-    root->AddAttribute(L"start-x", L"468");
+    root->AddAttribute(L"start-y", to_wstring(mStartY));
+    root->AddAttribute(L"start-x", to_wstring(mStartX));
 
     auto declarations = new wxXmlNode(wxXML_ELEMENT_NODE, L"declarations");
     auto items = new wxXmlNode(wxXML_ELEMENT_NODE, L"items");
