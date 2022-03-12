@@ -40,7 +40,7 @@ public:
     void VisitBackground(BackgroundImage* background) override { mVisitedBackground = true; }
 };
 
-TEST(DrawScrollingVisitorTest, Visit)
+TEST(DrawScrollingVisitorTest, ScrollingVisit)
 {
     auto tempImage = L"images/gnome.png";
     Game* game = new Game();
