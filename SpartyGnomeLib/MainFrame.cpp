@@ -36,10 +36,11 @@ void MainFrame::Initialize()
 
     SetMenuBar( menuBar );
 
-    wxMessageBox(L"Welcome to Sparty Gnome!",
-            L"About Sparty Gnome",
-            wxOK,
-            this);
+    //Unnecessary
+//    wxMessageBox(L"Welcome to Sparty Gnome!",
+//            L"About Sparty Gnome",
+//            wxOK,
+//            this);
 
 
     // Creating a Status Bar
