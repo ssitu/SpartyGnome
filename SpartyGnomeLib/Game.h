@@ -31,6 +31,8 @@ private:
 
     void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
 
+    void Accept(ItemVisitor* visitor);
+
 public:
     /// Constructor
     Game();

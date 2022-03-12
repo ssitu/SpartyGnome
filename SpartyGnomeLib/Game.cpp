@@ -15,6 +15,8 @@
 #include "Villain.h"
 #include "ItemTuitionUp.h"
 #include "Game.h"
+#include "DrawStaticVisitor.h"
+#include "DrawScrollingVisitor.h"
 
 using namespace std;
 
@@ -33,6 +35,18 @@ Game::Game()
     mItems.push_back(mGnome);
     //Load the default level
     LevelLoad(DefaultLevel);
+}
+
+/**
+ * Passes the given visitor to all items for them to accept
+ * @param visitor The visitor to accept
+ */
+void Game::Accept(ItemVisitor* visitor)
+{
+    for (auto item : mItems)
+    {
+        item->Accept(visitor);
+    }
 }
 
 /**
@@ -57,19 +71,20 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
     //
 
     // Draw static items
+    DrawStaticVisitor staticDrawer(graphics);
+    Game::Accept(&staticDrawer);
 
-
-    // There must be a gnome in a level, but avoid crash if there isn't
-    if (mGnome!=nullptr) {
+    // There must be a gnome, but avoid crash if there isn't
+    if (mGnome != nullptr)
+    {
         auto xOffset = (double) -mGnome->GetX()+virtualWidth/2.0f;
         graphics->Translate(xOffset, 0);
     }
 
     // Draw scrolling items
-    // Drawing every item for now
-    for (const auto& item: mItems) {
-        item->Draw(graphics);
-    }
+    DrawScrollingVisitor scrollingDrawer(graphics);
+    Game::Accept(&scrollingDrawer);
+
     // Draw Gnome last, so that it stays on top of other items
     mGnome->Draw(graphics);
     graphics->PopState();
