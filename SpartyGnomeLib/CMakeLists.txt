@@ -3,7 +3,9 @@ project(SpartyGnomeLib)
 set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnomeView.h Game.cpp Game.h ids.h
         Item.cpp Item.h BackgroundImage.cpp BackgroundImage.h ItemSpartyGnome.cpp ItemSpartyGnome.h
         Wall.cpp Wall.h Villain.cpp Villain.h ItemDoor.cpp ItemDoor.h Platform.cpp Platform.h
-        Vector.cpp Vector.h DrawScrollingVisitor.cpp DrawScrollingVisitor.h ItemVisitor.cpp ItemVisitor.h DrawStaticVisitor.cpp DrawStaticVisitor.h)
+        Vector.cpp Vector.h ItemMoney.cpp ItemMoney.h ItemTuitionUp.cpp ItemTuitionUp.h
+        DrawScrollingVisitor.cpp DrawScrollingVisitor.h ItemVisitor.cpp ItemVisitor.h
+        DrawStaticVisitor.cpp DrawStaticVisitor.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
