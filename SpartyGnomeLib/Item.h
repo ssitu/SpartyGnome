@@ -21,8 +21,6 @@ private:
     /// The game this item is contained in
     Game *mGame;
 
-    std::wstring mType;
-
     /// Path of the image file
     std::wstring mPath;
 
@@ -154,14 +152,6 @@ public:
      * @return Pointer to Game object
      */
     Game* GetGame() { return mGame; }
-
-    /**
-     * Get the mType
-     * @return wstring with mType
-     */
-    std::wstring GetType() { return mType; }
-
-    void SetType(std::wstring type) { mType = type; }
 
     virtual std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2);
 

@@ -31,7 +31,6 @@ const wstring SpartyGnomeImageName = L"images/gnome.png";
  */
 ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 {
-    this->SetType(L"gnome");
     this->SetHeight(200);
     this->SetWidth(108);
 }

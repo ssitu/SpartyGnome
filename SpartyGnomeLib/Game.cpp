@@ -315,7 +315,7 @@ shared_ptr<Item> Game::CollisionTest(Item* item)
     for (auto oItem : mItems)
     {
 
-        if (oItem->GetType() != L"background" && oItem->GetType() != item->GetType()) {
+        if (oItem->GetId() > L"i003") {
             if (oItem->CollisionTest(item)) {
                 return oItem;
             }
