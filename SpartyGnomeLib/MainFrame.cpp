@@ -24,7 +24,7 @@ void MainFrame::Initialize()
     auto levelMenu = new wxMenu();
     auto helpMenu = new wxMenu();
 
-    // itemMenu for testing purposes only
+    // itemMenu for testing and level creation purposes only
     auto itemMenu = new wxMenu();
 
     menuBar->Append(fileMenu, L"&File" );
@@ -33,7 +33,7 @@ void MainFrame::Initialize()
     menuBar->Append(helpMenu, L"&Help");
     fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
 
-    // These two are for testing purposes only
+    // These two are for level creation and testing purposes only
     fileMenu->Append(wxID_SAVEAS, "Save &As...\tCtrl-S", L"Save game as...");
     fileMenu->Append(wxID_OPEN, "Open &File...\tCtrl-F", L"Open xml level file...");
 

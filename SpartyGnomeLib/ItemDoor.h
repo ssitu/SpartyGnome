@@ -34,6 +34,8 @@ public:
      * @param visitor Visitor to accept
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitDoor(this);}
+
+    bool CollisionTest(Item* item);
 };
 
 #endif //SPARTYGNOME_ITEMDOOR_H

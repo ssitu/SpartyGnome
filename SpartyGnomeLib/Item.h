@@ -21,6 +21,8 @@ private:
     /// The game this item is contained in
     Game *mGame;
 
+    std::wstring mType;
+
     /// Path of the image file
     std::wstring mPath;
 
@@ -153,6 +155,14 @@ public:
      */
     Game* GetGame() { return mGame; }
 
+    /**
+     * Get the mType
+     * @return wstring with mType
+     */
+    std::wstring GetType() { return mType; }
+
+    void SetType(std::wstring type) { mType = type; }
+
     virtual std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2);
 
     /**
@@ -166,6 +176,8 @@ public:
     Item(const wxXmlNode* declaration, const wxXmlNode* item);
 
     virtual void Accept(ItemVisitor* visitor) = 0;
+
+    virtual bool CollisionTest(Item* item);
 };
 
 #endif //SPARTYGNOME_ITEM_H

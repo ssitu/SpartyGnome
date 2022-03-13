@@ -11,6 +11,10 @@
 
 using namespace std;
 
+/// Collision distance for the door in pixels
+const double CollisionDistance = 20;
+
+/// A default door image
 const wstring DoorImageName = L"images/door.png";
 
 ItemDoor::ItemDoor(Game* game) : Item(game, DoorImageName)
@@ -49,4 +53,18 @@ pair<wxXmlNode*, wxXmlNode*> ItemDoor::XmlSave(wxXmlNode *node1, wxXmlNode *node
     }
 
     return make_pair(itemNode, nullptr);
+}
+
+bool ItemDoor::CollisionTest(Item* item)
+{
+    // Collision for door is different
+    double dx = item->GetX() - GetX();
+    double dy = item->GetY() - GetY();
+    double distance = sqrt(dx * dx + dy * dy);
+    if (distance < CollisionDistance)
+    {
+        return true;
+    }
+
+    return false;
 }

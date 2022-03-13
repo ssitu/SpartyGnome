@@ -1,6 +1,6 @@
 /**
  * @file SpartyGnomeView.cpp
- * @author ryanl
+ * @author ryanl, Gabriel Misajlovski
  */
 
 #include "pch.h"
@@ -38,6 +38,8 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     // Binding Save and Load functions.
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileOpen, this, wxID_OPEN);
+
+    // bindings for level loading menu
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE1);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE2);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE3);

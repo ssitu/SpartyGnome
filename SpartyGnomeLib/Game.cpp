@@ -263,7 +263,7 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
         loadedItem = make_shared<ItemTuitionUp>(declaration, item);
     } else {
         if (ErrorMessages) {
-            wxMessageBox(L"Error loading XML: Item of type \""+type+L"\" is not implemented");
+            wxMessageBox(L"Error loading XML: Item of type \""+mType+L"\" is not implemented");
         }
     }
     if (loadedItem!=nullptr) {
@@ -308,4 +308,19 @@ void Game::Save(const wxString& filename)
         wxMessageBox(L"Write to XML failed");
         return;
     }
+}
+
+shared_ptr<Item> Game::CollisionTest(Item* item)
+{
+    for (auto oItem : mItems)
+    {
+
+        if (oItem->GetType() != L"background" && oItem->GetType() != item->GetType()) {
+            if (oItem->CollisionTest(item)) {
+                return oItem;
+            }
+        }
+
+    }
+    return nullptr;
 }

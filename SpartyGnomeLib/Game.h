@@ -16,6 +16,8 @@ class Game {
 private:
     double mScale;
 
+    wxString mType;
+
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 
@@ -59,6 +61,8 @@ public:
      * @return The number of items
      */
     unsigned int GetNumItems() { return mItems.size(); }
+
+    std::shared_ptr<Item> CollisionTest(Item* item);
 
 };
 
