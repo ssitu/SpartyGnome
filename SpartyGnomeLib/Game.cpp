@@ -17,6 +17,7 @@
 #include "Game.h"
 #include "DrawStaticVisitor.h"
 #include "DrawScrollingVisitor.h"
+#include "VerticalCollisionVisitor.h"
 
 using namespace std;
 
@@ -310,17 +311,27 @@ void Game::Save(const wxString& filename)
     }
 }
 
-shared_ptr<Item> Game::CollisionTest(Item* item)
+/**
+ * Returns the item that the given item is vertically collided with, nullptr otherwise
+ * @param item The item to determine collisions with
+ * @return The item that is colliding with the given item, nullptr otherwise
+ */
+shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
 {
+    VerticalCollisionVisitor visitor(item);
     for (auto oItem : mItems)
     {
 
-        if (oItem->GetId() > L"i003") {
-            if (oItem->CollisionTest(item)) {
-                return oItem;
-            }
+//        if (oItem->GetId() > L"i003") {
+//            if (oItem->VerticalCollisionTest(item)) {
+//                return oItem;
+//            }
+//        }
+        oItem->Accept(&visitor);
+        if (visitor.IsColliding())
+        {
+            return oItem;
         }
-
     }
     return nullptr;
 }

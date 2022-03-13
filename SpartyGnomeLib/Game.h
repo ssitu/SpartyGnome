@@ -62,7 +62,7 @@ public:
      */
     unsigned int GetNumItems() { return mItems.size(); }
 
-    std::shared_ptr<Item> CollisionTest(Item* item);
+    std::shared_ptr<Item> VerticalCollisionTest(Item* item);
 
 };
 

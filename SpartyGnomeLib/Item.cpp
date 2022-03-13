@@ -160,7 +160,7 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
  * @param item The other item to test collision with
  * @return True if there is a collision, false otherwise
  */
-bool Item::CollisionTest(Item* item)
+const bool Item::CollisionTest(Item* item) const
 {
     // Border for the item
     auto itemLeft = item->GetX() - item->GetWidth() / 2;

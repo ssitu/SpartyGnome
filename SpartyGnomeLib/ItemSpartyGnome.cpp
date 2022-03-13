@@ -42,7 +42,7 @@ ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 void ItemSpartyGnome::Jump()
 {
     mGravityEnable = true;
-    auto collided = GetGame()->CollisionTest(this);
+    auto collided = GetGame()->VerticalCollisionTest(this);
     if (mV.Y() == 0) {
         mV.SetY(JumpSpeed);
     }
@@ -67,7 +67,7 @@ void ItemSpartyGnome::Update(double elapsed)
         SetLocation(p.X(), newP.Y());
 
 
-        auto collided = GetGame()->CollisionTest(this);
+        auto collided = GetGame()->VerticalCollisionTest(this);
         if (collided != nullptr)
         {
             if (newV.Y() > 0)
@@ -92,7 +92,7 @@ void ItemSpartyGnome::Update(double elapsed)
         //
         SetLocation(newP.X(), newP.Y());
 
-        collided = GetGame()->CollisionTest(this);
+        collided = GetGame()->VerticalCollisionTest(this);
         if (collided != nullptr)
         {
             //if (newV.X() > 0)

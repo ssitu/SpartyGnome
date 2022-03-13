@@ -26,3 +26,16 @@ TEST(GameTest, Clear)
     game.Clear();
     ASSERT_EQ(game.GetNumItems(), 1);
 }
+
+TEST(GameTest, CollisionTest)
+{
+    Game game;
+    //Get the items
+    std::shared_ptr<BackgroundImage> item = std::make_shared<BackgroundImage>(&game);
+    game.Add(item);
+
+    //Place gnome in the center of every coordinate in the item's area
+    auto startX = item->GetX() - item->GetWidth() / 2;
+    auto startY = item->GetY() - item->GetHeight() / 2;
+    for (double x = startX; )
+}
