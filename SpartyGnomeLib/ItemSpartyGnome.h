@@ -39,6 +39,8 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitGnome(this);}
 
+    void DisableGravity() { mGravityEnable = false; };
+
 };
 
 #endif //SPARTYGNOME_ITEMSPARTYGNOME_H

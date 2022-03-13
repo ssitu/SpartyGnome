@@ -178,9 +178,7 @@ void Game::LevelLoad(const wxString& filename)
 
     wxXmlDocument xml;
     if (!xml.Load(filename)) {
-        if (ErrorMessages) {
-            wxMessageBox(L"Error loading XML: cannot load XML file\nfile: "+filename);
-        }
+        wxMessageBox(L"Error loading XML: cannot load XML file\nfile: "+filename);
         return;
     }
 
@@ -198,6 +196,7 @@ void Game::LevelLoad(const wxString& filename)
     root->GetAttribute(L"start-x", L"100").ToLong(&mStartX);
 
     // Use the loaded start location
+    mGnome->DisableGravity();
     mGnome->SetLocation(mStartX, mStartY);
 
     // Get item declarations

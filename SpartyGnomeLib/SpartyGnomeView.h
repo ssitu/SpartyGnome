@@ -57,6 +57,8 @@ public:
     void OnFileSaveas(wxCommandEvent& event);
     void OnFileOpen(wxCommandEvent& event);
 
+    void OnLevelOpen(wxCommandEvent& event);
+
     /**
      * Stop the timer so the window can close
      */
