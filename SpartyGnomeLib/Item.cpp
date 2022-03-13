@@ -31,7 +31,6 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
     mItemImage = make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_shared<wxBitmap>(*mItemImage);
     mPath = filename;
-    mGame->Clear();
 }
 
 /**
@@ -151,12 +150,16 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     item->GetAttribute(L"y").ToDouble(&mY);
     item->GetAttribute(L"width").ToDouble(&mWidth);
     item->GetAttribute(L"height").ToDouble(&mHeight);
-    mType = item->GetName().ToStdWstring();
     mId = declaration->GetAttribute(L"id").ToStdWstring();
 
 
 }
 
+/**
+ * Tests if a rectangular collision occurred between this item and the given item
+ * @param item The other item to test collision with
+ * @return True if there is a collision, false otherwise
+ */
 bool Item::CollisionTest(Item* item)
 {
     // Border for the item
