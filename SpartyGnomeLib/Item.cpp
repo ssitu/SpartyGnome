@@ -156,9 +156,9 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
 }
 
 /**
- * Tests if a collision occurred between this item and the given item
+ * Tests if a rectangular collision occurred between this item and the given item
  * @param item The other item to test collision with
- * @return
+ * @return True if there is a collision, false otherwise
  */
 bool Item::CollisionTest(Item* item)
 {
