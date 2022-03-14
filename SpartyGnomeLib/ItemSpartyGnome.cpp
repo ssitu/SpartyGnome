@@ -118,3 +118,8 @@ void ItemSpartyGnome::Update(double elapsed)
     }
 }
 
+bool ItemSpartyGnome::IsGravity()
+{
+    return mGravityEnable;
+}
+

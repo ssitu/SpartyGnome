@@ -41,6 +41,8 @@ public:
 
     void DisableGravity() { mGravityEnable = false; };
 
+    bool IsGravity();
+
 };
 
 #endif //SPARTYGNOME_ITEMSPARTYGNOME_H
