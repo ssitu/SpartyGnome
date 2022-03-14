@@ -178,6 +178,7 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
     {
     case WXK_RIGHT:
         mGame.GetGnome()->StopMove();
+        break;
     case WXK_LEFT:
         // left or right arrow released
         mGame.GetGnome()->StopMove();
