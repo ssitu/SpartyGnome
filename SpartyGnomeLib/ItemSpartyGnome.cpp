@@ -48,6 +48,40 @@ void ItemSpartyGnome::Jump()
     }
 }
 
+/**
+ * Move Right Event Handler
+ * @author ryanl
+ */
+void ItemSpartyGnome::MoveRight()
+{
+    auto collided = GetGame()->VerticalCollisionTest(this);
+    if (mV.X() == 0) {
+        mV.SetX(HorizontalSpeed);
+    }
+}
+
+/**
+ * Move Left Event Handler
+ * @author ryanl
+ */
+void ItemSpartyGnome::MoveLeft()
+{
+    auto collided = GetGame()->VerticalCollisionTest(this);
+    if (mV.X() == 0) {
+        mV.SetX(HorizontalSpeed*(-1));
+    }
+}
+
+/**
+ * Stop Move Event Handler
+ * @author ryanl
+ */
+void ItemSpartyGnome::StopMove()
+{
+    auto collided = GetGame()->VerticalCollisionTest(this);
+    mV.SetX(0);
+}
+
 void ItemSpartyGnome::Update(double elapsed)
 {
     Item::Update(elapsed);

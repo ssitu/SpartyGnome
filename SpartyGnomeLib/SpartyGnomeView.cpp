@@ -32,7 +32,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_UP, &SpartyGnomeView::OnLeftUp, this);
     Bind(wxEVT_MOTION, &SpartyGnomeView::OnMouseMove, this);
     Bind(wxEVT_KEY_DOWN, &SpartyGnomeView::OnKeyDown, this);
-    //Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
+    Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
     //Bind the timer event handler
     Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
@@ -157,10 +157,12 @@ void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
     {
     case WXK_RIGHT:
         // right arrow pressed
+        mGame.GetGnome()->MoveRight();
         break;
 
     case WXK_LEFT:
         // left arrow pressed
+        mGame.GetGnome()->MoveLeft();
         break;
 
     case WXK_SPACE:
@@ -175,8 +177,10 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
     switch (event.GetKeyCode())
     {
     case WXK_RIGHT:
+        mGame.GetGnome()->StopMove();
     case WXK_LEFT:
         // left or right arrow released
+        mGame.GetGnome()->StopMove();
         break;
     }
 }

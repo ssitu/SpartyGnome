@@ -30,6 +30,9 @@ public:
     ItemSpartyGnome(Game* game);
 
     void Jump();
+    void MoveRight();
+    void MoveLeft();
+    void StopMove();
 
     void Update(double elapsed);
 
