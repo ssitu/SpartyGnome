@@ -34,7 +34,7 @@ public:
     void MoveLeft();
     void StopMove();
 
-    void Update(double elapsed);
+    void Update(double elapsed) override;
 
     /**
      * Accept a visitor

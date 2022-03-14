@@ -16,7 +16,7 @@
  */
 class Villain : public Item {
 private:
-
+    double mSpeedY = 300;
 public:
     /// Disable defaults
     Villain() = delete;
@@ -32,6 +32,8 @@ public:
     Villain(const wxXmlNode* declaration, const wxXmlNode* item);
 
     std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2) override;
+
+    void Update(double elapsed) override;
 
     /**
      * Accept a visitor

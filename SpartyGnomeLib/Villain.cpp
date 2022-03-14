@@ -1,7 +1,7 @@
 /**
  * @file Villain.cpp
  * 
- * @author Simon Situ, Gabriel Misajlovski
+ * @author Simon Situ, Gabriel Misajlovski, ryanl
  */
 
 #include "pch.h"
@@ -55,4 +55,11 @@ std::pair<wxXmlNode*, wxXmlNode*> Villain::XmlSave(wxXmlNode* node1, wxXmlNode* 
     }
 
     return make_pair(itemNode, nullptr);
+}
+
+void Villain::Update(double elapsed)
+{
+    Item::Update(elapsed);
+    //SetLocation(GetX(),GetY()+mSpeedY*elapsed);
+
 }
