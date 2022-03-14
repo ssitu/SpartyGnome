@@ -24,8 +24,6 @@ class ItemTuitionUp;
  * The visitor class for item objects
  */
 class ItemVisitor {
-private:
-
 public:
     /**
      * Visit a Gnome

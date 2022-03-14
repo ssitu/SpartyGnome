@@ -28,9 +28,9 @@ const bool ErrorMessages = false;
 
 Game::Game()
 {
+    Game::Clear();
     //Add SpartyGnome
     mGnome = make_shared<ItemSpartyGnome>(this);
-    mItems.push_back(mGnome);
 }
 
 /**
@@ -191,10 +191,6 @@ void Game::LevelLoad(const wxString& filename)
     root->GetAttribute(L"start-y", L"100").ToLong(&mStartY);
     root->GetAttribute(L"start-x", L"100").ToLong(&mStartX);
 
-    // Use the loaded start location
-    mGnome->DisableGravity();
-    mGnome->SetLocation(mStartX, mStartY);
-
     // Get item declarations
     auto declarations = root->GetChildren();
     wxASSERT(declarations->GetName()==L"declarations");
@@ -223,6 +219,10 @@ void Game::LevelLoad(const wxString& filename)
     for (auto item = items->GetChildren(); item; item = item->GetNext()) {
         LoadXmlItem(declarations_table, item);
     }
+
+    // Use the loaded start location
+    mGnome->DisableGravity();
+    mGnome->SetLocation(mStartX, mStartY);
 }
 
 /**
@@ -271,9 +271,7 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     }
     else
     {
-        if (ErrorMessages) {
-            wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
-        }
+        wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
     }
     if (loadedItem != nullptr) {
         Add(loadedItem);
@@ -329,12 +327,6 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
     VerticalCollisionVisitor visitor(item);
     for (auto oItem : mItems)
     {
-
-//        if (oItem->GetId() > L"i003") {
-//            if (oItem->VerticalCollisionTest(item)) {
-//                return oItem;
-//            }
-//        }
         oItem->Accept(&visitor);
         if (visitor.IsColliding())
         {

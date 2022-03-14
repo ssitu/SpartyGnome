@@ -68,7 +68,7 @@ void ItemSpartyGnome::MoveLeft()
 {
     auto collided = GetGame()->VerticalCollisionTest(this);
     if (mV.X() == 0) {
-        mV.SetX(HorizontalSpeed*(-1));
+        mV.SetX(0-HorizontalSpeed);
     }
 }
 

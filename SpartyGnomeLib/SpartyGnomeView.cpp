@@ -220,6 +220,10 @@ void SpartyGnomeView::OnFileOpen(wxCommandEvent& event)
     mGame.LevelLoad(filename);
 }
 
+/**
+ * The level loading menu
+ * @param event clicking on a level to load
+ */
 void SpartyGnomeView::OnLevelOpen(wxCommandEvent& event)
 {
     switch (event.GetId()) {
