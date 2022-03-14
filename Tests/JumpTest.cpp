@@ -18,5 +18,7 @@ TEST(JumpTest,Jump)
     ASSERT_TRUE(gnome->IsGravity());
     gnome->DisableGravity();
     ASSERT_FALSE(gnome->IsGravity());
+    gnome->Jump();
+    ASSERT_TRUE(gnome->IsGravity());
 
 }
