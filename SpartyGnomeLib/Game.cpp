@@ -241,28 +241,41 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     auto declaration = declarations_table.at(id);
     std::shared_ptr<Item> loadedItem = nullptr;
     //Choose which Item to make based on the type given
-    if (type==L"background") {
+    if (type==L"background")
+    {
         loadedItem = make_shared<BackgroundImage>(declaration, item);
     }
-    else if (type==L"platform") {
+    else if (type==L"platform")
+    {
         loadedItem = make_shared<Platform>(declaration, item);
     }
-    else if (type==L"wall") {
+    else if (type==L"wall")
+    {
         loadedItem = make_shared<Wall>(declaration, item);
-    } else if (type==L"door") {
+    }
+    else if (type==L"door")
+    {
         loadedItem = make_shared<ItemDoor>(declaration, item);
-    } else if (type==L"money") {
+    }
+    else if (type==L"money")
+    {
         loadedItem = make_shared<ItemMoney>(declaration, item);
-    } else if (type==L"villain"){
+    }
+    else if (type==L"villain")
+    {
         loadedItem = make_shared<Villain>(declaration, item);
-    } else if (type==L"tuition-up"){
+    }
+    else if (type==L"tuition-up")
+    {
         loadedItem = make_shared<ItemTuitionUp>(declaration, item);
-    } else {
+    }
+    else
+    {
         if (ErrorMessages) {
-            wxMessageBox(L"Error loading XML: Item of type \""+mType+L"\" is not implemented");
+            wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
         }
     }
-    if (loadedItem!=nullptr) {
+    if (loadedItem != nullptr) {
         Add(loadedItem);
     }
 }

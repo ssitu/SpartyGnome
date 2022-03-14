@@ -14,9 +14,8 @@
 
 class Game {
 private:
+    /// The scale for items when drawing
     double mScale;
-
-    wxString mType;
 
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
