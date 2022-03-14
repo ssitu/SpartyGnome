@@ -60,6 +60,14 @@ std::pair<wxXmlNode*, wxXmlNode*> Villain::XmlSave(wxXmlNode* node1, wxXmlNode* 
 void Villain::Update(double elapsed)
 {
     Item::Update(elapsed);
-    //SetLocation(GetX(),GetY()+mSpeedY*elapsed);
+    SetLocation(GetX(),GetY()+mSpeedY*elapsed);
+    if (mSpeedY > 0 && GetY() >= 850)
+    {
+        mSpeedY = -mSpeedY;
+    }
+    else if (mSpeedY < 0 && GetY() <= 450)
+    {
+        mSpeedY = -mSpeedY;
+    }
 
 }
