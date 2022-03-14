@@ -18,6 +18,9 @@ using namespace std;
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
 
+const wstring LevelsDir = L"levels/";
+const wstring DefaultLevel = LevelsDir + L"level0.xml";
+
 void SpartyGnomeView::Initialize(wxFrame* parent)
 {
     Create(parent, wxID_ANY);
@@ -50,6 +53,8 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     mStopWatch.Start();
 
     mParent = parent;
+
+    mGame.LevelLoad(DefaultLevel);
 }
 
 //void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)

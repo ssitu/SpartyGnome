@@ -33,7 +33,7 @@ TEST(DrawStaticVisitorTest, StaticVisit)
 {
     auto tempImage = L"images/gnome.png";
     Game* game = new Game();
-    Villain villain(game, tempImage);
+    Villain villain(game);
     Platform platform(game);
     ItemSpartyGnome gnome(game);
     Wall wall(game);
