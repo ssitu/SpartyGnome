@@ -62,8 +62,8 @@ pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
     node1->AddChild(itemNode);
 
     itemNode->AddAttribute(L"id", mId);
-    itemNode->AddAttribute(L"x", wxString::FromDouble(mX));
-    itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
+    itemNode->AddAttribute(L"x", wxString::FromDouble(mInitialX));
+    itemNode->AddAttribute(L"y", wxString::FromDouble(mInitialY));
     itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
     itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
 
