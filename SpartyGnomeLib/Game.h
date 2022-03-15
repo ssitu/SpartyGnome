@@ -70,6 +70,9 @@ public:
 
     void Freeze(double seconds);
 
+    void DisplayStartMessage(int levelNum);
+
+    void RemoveItem(Item* item);
 };
 
 #endif //SPARTYGNOME_GAME_H

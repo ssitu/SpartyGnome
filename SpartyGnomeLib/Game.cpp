@@ -19,6 +19,8 @@
 #include "DrawStaticVisitor.h"
 #include "DrawScrollingVisitor.h"
 #include "VerticalCollisionVisitor.h"
+#include "ItemMessage.h"
+#include "DrawMessagesVisitor.h"
 
 using namespace std;
 
@@ -88,6 +90,11 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
 
     // Draw Gnome last, so that it stays on top of other items
     mGnome->Draw(graphics);
+
+    //Will need messages to stay on top of everything
+    DrawMessagesVisitor messagesVisitor(graphics);
+    Game::Accept(&messagesVisitor);
+
     graphics->PopState();
 }
 
@@ -130,15 +137,19 @@ void Game::Update(double elapsed)
 }
 
 /**
- * Add an item to the game
- * @param item New item to add
+ * Add a Gnome to the game
+ * @param gnome Gnome to add
  */
-void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
+void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> gnome)
 {
-    mItems.push_back(item);
-    mGnome = item;
+    mItems.push_back(gnome);
+    mGnome = gnome;
 }
 
+/**
+ * Add an item to the game
+ * @param item
+ */
 void Game::Add(shared_ptr<Item> item)
 {
     mItems.push_back(item);
@@ -236,11 +247,6 @@ void Game::LevelLoad(const wstring& filename)
     // Use the loaded start location
     mGnome->DisableGravity();
     mGnome->SetLocation(mStartX, mStartY);
-
-    // Freeze the game
-    Game::Freeze(FreezeTime);
-    // Display the start message
-
 }
 
 /**
@@ -373,6 +379,12 @@ void Game::LevelLoad(int levelNum)
 {
     wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
     Game::LevelLoad(filename);
+
+    // Freeze the game
+    Game::Freeze(FreezeTime);
+
+    // Display the start message
+    Game::DisplayStartMessage(levelNum);
 }
 
 /**
@@ -382,4 +394,28 @@ void Game::LevelLoad(int levelNum)
 void Game::Freeze(double seconds)
 {
     mFreeze = seconds;
+}
+
+/**
+ * Display the starting message for a level number
+ * @param levelNum The level number
+ */
+void Game::DisplayStartMessage(int levelNum)
+{
+    wstring message = L"Level " + to_wstring(levelNum) + L" Begin!";
+    auto messageItem = make_shared<ItemMessage>(this, message, FreezeTime);
+    auto centerX = mGnome->GetX();
+    auto centerY = Height / 2;
+    Game::Add(messageItem, centerX, centerY);
+}
+
+/**
+ * Removes an item from the game
+ * @param item The item to remove
+ */
+void Game::RemoveItem(Item* item)
+{
+    auto pos = std::remove_if(mItems.begin(), mItems.end(),
+            [item](shared_ptr<Item> x){return x.get() == item;});
+    mItems.erase(pos);
 }

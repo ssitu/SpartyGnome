@@ -47,6 +47,7 @@ private:
 
 protected:
     Item(Game *game, const std::wstring &filename);
+    Item(Game *game);
 
     /**
      * this is a constructor strictly for testing purposes of Platform

@@ -5,7 +5,9 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnome
         Wall.cpp Wall.h Villain.cpp Villain.h ItemDoor.cpp ItemDoor.h Platform.cpp Platform.h
         Vector.cpp Vector.h ItemMoney.cpp ItemMoney.h ItemTuitionUp.cpp ItemTuitionUp.h
         DrawScrollingVisitor.cpp DrawScrollingVisitor.h ItemVisitor.h
-        DrawStaticVisitor.cpp DrawStaticVisitor.h CollisionVisitor.cpp CollisionVisitor.h VerticalCollisionVisitor.cpp VerticalCollisionVisitor.h PlatformF.cpp PlatformF.h)
+        DrawStaticVisitor.cpp DrawStaticVisitor.h CollisionVisitor.cpp CollisionVisitor.h
+        VerticalCollisionVisitor.cpp VerticalCollisionVisitor.h PlatformF.cpp PlatformF.h
+        ItemMessage.cpp ItemMessage.h DrawMessagesVisitor.cpp DrawMessagesVisitor.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

@@ -30,6 +30,7 @@ public:
     void VisitBackground(BackgroundImage* background) override;
     void VisitMoney(ItemMoney* money) override;
     void VisitTuitionUp(ItemTuitionUp* tuition) override;
+    void VisitMessage(ItemMessage* message) override;
 
 };
 

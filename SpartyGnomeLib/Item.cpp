@@ -188,3 +188,12 @@ const bool Item::CollisionTest(Item* item) const
 
     return true;
 }
+
+/**
+ * Constructor for the item with only the Game pointer
+ * @param game The Game this is apart of
+ */
+Item::Item(Game* game)
+{
+    mGame = game;
+}
