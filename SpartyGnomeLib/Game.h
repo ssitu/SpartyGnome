@@ -20,10 +20,6 @@ private:
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 
-    /// Need a way to store the id with its respective information for that item type
-    /// Using hashtable to map ids to its respective XML node
-    std::unordered_map<wxString, wxXmlNode*> mDeclarations;
-
     /// Pointer to the gnome, given at level load
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
 
@@ -41,7 +37,7 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     void Update(double elapsed);
-    void NewOrder(std::shared_ptr<Item> mGrabbedItem);
+    void NewOrder(std::shared_ptr<Item> grabbedItem);
     std::shared_ptr<Item>HitTest(int x, int y);
 
     void Add(std::shared_ptr<Item> item);

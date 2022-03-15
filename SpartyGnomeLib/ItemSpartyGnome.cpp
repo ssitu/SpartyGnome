@@ -6,7 +6,6 @@
 
 #include <string>
 
-#include "ItemVisitor.h"
 #include "Platform.h"
 #include "PlatformF.h"
 #include "Game.h"

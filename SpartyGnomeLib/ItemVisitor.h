@@ -79,6 +79,8 @@ public:
      * @param tu The object to visit
      */
     virtual void VisitTuitionUp(ItemTuitionUp* tu) {}
+
+    virtual void ErasePlatformF(PlatformF* platformF) {}
 };
 
 #endif //SPARTYGNOME_ITEMVISITOR_H
