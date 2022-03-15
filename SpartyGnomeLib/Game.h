@@ -23,8 +23,11 @@ private:
     /// Pointer to the gnome, given at level load
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
 
-    long mStartY = 512;       ///<gnome x start location
-    long mStartX = 512;       ///<gnome y start location
+    long mStartY = 512;       ///<gnome x start location in pixels
+    long mStartX = 512;       ///<gnome y start location in pixels
+
+    /// Number of seconds to freeze the game for
+    double mFreeze = 0;
 
     void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
 
@@ -45,7 +48,9 @@ public:
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
     void Clear();
 
-    void LevelLoad(const wxString& filename);
+    void LevelLoad(const std::wstring& filename);
+    void LevelLoad(int levelNum);
+    void LevelLoadDefault();
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
@@ -60,6 +65,8 @@ public:
     std::vector<std::shared_ptr<Item>> GetItems() { return mItems; }
 
     std::shared_ptr<Item> VerticalCollisionTest(Item* item);
+
+    void Freeze(double seconds);
 
 };
 

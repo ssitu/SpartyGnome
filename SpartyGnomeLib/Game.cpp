@@ -23,7 +23,13 @@
 using namespace std;
 
 /// Game area height in virtual pixels
-const static int Height = 1024;\
+const static int Height = 1024;
+
+const wstring LevelsDir = L"levels/";
+const wstring LevelPrefix = L"level";
+
+const int DefaultLevel = 1;
+const double FreezeTime = 2;
 
 Game::Game()
 {
@@ -109,8 +115,17 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
  */
 void Game::Update(double elapsed)
 {
-    for (auto item: mItems) {
-        item->Update(elapsed);
+    if (mFreeze > 0)
+    {
+        //Not concerned about a negative freeze time
+        mFreeze -= elapsed;
+    }
+    else
+    {
+        for (auto item: mItems)
+        {
+            item->Update(elapsed);
+        }
     }
 }
 
@@ -164,13 +179,12 @@ void Game::Clear()
 }
 
 /**
- * Load a level from an xml file
+ * Load a level number
  *
- * @param filename The wxString of the file path
+ * @param int The level number
  */
-void Game::LevelLoad(const wxString& filename)
+void Game::LevelLoad(const wstring& filename)
 {
-
     wxXmlDocument xml;
     if (!xml.Load(filename)) {
         wxMessageBox(L"Error loading XML: cannot load XML file\nfile: "+filename);
@@ -222,6 +236,11 @@ void Game::LevelLoad(const wxString& filename)
     // Use the loaded start location
     mGnome->DisableGravity();
     mGnome->SetLocation(mStartX, mStartY);
+
+    // Freeze the game
+    Game::Freeze(FreezeTime);
+    // Display the start message
+
 }
 
 /**
@@ -336,4 +355,31 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
         }
     }
     return nullptr;
+}
+
+/**
+ * Loads the default level
+ */
+void Game::LevelLoadDefault()
+{
+    LevelLoad(DefaultLevel);
+}
+
+/**
+ * Loads the level number
+ * @param levelNum
+ */
+void Game::LevelLoad(int levelNum)
+{
+    wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
+    Game::LevelLoad(filename);
+}
+
+/**
+ * Freezes the game for the given amount of time in seconds
+ * @param seconds Number of seconds to freeze the game for
+ */
+void Game::Freeze(double seconds)
+{
+    mFreeze = seconds;
 }
