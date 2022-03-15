@@ -4,6 +4,8 @@
  * @author Simon Situ
  */
 
+#include "pch.h"
+
 #include "CollisionVisitor.h"
 #include "Item.h"
 

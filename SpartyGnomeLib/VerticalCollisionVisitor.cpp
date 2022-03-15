@@ -4,6 +4,8 @@
  * @author Simon Situ
  */
 
+#include "pch.h"
+
 #include "VerticalCollisionVisitor.h"
 #include "Wall.h"
 #include "Platform.h"
