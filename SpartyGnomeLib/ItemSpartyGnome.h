@@ -13,8 +13,10 @@
 
 class ItemSpartyGnome : public Item {
 private:
+    /// Vector containing both current X and Y velocities of Gnome
     Vector mV;
 
+    /// Is gravity enabled? This will tell you.
     bool mGravityEnable = false;
 
 public:
@@ -42,6 +44,7 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitGnome(this);}
 
+    /// Gravity Disabling function.
     void DisableGravity() { mGravityEnable = false; };
 
     bool GravityCheck(){return mGravityEnable;};

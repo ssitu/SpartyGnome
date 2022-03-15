@@ -47,7 +47,9 @@ void DrawScrollingVisitor::VisitPlatform(Platform* platform)
  */
 void DrawScrollingVisitor::VisitPlatformF(PlatformF* platformF)
 {
+
     platformF->Draw(mGraphicsContext);
+
 }
 
 /**

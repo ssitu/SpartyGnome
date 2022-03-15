@@ -9,6 +9,7 @@
 #include "VerticalCollisionVisitor.h"
 #include "Wall.h"
 #include "Platform.h"
+#include "PlatformF.h"
 
 /**
  * Vertical collision test for wall
@@ -26,6 +27,15 @@ void VerticalCollisionVisitor::VisitWall(Wall* wall)
 void VerticalCollisionVisitor::VisitPlatform(Platform* platform)
 {
     CollisionVisitor::CollisionTest(*platform);
+}
+
+/**
+ * Vertical collision test for platform
+ * @param platform Wall to test
+ */
+void VerticalCollisionVisitor::VisitPlatformF(PlatformF* platformF)
+{
+    CollisionVisitor::CollisionTest(*platformF);
 }
 
 /**
