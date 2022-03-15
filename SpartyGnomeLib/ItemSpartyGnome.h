@@ -44,7 +44,7 @@ public:
 
     void DisableGravity() { mGravityEnable = false; };
 
-    bool IsGravity();
+    bool GravityCheck(){return mGravityEnable;};
 
 };
 

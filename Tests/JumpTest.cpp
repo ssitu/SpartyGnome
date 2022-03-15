@@ -7,6 +7,7 @@
 #include <memory>
 #include <Game.h>
 #include <ItemSpartyGnome.h>
+
 #include "gtest/gtest.h"
 
 TEST(JumpTest,Jump)
@@ -15,10 +16,10 @@ TEST(JumpTest,Jump)
     std::shared_ptr<ItemSpartyGnome> gnome = game.GetGnome();
 
     gnome->Jump();
-    ASSERT_TRUE(gnome->IsGravity());
+    ASSERT_TRUE(gnome->GravityCheck());
     gnome->DisableGravity();
-    ASSERT_FALSE(gnome->IsGravity());
+    ASSERT_FALSE(gnome->GravityCheck());
     gnome->Jump();
-    ASSERT_TRUE(gnome->IsGravity());
+    ASSERT_TRUE(gnome->GravityCheck());
 
 }
