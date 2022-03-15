@@ -403,7 +403,7 @@ void Game::Freeze(double seconds)
 void Game::DisplayStartMessage(int levelNum)
 {
     wstring message = L"Level " + to_wstring(levelNum) + L" Begin!";
-    auto messageItem = make_shared<ItemMessage>(this, message, FreezeTime);
+    auto messageItem = make_shared<ItemMessage>(this, message, 0);
     auto centerX = mGnome->GetX();
     auto centerY = Height / 2;
     Game::Add(messageItem, centerX, centerY);
