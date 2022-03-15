@@ -21,7 +21,6 @@ const wstring villainImageName = L"images/UofM.png";
  */
 Villain::Villain(Game* game) : Item(game, villainImageName)
 {
-
 }
 
 /**
@@ -65,7 +64,7 @@ void Villain::Update(double elapsed)
     {
         mSpeedY = -mSpeedY;
     }
-    else if (mSpeedY < 0 && GetY() <= 450)
+    else if (mSpeedY < 0 && GetY() <= 550)
     {
         mSpeedY = -mSpeedY;
     }
