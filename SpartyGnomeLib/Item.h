@@ -27,6 +27,7 @@ private:
     // Item location in the game
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
+    double  mInitialY = 0;     ///< Y Initial
 
     /// The width of this item
     double mWidth = 0;
@@ -112,6 +113,12 @@ public:
      * @return Y location in pixels
      */
     double GetY() const { return mY; }
+
+    /**
+     * The Y initial location of the item
+     * @return Y initial location in pixels
+     */
+    double GetInitialY() const { return mInitialY; }
 
     /**
      * The width of the item

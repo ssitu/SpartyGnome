@@ -148,6 +148,7 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     // Loading generic item information
     item->GetAttribute(L"x").ToDouble(&mX);
     item->GetAttribute(L"y").ToDouble(&mY);
+    item->GetAttribute(L"y").ToDouble(&mInitialY);
     item->GetAttribute(L"width").ToDouble(&mWidth);
     item->GetAttribute(L"height").ToDouble(&mHeight);
     mId = declaration->GetAttribute(L"id").ToStdWstring();
