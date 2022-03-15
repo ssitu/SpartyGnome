@@ -68,10 +68,14 @@ public:
 
     void Freeze(double seconds);
 
+    void FreezeScreenMessage(const std::wstring& message);
+
     void DisplayStartMessage(int levelNum);
 
     void RemoveItem(std::shared_ptr<Item> item);
     void RemoveItem(Item* item);
+
+    void DisplayLoseMessage();
 };
 
 #endif //SPARTYGNOME_GAME_H
