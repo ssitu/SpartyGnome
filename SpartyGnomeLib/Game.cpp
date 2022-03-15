@@ -23,7 +23,12 @@
 using namespace std;
 
 /// Game area height in virtual pixels
-const static int Height = 1024;\
+const static int Height = 1024;
+
+const wstring LevelsDir = L"levels/";
+const wstring LevelPrefix = L"level";
+
+const int DefaultLevel = 1;
 
 Game::Game()
 {
@@ -164,13 +169,12 @@ void Game::Clear()
 }
 
 /**
- * Load a level from an xml file
+ * Load a level number
  *
- * @param filename The wxString of the file path
+ * @param int The level number
  */
-void Game::LevelLoad(const wxString& filename)
+void Game::LevelLoad(const wstring& filename)
 {
-
     wxXmlDocument xml;
     if (!xml.Load(filename)) {
         wxMessageBox(L"Error loading XML: cannot load XML file\nfile: "+filename);
@@ -336,4 +340,22 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
         }
     }
     return nullptr;
+}
+
+/**
+ * Loads the default level
+ */
+void Game::LevelLoadDefault()
+{
+    LevelLoad(DefaultLevel);
+}
+
+/**
+ * Loads the level number
+ * @param levelNum
+ */
+void Game::LevelLoad(int levelNum)
+{
+    wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
+    Game::LevelLoad(filename);
 }

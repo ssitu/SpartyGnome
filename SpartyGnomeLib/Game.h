@@ -49,7 +49,9 @@ public:
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
     void Clear();
 
-    void LevelLoad(const wxString& filename);
+    void LevelLoad(const std::wstring& filename);
+    void LevelLoad(int levelNum);
+    void LevelLoadDefault();
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
