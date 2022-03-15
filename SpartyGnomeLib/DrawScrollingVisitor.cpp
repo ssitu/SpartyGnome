@@ -5,11 +5,13 @@
  */
 
 #include "pch.h"
-#include "DrawScrollingVisitor.h"
+#include "ItemMoney.h"
 #include "Villain.h"
 #include "Platform.h"
 #include "Wall.h"
 #include "ItemDoor.h"
+#include "ItemTuitionUp.h"
+#include "DrawScrollingVisitor.h"
 
 /**
  * The constructor for the visitor
@@ -63,5 +65,23 @@ void DrawScrollingVisitor::VisitDoor(ItemDoor* door)
 void DrawScrollingVisitor::VisitBackground(BackgroundImage* background)
 {
     background->Draw(mGraphicsContext);
+}
+
+/**
+ * Visit Money
+ * @param money Money to visit
+ */
+void DrawScrollingVisitor::VisitMoney(ItemMoney* money)
+{
+    money->Draw(mGraphicsContext);
+}
+
+/**
+ * Visit TuitionUp
+ * @param tuition TuitionUp to visit
+ */
+void DrawScrollingVisitor::VisitTuitionUp(ItemTuitionUp* tuition)
+{
+    tuition->Draw(mGraphicsContext);
 }
 

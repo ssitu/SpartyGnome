@@ -27,6 +27,8 @@ public:
     void VisitWall(Wall* wall) override;
     void VisitDoor(ItemDoor* door) override;
     void VisitBackground(BackgroundImage* background) override;
+    void VisitMoney(ItemMoney* money) override;
+    void VisitTuitionUp(ItemTuitionUp* tuition) override;
 };
 
 #endif //SPARTYGNOME_DRAWSCROLLINGVISITOR_H
