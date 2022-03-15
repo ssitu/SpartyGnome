@@ -29,6 +29,7 @@ const wstring LevelsDir = L"levels/";
 const wstring LevelPrefix = L"level";
 
 const int DefaultLevel = 1;
+const double FreezeTime = 2;
 
 Game::Game()
 {
@@ -114,8 +115,17 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
  */
 void Game::Update(double elapsed)
 {
-    for (auto item: mItems) {
-        item->Update(elapsed);
+    if (mFreeze > 0)
+    {
+        //Not concerned about a negative freeze time
+        mFreeze -= elapsed;
+    }
+    else
+    {
+        for (auto item: mItems)
+        {
+            item->Update(elapsed);
+        }
     }
 }
 
@@ -226,6 +236,11 @@ void Game::LevelLoad(const wstring& filename)
     // Use the loaded start location
     mGnome->DisableGravity();
     mGnome->SetLocation(mStartX, mStartY);
+
+    // Freeze the game
+    Game::Freeze(FreezeTime);
+    // Display the start message
+
 }
 
 /**
@@ -358,4 +373,13 @@ void Game::LevelLoad(int levelNum)
 {
     wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
     Game::LevelLoad(filename);
+}
+
+/**
+ * Freezes the game for the given amount of time in seconds
+ * @param seconds Number of seconds to freeze the game for
+ */
+void Game::Freeze(double seconds)
+{
+    mFreeze = seconds;
 }
