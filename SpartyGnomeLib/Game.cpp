@@ -380,9 +380,6 @@ void Game::LevelLoad(int levelNum)
     wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
     Game::LevelLoad(filename);
 
-    // Freeze the game
-    Game::Freeze(FreezeTime);
-
     // Display the start message
     Game::DisplayStartMessage(levelNum);
 }
@@ -403,10 +400,7 @@ void Game::Freeze(double seconds)
 void Game::DisplayStartMessage(int levelNum)
 {
     wstring message = L"Level " + to_wstring(levelNum) + L" Begin!";
-    auto messageItem = make_shared<ItemMessage>(this, message, 0);
-    auto centerX = mGnome->GetX();
-    auto centerY = Height / 2;
-    Game::Add(messageItem, centerX, centerY);
+    Game::FreezeScreenMessage(message);
 }
 
 /**
@@ -418,4 +412,26 @@ void Game::RemoveItem(Item* item)
     auto pos = std::remove_if(mItems.begin(), mItems.end(),
             [item](shared_ptr<Item> x){return x.get() == item;});
     mItems.erase(pos);
+}
+
+/**
+ * Display the losing message
+ */
+void Game::DisplayLoseMessage()
+{
+    wstring message = L"You Lose!";
+    Game::FreezeScreenMessage(message);
+}
+
+/**
+ * Display a screen message and freeze the screen
+ * @param message Message to show
+ */
+void Game::FreezeScreenMessage(const wstring& message)
+{
+    auto messageItem = make_shared<ItemMessage>(this, message, 0);
+    auto centerX = mGnome->GetX();
+    auto centerY = Height / 2;
+    Game::Add(messageItem, centerX, centerY);
+    Game::Freeze(FreezeTime);
 }
