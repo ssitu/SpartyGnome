@@ -171,13 +171,13 @@ void Game::Add(std::shared_ptr<Item> item, double x, double y)
  * Make a item appear on top of the rest of the items.
  * @param mGrabbedItem shared pointer to an item, item to be appeared on top of other items.
 */
-void Game::NewOrder(std::shared_ptr<Item> mGrabbedItem)
+void Game::NewOrder(std::shared_ptr<Item> grabbedItem)
 {
-    auto loc = find(begin(mItems), end(mItems), mGrabbedItem);
+    auto loc = find(begin(mItems), end(mItems), grabbedItem);
     if (loc!=end(mItems)) {
         mItems.erase(loc);
     }
-    mItems.push_back(mGrabbedItem);
+    mItems.push_back(grabbedItem);
 }
 
 /**

@@ -6,8 +6,8 @@
 
 #include <string>
 
-#include "ItemVisitor.h"
-#include "VerticalCollisionVisitor.h"
+#include "Platform.h"
+#include "PlatformF.h"
 #include "Game.h"
 #include "ItemSpartyGnome.h"
 
@@ -106,15 +106,13 @@ void ItemSpartyGnome::Update(double elapsed)
         auto collided = GetGame()->VerticalCollisionTest(this);
         if (collided != nullptr)
         {
-            if (newV.Y() > 0)
-            {
+            if (newV.Y()>0) {
                 // We are falling, stop at the collision point
-                newP.SetY(collided->GetY() - collided->GetHeight() / 2 - GetHeight() / 2 - Epsilon);
+                newP.SetY(collided->GetY()-collided->GetHeight()/2-GetHeight()/2-Epsilon);
             }
-            else
-            {
+            else {
                 // We are rising, stop at the collision point
-                newP.SetY(collided->GetY() + collided->GetHeight() / 2 + GetHeight() / 2 + Epsilon);
+                newP.SetY(collided->GetY()+collided->GetHeight()/2+GetHeight()/2+Epsilon);
 
             }
 
