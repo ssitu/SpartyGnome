@@ -29,6 +29,8 @@ public:
 
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
+    bool IsF() override { return true; }
+
     /**
      * Accept a visitor
      * @param visitor Visitor to accept

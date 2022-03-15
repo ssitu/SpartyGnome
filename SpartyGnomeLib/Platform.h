@@ -57,6 +57,8 @@ public:
 
     bool HitTest(int x, int y) override { return Item::HitTest(x, y); }
 
+    virtual bool IsF() { return false; }
+
 };
 
 

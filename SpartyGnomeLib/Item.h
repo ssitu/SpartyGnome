@@ -189,6 +189,8 @@ public:
     virtual void Accept(ItemVisitor* visitor) = 0;
 
     virtual const bool CollisionTest(Item* item) const;
+
+    virtual bool IsF() { return false; }
 };
 
 #endif //SPARTYGNOME_ITEM_H

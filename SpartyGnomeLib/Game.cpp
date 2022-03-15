@@ -413,9 +413,22 @@ void Game::DisplayStartMessage(int levelNum)
  * Removes an item from the game
  * @param item The item to remove
  */
+void Game::RemoveItem(shared_ptr<Item> item)
+{
+    auto item2 = &*item;
+    auto pos = std::remove_if(mItems.begin(), mItems.end(),
+            [item2](shared_ptr<Item> x){return x.get() == item2;});
+    mItems.erase(pos);
+}
+
+/**
+ * Removes an item from the game
+ * @param item The item to remove
+ */
 void Game::RemoveItem(Item* item)
 {
-    auto pos = std::remove_if(mItems.begin(), mItems.end(),
+    auto pos = remove_if(mItems.begin(), mItems.end(),
             [item](shared_ptr<Item> x){return x.get() == item;});
     mItems.erase(pos);
 }
+

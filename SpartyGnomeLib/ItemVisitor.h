@@ -9,6 +9,7 @@
 #ifndef SPARTYGNOME_ITEMVISITOR_H
 #define SPARTYGNOME_ITEMVISITOR_H
 
+
 // Forward references to all item types
 class ItemSpartyGnome;
 class Platform;

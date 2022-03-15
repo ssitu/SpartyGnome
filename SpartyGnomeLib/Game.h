@@ -70,6 +70,7 @@ public:
 
     void DisplayStartMessage(int levelNum);
 
+    void RemoveItem(std::shared_ptr<Item> item);
     void RemoveItem(Item* item);
 };
 

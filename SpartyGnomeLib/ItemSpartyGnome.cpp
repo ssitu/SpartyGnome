@@ -104,6 +104,7 @@ void ItemSpartyGnome::Update(double elapsed)
 
 
         auto collided = GetGame()->VerticalCollisionTest(this);
+
         if (collided != nullptr)
         {
             if (newV.Y()>0) {
@@ -119,6 +120,11 @@ void ItemSpartyGnome::Update(double elapsed)
             // If we collide, we cancel any velocity
             // in the Y direction
             newV.SetY(0);
+
+            if (collided->IsF()) {
+                GetGame()->RemoveItem(collided.get());
+            }
+
         }
 
         //
@@ -127,6 +133,8 @@ void ItemSpartyGnome::Update(double elapsed)
         SetLocation(newP.X(), newP.Y());
 
         collided = GetGame()->VerticalCollisionTest(this);
+
+
         if (collided != nullptr)
         {
             if (newV.X() > 0)
@@ -139,7 +147,6 @@ void ItemSpartyGnome::Update(double elapsed)
                 // We are moving to the left, stop at the collision point
                 newP.SetX(collided->GetX() + collided->GetWidth() / 2 + GetWidth() / 2 + Epsilon);
             }
-
 
             // If we collide, we cancel any velocity
             // in the X direction
