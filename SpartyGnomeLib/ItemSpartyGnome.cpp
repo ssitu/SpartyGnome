@@ -151,9 +151,3 @@ void ItemSpartyGnome::Update(double elapsed)
         SetLocation(newP.X(), newP.Y());
     }
 }
-
-bool ItemSpartyGnome::IsGravity()
-{
-    return mGravityEnable;
-}
-
