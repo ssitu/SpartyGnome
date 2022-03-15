@@ -19,7 +19,7 @@ using namespace std;
 const int FrameDuration = 30;
 
 const wstring LevelsDir = L"levels/";
-const wstring DefaultLevel = LevelsDir + L"level0.xml";
+const wstring DefaultLevel = LevelsDir + L"level1.xml";
 
 void SpartyGnomeView::Initialize(wxFrame* parent)
 {
