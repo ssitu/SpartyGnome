@@ -55,7 +55,7 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitPlatform(this);}
 
-    bool HitTest(int x, int y) { return Item::HitTest(x, y); }
+    bool HitTest(int x, int y) override { return Item::HitTest(x, y); }
 
 };
 

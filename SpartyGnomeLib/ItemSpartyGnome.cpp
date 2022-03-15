@@ -6,6 +6,8 @@
 
 #include <string>
 
+#include "ItemVisitor.h"
+#include "VerticalCollisionVisitor.h"
 #include "Game.h"
 #include "ItemSpartyGnome.h"
 

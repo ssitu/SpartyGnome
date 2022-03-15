@@ -8,6 +8,7 @@
 #include "ItemMoney.h"
 #include "Villain.h"
 #include "Platform.h"
+#include "PlatformF.h"
 #include "Wall.h"
 #include "ItemDoor.h"
 #include "ItemTuitionUp.h"
@@ -38,6 +39,15 @@ void DrawScrollingVisitor::VisitVillain(Villain* villain)
 void DrawScrollingVisitor::VisitPlatform(Platform* platform)
 {
     platform->Draw(mGraphicsContext);
+}
+
+/**
+ * Visit a platformF
+ * @param platformF Platform to visit
+ */
+void DrawScrollingVisitor::VisitPlatformF(PlatformF* platformF)
+{
+    platformF->Draw(mGraphicsContext);
 }
 
 /**

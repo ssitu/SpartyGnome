@@ -10,6 +10,7 @@
 #include "Item.h"
 #include "BackgroundImage.h"
 #include "Wall.h"
+#include "PlatformF.h"
 #include "ItemDoor.h"
 #include "ItemMoney.h"
 #include "Villain.h"
@@ -247,6 +248,9 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     {
         loadedItem = make_shared<Platform>(declaration, item);
     }
+    else if (type==L"platformf") {
+        loadedItem = make_shared<PlatformF>(declaration, item);
+    }
     else if (type==L"wall")
     {
         loadedItem = make_shared<Wall>(declaration, item);
@@ -269,7 +273,7 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     }
     else
     {
-        wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented");
+        wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented or does not exist.");
     }
     if (loadedItem != nullptr) {
         Add(loadedItem);

@@ -13,6 +13,7 @@
 // Forward references to all item types
 class ItemSpartyGnome;
 class Platform;
+class PlatformF;
 class Wall;
 class Villain;
 class ItemDoor;
@@ -36,6 +37,12 @@ public:
      * @param platform The Platform to visit
      */
     virtual void VisitPlatform(Platform* platform) {}
+
+    /**
+     * Visit a PlatformF
+     * @param platformF The PlatformF to visit
+     */
+    virtual void VisitPlatformF(PlatformF* platformF) {}
 
     /**
      * Visit a Wall
