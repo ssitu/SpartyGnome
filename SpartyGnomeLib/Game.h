@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "ItemSpartyGnome.h"
 #include "Platform.h"
+#include <map>
 
 class Game {
 private:
@@ -19,6 +20,10 @@ private:
 
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
+    /// All of the images
+    std::map<const std::wstring, std::shared_ptr<wxImage>> mImages;
+    /// all bitmaps
+    std::map<const std::wstring, std::shared_ptr<wxBitmap>> mMaps;
 
     /// Need a way to store the id with its respective information for that item type
     /// Using hashtable to map ids to its respective XML node
@@ -52,6 +57,10 @@ public:
     void LevelLoad(const wxString& filename);
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
+
+    std::map<const std::wstring , std::shared_ptr<wxImage>>* GetMimages() { return &mImages; }
+
+    std::map<const std::wstring, std::shared_ptr<wxBitmap>> * GetMmaps() { return &mMaps; }
 
     void Save(const wxString &filename);
 

@@ -10,6 +10,7 @@
 #include "Item.h"
 #include "Game.h"
 
+
 using namespace std;
 
 const wstring ImageDir = L"images/";
@@ -28,9 +29,12 @@ Item::~Item()
  */
 Item::Item(Game *game, const wstring &filename) : mGame(game)
 {
-    mItemImage = make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_shared<wxBitmap>(*mItemImage);
+    std::map<const wstring ,std::shared_ptr<wxImage>>*ImageList = game->GetMimages();
+    ImageList->insert(std::pair<const wstring ,shared_ptr<wxImage>> (filename, make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY)));
+    std::map<const wstring, std::shared_ptr<wxBitmap>>*MapList = game->GetMmaps();
+    MapList->insert(std::pair<const wstring,shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*ImageList->at(filename))));
     mPath = filename;
+    mItemBitmap=MapList->at(filename);
 }
 
 /**
@@ -164,23 +168,23 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
 const bool Item::CollisionTest(Item* item) const
 {
     // Border for the item
-    auto itemLeft = item->GetX() - item->GetWidth() / 2;
-    auto itemRight = item->GetX() + item->GetWidth() / 2;
-    auto itemTop = item->GetY() - item->GetHeight() / 2;
-    auto itemBottom = item->GetY() + item->GetHeight() / 2;
+    auto itemLeft = item->GetX()-item->GetWidth()/2;
+    auto itemRight = item->GetX()+item->GetWidth()/2;
+    auto itemTop = item->GetY()-item->GetHeight()/2;
+    auto itemBottom = item->GetY()+item->GetHeight()/2;
 
     // For us
-    auto ourLeft = GetX() - GetWidth() / 2;
-    auto ourRight = GetX() + GetWidth() / 2;
-    auto ourTop = GetY() - GetHeight() / 2;
-    auto ourBottom = GetY() + GetHeight() / 2;
+    auto ourLeft = GetX()-GetWidth()/2;
+    auto ourRight = GetX()+GetWidth()/2;
+    auto ourTop = GetY()-GetHeight()/2;
+    auto ourBottom = GetY()+GetHeight()/2;
 
     // Test for all of the non-collision cases,
     // cases where there is a gap between the two items
-    if (ourRight < itemLeft ||  // Completely to the left
-            ourLeft > itemRight ||  // Completely to the right
-            ourTop > itemBottom ||  // Completely below
-            ourBottom < itemTop)    // Completely above
+    if (ourRight<itemLeft ||  // Completely to the left
+            ourLeft>itemRight ||  // Completely to the right
+            ourTop>itemBottom ||  // Completely below
+            ourBottom<itemTop)    // Completely above
     {
         return false;
     }
