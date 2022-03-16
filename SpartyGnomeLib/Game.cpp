@@ -129,7 +129,14 @@ void Game::Update(double elapsed)
     }
     else
     {
-        for (auto item: mItems)
+        //Make a copy of the items to iterate over
+        std::vector<std::shared_ptr<Item>> items;
+        for (auto item : mItems)
+        {
+            items.push_back(item);
+        }
+        //Iterate over the copy so that if mItems were to be modified, the loop is still valid
+        for (auto item: items)
         {
             item->Update(elapsed);
         }
@@ -435,3 +442,4 @@ void Game::FreezeScreenMessage(const wstring& message)
     Game::Add(messageItem, centerX, centerY);
     Game::Freeze(FreezeTime);
 }
+
