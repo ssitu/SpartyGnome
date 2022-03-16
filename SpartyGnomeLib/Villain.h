@@ -16,7 +16,7 @@
  */
 class Villain : public Item {
 private:
-    double mSpeedY = -225;
+    double mSpeedY = -240;
 public:
     /// Disable defaults
     Villain() = delete;

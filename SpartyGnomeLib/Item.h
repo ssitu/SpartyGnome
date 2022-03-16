@@ -27,6 +27,7 @@ private:
     // Item location in the game
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
+    double  mInitialX = 0;     ///< X Initial
     double  mInitialY = 0;     ///< Y Initial
 
     /// The width of this item
@@ -46,6 +47,7 @@ private:
 
 protected:
     Item(Game *game, const std::wstring &filename);
+    Item(Game *game);
 
     /**
      * this is a constructor strictly for testing purposes of Platform
@@ -89,6 +91,18 @@ protected:
      * @param bitmap
      */
     void SetBitmap(const std::shared_ptr<wxBitmap>& bitmap) {mItemBitmap = bitmap;}
+
+    /**
+     * Set the initial X position for this item
+     * @param x The new initial x
+     */
+     void SetInitialX(double x) {mInitialX = x;}
+
+    /**
+    * Set the initial Y position for this item
+    * @param y The new initial y
+    */
+    void SetInitialY(double y) {mInitialY = y;}
 
 public:
     /// Default constructor (disabled)
@@ -175,6 +189,8 @@ public:
     virtual void Accept(ItemVisitor* visitor) = 0;
 
     virtual const bool CollisionTest(Item* item) const;
+
+    virtual bool IsF() { return false; }
 };
 
 #endif //SPARTYGNOME_ITEM_H

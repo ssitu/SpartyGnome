@@ -19,11 +19,19 @@
 #include "DrawStaticVisitor.h"
 #include "DrawScrollingVisitor.h"
 #include "VerticalCollisionVisitor.h"
+#include "ItemMessage.h"
+#include "DrawMessagesVisitor.h"
 
 using namespace std;
 
 /// Game area height in virtual pixels
-const static int Height = 1024;\
+const static int Height = 1024;
+
+const wstring LevelsDir = L"levels/";
+const wstring LevelPrefix = L"level";
+
+const int DefaultLevel = 1;
+const double FreezeTime = 2;
 
 Game::Game()
 {
@@ -82,6 +90,11 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
 
     // Draw Gnome last, so that it stays on top of other items
     mGnome->Draw(graphics);
+
+    //Will need messages to stay on top of everything
+    DrawMessagesVisitor messagesVisitor(graphics);
+    Game::Accept(&messagesVisitor);
+
     graphics->PopState();
 }
 
@@ -109,21 +122,34 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
  */
 void Game::Update(double elapsed)
 {
-    for (auto item: mItems) {
-        item->Update(elapsed);
+    if (mFreeze > 0)
+    {
+        //Not concerned about a negative freeze time
+        mFreeze -= elapsed;
+    }
+    else
+    {
+        for (auto item: mItems)
+        {
+            item->Update(elapsed);
+        }
     }
 }
 
 /**
- * Add an item to the game
- * @param item New item to add
+ * Add a Gnome to the game
+ * @param gnome Gnome to add
  */
-void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> item)
+void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> gnome)
 {
-    mItems.push_back(item);
-    mGnome = item;
+    mItems.push_back(gnome);
+    mGnome = gnome;
 }
 
+/**
+ * Add an item to the game
+ * @param item
+ */
 void Game::Add(shared_ptr<Item> item)
 {
     mItems.push_back(item);
@@ -145,13 +171,13 @@ void Game::Add(std::shared_ptr<Item> item, double x, double y)
  * Make a item appear on top of the rest of the items.
  * @param mGrabbedItem shared pointer to an item, item to be appeared on top of other items.
 */
-void Game::NewOrder(std::shared_ptr<Item> mGrabbedItem)
+void Game::NewOrder(std::shared_ptr<Item> grabbedItem)
 {
-    auto loc = find(begin(mItems), end(mItems), mGrabbedItem);
+    auto loc = find(begin(mItems), end(mItems), grabbedItem);
     if (loc!=end(mItems)) {
         mItems.erase(loc);
     }
-    mItems.push_back(mGrabbedItem);
+    mItems.push_back(grabbedItem);
 }
 
 /**
@@ -164,13 +190,12 @@ void Game::Clear()
 }
 
 /**
- * Load a level from an xml file
+ * Load a level number
  *
- * @param filename The wxString of the file path
+ * @param int The level number
  */
-void Game::LevelLoad(const wxString& filename)
+void Game::LevelLoad(const wstring& filename)
 {
-
     wxXmlDocument xml;
     if (!xml.Load(filename)) {
         wxMessageBox(L"Error loading XML: cannot load XML file\nfile: "+filename);
@@ -336,4 +361,77 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
         }
     }
     return nullptr;
+}
+
+/**
+ * Loads the default level
+ */
+void Game::LevelLoadDefault()
+{
+    LevelLoad(DefaultLevel);
+}
+
+/**
+ * Loads the level number
+ * @param levelNum
+ */
+void Game::LevelLoad(int levelNum)
+{
+    wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
+    Game::LevelLoad(filename);
+
+    // Display the start message
+    Game::DisplayStartMessage(levelNum);
+}
+
+/**
+ * Freezes the game for the given amount of time in seconds
+ * @param seconds Number of seconds to freeze the game for
+ */
+void Game::Freeze(double seconds)
+{
+    mFreeze = seconds;
+}
+
+/**
+ * Display the starting message for a level number
+ * @param levelNum The level number
+ */
+void Game::DisplayStartMessage(int levelNum)
+{
+    wstring message = L"Level " + to_wstring(levelNum) + L" Begin!";
+    Game::FreezeScreenMessage(message);
+}
+
+/**
+ * Removes an item from the game
+ * @param item The item to remove
+ */
+void Game::RemoveItem(Item* item)
+{
+    auto pos = std::remove_if(mItems.begin(), mItems.end(),
+            [item](shared_ptr<Item> x){return x.get() == item;});
+    mItems.erase(pos);
+}
+
+/**
+ * Display the losing message
+ */
+void Game::DisplayLoseMessage()
+{
+    wstring message = L"You Lose!";
+    Game::FreezeScreenMessage(message);
+}
+
+/**
+ * Display a screen message and freeze the screen
+ * @param message Message to show
+ */
+void Game::FreezeScreenMessage(const wstring& message)
+{
+    auto messageItem = make_shared<ItemMessage>(this, message, 0);
+    auto centerX = mGnome->GetX();
+    auto centerY = Height / 2;
+    Game::Add(messageItem, centerX, centerY);
+    Game::Freeze(FreezeTime);
 }

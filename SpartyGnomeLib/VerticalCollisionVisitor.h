@@ -18,6 +18,7 @@ public:
     VerticalCollisionVisitor(Item* item);
     void VisitWall(Wall* wall) override;
     void VisitPlatform(Platform* platform) override;
+    void VisitPlatformF(PlatformF* platformF) override;
 
 };
 

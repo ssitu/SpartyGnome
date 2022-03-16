@@ -13,6 +13,7 @@
 #include "ItemDoor.h"
 #include "ItemTuitionUp.h"
 #include "DrawScrollingVisitor.h"
+#include "ItemMessage.h"
 
 /**
  * The constructor for the visitor
@@ -47,7 +48,9 @@ void DrawScrollingVisitor::VisitPlatform(Platform* platform)
  */
 void DrawScrollingVisitor::VisitPlatformF(PlatformF* platformF)
 {
+
     platformF->Draw(mGraphicsContext);
+
 }
 
 /**
@@ -93,5 +96,14 @@ void DrawScrollingVisitor::VisitMoney(ItemMoney* money)
 void DrawScrollingVisitor::VisitTuitionUp(ItemTuitionUp* tuition)
 {
     tuition->Draw(mGraphicsContext);
+}
+
+/**
+ * Visit ItemMessage
+ * @param tuition ItemMessage to visit
+ */
+void DrawScrollingVisitor::VisitMessage(ItemMessage* message)
+{
+    message->Draw(mGraphicsContext);
 }
 

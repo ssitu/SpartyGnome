@@ -3,7 +3,6 @@ project(Tests)
 set(TEST_FILES
         gtest_main.cpp
         GameTest.cpp
-        PlatformTest.cpp
         DrawScrollingVisitorTest.cpp
         DrawStaticVisitorTest.cpp JumpTest.cpp)
 # Google tests

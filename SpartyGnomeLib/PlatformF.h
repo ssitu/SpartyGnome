@@ -27,15 +27,15 @@ public:
 
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 
-    void Draw(std::shared_ptr<wxGraphicsContext> gc) override { return Platform::Draw(gc); };
+    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
+
+    bool IsF() override { return true; }
 
     /**
      * Accept a visitor
      * @param visitor Visitor to accept
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitPlatformF(this);}
-
-    void Disappear();
 
 };
 

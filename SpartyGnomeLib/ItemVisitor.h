@@ -20,6 +20,7 @@ class ItemDoor;
 class BackgroundImage;
 class ItemMoney;
 class ItemTuitionUp;
+class ItemMessage;
 
 /**
  * The visitor class for item objects
@@ -79,6 +80,12 @@ public:
      * @param tu The object to visit
      */
     virtual void VisitTuitionUp(ItemTuitionUp* tu) {}
+
+    /**
+     * Visit a ItemMessage
+     * @param message ItemMessage to visit
+     */
+    virtual void VisitMessage(ItemMessage* message) {}
 };
 
 #endif //SPARTYGNOME_ITEMVISITOR_H

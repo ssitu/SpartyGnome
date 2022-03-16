@@ -18,9 +18,6 @@ using namespace std;
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
 
-const wstring LevelsDir = L"levels/";
-const wstring DefaultLevel = LevelsDir + L"level1.xml";
-
 void SpartyGnomeView::Initialize(wxFrame* parent)
 {
     Create(parent, wxID_ANY);
@@ -54,7 +51,7 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 
     mParent = parent;
 
-    mGame.LevelLoad(DefaultLevel);
+    mGame.LevelLoadDefault();
 }
 
 //void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
@@ -217,7 +214,7 @@ void SpartyGnomeView::OnFileOpen(wxCommandEvent& event)
     }
 
     auto filename = loadFileDialog.GetPath();
-    mGame.LevelLoad(filename);
+    mGame.LevelLoad(filename.ToStdWstring());
 }
 
 /**
@@ -228,16 +225,16 @@ void SpartyGnomeView::OnLevelOpen(wxCommandEvent& event)
 {
     switch (event.GetId()) {
     case wxID_FILE1:
-        mGame.LevelLoad(wxString("levels/level0.xml"));
+        mGame.LevelLoad(0);
         break;
     case wxID_FILE2:
-        mGame.LevelLoad(wxString("levels/level1.xml"));
+        mGame.LevelLoad(1);
         break;
     case wxID_FILE3:
-        mGame.LevelLoad(wxString("levels/level2.xml"));
+        mGame.LevelLoad(2);
         break;
     case wxID_FILE4:
-        mGame.LevelLoad(wxString("levels/level3.xml"));
+        mGame.LevelLoad(3);
         break;
 
     }

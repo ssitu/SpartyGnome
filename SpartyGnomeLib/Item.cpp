@@ -66,8 +66,8 @@ pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
     node1->AddChild(itemNode);
 
     itemNode->AddAttribute(L"id", mId);
-    itemNode->AddAttribute(L"x", wxString::FromDouble(mX));
-    itemNode->AddAttribute(L"y", wxString::FromDouble(mY));
+    itemNode->AddAttribute(L"x", wxString::FromDouble(mInitialX));
+    itemNode->AddAttribute(L"y", wxString::FromDouble(mInitialY));
     itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
     itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
 
@@ -152,6 +152,7 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
     // Loading generic item information
     item->GetAttribute(L"x").ToDouble(&mX);
     item->GetAttribute(L"y").ToDouble(&mY);
+    item->GetAttribute(L"x").ToDouble(&mInitialX);
     item->GetAttribute(L"y").ToDouble(&mInitialY);
     item->GetAttribute(L"width").ToDouble(&mWidth);
     item->GetAttribute(L"height").ToDouble(&mHeight);
@@ -190,4 +191,13 @@ const bool Item::CollisionTest(Item* item) const
     }
 
     return true;
+}
+
+/**
+ * Constructor for the item with only the Game pointer
+ * @param game The Game this is apart of
+ */
+Item::Item(Game* game)
+{
+    mGame = game;
 }

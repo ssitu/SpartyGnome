@@ -25,15 +25,14 @@ private:
     /// all bitmaps
     std::map<const std::wstring, std::shared_ptr<wxBitmap>> mMaps;
 
-    /// Need a way to store the id with its respective information for that item type
-    /// Using hashtable to map ids to its respective XML node
-    std::unordered_map<wxString, wxXmlNode*> mDeclarations;
-
     /// Pointer to the gnome, given at level load
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
 
-    long mStartY = 512;       ///<gnome x start location
-    long mStartX = 512;       ///<gnome y start location
+    long mStartY = 512;       ///<gnome x start location in pixels
+    long mStartX = 512;       ///<gnome y start location in pixels
+
+    /// Number of seconds to freeze the game for
+    double mFreeze = 0;
 
     void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
 
@@ -46,7 +45,7 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     void Update(double elapsed);
-    void NewOrder(std::shared_ptr<Item> mGrabbedItem);
+    void NewOrder(std::shared_ptr<Item> grabbedItem);
     std::shared_ptr<Item>HitTest(int x, int y);
 
     void Add(std::shared_ptr<Item> item);
@@ -54,7 +53,9 @@ public:
     void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
     void Clear();
 
-    void LevelLoad(const wxString& filename);
+    void LevelLoad(const std::wstring& filename);
+    void LevelLoad(int levelNum);
+    void LevelLoadDefault();
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
@@ -70,8 +71,20 @@ public:
      */
     unsigned int GetNumItems() { return mItems.size(); }
 
+    std::vector<std::shared_ptr<Item>> GetItems() { return mItems; }
+
     std::shared_ptr<Item> VerticalCollisionTest(Item* item);
 
+    void Freeze(double seconds);
+
+    void FreezeScreenMessage(const std::wstring& message);
+
+    void DisplayStartMessage(int levelNum);
+
+    void RemoveItem(std::shared_ptr<Item> item);
+    void RemoveItem(Item* item);
+
+    void DisplayLoseMessage();
 };
 
 #endif //SPARTYGNOME_GAME_H

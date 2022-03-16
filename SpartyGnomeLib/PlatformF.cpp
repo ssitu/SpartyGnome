@@ -4,6 +4,9 @@
  */
 
 #include "pch.h"
+
+#include <wx/graphics.h>
+
 #include "Game.h"
 #include "PlatformF.h"
 
@@ -23,7 +26,6 @@ PlatformF::PlatformF(Game* game)
 PlatformF::PlatformF(const wxXmlNode* declaration, const wxXmlNode* item)
         :Platform(declaration, item)
 {
-
 }
 
 pair<wxXmlNode*,wxXmlNode*> PlatformF::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
@@ -35,7 +37,8 @@ pair<wxXmlNode*,wxXmlNode*> PlatformF::XmlSave(wxXmlNode* node1, wxXmlNode* node
     return platformDoubleNode;
 }
 
-void PlatformF::Disappear()
+void PlatformF::Draw(shared_ptr<wxGraphicsContext> gc)
 {
-
+    Platform::Draw(gc);
 }
+
