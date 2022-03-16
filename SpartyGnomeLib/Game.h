@@ -23,7 +23,7 @@ private:
     /// All of the images
     std::map<const std::wstring, std::shared_ptr<wxImage>> mImages;
     /// all bitmaps
-    std::map<const std::wstring, std::shared_ptr<wxBitmap>> mMaps;
+    std::map<const std::wstring, std::shared_ptr<wxBitmap>> BitMaps;
 
     /// Pointer to the gnome, given at level load
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
@@ -59,9 +59,7 @@ public:
 
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
-    std::map<const std::wstring , std::shared_ptr<wxImage>>* GetMimages() { return &mImages; }
 
-    std::map<const std::wstring, std::shared_ptr<wxBitmap>> * GetMmaps() { return &mMaps; }
 
     void Save(const wxString &filename);
 
@@ -74,6 +72,8 @@ public:
     std::vector<std::shared_ptr<Item>> GetItems() { return mItems; }
 
     std::shared_ptr<Item> VerticalCollisionTest(Item* item);
+
+    std::shared_ptr<wxBitmap> GetBitmap(const std::wstring &filename);
 
     void Freeze(double seconds);
 

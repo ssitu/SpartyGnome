@@ -29,12 +29,8 @@ Item::~Item()
  */
 Item::Item(Game *game, const wstring &filename) : mGame(game)
 {
-    std::map<const wstring ,std::shared_ptr<wxImage>>*ImageList = game->GetMimages();
-    ImageList->insert(std::pair<const wstring ,shared_ptr<wxImage>> (filename, make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY)));
-    std::map<const wstring, std::shared_ptr<wxBitmap>>*MapList = game->GetMmaps();
-    MapList->insert(std::pair<const wstring,shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*ImageList->at(filename))));
     mPath = filename;
-    mItemBitmap=MapList->at(filename);
+    mItemBitmap = game->GetBitmap(filename);
 }
 
 /**

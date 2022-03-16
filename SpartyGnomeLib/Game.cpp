@@ -443,3 +443,14 @@ void Game::FreezeScreenMessage(const wstring& message)
     Game::Freeze(FreezeTime);
 }
 
+std::shared_ptr<wxBitmap> Game::GetBitmap(const std::wstring &filename){
+    if(BitMaps.count(filename)==0) {
+        mImages.insert(std::pair<const wstring, shared_ptr<wxImage>>(filename, make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY)));
+        BitMaps.insert(std::pair<const wstring, shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*mImages.at(filename))));
+
+
+    }
+    return BitMaps.at(filename);
+}
+
+
