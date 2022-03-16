@@ -18,6 +18,8 @@ private:
     /// The scale for items when drawing
     double mScale;
 
+    int mLevelNum;
+
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
     /// All of the images

@@ -43,7 +43,6 @@ ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
  */
 void ItemSpartyGnome::Jump()
 {
-    mGravityEnable = true;
     auto collided = GetGame()->VerticalCollisionTest(this);
     if (mV.Y() == 0) {
         mV.SetY(JumpSpeed);
@@ -124,13 +123,12 @@ void ItemSpartyGnome::Update(double elapsed)
             if (collided->IsF()) {
                 GetGame()->RemoveItem(collided.get());
             }
-
         }
 
         //
         // Try updating the X location
         //
-        SetLocation(newP.X(), newP.Y());
+        SetLocation(newP.X(), p.Y());
 
         collided = GetGame()->VerticalCollisionTest(this);
 
@@ -156,5 +154,10 @@ void ItemSpartyGnome::Update(double elapsed)
         // Update the velocity and position
         mV = newV;
         SetLocation(newP.X(), newP.Y());
+    }
+
+    if (GetY() >= 1024) {
+        DisableGravity();
+        this->GetGame()->DisplayLoseMessage();
     }
 }
