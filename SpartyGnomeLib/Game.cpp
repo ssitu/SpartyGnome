@@ -384,6 +384,7 @@ void Game::LevelLoadDefault()
  */
 void Game::LevelLoad(int levelNum)
 {
+    mLevelNum = levelNum;
     wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
     Game::LevelLoad(filename);
 
@@ -408,6 +409,7 @@ void Game::DisplayStartMessage(int levelNum)
 {
     wstring message = L"Level " + to_wstring(levelNum) + L" Begin!";
     Game::FreezeScreenMessage(message);
+    mGnome->EnableGravity();
 }
 
 /**
@@ -428,6 +430,7 @@ void Game::DisplayLoseMessage()
 {
     wstring message = L"You Lose!";
     Game::FreezeScreenMessage(message);
+    LevelLoad(mLevelNum);
 }
 
 /**

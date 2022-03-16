@@ -44,10 +44,11 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitGnome(this);}
 
-    /// Gravity Disabling function.
-    void DisableGravity() { mGravityEnable = false; };
+    /// Gravity Functions.
+    void DisableGravity() { mGravityEnable = false; }
+    void EnableGravity() { mGravityEnable = true; }
 
-    bool GravityCheck(){return mGravityEnable;};
+    bool GravityCheck(){return mGravityEnable;}
 
 };
 
