@@ -124,13 +124,12 @@ void ItemSpartyGnome::Update(double elapsed)
             if (collided->IsF()) {
                 GetGame()->RemoveItem(collided.get());
             }
-
         }
 
         //
         // Try updating the X location
         //
-        SetLocation(newP.X(), newP.Y());
+        SetLocation(newP.X(), p.Y());
 
         collided = GetGame()->VerticalCollisionTest(this);
 
