@@ -49,6 +49,9 @@ public:
     void EnableGravity() { mGravityEnable = true; }
 
     bool GravityCheck(){return mGravityEnable;}
+    void AnimateGnomeRight();
+    void AnimateGnomeLeft();
+    void AnimateStop();
 
 };
 

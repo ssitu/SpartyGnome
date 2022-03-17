@@ -60,7 +60,7 @@ void Villain::Update(double elapsed)
 {
     Item::Update(elapsed);
     SetLocation(GetX(),GetY()+mSpeedY*elapsed);
-    if ((mSpeedY > 0 && GetY() >= GetInitialY()) || (mSpeedY < 0 && GetY() <= GetInitialY()-300))
+    if ((mSpeedY > 0 && GetY() >= GetInitialY()-15) || (mSpeedY < 0 && GetY() <= GetInitialY()-300))
     {
         mSpeedY = -mSpeedY;
     }
