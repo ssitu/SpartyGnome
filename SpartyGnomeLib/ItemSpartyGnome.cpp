@@ -168,6 +168,23 @@ void ItemSpartyGnome::Update(double elapsed)
         // Update position
         Vector newP = p+newV*elapsed;
 
+        // Animation Controls
+        if (newV.X() > 0)
+        {
+            // Moving to the right
+            AnimateGnomeRight();
+        }
+        else if (newV.X() < 0)
+        {
+            // Moving to the left
+            AnimateGnomeLeft();
+        }
+        else
+        {
+            // Not moving
+            AnimateStop();
+        }
+
         //
         // Try updating the Y location.
         //
@@ -188,30 +205,18 @@ void ItemSpartyGnome::Update(double elapsed)
 
             }
 
-            if (collided->IsF() && (mV.Y() > 0)) {
+            // If we collide, we cancel any velocity
+            // in the Y direction
+            if (mV.Y()>0 && collided->IsF()) {
                 GetGame()->RemoveItem(collided.get());
             }
 
-            // If we collide, we cancel any velocity
-            // in the Y direction
-            newV.SetY(0);
-        }
-
-        // Animation Controls
-        if (newV.X() > 0)
-        {
-            // Moving to the right
-            AnimateGnomeRight();
-        }
-        else if (newV.X() < 0)
-        {
-            // Moving to the left
-            AnimateGnomeLeft();
-        }
-        else
-        {
-            // Not moving
-            AnimateStop();
+            if (mV.Y() > 0) {
+                // Stop Y motion
+                newV.SetY(0);
+            } else {
+                newV.SetY(0-mV.Y()-1);
+            }
         }
 
         //
