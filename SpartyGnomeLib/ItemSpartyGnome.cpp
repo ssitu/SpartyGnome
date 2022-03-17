@@ -283,12 +283,12 @@ void ItemSpartyGnome::AnimateGnomeLeft()
     std::shared_ptr<wxBitmap> mLeft2 = GetGame()->GetBitmap(SpartyGnomeLeft2);
 
     // The Gnome is not jumping, changing
-    if (mCheckJump == false)
+    if (!mCheckJump)
     {
-        if (mSwitch == true) {
+        if (mSwitch) {
             SetBitmap(mLeft1);
         }
-        else if (mSwitch == false) {
+        else if (!mSwitch) {
             SetBitmap(mLeft2);
         }
     }
