@@ -416,6 +416,8 @@ void Game::LevelLoadDefault()
  */
 void Game::LevelLoad(int levelNum)
 {
+    // Clear the game
+    Game::Clear();
     // Store the level number for reloading level upon death
     mLevelNum = levelNum;
 
@@ -462,9 +464,6 @@ void Game::DisplayLoseMessage()
 {
     wstring message = L"You Lose!";
     Game::FreezeScreenMessage(message);
-
-    // Clear the game
-    Game::Clear();
 
     // reload the level
     Game::LevelLoad(mLevelNum);

@@ -44,7 +44,10 @@
         <tuition-up id="i010" x="1317" y="348"/>
         <platformf id="i005" x="1317" y="453" width="192" height="32"/>
         <platform id="i004" x="2024" y="482" width="96" height="32"/>
-        <platform id="i004" x="2152" y="762" width="96" height="32"/>
+        <platform id="i004" x="2152" y="862" width="96" height="32"/>
+        <platform id="i004" x="2344" y="762" width="96" height="32"/>
+        <platformf id="i005" x="1317" y="453" width="192" height="32"/>
+        <platform id="i004" x="6400" y="975" width="480" height="32"/>
         <door id="i011" x="6528" y="860"/>
     </items>
 </level>

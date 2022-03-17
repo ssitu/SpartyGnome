@@ -74,7 +74,7 @@ void ItemSpartyGnome::Jump()
 void ItemSpartyGnome::MoveRight()
 {
     // if gnome is not moving horizontally or moving to the
-    if (mV.X() == 0) {
+    if (mV.X() >= 0) {
         // move right
         mV.SetX(HorizontalSpeed);
     }
@@ -88,7 +88,7 @@ void ItemSpartyGnome::MoveRight()
 void ItemSpartyGnome::MoveLeft()
 {
     // if gnome is not moving horizontally or is moving right
-    if (mV.X() == 0) {
+    if (mV.X() <= 0) {
         // move left
         mV.SetX(0-HorizontalSpeed);
     }
@@ -211,11 +211,11 @@ void ItemSpartyGnome::Update(double elapsed)
                 GetGame()->RemoveItem(collided.get());
             }
 
-            if (mV.Y() >= 0) {
+            if (mV.Y() < 0) {
+                newV.SetY(-mV.Y());
+            } else {
                 // Stop Y motion
                 newV.SetY(0);
-            } else {
-                newV.SetY(0-mV.Y()-1);
             }
         }
 
