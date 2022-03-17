@@ -435,6 +435,7 @@ void Game::LevelLoad(int levelNum)
  */
 void Game::DisplayStartMessage(int levelNum)
 {
+    mGnome->AnimateStop();
     wstring message = L"Level " + to_wstring(levelNum) + L" Begin!";
     Game::FreezeScreenMessage(message);
     mGnome->EnableGravity();
