@@ -20,12 +20,12 @@ const wstring ImageDir = L"images/";
  */
 Item::~Item()
 {
-
 }
 
 /**
  * Constructor
  * @param game The game this item is a member of
+ * @param filename the name of the imagefile for this item
  */
 Item::Item(Game *game, const wstring &filename) : mGame(game)
 {
@@ -34,88 +34,12 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
 }
 
 /**
- * Draw this item
- * @param gc Graphics context to draw on
+ * Constructor for the item with only the Game pointer
+ * @param game The Game this is apart of
  */
-void Item::Draw(shared_ptr<wxGraphicsContext> gc)
+Item::Item(Game* game)
 {
-    double wid = mItemBitmap->GetWidth();
-    double hit = mItemBitmap->GetHeight();
-
-    gc->DrawBitmap(*mItemBitmap,
-            int(GetX() - wid / 2),
-            int(GetY() - hit / 2),
-            wid + 1,
-            hit);
-}
-
-/**
- * Save this item to an XML node
- * @param node The parent node we are going to be a child of
- * @return pair of wxXmlNodes that we saved the item and declaration into
- */
-pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
-{
-    auto itemNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"item");
-    auto declarationNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"declaration");
-    bool hasId = false;
-    node1->AddChild(itemNode);
-
-    itemNode->AddAttribute(L"id", mId);
-    itemNode->AddAttribute(L"x", wxString::FromDouble(mInitialX));
-    itemNode->AddAttribute(L"y", wxString::FromDouble(mInitialY));
-    itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
-    itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
-
-
-    if (node2->GetChildren() == nullptr) {
-        node2->AddChild(declarationNode);
-        declarationNode->AddAttribute(L"id", mId);
-        declarationNode->AddAttribute("image", mPath);
-        return make_pair(itemNode, declarationNode);
-    } else {
-        for (auto node = node2->GetChildren(); node; node = node->GetNext()) {
-            if (node->GetAttribute(L"id")==mId) {
-                hasId = true;
-            }
-        }
-        if (!hasId) {
-            node2->AddChild(declarationNode);
-            declarationNode->AddAttribute(L"id", mId);
-            declarationNode->AddAttribute("image", mPath);
-            return make_pair(itemNode, declarationNode);
-        }
-    }
-
-    return make_pair(itemNode, nullptr);
-}
-
-/**
- * Test to see if we hit this object with a mouse.
- * @param x X position to test
- * @param y Y position to test
- * @return true if hit.
- */
-bool Item::HitTest(int x, int y)
-{
-
-    // Make x and y relative to the top-left corner of the bitmap image
-    // Subtracting the center makes x, y relative to the image center
-    // Adding half the size makes x, y relative to the image top corner
-    double testX = x - GetX() + mWidth / 2;
-    double testY = y - GetY() + mHeight / 2;
-
-    // Test to see if x, y are in the image
-    if (testX < 0 || testY < 0 || testX >= mWidth || testY >= mHeight)
-    {
-        // We are outside the image
-        return false;
-    }
-
-    // Test to see if x, y are in the drawn part of the image
-    // If the location is transparent, we are not in the drawn
-    // part of the image
-    return !mItemImage->IsTransparent((int)testX, (int)testY);
+    mGame = game;
 }
 
 /**
@@ -158,6 +82,114 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
 }
 
 /**
+ * Draw this item
+ * @param gc Graphics context to draw on
+ */
+void Item::Draw(shared_ptr<wxGraphicsContext> gc)
+{
+    double wid = mItemBitmap->GetWidth();
+    double hit = mItemBitmap->GetHeight();
+
+    gc->DrawBitmap(*mItemBitmap,
+            int(GetX() - wid / 2),
+            int(GetY() - hit / 2),
+            wid + 1,
+            hit);
+}
+
+/**
+ * Save this item to an XML node
+ * @param node The parent node we are going to be a child of
+ * @return pair of wxXmlNodes that we saved the item and declaration into
+ */
+pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
+{
+    // Create a new item and declaration node
+    auto itemNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"item");
+    auto declarationNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"declaration");
+
+    // Set a check for if the declarations node we are saving to has the id of the image or not.
+    bool hasId = false;
+
+    // Add the item node to the items node
+    node1->AddChild(itemNode);
+
+    // Set the attributes for this item node
+    itemNode->AddAttribute(L"id", mId);
+    itemNode->AddAttribute(L"x", wxString::FromDouble(mInitialX));
+    itemNode->AddAttribute(L"y", wxString::FromDouble(mInitialY));
+    itemNode->AddAttribute(L"width", wxString::FromDouble(mWidth));
+    itemNode->AddAttribute(L"height", wxString::FromDouble(mHeight));
+
+    // If declarations node does not have any children...
+    if (node2->GetChildren() == nullptr) {
+        // Add this node as a child
+        node2->AddChild(declarationNode);
+
+        // Set this node's attributes
+        declarationNode->AddAttribute(L"id", mId);
+        declarationNode->AddAttribute("image", mPath);
+
+        // return a pair of the itemNode and declarationNode that were added.
+        return make_pair(itemNode, declarationNode);
+    }
+    // else if it has children...
+    else
+    {
+        // Check to see if the declarations node has a child with this Id already or not...
+        for (auto node = node2->GetChildren(); node; node = node->GetNext()) {
+            if (node->GetAttribute(L"id")==mId) {
+                hasId = true;
+            }
+        }
+        // If the parent does not have a child with the same Id...
+        if (!hasId) {
+            // Add this node to declarations
+            node2->AddChild(declarationNode);
+
+            // Set the attributes
+            declarationNode->AddAttribute(L"id", mId);
+            declarationNode->AddAttribute("image", mPath);
+
+            // return pair of added itemNode and declarationNode
+            return make_pair(itemNode, declarationNode);
+        }
+    }
+
+    // If the declarationNode already exists in declarations, return
+    // just the itemNode with declarationNode as nullptr
+    return make_pair(itemNode, nullptr);
+}
+
+/**
+ * Test to see if we hit this object with a mouse.
+ * @param x X position to test
+ * @param y Y position to test
+ * @return true if hit.
+ */
+bool Item::HitTest(int x, int y)
+{
+
+    // Make x and y relative to the top-left corner of the bitmap image
+    // Subtracting the center makes x, y relative to the image center
+    // Adding half the size makes x, y relative to the image top corner
+    double testX = x - GetX() + mWidth / 2;
+    double testY = y - GetY() + mHeight / 2;
+
+    // Test to see if x, y are in the image
+    if (testX < 0 || testY < 0 || testX >= mWidth || testY >= mHeight)
+    {
+        // We are outside the image
+        return false;
+    }
+
+    // Test to see if x, y are in the drawn part of the image
+    // If the location is transparent, we are not in the drawn
+    // part of the image
+    return !mItemImage->IsTransparent((int)testX, (int)testY);
+}
+
+/**
  * Tests if a rectangular collision occurred between this item and the given item
  * @param item The other item to test collision with
  * @return True if there is a collision, false otherwise
@@ -189,11 +221,3 @@ const bool Item::CollisionTest(Item* item) const
     return true;
 }
 
-/**
- * Constructor for the item with only the Game pointer
- * @param game The Game this is apart of
- */
-Item::Item(Game* game)
-{
-    mGame = game;
-}

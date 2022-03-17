@@ -35,29 +35,37 @@ ItemDoor::ItemDoor(const wxXmlNode* declaration, const wxXmlNode* item)
 
 /**
  * Save this item to an XML node
- * @param node1 The first parent node we are going to be a child of
- * @param node2 The second parent node we are going to be a child of
+ * @param node1 The items parent node we are going to be a child of
+ * @param node2 The declarations parent node we are going to be a child of
  * @return either single itemNode or pair with an itemNode and declarationNode
  */
 pair<wxXmlNode*, wxXmlNode*> ItemDoor::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
 {
+    // Create new nodes based on Item::XmlSave
     auto doubleNode = Item::XmlSave(node1, node2);
     auto itemNode = doubleNode.first;
     auto declarationNode = doubleNode.second;
+
+    // Add door-specific attributes and delete attributes unnecessary for door
     itemNode->SetName(L"door");
     itemNode->DeleteAttribute(L"width");
     itemNode->DeleteAttribute(L"height");
+
+    // Add declaration node if not already exists
     if (declarationNode!=nullptr) {
         declarationNode->SetName(L"door");
+
+        // return pair of itemNode and declarationNode
         return make_pair(itemNode, declarationNode);
     }
 
+    // return itemNode
     return make_pair(itemNode, nullptr);
 }
 
 bool ItemDoor::CollisionTest(Item* item)
 {
-    // Collision for door is different
+    // Collision for door is different then other items
     double dx = item->GetX() - GetX();
     double dy = item->GetY() - GetY();
     double distance = sqrt(dx * dx + dy * dy);

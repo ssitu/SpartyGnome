@@ -2,7 +2,7 @@
  * @file pch.h
  * @author Gabriel Misajlovski
  *
- *
+ * Precompiled Header File
  */
 
 #ifndef SPARTYGNOME_PCH_H

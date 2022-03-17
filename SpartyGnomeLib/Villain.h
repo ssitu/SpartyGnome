@@ -16,7 +16,9 @@
  */
 class Villain : public Item {
 private:
+    /// The speed at which a villain moves
     double mSpeedY = -240;
+
 public:
     /// Disable defaults
     Villain() = delete;
@@ -27,19 +29,18 @@ public:
     /// Disable = operator
     void operator=(const Villain&) = delete;
 
+    /// New constructors
     Villain(Game* game);
-
     Villain(const wxXmlNode* declaration, const wxXmlNode* item);
-
-    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2) override;
-
-    void Update(double elapsed) override;
 
     /**
      * Accept a visitor
      * @param visitor Visitor to accept
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitVillain(this);}
+
+    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2) override;
+    void Update(double elapsed) override;
 
 };
 

@@ -19,6 +19,14 @@ private:
     /// Is gravity enabled? This will tell you.
     bool mGravityEnable = false;
 
+    /// Checker for switch
+    bool mSwitch = true;
+    /// Checker for jump
+    bool mCheckJump = false;
+
+    /// Counter
+    int mCount = 0;
+
 public:
     /// Default constructor (disabled)
     ItemSpartyGnome() = delete;
@@ -29,13 +37,13 @@ public:
     /// Assignment operator
     void operator=(const ItemSpartyGnome &) = delete;
 
+    /// New constructors
     ItemSpartyGnome(Game* game);
 
     void Jump();
     void MoveRight();
     void MoveLeft();
     void StopMove();
-
     void Update(double elapsed) override;
 
     /**
@@ -44,11 +52,17 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitGnome(this);}
 
-    /// Gravity Functions.
+    /// Gravity Disabler
     void DisableGravity() { mGravityEnable = false; }
+    /// Gravity Enabler
     void EnableGravity() { mGravityEnable = true; }
 
+    /**
+     * Gravity Check
+     * @return bool if gravity is on or not
+     */
     bool GravityCheck(){return mGravityEnable;}
+
     void AnimateGnomeRight();
     void AnimateGnomeLeft();
     void AnimateStop();

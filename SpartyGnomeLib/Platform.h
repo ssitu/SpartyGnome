@@ -28,7 +28,10 @@ private:
     /// The bitmap for the middle segment
     std::shared_ptr<wxBitmap> mRightBitmap;
 
+    /// Path of mid image file
     std::wstring mMidPath;
+
+    /// Path of right image file
     std::wstring mRightPath;
 
 public:
@@ -41,13 +44,9 @@ public:
     /// Assignment operator
     void operator=(const Platform &) = delete;
 
+    /// Constructors
     Platform(Game* game);
-
     Platform(const wxXmlNode* declaration, const wxXmlNode* item);
-
-    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-
-    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
     /**
      * Accept a visitor
@@ -55,9 +54,15 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitPlatform(this);}
 
-    bool HitTest(int x, int y) override { return Item::HitTest(x, y); }
-
+    /**
+     * check for if the platform is one that disappears or not
+     * @return bool
+     */
     virtual bool IsF() { return false; }
+
+    std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
+    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
+    bool HitTest(int x, int y) override { return Item::HitTest(x, y); }
 
 };
 

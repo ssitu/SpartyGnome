@@ -2,7 +2,7 @@
  * @file ItemTuitionUp.h
  * @author Gabriel Misajlovski
  *
- *
+ * TuitionUp Class
  */
 
 #ifndef SPARTYGNOME_ITEMTUITIONUP_H
@@ -10,6 +10,9 @@
 
 #include "Item.h"
 
+/**
+ * TuitionUp class
+ */
 class ItemTuitionUp : public Item {
 public:
     /// disabled default constructor
@@ -21,12 +24,8 @@ public:
     /// disabled assignment
     void operator=(const ItemTuitionUp&) = delete;
 
-    /// New constructor
+    /// New constructors
     ItemTuitionUp(Game* game);
-
-    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-
-    /// XML constructor
     ItemTuitionUp(const wxXmlNode* declaration, const wxXmlNode* item);
 
     /**
@@ -35,6 +34,7 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitTuitionUp(this);}
 
+    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 };
 
 #endif //SPARTYGNOME_ITEMTUITIONUP_H

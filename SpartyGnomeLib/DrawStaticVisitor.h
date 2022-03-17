@@ -21,8 +21,6 @@ private:
 
 public:
     DrawStaticVisitor(std::shared_ptr<wxGraphicsContext> gc);
-
-    //void VisitGnome(ItemSpartyGnome* gnome) override;
 };
 
 #endif //SPARTYGNOME_DRAWSTATICVISITOR_H

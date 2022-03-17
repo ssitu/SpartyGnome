@@ -2,7 +2,7 @@
  * @file ItemMoney.h
  * @author mgabr
  *
- *
+ * ItemMoney class
  */
 
 #ifndef SPARTYGNOME_ITEMMONEY_H
@@ -10,7 +10,14 @@
 
 #include "Item.h"
 
+/**
+ * ItemMoney class
+ */
 class ItemMoney : public Item {
+private:
+    /// How much this money item is worth upon collection
+    double mValue = 0;
+
 public:
     /// disabled default constructor
     ItemMoney() = delete;
@@ -23,10 +30,6 @@ public:
 
     /// New constructor
     ItemMoney(Game* game);
-
-    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-
-    /// XML constructor
     ItemMoney(const wxXmlNode* declaration, const wxXmlNode* item);
 
     /**
@@ -34,6 +37,9 @@ public:
      * @param visitor Visitor to accept
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitMoney(this);}
+
+
+    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 };
 
 #endif //SPARTYGNOME_ITEMMONEY_H

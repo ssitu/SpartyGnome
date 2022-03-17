@@ -12,6 +12,15 @@
 #include "PlatformF.h"
 
 /**
+ * Constructor for this visitor
+ * @param item Item to check collisions with
+ */
+VerticalCollisionVisitor::VerticalCollisionVisitor(Item* item)
+        :CollisionVisitor(item)
+{
+}
+
+/**
  * Vertical collision test for wall
  * @param wall Wall to test
  */
@@ -22,7 +31,7 @@ void VerticalCollisionVisitor::VisitWall(Wall* wall)
 
 /**
  * Vertical collision test for platform
- * @param platform Wall to test
+ * @param platform Platform to test
  */
 void VerticalCollisionVisitor::VisitPlatform(Platform* platform)
 {
@@ -30,20 +39,12 @@ void VerticalCollisionVisitor::VisitPlatform(Platform* platform)
 }
 
 /**
- * Vertical collision test for platform
- * @param platform Wall to test
+ * Vertical collision test for platformf
+ * @param platform PlatformF to test
  */
 void VerticalCollisionVisitor::VisitPlatformF(PlatformF* platformF)
 {
     CollisionVisitor::CollisionTest(*platformF);
 }
 
-/**
- * Constructor for this visitor
- * @param item Item to check collisions with
- */
-VerticalCollisionVisitor::VerticalCollisionVisitor(Item* item)
-        :CollisionVisitor(item)
-{
 
-}

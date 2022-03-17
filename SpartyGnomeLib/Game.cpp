@@ -1,11 +1,12 @@
 /**
  * @file Game.cpp
- * @author Gabriel Misajlovski
+ * @author Gabriel Misajlovski, Simon Situ, ryanl, ashrey, Connor
  */
 
 #include "pch.h"
 
 #include <wx/graphics.h>
+#include <string>
 
 #include "Item.h"
 #include "BackgroundImage.h"
@@ -35,6 +36,7 @@ const double FreezeTime = 2;
 
 Game::Game()
 {
+    // Clear the game to make sure it is empty
     Game::Clear();
     //Add SpartyGnome
     mGnome = make_shared<ItemSpartyGnome>(this);
@@ -155,7 +157,7 @@ void Game::AddGnome(std::shared_ptr<ItemSpartyGnome> gnome)
 
 /**
  * Add an item to the game
- * @param item
+ * @param item item to add to the game
  */
 void Game::Add(shared_ptr<Item> item)
 {
@@ -188,7 +190,7 @@ void Game::NewOrder(std::shared_ptr<Item> grabbedItem)
 }
 
 /**
- * Clears the list of items, except for the Gnome
+ * Clears the list of items, then adds the Gnome back
  */
 void Game::Clear()
 {
@@ -197,9 +199,9 @@ void Game::Clear()
 }
 
 /**
- * Load a level number
+ * Load a level
  *
- * @param int The level number
+ * @param wstring The xml filename for the level
  */
 void Game::LevelLoad(const wstring& filename)
 {
@@ -265,13 +267,19 @@ void Game::LevelLoad(const wstring& filename)
 void Game::LoadXmlItem(const std::unordered_map<wxString,
                                                 wxXmlNode*>& declarations_table, const wxXmlNode* item)
 {
-    auto type = item->GetName(); // Type of item
+    // Type of item based on Node Name
+    auto type = item->GetName();
+
     //Get the id for the item declaration
     auto id = item->GetAttribute(L"id");
+
     //Get the declaration for the item id
     auto declaration = declarations_table.at(id);
+
+    // Set default loadedItem to nullptr
     std::shared_ptr<Item> loadedItem = nullptr;
-    //Choose which Item to make based on the type given
+
+    // Choose which Item pointer to make based on the type given
     if (type==L"background")
     {
         loadedItem = make_shared<BackgroundImage>(declaration, item);
@@ -280,7 +288,8 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     {
         loadedItem = make_shared<Platform>(declaration, item);
     }
-    else if (type==L"platformf") {
+    else if (type==L"platformf")
+    {
         loadedItem = make_shared<PlatformF>(declaration, item);
     }
     else if (type==L"wall")
@@ -305,15 +314,20 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     }
     else
     {
+        // Error handler if Item type is not implemented into the program
         wxMessageBox(L"Error loading XML: Item of type \"" + type + L"\" is not implemented or does not exist.");
     }
+
+    // If loadedItem exists...
     if (loadedItem != nullptr) {
+        // Add it to the game
         Add(loadedItem);
     }
+    // else end this function
 }
 
 /**
- * Save the game as a .game XML file.
+ * Save the game as a game .xml file.
  *
  * Open an XML file and stream the game data to it.
  *
@@ -321,30 +335,39 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
  */
 void Game::Save(const wxString& filename)
 {
+    // Create a new xml
     wxXmlDocument xmlDoc;
 
+    // create the root node
     auto root = new wxXmlNode(wxXML_ELEMENT_NODE, L"level");
     xmlDoc.SetRoot(root);
+
+    // Add attributes for the root node
     root->AddAttribute(L"width", L"1024");
     root->AddAttribute(L"height", L"1024");
     root->AddAttribute(L"start-y", to_wstring(mStartY));
     root->AddAttribute(L"start-x", to_wstring(mStartX));
 
+    // Create the root's 2 child nodes, items and declarations
     auto declarations = new wxXmlNode(wxXML_ELEMENT_NODE, L"declarations");
     auto items = new wxXmlNode(wxXML_ELEMENT_NODE, L"items");
 
     // Iterate over all items and save them
-    for (auto item: mItems) {
+    for (auto item: mItems)
+    {
+        // if the Item ID is NOT the gnome...
         if (item->GetId() != L"i000")
         {
+            // add it to the xml files
             item->XmlSave(items, declarations);
         }
     }
 
+    // Set seclarations and items as the root's children
     root->SetChildren(declarations);
-
     declarations->SetNext(items);
 
+    // Error handler if save fails
     if (!xmlDoc.Save(filename, wxXML_NO_INDENTATION)) {
         wxMessageBox(L"Write to XML failed");
         return;
@@ -358,15 +381,24 @@ void Game::Save(const wxString& filename)
  */
 shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
 {
+    // Create a visitor to test collisions.
     VerticalCollisionVisitor visitor(item);
+
+    // Iterate over the items in the game
     for (auto oItem : mItems)
     {
+        // Accept the visitor into each item
         oItem->Accept(&visitor);
+
+        // if the item being visited is colliding with the parameter item...
         if (visitor.IsColliding())
         {
+            // return the colliding item
             return oItem;
         }
     }
+
+    // if no items are colliding, return nullptr
     return nullptr;
 }
 
@@ -379,26 +411,22 @@ void Game::LevelLoadDefault()
 }
 
 /**
- * Loads the level number
- * @param levelNum
+ * Loads the level with a given number
+ * @param levelNum number of the level to load
  */
 void Game::LevelLoad(int levelNum)
 {
+    // Store the level number for reloading level upon death
     mLevelNum = levelNum;
+
+    // create directory to load
     wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
+
+    // Load the level
     Game::LevelLoad(filename);
 
     // Display the start message
     Game::DisplayStartMessage(levelNum);
-}
-
-/**
- * Freezes the game for the given amount of time in seconds
- * @param seconds Number of seconds to freeze the game for
- */
-void Game::Freeze(double seconds)
-{
-    mFreeze = seconds;
 }
 
 /**
@@ -418,8 +446,11 @@ void Game::DisplayStartMessage(int levelNum)
  */
 void Game::RemoveItem(Item* item)
 {
+    // Get an iterator at the position of the item in mItems
     auto pos = std::remove_if(mItems.begin(), mItems.end(),
             [item](shared_ptr<Item> x){return x.get() == item;});
+
+    // erase the item
     mItems.erase(pos);
 }
 
@@ -430,7 +461,12 @@ void Game::DisplayLoseMessage()
 {
     wstring message = L"You Lose!";
     Game::FreezeScreenMessage(message);
-    LevelLoad(mLevelNum);
+
+    // Clear the game
+    Game::Clear();
+
+    // reload the level
+    Game::LevelLoad(mLevelNum);
 }
 
 /**
@@ -446,13 +482,20 @@ void Game::FreezeScreenMessage(const wstring& message)
     Game::Freeze(FreezeTime);
 }
 
+/**
+ * Returns the bitmap of the specified image file
+ * @param filename the name of the image file
+ * @return the bitmap of the specified image file
+ */
 std::shared_ptr<wxBitmap> Game::GetBitmap(const std::wstring &filename){
+    // If the bitmap for the specific file is not in BitMaps...
     if(BitMaps.count(filename)==0) {
+        // Add the bitmap to BitMaps
         mImages.insert(std::pair<const wstring, shared_ptr<wxImage>>(filename, make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY)));
         BitMaps.insert(std::pair<const wstring, shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*mImages.at(filename))));
-
-
     }
+
+    // Return the corresponding bitmap for this image file
     return BitMaps.at(filename);
 }
 

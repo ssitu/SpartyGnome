@@ -5,6 +5,7 @@
  */
 
 #include "pch.h"
+#include "BackgroundImage.h"
 #include "ItemMoney.h"
 #include "Villain.h"
 #include "Platform.h"

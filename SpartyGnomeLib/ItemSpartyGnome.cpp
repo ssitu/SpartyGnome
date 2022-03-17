@@ -19,6 +19,7 @@ const double Gravity = 1000.0;
 /// Horizontal character speed in pixels per second
 const double HorizontalSpeed = 500.00;
 
+/// vertical initial jump speed
 const double JumpSpeed = -800;
 
 /// Small value to ensure we do not stay in collision
@@ -27,9 +28,13 @@ const double Epsilon = 0.01;
 /// Default SpartyGnomeImage
 const wstring SpartyGnomeImageName = L"images/gnome.png";
 
+/// Walk left image 1
 const wstring SpartyGnomeLeft1 = L"images/gnome-walk-left-1.png";
+/// Walk Left Image 2
 const wstring SpartyGnomeLeft2 = L"images/gnome-walk-left-2.png";
+/// Walk Right Image 1
 const wstring SpartyGnomeRight1 = L"images/gnome-walk-right-1.png";
+/// Walk Right Image 2
 const wstring SpartyGnomeRight2 = L"images/gnome-walk-right-2.png";
 
 /**
@@ -38,6 +43,7 @@ const wstring SpartyGnomeRight2 = L"images/gnome-walk-right-2.png";
  */
 ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 {
+    // Default Gnome image size used for collision purposes
     this->SetHeight(200);
     this->SetWidth(108);
 }
@@ -48,8 +54,12 @@ ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
  */
 void ItemSpartyGnome::Jump()
 {
+    // Check for collision
     auto collided = GetGame()->VerticalCollisionTest(this);
+
+    // If the gnome is not moving vertically...
     if (mV.Y() == 0) {
+        // Jump
         mV.SetY(JumpSpeed);
     }
 }
@@ -60,9 +70,11 @@ void ItemSpartyGnome::Jump()
  */
 void ItemSpartyGnome::MoveRight()
 {
-
+    // Check for collision
     auto collided = GetGame()->VerticalCollisionTest(this);
-    if (mV.X() == 0) {
+    // if gnome is not moving horizontally or moving to the
+    if (mV.X() <= 0) {
+        // move right
         mV.SetX(HorizontalSpeed);
     }
 
@@ -74,8 +86,11 @@ void ItemSpartyGnome::MoveRight()
  */
 void ItemSpartyGnome::MoveLeft()
 {
+    // Check for collision
     auto collided = GetGame()->VerticalCollisionTest(this);
-    if (mV.X() == 0) {
+    // if gnome is not moving horizontally or is moving right
+    if (mV.X() >= 0) {
+        // move left
         mV.SetX(0-HorizontalSpeed);
     }
 
@@ -87,34 +102,56 @@ void ItemSpartyGnome::MoveLeft()
  */
 void ItemSpartyGnome::StopMove()
 {
+    // Collision Check
     auto collided = GetGame()->VerticalCollisionTest(this);
+
+    // Stop movement
     mV.SetX(0);
+    mV.SetY(0);
 }
 
-bool mSwitch = true;
-bool mCheckJump = false;
-int mCount = 0;
+/**
+ * Update Function
+ * @param elapsed time elapsed
+ */
 void ItemSpartyGnome::Update(double elapsed)
 {
+    // Call Item::Update
     Item::Update(elapsed);
+    // if switch is true
     if (mSwitch == true)
     {
+        // increment counter
         mCount++;
+
+        // if the counter is >= 5
         if (mCount >= 5)
         {
+            // Set the counter to 0
             mCount = 0;
+
+            // set switch to false
             mSwitch = false;
         }
     }
-    else if (mSwitch == false)
+    // If switch is false
+    else
     {
+        // Counter +=1
         mCount++;
+
+        // if counter >= 5
         if (mCount >= 5)
         {
+            // set counter to 0
             mCount = 0;
+
+            // set switch to true
             mSwitch = true;
         }
     }
+
+    // if gravity is enabled...
     if (mGravityEnable) {
         if (mV.Y() == 0)
         {
@@ -140,9 +177,8 @@ void ItemSpartyGnome::Update(double elapsed)
         //
         SetLocation(p.X(), newP.Y());
 
-
+        // Test for collision
         auto collided = GetGame()->VerticalCollisionTest(this);
-
         if (collided != nullptr)
         {
             if (newV.Y()>0) {
@@ -187,9 +223,8 @@ void ItemSpartyGnome::Update(double elapsed)
         //
         SetLocation(newP.X(), p.Y());
 
+        // Test for collision
         collided = GetGame()->VerticalCollisionTest(this);
-
-
         if (collided != nullptr)
         {
             if (newV.X() > 0)
@@ -232,12 +267,12 @@ void ItemSpartyGnome::AnimateGnomeRight()
     std::shared_ptr<wxBitmap> mRight2 = GetGame()->GetBitmap(SpartyGnomeRight2);
 
     // The Gnome is not jumping, changing
-    if (mCheckJump == false)
+    if (!mCheckJump)
     {
-        if (mSwitch == true) {
+        if (mSwitch) {
             SetBitmap(mRight1);
         }
-        else if (mSwitch == false) {
+        else {
             SetBitmap(mRight2);
         }
     }

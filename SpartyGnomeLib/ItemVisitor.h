@@ -1,7 +1,7 @@
 /**
  * @file ItemVisitor.h
  * 
- * @author Simon Situ
+ * @author Simon Situ, Gabriel Misajlovski
  *
  * The visitor class for item objects
  */
@@ -71,13 +71,13 @@ public:
 
     /**
      * Visit Money
-     * @param money The money to visit
+     * @param money The Money to visit
      */
     virtual void VisitMoney(ItemMoney* money) {}
 
     /**
-     * Visit TuitionUp
-     * @param tu The object to visit
+     * Visit a TuitionUp
+     * @param tu The TuitionUp to visit
      */
     virtual void VisitTuitionUp(ItemTuitionUp* tu) {}
 

@@ -16,12 +16,3 @@ DrawStaticVisitor::DrawStaticVisitor(std::shared_ptr<wxGraphicsContext> gc)
 {
     mGraphicsContext = gc;
 }
-
-/**
- * Visit a Gnome
- * @param gnome Gnome to visit
- */
-//void DrawStaticVisitor::VisitGnome(ItemSpartyGnome* gnome)
-//{
-//    gnome->Draw(mGraphicsContext);
-//}

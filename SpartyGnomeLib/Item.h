@@ -27,8 +27,8 @@ private:
     // Item location in the game
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
-    double  mInitialX = 0;     ///< X Initial
-    double  mInitialY = 0;     ///< Y Initial
+    double  mInitialX = 0;     ///< X Initial (for movement calculations)
+    double  mInitialY = 0;     ///< Y Initial (for movement calculations)
 
     /// The width of this item
     double mWidth = 0;
@@ -46,8 +46,10 @@ private:
     std::shared_ptr<wxBitmap> mItemBitmap;
 
 protected:
+    // Constructors
     Item(Game *game, const std::wstring &filename);
     Item(Game *game);
+    Item(const wxXmlNode* declaration, const wxXmlNode* item);
 
     /**
      * this is a constructor strictly for testing purposes of Platform
@@ -70,13 +72,14 @@ protected:
 
     /**
      * Set the image for this item
-     * @param image
+     * @param image the image for this item
      */
     void SetImage(const std::shared_ptr<wxImage>& image) {mItemImage = image;}
 
     /**
      * Set the image for this item
-     * @param image
+     * @param image the image for this item
+     * @return path to the image file
      */
     std::wstring GetPath(const std::shared_ptr<wxImage>& image) { return mPath; }
 
@@ -88,7 +91,7 @@ protected:
 
     /**
      * Set the bitmap for this item
-     * @param bitmap
+     * @param bitmap the bitmap for this item
      */
     void SetBitmap(const std::shared_ptr<wxBitmap>& bitmap) {mItemBitmap = bitmap;}
 
@@ -146,7 +149,10 @@ public:
      */
     double GetHeight() const { return mHeight; }
 
-    /// ID getter
+    /**
+     * The imageId of the item
+     * @return image Id as a wstring
+     */
     std::wstring GetId() const { return mId; }
 
     virtual void Draw(std::shared_ptr<wxGraphicsContext> gc);
@@ -164,8 +170,16 @@ public:
      */
     virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 
+    /**
+     * Set the item width
+     * @param width item width in pixels
+     */
     virtual void SetWidth(double width) { mWidth = width; }
 
+    /**
+     * Set the item height
+     * @param height item height in pixels
+     */
     virtual void SetHeight(double height) { mHeight = height; }
 
     /**
@@ -175,21 +189,9 @@ public:
     Game* GetGame() { return mGame; }
 
     virtual std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2);
-
-    /**
-     * Test this item to see if it has been clicked on
-     * @param x X location on the game to test in pixels
-     * @param y Y location on the game to test in pixels
-     * @return true if clicked on
-     */
     virtual bool HitTest(int x, int y);
-
-    Item(const wxXmlNode* declaration, const wxXmlNode* item);
-
     virtual void Accept(ItemVisitor* visitor) = 0;
-
     virtual const bool CollisionTest(Item* item) const;
-
     virtual bool IsF() { return false; }
 };
 

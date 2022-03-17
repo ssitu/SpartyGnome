@@ -31,41 +31,32 @@ private:
     /// The last stopwatch time
     long mTime = 0;
 
-    int mHeight = 800;
-    int mWidth = 1000;
-
     /// Any item we are currently dragging
     std::shared_ptr<Item> mGrabbedItem;
 
 public:
-    void Initialize(wxFrame* parent);
-    // void OnAddSpartyGnome(wxCommandEvent& event);
-    // void OnAddPlatform(double x, double y);
-
-    void OnLeftDown(wxMouseEvent &event);
-    void OnLeftUp(wxMouseEvent &event);
-    void OnMouseMove(wxMouseEvent &event);
-
-    void OnKeyDown(wxKeyEvent &event);
-    void OnKeyUp(wxKeyEvent &event);
     /**
      * Obtains the size of the window
      * @return A wxSize object representing the size of the window
      */
     wxSize GetClientSize() { return mParent->GetClientSize(); };
 
-    void OnFileSaveas(wxCommandEvent& event);
-    void OnFileOpen(wxCommandEvent& event);
-
-    void OnLevelOpen(wxCommandEvent& event);
-
     /**
      * Stop the timer so the window can close
      */
     void Stop() { mTimer.Stop(); }
 
-
-
+    void Initialize(wxFrame* parent);
+    // void OnAddSpartyGnome(wxCommandEvent& event);
+    // void OnAddPlatform(double x, double y);
+    void OnLeftDown(wxMouseEvent &event);
+    void OnLeftUp(wxMouseEvent &event);
+    void OnMouseMove(wxMouseEvent &event);
+    void OnKeyDown(wxKeyEvent &event);
+    void OnKeyUp(wxKeyEvent &event);
+    void OnFileSaveas(wxCommandEvent& event);
+    void OnFileOpen(wxCommandEvent& event);
+    void OnLevelOpen(wxCommandEvent& event);
 };
 
 #endif //SPARTYGNOME_SPARTYGNOMEVIEW_H

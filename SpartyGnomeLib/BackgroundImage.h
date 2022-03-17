@@ -28,16 +28,14 @@ public:
     /// New constructor
     BackgroundImage(Game* game);
 
-    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-
-    /// XML constructor
-    BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item);
-
     /**
      * Accept a visitor
      * @param visitor Visitor to accept
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitBackground(this);}
+
+    BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item);
+    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 };
 
 #endif //SPARTYGNOME_BACKGROUNDIMAGE_H

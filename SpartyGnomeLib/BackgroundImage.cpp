@@ -1,7 +1,7 @@
 /**
  * @file BackgroundImage.cpp
  * 
- * @author Simon Situ
+ * @author Simon Situ, Gabriel Misajlovski
  */
 
 #include "pch.h"
@@ -31,8 +31,9 @@ BackgroundImage::BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* 
 
 /**
  * Save this item to an XML node
- * @param node The parent node we are going to be a child of
- * @return
+ * @param node1 The parent Item node we are going to be a child of
+ * @param node2 The declaration Item node we are going to be a child of
+ * @return pair<wxXmlNode*, wxXmlNode*> the nodes we are adding to the parents
  */
 std::pair<wxXmlNode*, wxXmlNode*> BackgroundImage::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {

@@ -2,7 +2,7 @@
  * @file ids.h
  * @author Gabriel Misajlovski
  *
- *
+ * This file is for Level Creation purposes only
  */
 
 #ifndef SPARTYGNOME_IDS_H

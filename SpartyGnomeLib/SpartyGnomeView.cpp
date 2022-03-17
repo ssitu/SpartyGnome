@@ -18,19 +18,24 @@ using namespace std;
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
 
+/**
+ * Creation of the window
+ * @param parent the MainFrame
+ */
 void SpartyGnomeView::Initialize(wxFrame* parent)
 {
+    // create a value to hold the parent and set background for window
     Create(parent, wxID_ANY);
     SetBackgroundColour(*wxWHITE);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
+    // New Bindings to default wx Event Handlers
     Bind(wxEVT_PAINT, &SpartyGnomeView::OnPaint, this);
     Bind(wxEVT_LEFT_DOWN, &SpartyGnomeView::OnLeftDown, this);
     Bind(wxEVT_LEFT_UP, &SpartyGnomeView::OnLeftUp, this);
     Bind(wxEVT_MOTION, &SpartyGnomeView::OnMouseMove, this);
     Bind(wxEVT_KEY_DOWN, &SpartyGnomeView::OnKeyDown, this);
     Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
-    //Bind the timer event handler
     Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
@@ -39,18 +44,21 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileOpen, this, wxID_OPEN);
 
-    // bindings for level loading menu
+    // Bindings for level loading menu
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE1);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE2);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE3);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnLevelOpen, this, wxID_FILE4);
 
+    // Start the timer for updates
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
     mStopWatch.Start();
 
+    // Set member variable mPrent
     mParent = parent;
 
+    // Load the default level on startup
     mGame.LevelLoadDefault();
 }
 
@@ -67,22 +75,26 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 // }
 
 /**
- *
- * @param event
+ * New handler for paint event
+ * @param event wxEVT_PAINT
  */
 void SpartyGnomeView::OnPaint(wxPaintEvent& event)
 {
+    // pull a new time from Timer
     auto newTime = mStopWatch.Time();
     auto elapsed = (double)(newTime - mTime) * 0.001;
     mTime = newTime;
 
+    // Update the game
     mGame.Update(elapsed);
 
+    // crate a wxDCBuffer
     wxAutoBufferedPaintDC dc(this);
     wxBrush background(*wxWHITE);
     dc.SetBackground(background);
     dc.Clear();
 
+    // create a graphics context from the DCBuffer
     auto size = GetClientSize();
     auto graphics = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
     mGame.OnDraw(graphics, size.GetWidth(), size.GetHeight());
@@ -90,14 +102,14 @@ void SpartyGnomeView::OnPaint(wxPaintEvent& event)
 
 /**
  * OnTimer event handler
- * @param event The wx event
+ * @param event wxEVT_TIMER
  */
 void SpartyGnomeView::OnTimer(wxTimerEvent& event) { Refresh(); }
 
 
 /**
  * Handle the left mouse button down event
- * @param event
+ * @param event wxEVT_DOWN
  */
 void SpartyGnomeView::OnLeftDown(wxMouseEvent &event)
 {
@@ -113,7 +125,7 @@ void SpartyGnomeView::OnLeftDown(wxMouseEvent &event)
 
 /**
 * Handle the left mouse button down event
-* @param event
+* @param event wxEVT_UP
 */
 void SpartyGnomeView::OnLeftUp(wxMouseEvent &event)
 {
@@ -122,7 +134,7 @@ void SpartyGnomeView::OnLeftUp(wxMouseEvent &event)
 
 /**
 * Handle the left mouse button down event
-* @param event
+* @param event wxEVT_MOTION
 */
 void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
 {
@@ -147,7 +159,10 @@ void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
 //    }
 }
 
-
+/**
+ * Handler for key down event
+ * @param event wxEVT_KEY_DOWN
+ */
 void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
 {
     switch (event.GetKeyCode())
@@ -169,6 +184,10 @@ void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
     }
 }
 
+/**
+ * Handler for key up event
+ * @param event wxEVT_KEY_UP
+ */
 void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
 {
     switch (event.GetKeyCode())
@@ -185,7 +204,7 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
 
 /**
  * Saves the file containing the game and its objects.
- * @param event
+ * @param event Saving a file
  */
 void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
 {
@@ -202,7 +221,7 @@ void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
 
 /**
  * Loads a chosen XML file
- * @param event
+ * @param event loading a file
  */
 void SpartyGnomeView::OnFileOpen(wxCommandEvent& event)
 {

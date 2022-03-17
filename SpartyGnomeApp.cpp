@@ -9,7 +9,7 @@
 
 /**
  * Initialize the application.
- * @return bool
+ * @return bool Whether it was initialized successfully or not
  */
 bool SpartyGnomeApp::OnInit()
 {

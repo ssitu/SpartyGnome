@@ -5,6 +5,7 @@
  */
 
 #include "pch.h"
+
 #include "DrawMessagesVisitor.h"
 #include "ItemMessage.h"
 

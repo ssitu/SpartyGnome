@@ -12,8 +12,11 @@
 
 using namespace std;
 
+/// Default image filepath
 const wstring PlatformName = L"images/snow.png";
+/// Image directory
 const wstring ImageDir = L"images/";
+/// Size of individual platform image tiles
 const int TileSize = 32;
 
 class Game;
@@ -99,27 +102,36 @@ Platform::Platform(Game* game, const std::wstring& filename, const std::wstring&
 
 /**
  * Save this platform to an XML node
- * @param node The parent node we are going to be a child of
- * @return The node we are doing to add to the parent.
+ * @param node1 The items parent node we are going to be a child of
+ * @param node2 The declarations parent node we are going to be a child of
+ * @return 1-2 nodes that were added to the XML file
  */
 std::pair<wxXmlNode*,wxXmlNode*> Platform::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
+    // Pull nodes from Item::XmlSave
     auto doubleNode = Item::XmlSave(node1, node2);
     auto itemNode = doubleNode.first;
     auto declarationNode = doubleNode.second;
+
+    // Edit itemNode attributes
     itemNode->SetName(L"platform");
 
+    // if the declarationNode is not already in declarations
     if (declarationNode!=nullptr) {
+        // Create the declaration (platform takes 3 images in its declaration)
         declarationNode->SetName(L"platform");
         declarationNode->AddAttribute(L"left-image", declarationNode->GetAttribute("image").ToStdWstring());
         declarationNode->DeleteAttribute("image");
         declarationNode->AddAttribute(L"mid-image", mMidPath);
         declarationNode->AddAttribute(L"right-image", mRightPath);
+        // return both nodes added
         return make_pair(itemNode, declarationNode);
     }
 
+    // Delete the image attribute from itemNode because itemNode no longer needs it
     itemNode->DeleteAttribute("image");
 
+    // Return just the itemNode
     return make_pair(itemNode, nullptr);
 }
 

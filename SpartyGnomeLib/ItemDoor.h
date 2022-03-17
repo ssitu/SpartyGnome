@@ -2,7 +2,7 @@
  * @file ItemDoor.h
  * @author ashre, Gabriel Misajlovski
  *
- *
+ * ItemDoor Class
  */
 
 #ifndef SPARTYGNOME_ITEMDOOR_H
@@ -10,6 +10,9 @@
 
 #include "Item.h"
 
+/**
+ * ItemDoor Class
+ */
 class ItemDoor : public Item {
 public:
     /// disabled default constructor
@@ -24,8 +27,6 @@ public:
     /// New constructor
     ItemDoor(Game* game);
 
-    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-
     /// XML constructor
     ItemDoor(const wxXmlNode* declaration, const wxXmlNode* item);
 
@@ -35,7 +36,9 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitDoor(this);}
 
+    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
     bool CollisionTest(Item* item);
+
 };
 
 #endif //SPARTYGNOME_ITEMDOOR_H

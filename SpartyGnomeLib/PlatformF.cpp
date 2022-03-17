@@ -23,22 +23,43 @@ PlatformF::PlatformF(Game* game)
 {
 }
 
+/**
+ * Xml Load constructor
+ * @param declaration declarationNode to pull from
+ * @param item itemNode to pull from
+ */
 PlatformF::PlatformF(const wxXmlNode* declaration, const wxXmlNode* item)
         :Platform(declaration, item)
 {
 }
 
+/**
+ * Save this to 1-2 xml nodes
+ * @param node1 The parent items node we are adding a child to
+ * @param node2 The parent declarations node we are adding a child to
+ * @return 1-2 xml nodes that were added
+ */
 pair<wxXmlNode*,wxXmlNode*> PlatformF::XmlSave(wxXmlNode* node1, wxXmlNode* node2)
 {
+    // Pull pair from Platform::XmlSave
     auto platformDoubleNode = Platform::XmlSave(node1, node2);
 
+    // Change the type of the itemNode to platformf
     platformDoubleNode.first->SetName(L"platformf");
 
+    // Return the added nodes
+    // 1 node if Platform::XmlSave saved 1 node
+    // 2 nodes if Platform::XmlSave saved 2 nodes
     return platformDoubleNode;
 }
 
+/**
+ * Draw this PlatformF
+ * @param gc grpahics context to draw on
+ */
 void PlatformF::Draw(shared_ptr<wxGraphicsContext> gc)
 {
+    // Draws same as a normal Platform
     Platform::Draw(gc);
 }
 

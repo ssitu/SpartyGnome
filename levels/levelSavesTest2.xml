@@ -5,9 +5,9 @@
         <platform id="i004" left-image="snowLeft.png" mid-image="snowMid.png" right-image="snowRight.png"/>
         <platform id="i005" left-image="platformIndustrial_059.png" mid-image="platformIndustrial_060.png"
                   right-image="platformIndustrial_061.png"/>
-        <money id="i008" image="money100.png"/>
+        <money id="i008" image="money100.png" value="100"/>
         <villain id="i013" image="wisc.png"/>
-        <money id="i009" image="money1000.png"/>
+        <money id="i009" image="money1000.png" value="1000"/>
         <wall id="i006" image="wall1.png"/>
         <wall id="i007" image="wall2.png"/>
         <tuition-up id="i010" image="stanley.png"/>

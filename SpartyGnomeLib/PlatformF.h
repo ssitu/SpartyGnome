@@ -21,14 +21,14 @@ public:
     /// Assignment operator
     void operator=(const PlatformF &) = delete;
 
-    explicit PlatformF(Game* game);
-
+    /// New constructors
+    PlatformF(Game* game);
     PlatformF(const wxXmlNode* declaration, const wxXmlNode* item);
 
-    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-
-    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
-
+    /**
+     * Check for if platform is fake or not.
+     * @return bool
+     */
     bool IsF() override { return true; }
 
     /**
@@ -36,6 +36,9 @@ public:
      * @param visitor Visitor to accept
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitPlatformF(this);}
+
+    std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
+    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
 };
 

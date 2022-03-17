@@ -7,7 +7,7 @@
 #include "SpartyGnomeApp.h"
 
 /**
-* Executes AquariumApp as a wxWidgets app
+* Executes SpartGnomeApp as a wxWidgets app
 */
 wxIMPLEMENT_APP(SpartyGnomeApp);
 

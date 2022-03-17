@@ -4,11 +4,19 @@
  * @author Simon Situ
  */
 
+#include "pch.h"
+
+#include <wx/graphics.h>
+
 #include "ItemMessage.h"
-#include "wx/graphics.h"
 #include "Game.h"
 
+using namespace std;
+
+/// Text color
 const wxColour TextColor(50, 50, 200);
+
+/// Text font
 const wxFont TextFont(wxSize(10, 120),
         wxFONTFAMILY_SWISS,
         wxFONTSTYLE_NORMAL,
@@ -22,7 +30,7 @@ const wxFont TextFont(wxSize(10, 120),
  * @param x The x location of the center of this message
  * @param y The y location of the center of this message
  */
-ItemMessage::ItemMessage(Game* game, const std::wstring& message, double duration)
+ItemMessage::ItemMessage(Game* game, const wstring& message, double duration)
         : Item(game)
 {
     mGame = game;
@@ -34,14 +42,18 @@ ItemMessage::ItemMessage(Game* game, const std::wstring& message, double duratio
  * Draws this message item
  * @param gc The graphics context to draw on
  */
-void ItemMessage::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void ItemMessage::Draw(shared_ptr<wxGraphicsContext> gc)
 {
+    // default width and height
     double width = 0;
     double height = 0;
+
+    // Set the text font and color
     gc->SetFont(TextFont, TextColor);
     //Get the text width and height
     gc->GetTextExtent(mMessage, &width, &height);
 
+    // Get the center of the text item and draw the item
     double centerX = GetX() - width / 2;
     double centerY = GetY() - height / 2;
     gc->DrawText(mMessage, centerX, centerY);
@@ -53,6 +65,7 @@ void ItemMessage::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void ItemMessage::Update(double elapsed)
 {
+    // Delay timer
     mDuration -= elapsed;
     if (mDuration <= 0)
     {
