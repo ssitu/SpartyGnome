@@ -36,6 +36,12 @@ const wstring SpartyGnomeLeft2 = L"images/gnome-walk-left-2.png";
 const wstring SpartyGnomeRight1 = L"images/gnome-walk-right-1.png";
 /// Walk Right Image 2
 const wstring SpartyGnomeRight2 = L"images/gnome-walk-right-2.png";
+/// Height of gnome image
+const int GnomeHeight = 200;
+/// Width of Gnome image
+const int GnomeWidth = 108;
+/// the death barrier
+const int DeathHeight = 1024;
 
 /**
  * Constructor
@@ -44,8 +50,8 @@ const wstring SpartyGnomeRight2 = L"images/gnome-walk-right-2.png";
 ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 {
     // Default Gnome image size used for collision purposes
-    this->SetHeight(200);
-    this->SetWidth(108);
+    this->SetHeight(GnomeHeight);
+    this->SetWidth(GnomeWidth);
 }
 
 /**
@@ -240,7 +246,7 @@ void ItemSpartyGnome::Update(double elapsed)
         SetLocation(newP.X(), newP.Y());
     }
 
-    if (GetY() >= 1024) {
+    if (GetY() >= DeathHeight) {
         DisableGravity();
         this->GetGame()->DisplayLoseMessage();
     }
