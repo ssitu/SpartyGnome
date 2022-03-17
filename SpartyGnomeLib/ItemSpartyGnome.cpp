@@ -148,6 +148,7 @@ void ItemSpartyGnome::Update(double elapsed)
 
     // if gravity is enabled...
     if (mGravityEnable) {
+        // if the Y velocity is 0...
         if (mV.Y() == 0)
         {
             // Gnome is not jumping
@@ -187,13 +188,13 @@ void ItemSpartyGnome::Update(double elapsed)
 
             }
 
+            if (collided->IsF() && (mV.Y() > 0)) {
+                GetGame()->RemoveItem(collided.get());
+            }
+
             // If we collide, we cancel any velocity
             // in the Y direction
             newV.SetY(0);
-
-            if (collided->IsF()) {
-                GetGame()->RemoveItem(collided.get());
-            }
         }
 
         // Animation Controls
