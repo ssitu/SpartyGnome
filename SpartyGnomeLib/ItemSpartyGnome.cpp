@@ -54,9 +54,6 @@ ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
  */
 void ItemSpartyGnome::Jump()
 {
-    // Check for collision
-    auto collided = GetGame()->VerticalCollisionTest(this);
-
     // If the gnome is not moving vertically...
     if (mV.Y() == 0) {
         // Jump
@@ -70,8 +67,6 @@ void ItemSpartyGnome::Jump()
  */
 void ItemSpartyGnome::MoveRight()
 {
-    // Check for collision
-    auto collided = GetGame()->VerticalCollisionTest(this);
     // if gnome is not moving horizontally or moving to the
     if (mV.X() == 0) {
         // move right
@@ -86,8 +81,6 @@ void ItemSpartyGnome::MoveRight()
  */
 void ItemSpartyGnome::MoveLeft()
 {
-    // Check for collision
-    auto collided = GetGame()->VerticalCollisionTest(this);
     // if gnome is not moving horizontally or is moving right
     if (mV.X() == 0) {
         // move left
@@ -102,9 +95,6 @@ void ItemSpartyGnome::MoveLeft()
  */
 void ItemSpartyGnome::StopMove()
 {
-    // Collision Check
-    auto collided = GetGame()->VerticalCollisionTest(this);
-
     // Stop movement
     mV.SetX(0);
 }
