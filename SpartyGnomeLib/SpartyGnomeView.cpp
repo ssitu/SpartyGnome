@@ -181,6 +181,7 @@ void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
         // space bar pressed
         mGame.GetGnome()->Jump();
         break;
+
     }
 }
 
