@@ -73,7 +73,7 @@ void ItemSpartyGnome::MoveRight()
     // Check for collision
     auto collided = GetGame()->VerticalCollisionTest(this);
     // if gnome is not moving horizontally or moving to the
-    if (mV.X() <= 0) {
+    if (mV.X() == 0) {
         // move right
         mV.SetX(HorizontalSpeed);
     }
@@ -89,7 +89,7 @@ void ItemSpartyGnome::MoveLeft()
     // Check for collision
     auto collided = GetGame()->VerticalCollisionTest(this);
     // if gnome is not moving horizontally or is moving right
-    if (mV.X() >= 0) {
+    if (mV.X() == 0) {
         // move left
         mV.SetX(0-HorizontalSpeed);
     }
@@ -119,7 +119,7 @@ void ItemSpartyGnome::Update(double elapsed)
     // Call Item::Update
     Item::Update(elapsed);
     // if switch is true
-    if (mSwitch == true)
+    if (mSwitch)
     {
         // increment counter
         mCount++;
