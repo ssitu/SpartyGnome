@@ -1,12 +1,12 @@
 /**
- * @file VerticalCollisionVisitor.cpp
+ * @file SolidCollisionVisitor.cpp
  * 
  * @author Simon Situ
  */
 
 #include "pch.h"
 
-#include "VerticalCollisionVisitor.h"
+#include "SolidCollisionVisitor.h"
 #include "Wall.h"
 #include "Platform.h"
 #include "PlatformF.h"
@@ -15,7 +15,7 @@
  * Constructor for this visitor
  * @param item Item to check collisions with
  */
-VerticalCollisionVisitor::VerticalCollisionVisitor(Item* item)
+SolidCollisionVisitor::SolidCollisionVisitor(Item* item)
         :CollisionVisitor(item)
 {
 }
@@ -24,7 +24,7 @@ VerticalCollisionVisitor::VerticalCollisionVisitor(Item* item)
  * Vertical collision test for wall
  * @param wall Wall to test
  */
-void VerticalCollisionVisitor::VisitWall(Wall* wall)
+void SolidCollisionVisitor::VisitWall(Wall* wall)
 {
     CollisionVisitor::CollisionTest(*wall);
 }
@@ -33,7 +33,7 @@ void VerticalCollisionVisitor::VisitWall(Wall* wall)
  * Vertical collision test for platform
  * @param platform Platform to test
  */
-void VerticalCollisionVisitor::VisitPlatform(Platform* platform)
+void SolidCollisionVisitor::VisitPlatform(Platform* platform)
 {
     CollisionVisitor::CollisionTest(*platform);
 }
@@ -42,7 +42,7 @@ void VerticalCollisionVisitor::VisitPlatform(Platform* platform)
  * Vertical collision test for platformf
  * @param platform PlatformF to test
  */
-void VerticalCollisionVisitor::VisitPlatformF(PlatformF* platformF)
+void SolidCollisionVisitor::VisitPlatformF(PlatformF* platformF)
 {
     CollisionVisitor::CollisionTest(*platformF);
 }

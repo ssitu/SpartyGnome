@@ -6,7 +6,7 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnome
         Vector.cpp Vector.h ItemMoney.cpp ItemMoney.h ItemTuitionUp.cpp ItemTuitionUp.h
         DrawScrollingVisitor.cpp DrawScrollingVisitor.h ItemVisitor.h
         DrawStaticVisitor.cpp DrawStaticVisitor.h CollisionVisitor.cpp CollisionVisitor.h
-        VerticalCollisionVisitor.cpp VerticalCollisionVisitor.h PlatformF.cpp PlatformF.h
+        SolidCollisionVisitor.cpp SolidCollisionVisitor.h PlatformF.cpp PlatformF.h
         ItemMessage.cpp ItemMessage.h DrawMessagesVisitor.cpp DrawMessagesVisitor.h)
 
 set(wxBUILD_PRECOMP OFF)

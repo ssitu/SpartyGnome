@@ -19,7 +19,7 @@
 #include "Game.h"
 #include "DrawStaticVisitor.h"
 #include "DrawScrollingVisitor.h"
-#include "VerticalCollisionVisitor.h"
+#include "SolidCollisionVisitor.h"
 #include "ItemMessage.h"
 #include "DrawMessagesVisitor.h"
 
@@ -382,7 +382,7 @@ void Game::Save(const wxString& filename)
 shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
 {
     // Create a visitor to test collisions.
-    VerticalCollisionVisitor visitor(item);
+    SolidCollisionVisitor visitor(item);
 
     // Iterate over the items in the game
     for (auto oItem : mItems)
