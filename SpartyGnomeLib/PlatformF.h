@@ -15,7 +15,7 @@ private:
     /// The duration in seconds to keep this platform alive for after being collided with
     double mDuration;
     /// Indicates if this has been collided with, used to start counting down on the duration
-    bool mCollided = false;
+    bool mLandedUpon = false;
 public:
     /// Default constructor (disabled)
     PlatformF() = delete;

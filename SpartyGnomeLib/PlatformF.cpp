@@ -14,7 +14,7 @@ using namespace std;
 
 class Game;
 
-// The default duration if a duration is not specified
+// The default duration in seconds if a duration is not specified
 const double DefaultDuration = 0;
 
 /**
@@ -76,7 +76,7 @@ void PlatformF::Update(double elapsed)
 {
     Item::Update(elapsed);
     // Start subtracting from mDuration after collision
-    if (mCollided)
+    if (mLandedUpon)
     {
         // Reduce mDuration by the time elapsed since last update
         mDuration -= elapsed;
@@ -95,6 +95,23 @@ void PlatformF::Update(double elapsed)
  */
 void PlatformF::OnCollision(Item* item)
 {
-    mCollided = true;
+    double itemLeft = item->GetX() - item->GetWidth() / 2;
+    double itemRight = itemLeft + item->GetWidth();
+    double itemBottom = item->GetY() + item->GetHeight() / 2;
+    double platformLeft = GetX() - GetWidth() / 2;
+    double platformRight = platformLeft + GetWidth();
+    double platformTop = GetY() - GetHeight() / 2;
+    bool itemPastLeft = itemRight > platformLeft;
+    bool itemBeforeRight = itemLeft < platformRight;
+
+    // If the item hits its head on the bottom of the platform,
+    // the distance shouldn't be less than the height of the item.
+    // Using half of the item height to be safe
+    bool itemAbove = abs(itemBottom - platformTop) < item->GetHeight() / 2;
+
+    if (itemAbove && itemPastLeft && itemBeforeRight)
+    {
+        mLandedUpon = true;
+    }
 }
 
