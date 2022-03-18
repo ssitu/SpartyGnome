@@ -64,5 +64,9 @@
         <wall id="i006" x="2416" y="750" width="32" height="350"/>
         <wall id="i006" x="2990" y="620" width="32" height="200"/>
         <platformf id="i005" x="2794" y="850" width="160" height="32"/>
+        <platform id="i004" x="3550" y="320" width="200" height="32"/>
+        <platform id="i004" x="3550" y="50" width="200" height="32"/>
+        <wall id="i006" x="3634" y="183" width="32" height="206"/>
+
     </items>
 </level>
