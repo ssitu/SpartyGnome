@@ -17,6 +17,8 @@ using namespace std;
 
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
+/// Max elapsed frame delay
+const double MaxElapsed = .050;
 
 /**
  * Creation of the window
@@ -86,7 +88,18 @@ void SpartyGnomeView::OnPaint(wxPaintEvent& event)
     mTime = newTime;
 
     // Update the game
-    mGame.Update(elapsed);
+    // Prevent tunnelling
+    while (elapsed > MaxElapsed)
+    {
+        mGame.Update(MaxElapsed);
+        elapsed -= MaxElapsed;
+    }
+
+    // Consume any remaining time
+    if (elapsed > 0)
+    {
+        mGame.Update(elapsed);
+    }
 
     // crate a wxDCBuffer
     wxAutoBufferedPaintDC dc(this);
