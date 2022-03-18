@@ -4,7 +4,7 @@ set(TEST_FILES
         gtest_main.cpp
         GameTest.cpp
         DrawScrollingVisitorTest.cpp
-        DrawStaticVisitorTest.cpp JumpTest.cpp)
+        DrawStaticVisitorTest.cpp GravityTest.cpp)
 # Google tests
 include(FetchContent)
 FetchContent_Declare(
