@@ -213,6 +213,7 @@ void ItemSpartyGnome::Update(double elapsed)
             // If we collide, we cancel any velocity
             // in the Y direction
 
+            // If you are bonking your head move down a little before finishing Y-axis changes
             if (mV.Y() < 0) {
                 mV.SetY(-mV.Y());
             }
@@ -312,7 +313,7 @@ void ItemSpartyGnome::AnimateGnomeLeft()
         }
     }
 
-    // The Gnome is not jumping, constant
+    // The Gnome is jumping, constant
     else
     {
         SetBitmap(mLeft1);
