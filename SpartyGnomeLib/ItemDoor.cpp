@@ -86,7 +86,7 @@ void ItemDoor::OnCollision(Item* item){
         GetGame()->LevelLoad(levelnum+1);
     }
     if (levelnum == 3){
-        GetGame()->LevelLoad(1);
+        GetGame()->LevelLoad(3);
     }
 
 
