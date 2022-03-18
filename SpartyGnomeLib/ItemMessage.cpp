@@ -13,14 +13,17 @@
 
 using namespace std;
 
-/// Text color
-const wxColour TextColor(50, 50, 200);
+/// Default Text color
+const int DefaultRed = 50;
+const int DefaultGreen = 50;
+const int DefaultBlue = 200;
 
-/// Text font
-const wxFont TextFont(wxSize(10, 120),
-        wxFONTFAMILY_SWISS,
-        wxFONTSTYLE_NORMAL,
-        wxFONTWEIGHT_NORMAL);
+/// Default Font specifications
+const int DefaultPixelWidth = 10;
+const int DefaultPixelHeight = 120;
+const auto FontFamily = wxFONTFAMILY_SWISS;
+const auto FontStyle = wxFONTSTYLE_NORMAL;
+const auto FontWeight = wxFONTWEIGHT_NORMAL;
 
 /**
  * Constructor for the message
@@ -34,6 +37,8 @@ ItemMessage::ItemMessage(Game* game, const wstring& message, double duration)
     mGame = game;
     mMessage = message;
     mDuration = duration;
+    SetColor(DefaultRed, DefaultGreen, DefaultBlue);
+    SetFontSize(DefaultPixelWidth, DefaultPixelHeight);
 }
 
 /**
@@ -47,8 +52,8 @@ void ItemMessage::Draw(shared_ptr<wxGraphicsContext> gc)
     double height = 0;
 
     // Set the text font and color
-    gc->SetFont(TextFont, TextColor);
-    //Get the text width and height
+    gc->SetFont(mFont, mColor);
+    // Get the text width and height
     gc->GetTextExtent(mMessage, &width, &height);
 
     // Get the center of the text item and draw the item
@@ -70,4 +75,15 @@ void ItemMessage::Update(double elapsed)
         //Delete this message
         GetGame()->RemoveItem(this);
     }
+}
+
+/**
+ * Set the font size of the message to display
+ * @param pixelWidth The width to draw for each pixel of the font
+ * @param pixelHeight The height to draw for each pixel of the font
+ */
+void ItemMessage::SetFontSize(int pixelWidth, int pixelHeight)
+{
+    wxSize fontSize(pixelWidth, pixelHeight);
+    mFont = wxFont(fontSize, FontFamily, FontStyle, FontWeight);
 }
