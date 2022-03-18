@@ -125,23 +125,31 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
  */
 void Game::Update(double elapsed)
 {
-    if (mFreeze > 0)
+    if (mFreezeLose > 0)
     {
-        //Not concerned about a negative freeze time
-        mFreeze -= elapsed;
+        mFreezeLose -= elapsed;
     }
     else
     {
-        //Make a copy of the items to iterate over
-        std::vector<std::shared_ptr<Item>> items;
-        for (auto item : mItems)
+        if (mLost == true)
         {
-            items.push_back(item);
+            Game::LevelLoad(mLevelNum);
+            mLost = false;
         }
-        //Iterate over the copy so that if mItems were to be modified, the loop is still valid
-        for (auto item: items)
-        {
-            item->Update(elapsed);
+        if (mFreeze>0) {
+            //Not concerned about a negative freeze time
+            mFreeze -= elapsed;
+        }
+        else {
+            //Make a copy of the items to iterate over
+            std::vector<std::shared_ptr<Item>> items;
+            for (auto item: mItems) {
+                items.push_back(item);
+            }
+            //Iterate over the copy so that if mItems were to be modified, the loop is still valid
+            for (auto item: items) {
+                item->Update(elapsed);
+            }
         }
     }
 }
@@ -485,8 +493,8 @@ void Game::DisplayLoseMessage()
     wstring message = L"You Lose!";
     Game::FreezeScreenMessage(message);
 
-    // reload the level
-    Game::LevelLoad(mLevelNum);
+    Game::FreezeLose(FreezeTime);
+    mLost = true;
 }
 
 /**

@@ -36,6 +36,8 @@ private:
 
     /// Number of seconds to freeze the game for
     double mFreeze = 0;
+    double mFreezeLose = 0;
+    bool mLost = false;
 
     void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
 
@@ -68,6 +70,7 @@ public:
      * @param seconds Number of seconds to freeze the game for
      */
     void Freeze(double seconds){ mFreeze = seconds; }
+    void FreezeLose(double seconds){ mFreezeLose = seconds; }
 
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Update(double elapsed);

@@ -42,7 +42,7 @@ const int GnomeHeight = 200;
 /// Width of Gnome image
 const int GnomeWidth = 108;
 /// the death barrier
-const int DeathHeight = 1024;
+const int DeathHeight = 1124;
 
 /**
  * Constructor
