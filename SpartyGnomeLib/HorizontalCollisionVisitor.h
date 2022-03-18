@@ -16,6 +16,7 @@ private:
 public:
     HorizontalCollisionVisitor(Item* item);
     void VisitDoor(ItemDoor* door) override;
+    void VisitPlatformF(PlatformF* platformF) override;
 
 };
 

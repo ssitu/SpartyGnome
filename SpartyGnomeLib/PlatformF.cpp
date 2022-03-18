@@ -14,6 +14,9 @@ using namespace std;
 
 class Game;
 
+// The default duration if a duration is not specified
+const double DefaultDuration = 0;
+
 /**
  * Testing Constructor
  * @param game Game this item is a member of
@@ -32,6 +35,7 @@ PlatformF::PlatformF(Game* game)
 PlatformF::PlatformF(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
         :Platform(declaration, item, game)
 {
+    item->GetAttribute("duration", to_wstring(DefaultDuration)).ToDouble(&mDuration);
 }
 
 /**
@@ -62,5 +66,35 @@ void PlatformF::Draw(shared_ptr<wxGraphicsContext> gc)
 {
     // Draws same as a normal Platform
     Platform::Draw(gc);
+}
+
+/**
+ * Update function for this item
+ * @param elapsed The time in seconds from the last update call
+ */
+void PlatformF::Update(double elapsed)
+{
+    Item::Update(elapsed);
+    // Start subtracting from mDuration after collision
+    if (mCollided)
+    {
+        // Reduce mDuration by the time elapsed since last update
+        mDuration -= elapsed;
+        // Remove this item if mDuration is negative
+        if (mDuration < 0)
+        {
+            GetGame()->RemoveItem(this);
+        }
+    }
+
+}
+
+/**
+ * Function to call on collision
+ * @param item The item this item collided with
+ */
+void PlatformF::OnCollision(Item* item)
+{
+    mCollided = true;
 }
 

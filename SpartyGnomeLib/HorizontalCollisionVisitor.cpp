@@ -5,6 +5,7 @@
 #include "pch.h"
 #include "HorizontalCollisionVisitor.h"
 #include "ItemDoor.h"
+#include "PlatformF.h"
 
 /**
  * Collision Test for door
@@ -24,4 +25,13 @@ HorizontalCollisionVisitor::HorizontalCollisionVisitor(Item* item)
         :CollisionVisitor(item)
 {
 
+}
+
+/**
+ * Test collisions with a PlatformF
+ * @param platformF The platformF to test collisions with
+ */
+void HorizontalCollisionVisitor::VisitPlatformF(PlatformF* platformF)
+{
+    CollisionVisitor::CollisionTest(platformF);
 }

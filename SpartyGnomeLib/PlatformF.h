@@ -11,6 +11,11 @@
 #include "Platform.h"
 
 class PlatformF : public Platform {
+private:
+    /// The duration in seconds to keep this platform alive for after being collided with
+    double mDuration;
+    /// Indicates if this has been collided with, used to start counting down on the duration
+    bool mCollided = false;
 public:
     /// Default constructor (disabled)
     PlatformF() = delete;
@@ -26,12 +31,6 @@ public:
     PlatformF(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
-     * Check for if platform is fake or not.
-     * @return bool
-     */
-    bool IsF() override { return true; }
-
-    /**
      * Accept a visitor
      * @param visitor Visitor to accept
      */
@@ -39,6 +38,8 @@ public:
 
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
+    void Update(double elapsed) override;
+    void OnCollision(Item* item) override;
 
 };
 

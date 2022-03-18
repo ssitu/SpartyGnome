@@ -200,9 +200,6 @@ public:
     //try adding const
     virtual bool CollisionTest(Item* item);
 
-    virtual bool IsF() { return false; }
-
-
     virtual void OnCollision(Item* item);
 };
 
