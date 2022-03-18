@@ -25,6 +25,13 @@ private:
     /// The pointer to the Game this message is apart of
     Game* mGame;
 
+protected:
+    /**
+     * Setter for the message to display
+     * @param message The new message to use
+     */
+    void SetMessage(std::wstring message) {mMessage = message;}
+
 public:
     /// disabled default constructor
     ItemMessage() = delete;
