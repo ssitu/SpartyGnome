@@ -34,7 +34,7 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitBackground(this);}
 
-    BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item);
+    BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 };
 

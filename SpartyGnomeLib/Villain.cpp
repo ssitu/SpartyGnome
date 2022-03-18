@@ -27,9 +27,10 @@ Villain::Villain(Game* game) : Item(game, villainImageName)
  * The constructor used to load from XML
  * @param declaration The declaration node for this Villain
  * @param item the item node for this Villain
+ * @param game The Game this Item is apart of
  */
-Villain::Villain(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Item(declaration, item)
+Villain::Villain(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Item(declaration, item, game)
 {
 }
 

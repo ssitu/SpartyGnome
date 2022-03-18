@@ -30,9 +30,10 @@ Wall::Wall(Game* game) : Item(game, imageWallName)
  * The constructor used to load from XML
  * @param declaration The declaration node we are pulling from
  * @param item The item node we are pulling from
+ * @param game The Game this Item is apart of
  */
-Wall::Wall(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Item(declaration, item)
+Wall::Wall(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Item(declaration, item, game)
 {
 }
 

@@ -31,7 +31,7 @@ public:
 
     /// New constructors
     Villain(Game* game);
-    Villain(const wxXmlNode* declaration, const wxXmlNode* item);
+    Villain(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * Accept a visitor

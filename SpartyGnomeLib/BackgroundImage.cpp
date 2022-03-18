@@ -22,9 +22,10 @@ BackgroundImage::BackgroundImage(Game* game) : Item(game, BackGroundImageName)
  * The constructor used to load from XML
  * @param declaration The declaration of this item
  * @param item The XML node holding item information
+ * @param game The Game that this Item is apart of
  */
-BackgroundImage::BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Item(declaration, item)
+BackgroundImage::BackgroundImage(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Item(declaration, item, game)
 {
 
 }

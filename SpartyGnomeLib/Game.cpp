@@ -282,35 +282,35 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     // Choose which Item pointer to make based on the type given
     if (type==L"background")
     {
-        loadedItem = make_shared<BackgroundImage>(declaration, item);
+        loadedItem = make_shared<BackgroundImage>(declaration, item, this);
     }
     else if (type==L"platform")
     {
-        loadedItem = make_shared<Platform>(declaration, item);
+        loadedItem = make_shared<Platform>(declaration, item, this);
     }
     else if (type==L"platformf")
     {
-        loadedItem = make_shared<PlatformF>(declaration, item);
+        loadedItem = make_shared<PlatformF>(declaration, item, this);
     }
     else if (type==L"wall")
     {
-        loadedItem = make_shared<Wall>(declaration, item);
+        loadedItem = make_shared<Wall>(declaration, item, this);
     }
     else if (type==L"door")
     {
-        loadedItem = make_shared<ItemDoor>(declaration, item);
+        loadedItem = make_shared<ItemDoor>(declaration, item, this);
     }
     else if (type==L"money")
     {
-        loadedItem = make_shared<ItemMoney>(declaration, item);
+        loadedItem = make_shared<ItemMoney>(declaration, item, this);
     }
     else if (type==L"villain")
     {
-        loadedItem = make_shared<Villain>(declaration, item);
+        loadedItem = make_shared<Villain>(declaration, item, this);
     }
     else if (type==L"tuition-up")
     {
-        loadedItem = make_shared<ItemTuitionUp>(declaration, item);
+        loadedItem = make_shared<ItemTuitionUp>(declaration, item, this);
     }
     else
     {

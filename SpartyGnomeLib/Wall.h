@@ -26,7 +26,7 @@ public:
 
     /// New Constructors
     Wall(Game* game);
-    Wall(const wxXmlNode* declaration, const wxXmlNode* item);
+    Wall(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * Accept a visitor
