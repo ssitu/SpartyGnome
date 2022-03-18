@@ -45,16 +45,14 @@
         <platformf id="i005" x="1317" y="453" width="160" height="32"/>
         <money id="i008" x="2794" y="662"/>
         <platform id="i004" x="3216" y="762" width="480" height="32"/>
-        <money id="i009" x="3392" y="662"/>
         <money id="i009" x="3292" y="662"/>
-        <money id="i009" x="3392" y="562"/>
         <money id="i009" x="3292" y="562"/>
         <money id="i009" x="3292" y="462"/>
+        <money id="i009" x="3392" y="662"/>
+        <money id="i009" x="3392" y="562"/>
         <money id="i009" x="3392" y="462"/>
         <platform id="i004" x="3968" y="762" width="384" height="32"/>
         <wall id="i006" x="3792" y="618" width="32" height="256"/>
-        <platform id="i004" x="6400" y="975" width="480" height="32"/>
-        <door id="i011" x="6528" y="860"/>
         <platform id="i004" x="1850" y="500" width="300" height="32"/>
         <platform id="i004" x="2150" y="800" width="300" height="32"/>
         <villain id="i013" x="2150" y="700"/>
@@ -66,7 +64,13 @@
         <platformf id="i005" x="2794" y="850" width="160" height="32"/>
         <platform id="i004" x="3550" y="320" width="200" height="32"/>
         <platform id="i004" x="3550" y="50" width="200" height="32"/>
-        <wall id="i006" x="3634" y="183" width="32" height="206"/>
+        <wall id="i006" x="3634" y="183" width="32" height="208"/>
+        <tuition-up id="i010" x="3550" y="185"/>
+        <platformf id="i005" x="6400" y="719" width="480" height="32"/>
+        <platform id="i004" x="6400" y="975" width="480" height="32"/>
+        <wall id="i007" x="6176" y="847" width="32" height="224"/>
+        <wall id="i007" x="6624" y="847" width="32" height="224"/>
+        <door id="i011" x="6528" y="860"/>
 
     </items>
 </level>
