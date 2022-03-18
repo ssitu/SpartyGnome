@@ -32,6 +32,8 @@ Villain::Villain(Game* game) : Item(game, villainImageName)
 Villain::Villain(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
         :Item(declaration, item, game)
 {
+    this->SetWidth(120);
+    this->SetHeight(150);
 }
 
 /**
@@ -80,13 +82,5 @@ void Villain::Update(double elapsed)
 }
 
 void Villain::OnCollision(Item* item){
-
-    auto levelnum = GetGame()->GetLevelNum();
-
     this->GetGame()->DisplayLoseMessage();
-
-    //GetGame()->LevelLoad(levelnum);
-
-
-
 }
