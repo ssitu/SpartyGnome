@@ -217,7 +217,6 @@ void ItemSpartyGnome::Update(double elapsed)
 
             // Stop Y motion
             newV.SetY(0);
-
         }
 
         //
