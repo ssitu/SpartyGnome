@@ -181,11 +181,13 @@ void SpartyGnomeView::OnKeyDown(wxKeyEvent& event)
     switch (event.GetKeyCode())
     {
     case WXK_RIGHT:
+    case 'D':
         // right arrow pressed
         mGame.GetGnome()->MoveRight();
         break;
 
     case WXK_LEFT:
+    case 'A':
         // left arrow pressed
         mGame.GetGnome()->MoveLeft();
         break;
@@ -207,9 +209,11 @@ void SpartyGnomeView::OnKeyUp(wxKeyEvent& event)
     switch (event.GetKeyCode())
     {
     case WXK_RIGHT:
+    case 'D':
         mGame.GetGnome()->StopMove();
         break;
     case WXK_LEFT:
+    case 'A':
         // left or right arrow released
         mGame.GetGnome()->StopMove();
         break;
