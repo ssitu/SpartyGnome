@@ -25,6 +25,35 @@ private:
     /// The pointer to the Game this message is apart of
     Game* mGame;
 
+    /// The color of the message to display
+    wxColour mColor;
+
+    /// The font of the message to display
+    wxFont mFont;
+
+protected:
+    /**
+     * Getter for the displayed message
+     * @return The displayed
+     */
+    std::wstring GetMessage() {return mMessage;}
+
+    /**
+     * Setter for the message to display
+     * @param message The new message to use
+     */
+    void SetMessage(std::wstring message) {mMessage = message;}
+
+    /**
+     * Setter for the text RGB color
+     * @param red Red value
+     * @param green Green value
+     * @param blue Blue value
+     */
+    void SetColor(int red, int green, int blue) {mColor = wxColour(red, green, blue); }
+
+    void SetFontSize(int pixelWidth, int pixelHeight);
+
 public:
     /// disabled default constructor
     ItemMessage() = delete;
