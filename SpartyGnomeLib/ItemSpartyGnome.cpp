@@ -213,10 +213,10 @@ void ItemSpartyGnome::Update(double elapsed)
 
             if (mV.Y() < 0) {
                 mV.SetY(-mV.Y());
-            } else {
-                // Stop Y motion
-                newV.SetY(0);
             }
+
+            // Stop Y motion
+            newV.SetY(0);
         }
 
         //
