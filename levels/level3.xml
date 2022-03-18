@@ -80,6 +80,10 @@
         <platform id="i004" x="5920" y="750" width="160" height="32"/>
         <wall id="i006" x="3792" y="650" width="32" height="192"/>
         <platform id="i004" x="4500" y="400" width="128" height="32"/>
+
+
+
+
         <platformf id="i005" x="6400" y="559" width="480" height="32" duration="2"/>
         <platform id="i004" x="6400" y="943" width="480" height="32"/>
         <wall id="i007" x="6176" y="751" width="32" height="352"/>
