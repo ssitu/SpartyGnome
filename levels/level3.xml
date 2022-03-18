@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level width="9216" height="1024" start-y="796" start-x="788">
     <declarations>
+        <background id="i001" image="backgroundCave.png"/>
         <background id="i002" image="backgroundColorDesert.png"/>
         <platform id="i004" left-image="grassLeft.png" mid-image="grassMid.png"
                   right-image="grassRight.png"/>
@@ -26,6 +27,7 @@
         <background id="i002" x="6656" y="512"/>
         <background id="i002" x="7680" y="512"/>
         <background id="i002" x="8704" y="512"/>
+        <background id="i001" x="5000" y="512"/>
         <platform id="i005" x="4608" y="1008" width="9216" height="32"/>
         <platform id="i004" x="1248" y="944" width="1200" height="32"/>
         <wall id="i006" x="656" y="512" width="32" height="1024"/>
@@ -79,7 +81,10 @@
         <tuition-up id="i010" x="3550" y="185"/>
         <platform id="i004" x="5920" y="750" width="160" height="32"/>
         <wall id="i006" x="3792" y="650" width="32" height="192"/>
+        <wall id="i007" x="4500" y="703" width="32" height="576"/>
         <platform id="i004" x="4500" y="400" width="128" height="32"/>
+        <platform id="i005" x="5000" y="16" width="1024" height="32"/>
+        <platform id="i004" x="5000" y="1008" width="1024" height="32"/>
 
 
 
@@ -91,7 +96,6 @@
         <door id="i011" x="6528" y="828"/>
         <platform id="i005" x="6688" y="669" width="96" height="32"/>
         <platform id="i005" x="7008" y="943" width="736" height="32"/>
-        <wall id="i006" x="7392" y="512" width="32" height="1024"/>
         <money id="i008" x="6408" y="360"/>
         <money id="i008" x="6408" y="440"/>
         <money id="i008" x="6504" y="380"/>
@@ -117,6 +121,7 @@
         <money id="i009" x="7344" y="579"/>
         <money id="i009" x="7344" y="679"/>
         <tuition-up id="i010" x="7276" y="800"/>
+        <wall id="i006" x="7392" y="512" width="32" height="1024"/>
 
     </items>
 </level>
