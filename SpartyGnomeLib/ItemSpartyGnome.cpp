@@ -260,6 +260,10 @@ void ItemSpartyGnome::Update(double elapsed)
         SetLocation(newP.X(), newP.Y());
     }
 
+    // After all movement updates, check for collisions with non-solid objects
+    // In the case that an OnCollision would update the gnome position, it would get overwritten before this point
+    GetGame()->HorizontalCollisionTest(this);
+
     if (GetY() >= DeathHeight) {
         DisableGravity();
         this->GetGame()->DisplayLoseMessage();
