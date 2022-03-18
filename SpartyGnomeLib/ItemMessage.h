@@ -19,11 +19,11 @@ private:
     /// The time to display the message for in seconds
     double mDuration;
 
+    /// Boolean to pause the duration
+    bool mPauseDuration = false;
+
     /// The message to display when drawn
     std::wstring mMessage;
-
-    /// The pointer to the Game this message is apart of
-    Game* mGame;
 
     /// The color of the message to display
     wxColour mColor;
@@ -53,6 +53,12 @@ protected:
     void SetColor(int red, int green, int blue) {mColor = wxColour(red, green, blue); }
 
     void SetFontSize(int pixelWidth, int pixelHeight);
+
+    /**
+     * Pause or unpause the duration of the message
+     * @param pause True to pause, false to unpause
+     */
+    void PauseDuration(bool pause) { mPauseDuration = pause; }
 
 public:
     /// disabled default constructor

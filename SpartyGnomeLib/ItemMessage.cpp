@@ -34,7 +34,6 @@ const auto FontWeight = wxFONTWEIGHT_NORMAL;
 ItemMessage::ItemMessage(Game* game, const wstring& message, double duration)
         : Item(game)
 {
-    mGame = game;
     mMessage = message;
     mDuration = duration;
     SetColor(DefaultRed, DefaultGreen, DefaultBlue);
@@ -68,12 +67,14 @@ void ItemMessage::Draw(shared_ptr<wxGraphicsContext> gc)
  */
 void ItemMessage::Update(double elapsed)
 {
-    // Delay timer
-    mDuration -= elapsed;
-    if (mDuration <= 0)
+    if (!mPauseDuration)
     {
-        //Delete this message
-        GetGame()->RemoveItem(this);
+        mDuration -= elapsed;
+        if (mDuration <= 0)
+        {
+            //Delete this message
+            GetGame()->RemoveItem(this);
+        }
     }
 }
 
