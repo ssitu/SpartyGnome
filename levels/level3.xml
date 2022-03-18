@@ -72,7 +72,7 @@
         <platform id="i004" x="3968" y="762" width="384" height="32"/>
         <wall id="i006" x="3792" y="650" width="32" height="192"/>
         <platform id="i004" x="1850" y="500" width="300" height="32"/>
-        <platformf id="i005" x="2794" y="850" width="160" height="32" duration="3"/>
+        <platformf id="i004" x="2794" y="850" width="160" height="32" duration="3"/>
         <platform id="i004" x="3550" y="320" width="200" height="32"/>
         <platform id="i004" x="3550" y="50" width="200" height="32"/>
         <wall id="i006" x="3634" y="183" width="32" height="208"/>
@@ -85,28 +85,32 @@
         <door id="i011" x="6528" y="828"/>
         <platform id="i005" x="6688" y="669" width="96" height="32"/>
         <platform id="i005" x="7008" y="943" width="736" height="32"/>
-        <wall id="i006" x="7376" y="512" width="32" height="1024"/>
+        <wall id="i006" x="7392" y="512" width="32" height="1024"/>
         <tuition-up id="i010" x="7276" y="800"/>
+        <money id="i008" x="6408" y="360"/>
+        <money id="i008" x="6408" y="440"/>
+        <money id="i008" x="6504" y="380"/>
+        <money id="i008" x="6504" y="420"/>
+        <money id="i008" x="6600" y="400"/>
+        <money id="i009" x="6704" y="779"/>
         <money id="i009" x="6704" y="879"/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
-        <money id="i009" x="" y=""/>
+        <money id="i009" x="6832" y="679"/>
+        <money id="i009" x="6832" y="779"/>
+        <money id="i009" x="6832" y="879"/>
+        <money id="i009" x="6960" y="679"/>
+        <money id="i009" x="6960" y="779"/>
+        <money id="i009" x="6960" y="879"/>
+        <money id="i009" x="7088" y="579"/>
+        <money id="i009" x="7088" y="679"/>
+        <money id="i009" x="7088" y="779"/>
+        <money id="i009" x="7088" y="879"/>
+        <money id="i009" x="7216" y="479"/>
+        <money id="i009" x="7216" y="579"/>
+        <money id="i009" x="7216" y="679"/>
+        <money id="i009" x="7344" y="379"/>
+        <money id="i009" x="7344" y="479"/>
+        <money id="i009" x="7344" y="579"/>
+        <money id="i009" x="7344" y="679"/>
 
     </items>
 </level>
