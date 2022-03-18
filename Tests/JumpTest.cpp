@@ -1,5 +1,5 @@
 /**
- * @file JumpTest.cpp
+ * @file GravityTest.cpp
  * @author ryanl
  */
 
@@ -10,16 +10,16 @@
 
 #include "gtest/gtest.h"
 
-TEST(JumpTest,Jump)
+TEST(GravityTest,Gravity)
 {
-    Game game;
-    std::shared_ptr<ItemSpartyGnome> gnome = game.GetGnome();
+    Game* game = new Game();
+    ItemSpartyGnome gnome(game);
 
-    gnome->Jump();
-    ASSERT_TRUE(gnome->GravityCheck());
-    gnome->DisableGravity();
-    ASSERT_FALSE(gnome->GravityCheck());
-    gnome->Jump();
-    ASSERT_TRUE(gnome->GravityCheck());
+    gnome.EnableGravity();
+    ASSERT_TRUE(gnome.GravityCheck());
+    gnome.DisableGravity();
+    ASSERT_FALSE(gnome.GravityCheck());
+    gnome.EnableGravity();
+    ASSERT_TRUE(gnome.GravityCheck());
 
 }
