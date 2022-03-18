@@ -33,6 +33,9 @@ Item::Item(Game *game, const wstring &filename) : mGame(game)
     mItemBitmap = game->GetBitmap(filename);
 }
 
+void Item::OnCollision(Item* item){
+
+}
 /**
  * Constructor for the item with only the Game pointer
  * @param game The Game this is apart of
@@ -196,7 +199,7 @@ bool Item::HitTest(int x, int y)
  * @param item The other item to test collision with
  * @return True if there is a collision, false otherwise
  */
-const bool Item::CollisionTest(Item* item) const
+bool Item::CollisionTest(Item* item)
 {
     // Border for the item
     auto itemLeft = item->GetX()-item->GetWidth()/2;

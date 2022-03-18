@@ -10,6 +10,7 @@
 #include "PlatformF.h"
 #include "Game.h"
 #include "ItemSpartyGnome.h"
+#include "ItemDoor.h"
 
 using namespace std;
 
@@ -250,6 +251,7 @@ void ItemSpartyGnome::Update(double elapsed)
         // Update the velocity and position
         mV = newV;
         SetLocation(newP.X(), newP.Y());
+        GetGame()->HorizontalCollisionTest(this);
     }
 
     if (GetY() >= DeathHeight) {

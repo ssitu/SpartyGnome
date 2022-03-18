@@ -20,6 +20,7 @@
 #include "DrawStaticVisitor.h"
 #include "DrawScrollingVisitor.h"
 #include "SolidCollisionVisitor.h"
+#include "HorizontalCollisionVisitor.h"
 #include "ItemMessage.h"
 #include "DrawMessagesVisitor.h"
 
@@ -299,6 +300,7 @@ void Game::LoadXmlItem(const std::unordered_map<wxString,
     else if (type==L"door")
     {
         loadedItem = make_shared<ItemDoor>(declaration, item, this);
+        loadedItem->SetGame(this);
     }
     else if (type==L"money")
     {
@@ -402,6 +404,21 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
     return nullptr;
 }
 
+void Game::HorizontalCollisionTest(Item* item){
+
+    HorizontalCollisionVisitor visitor(item);
+    for (auto oItem: mItems)
+    {
+        if(oItem.get()!= item) {
+            oItem->Accept(&visitor);
+            if (visitor.IsColliding()) {
+                oItem->OnCollision(item);
+            }
+        }
+    }
+
+}
+
 /**
  * Loads the default level
  */
@@ -419,8 +436,11 @@ void Game::LevelLoad(int levelNum)
     // Clear the game
     Game::Clear();
     // Store the level number for reloading level upon death
-    mLevelNum = levelNum;
+    //mLevelNum = levelNum;
 
+    //mLevelNum = levelNum;
+    //setting the level number
+    Game::SetLevelNum(levelNum);
     // create directory to load
     wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
 

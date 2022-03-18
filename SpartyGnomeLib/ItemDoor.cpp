@@ -77,3 +77,17 @@ bool ItemDoor::CollisionTest(Item* item)
 
     return false;
 }
+
+void ItemDoor::OnCollision(Item* item){
+
+    auto levelnum = GetGame()->GetLevelNum();
+    if (levelnum == 1 || levelnum == 2){
+
+        GetGame()->LevelLoad(levelnum+1);
+    }
+    if (levelnum == 3){
+        GetGame()->LevelLoad(1);
+    }
+
+
+}

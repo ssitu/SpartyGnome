@@ -34,7 +34,7 @@ bool CollisionVisitor::IsColliding()
  * Performs a collision test with the given item and the stored item
  * @param item Item to test with
  */
-void CollisionVisitor::CollisionTest(const Item& item)
+void CollisionVisitor::CollisionTest(Item* item)
 {
-    mCollision = item.CollisionTest(mItem);
+    mCollision = item->CollisionTest(mItem);
 }

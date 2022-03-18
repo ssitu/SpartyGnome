@@ -191,11 +191,19 @@ public:
      */
     Game* GetGame() { return mGame; }
 
+    void SetGame(Game* game){mGame = game;}
+
     virtual std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2);
     virtual bool HitTest(int x, int y);
     virtual void Accept(ItemVisitor* visitor) = 0;
-    virtual const bool CollisionTest(Item* item) const;
+
+    //try adding const
+    virtual bool CollisionTest(Item* item);
+
     virtual bool IsF() { return false; }
+
+
+    virtual void OnCollision(Item* item);
 };
 
 #endif //SPARTYGNOME_ITEM_H

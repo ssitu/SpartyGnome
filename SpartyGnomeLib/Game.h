@@ -80,6 +80,11 @@ public:
     void LevelLoad(const std::wstring& filename);
     void LevelLoad(int levelNum);
     void LevelLoadDefault();
+
+
+
+    int GetLevelNum() {return mLevelNum;}
+    void SetLevelNum(int levelNumber){mLevelNum = levelNumber;}
     void Save(const wxString &filename);
     std::shared_ptr<Item> VerticalCollisionTest(Item* item);
     std::shared_ptr<wxBitmap> GetBitmap(const std::wstring &filename);
@@ -87,6 +92,8 @@ public:
     void DisplayStartMessage(int levelNum);
     void RemoveItem(Item* item);
     void DisplayLoseMessage();
+
+    void HorizontalCollisionTest(Item* item);
 };
 
 #endif //SPARTYGNOME_GAME_H

@@ -2,14 +2,14 @@
  * @file ItemDoor.h
  * @author ashre, Gabriel Misajlovski
  *
- * ItemDoor Class
+ *
  */
 
 #ifndef SPARTYGNOME_ITEMDOOR_H
 #define SPARTYGNOME_ITEMDOOR_H
 
 #include "Item.h"
-
+#include "Game.h"
 /**
  * ItemDoor Class
  */
@@ -37,8 +37,8 @@ public:
     void Accept(ItemVisitor* visitor) override {visitor->VisitDoor(this);}
 
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-    bool CollisionTest(Item* item);
-
+    bool CollisionTest(Item* item) override;
+    virtual void OnCollision(Item* item) override;
 };
 
 #endif //SPARTYGNOME_ITEMDOOR_H

@@ -25,7 +25,7 @@ private:
     Item* mItem;
 
 protected:
-    void CollisionTest(const Item& item);
+    void CollisionTest(Item* item);
 
 public:
     CollisionVisitor(Item* item);

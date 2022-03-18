@@ -239,6 +239,7 @@ void SpartyGnomeView::OnFileSaveas(wxCommandEvent& event)
  */
 void SpartyGnomeView::OnFileOpen(wxCommandEvent& event)
 {
+    mGame.GetGnome()->DisableGravity();
     wxFileDialog loadFileDialog(this, _("Load Level file"), "levels", "",
             "", wxFD_OPEN);
     if (loadFileDialog.ShowModal() == wxID_CANCEL)
