@@ -207,12 +207,12 @@ void ItemSpartyGnome::Update(double elapsed)
 
             // If we collide, we cancel any velocity
             // in the Y direction
-            if (mV.Y()>0 && collided->IsF()) {
+            if (mV.Y()>=0 && collided->IsF()) {
                 GetGame()->RemoveItem(collided.get());
             }
 
             if (mV.Y() < 0) {
-                newV.SetY(-mV.Y());
+                mV.SetY(-mV.Y());
             } else {
                 // Stop Y motion
                 newV.SetY(0);
