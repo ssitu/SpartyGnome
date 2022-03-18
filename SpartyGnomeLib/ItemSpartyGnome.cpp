@@ -191,10 +191,6 @@ void ItemSpartyGnome::Update(double elapsed)
         //
         SetLocation(p.X(), newP.Y());
 
-        // Before setting the gnome to a non-collision location after colliding with a solid object,
-        // Test for collisions and call the OnCollision functions for all items
-        GetGame()->HorizontalCollisionTest(this);
-
         // Test for collision
         auto collided = GetGame()->VerticalCollisionTest(this);
         if (collided != nullptr)
@@ -226,11 +222,6 @@ void ItemSpartyGnome::Update(double elapsed)
         // Try updating the X location
         //
         SetLocation(newP.X(), p.Y());
-
-
-        // Before setting the gnome to a non-collision location after colliding with a solid object,
-        // Test for collisions and call the OnCollision functions for all items
-        GetGame()->HorizontalCollisionTest(this);
 
         // Test for collision
         collided = GetGame()->VerticalCollisionTest(this);

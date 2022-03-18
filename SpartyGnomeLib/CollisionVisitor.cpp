@@ -38,3 +38,15 @@ void CollisionVisitor::CollisionTest(Item* item)
 {
     mCollision = item->CollisionTest(mItem);
 }
+
+/**
+ * Calls the given item's OnCollision function if there is a collision
+ * @param item The item to call OnCollision on if a collision test has tested true
+ */
+void CollisionVisitor::OnCollision(Item* item)
+{
+    if (mCollision)
+    {
+        item->OnCollision(mItem);
+    }
+}

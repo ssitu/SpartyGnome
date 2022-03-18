@@ -27,6 +27,7 @@ SolidCollisionVisitor::SolidCollisionVisitor(Item* item)
 void SolidCollisionVisitor::VisitWall(Wall* wall)
 {
     CollisionVisitor::CollisionTest(wall);
+    CollisionVisitor::OnCollision(wall);
 }
 
 /**
@@ -36,6 +37,7 @@ void SolidCollisionVisitor::VisitWall(Wall* wall)
 void SolidCollisionVisitor::VisitPlatform(Platform* platform)
 {
     CollisionVisitor::CollisionTest(platform);
+    CollisionVisitor::OnCollision(platform);
 }
 
 /**
@@ -45,6 +47,7 @@ void SolidCollisionVisitor::VisitPlatform(Platform* platform)
 void SolidCollisionVisitor::VisitPlatformF(PlatformF* platformF)
 {
     CollisionVisitor::CollisionTest(platformF);
+    CollisionVisitor::OnCollision(platformF);
 }
 
 

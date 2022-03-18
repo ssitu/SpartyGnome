@@ -27,6 +27,14 @@ private:
 protected:
     void CollisionTest(Item* item);
 
+    /**
+     * Getter for the item that this visitor is testing with
+     * @return The item this visitor is testing collisions with
+     */
+    Item* GetItemTestee() { return mItem; }
+
+    void OnCollision(Item* item);
+
 public:
     CollisionVisitor(Item* item);
     bool IsColliding();
