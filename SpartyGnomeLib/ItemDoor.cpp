@@ -24,11 +24,12 @@ ItemDoor::ItemDoor(Game* game) : Item(game, DoorImageName)
 
 /**
  * The constructor used to load from XML
- * @param declaration The declaration of this item
- * @param item
+ * @param declaration The declaration xml node
+ * @param item The item xml node
+ * @param game The Game that this Item is apart of
  */
-ItemDoor::ItemDoor(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Item(declaration, item)
+ItemDoor::ItemDoor(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Item(declaration, item, game)
 {
 
 }

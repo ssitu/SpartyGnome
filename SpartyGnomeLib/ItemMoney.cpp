@@ -21,9 +21,10 @@ ItemMoney::ItemMoney(Game* game) : Item(game, MoneyImageName)
  * The constructor used to load from XML
  * @param declaration The declaration of this item
  * @param item The XML node holding item information
+ * @param game The Game that this item is apart of
  */
-ItemMoney::ItemMoney(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Item(declaration, item)
+ItemMoney::ItemMoney(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Item(declaration, item, game)
 {
     // get value of this money item
     declaration->GetAttribute(L"value", L"0").ToDouble(&mValue);

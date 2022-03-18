@@ -21,9 +21,10 @@ ItemTuitionUp::ItemTuitionUp(Game* game) : Item(game, TuitionUpImageName)
  * The constructor used to load from XML
  * @param declaration The declaration node of this item
  * @param item The item node of this item
+ * @param game The Game that this item is apart of
  */
-ItemTuitionUp::ItemTuitionUp(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Item(declaration, item)
+ItemTuitionUp::ItemTuitionUp(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Item(declaration, item, game)
 {
 
 }

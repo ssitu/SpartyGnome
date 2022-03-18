@@ -28,7 +28,7 @@ public:
     ItemDoor(Game* game);
 
     /// XML constructor
-    ItemDoor(const wxXmlNode* declaration, const wxXmlNode* item);
+    ItemDoor(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * Accept a visitor

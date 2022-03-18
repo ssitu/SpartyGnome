@@ -52,7 +52,7 @@ protected:
     // Constructors
     Item(Game *game, const std::wstring &filename);
     Item(Game *game);
-    Item(const wxXmlNode* declaration, const wxXmlNode* item);
+    Item(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * this is a constructor strictly for testing purposes of Platform

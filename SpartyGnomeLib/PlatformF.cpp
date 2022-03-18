@@ -27,9 +27,10 @@ PlatformF::PlatformF(Game* game)
  * Xml Load constructor
  * @param declaration declarationNode to pull from
  * @param item itemNode to pull from
+ * @param game The Game that this item is apart of
  */
-PlatformF::PlatformF(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Platform(declaration, item)
+PlatformF::PlatformF(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Platform(declaration, item, game)
 {
 }
 

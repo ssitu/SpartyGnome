@@ -34,9 +34,10 @@ Platform::Platform(Game* game)
  * The constructor used to load from XML
  * @param declaration The declaration of this item
  * @param item The XML node holding item information
+ * @param game The Game that this item is apart of
  */
-Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item)
-        :Item(declaration, item)
+Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
+        :Item(declaration, item, game)
 {
     //Load the left image
     auto image = make_shared<wxImage>(

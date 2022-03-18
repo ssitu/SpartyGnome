@@ -27,8 +27,6 @@ const wxFont TextFont(wxSize(10, 120),
  * @param game The game this message is apart of
  * @param message The message to display
  * @param duration The number of seconds to keep the message displayed
- * @param x The x location of the center of this message
- * @param y The y location of the center of this message
  */
 ItemMessage::ItemMessage(Game* game, const wstring& message, double duration)
         : Item(game)

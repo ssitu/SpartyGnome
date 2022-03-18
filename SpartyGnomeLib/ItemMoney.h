@@ -30,7 +30,7 @@ public:
 
     /// New constructor
     ItemMoney(Game* game);
-    ItemMoney(const wxXmlNode* declaration, const wxXmlNode* item);
+    ItemMoney(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * Accept a visitor

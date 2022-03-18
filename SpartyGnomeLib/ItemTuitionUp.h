@@ -26,7 +26,7 @@ public:
 
     /// New constructors
     ItemTuitionUp(Game* game);
-    ItemTuitionUp(const wxXmlNode* declaration, const wxXmlNode* item);
+    ItemTuitionUp(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * Accept a visitor

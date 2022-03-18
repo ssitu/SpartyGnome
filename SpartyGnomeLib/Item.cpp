@@ -45,10 +45,12 @@ Item::Item(Game* game)
 /**
  * The constructor to create an item from loading an XML file
  * @param declaration The item tag in the declaration section
- * @param item TThe item tag in the item section
+ * @param item The item tag in the item section
+ * @param game The Game this Item is apart of
  */
-Item::Item(const wxXmlNode* declaration, const wxXmlNode* item)
+Item::Item(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
 {
+    mGame = game;
     // Example format:
     // declaration: <background id="i001" image="backgroundForest.png"/>
     // item: <background id="i001" x="512" y="512"/>

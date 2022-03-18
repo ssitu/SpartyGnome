@@ -23,7 +23,7 @@ public:
 
     /// New constructors
     PlatformF(Game* game);
-    PlatformF(const wxXmlNode* declaration, const wxXmlNode* item);
+    PlatformF(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * Check for if platform is fake or not.

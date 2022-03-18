@@ -46,7 +46,7 @@ public:
 
     /// Constructors
     Platform(Game* game);
-    Platform(const wxXmlNode* declaration, const wxXmlNode* item);
+    Platform(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
 
     /**
      * Accept a visitor
