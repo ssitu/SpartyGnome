@@ -10,7 +10,7 @@
 #define SPARTYGNOME_VILLAIN_H
 
 #include "Item.h"
-
+#include "Game.h"
 /**
  * The villain class
  */
@@ -42,6 +42,7 @@ public:
     std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2) override;
     void Update(double elapsed) override;
 
+    void OnCollision(Item* item);
 };
 
 #endif //SPARTYGNOME_VILLAIN_H

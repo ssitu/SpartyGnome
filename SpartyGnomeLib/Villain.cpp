@@ -78,3 +78,15 @@ void Villain::Update(double elapsed)
     }
 
 }
+
+void Villain::OnCollision(Item* item){
+
+    auto levelnum = GetGame()->GetLevelNum();
+
+    this->GetGame()->DisplayLoseMessage();
+
+    //GetGame()->LevelLoad(levelnum);
+
+
+
+}

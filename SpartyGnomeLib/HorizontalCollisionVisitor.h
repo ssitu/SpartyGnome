@@ -18,6 +18,7 @@ public:
     void VisitDoor(ItemDoor* door) override;
     void VisitPlatformF(PlatformF* platformF) override;
 
+    void VisitVillain(Villain* villain);
 };
 
 #endif //SPARTYGNOME_HORIZONTALCOLLISIONVISITOR_H

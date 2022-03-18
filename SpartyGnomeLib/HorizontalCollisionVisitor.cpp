@@ -5,6 +5,7 @@
 #include "pch.h"
 #include "HorizontalCollisionVisitor.h"
 #include "ItemDoor.h"
+#include "Villain.h"
 #include "PlatformF.h"
 
 /**
@@ -16,7 +17,9 @@ void HorizontalCollisionVisitor::VisitDoor(ItemDoor* door)
     CollisionVisitor::CollisionTest(door);
 }
 
-
+void HorizontalCollisionVisitor::VisitVillain(Villain* villain) {
+    CollisionVisitor::CollisionTest(villain);
+}
 /**
  * Constructor for this visitor
  * @param item Item to check collisions with
