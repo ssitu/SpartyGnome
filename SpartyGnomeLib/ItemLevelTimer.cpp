@@ -99,11 +99,6 @@ void ItemLevelTimer::Update(double elapsed)
     ItemMessage::Update(elapsed);
     IncrementTime(elapsed);
     ItemMessage::SetMessage(FormatTime());
-//    auto gnome = GetGame()->GetGnome();
-//    auto gnomeX = gnome->GetX();
-//    auto scale = GetGame()->GetScale();
-//    auto centerX = 400 / scale;
-//    SetLocation(gnomeX - centerX, 100);
     auto newX = GetGame()->GetScreenToWorldX(ScreenX);
     auto newY = ScreenY;
     SetLocation(newX, newY);
