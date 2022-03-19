@@ -399,8 +399,10 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
     // Create a visitor to test collisions.
     SolidCollisionVisitor visitor(item);
 
+    auto itemsSafe(mItems);
+
     // Iterate over the items in the game
-    for (auto oItem : mItems)
+    for (auto oItem : itemsSafe)
     {
         // Accept the visitor into each item
         oItem->Accept(&visitor);
