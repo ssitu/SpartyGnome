@@ -21,6 +21,7 @@ class BackgroundImage;
 class ItemMoney;
 class ItemTuitionUp;
 class ItemMessage;
+class ItemLevelTimer;
 
 /**
  * The visitor class for item objects
@@ -86,6 +87,12 @@ public:
      * @param message ItemMessage to visit
      */
     virtual void VisitMessage(ItemMessage* message) {}
+
+    /**
+     * Visit a ItemLevelTimer
+     * @param timer The ItemLevelTimer to visit
+     */
+    virtual void VisitItemLevelTimer(ItemLevelTimer* timer) {}
 };
 
 #endif //SPARTYGNOME_ITEMVISITOR_H

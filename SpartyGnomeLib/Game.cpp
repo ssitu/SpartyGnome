@@ -23,6 +23,7 @@
 #include "HorizontalCollisionVisitor.h"
 #include "ItemMessage.h"
 #include "DrawMessagesVisitor.h"
+#include "ItemLevelTimer.h"
 
 using namespace std;
 
@@ -76,28 +77,30 @@ void Game::OnDraw(shared_ptr<wxGraphicsContext> graphics, int width, int height)
     // Draw in virtual pixels on the graphics context
     //
 
-    // Draw static items
-    DrawStaticVisitor staticDrawer(graphics);
-    Game::Accept(&staticDrawer);
 
+//    // Draw static items
+//    DrawStaticVisitor staticDrawer(graphics);
+//    Game::Accept(&staticDrawer);
+
+    double xOffset = 0;
     // There must be a gnome, but avoid crash if there isn't
     if (mGnome != nullptr)
     {
-        auto xOffset = (double) -mGnome->GetX()+virtualWidth/2.0f;
-        graphics->Translate(xOffset, 0);
+        xOffset = (double) -mGnome->GetX()+virtualWidth/2.0f;
     }
+    graphics->Translate(xOffset, 0);
 
     // Draw scrolling items
     DrawScrollingVisitor scrollingDrawer(graphics);
     Game::Accept(&scrollingDrawer);
 
+
     // Draw Gnome last, so that it stays on top of other items
     mGnome->Draw(graphics);
 
-    //Will need messages to stay on top of everything
+    // Will need messages to stay on top of everything
     DrawMessagesVisitor messagesVisitor(graphics);
     Game::Accept(&messagesVisitor);
-
     graphics->PopState();
 }
 
@@ -220,7 +223,7 @@ void Game::LevelLoad(const wstring& filename)
         return;
     }
 
-    this->Clear();
+    Reset();
 
     // Get the root node, should be level
     auto root = xml.GetRoot();
@@ -265,6 +268,8 @@ void Game::LevelLoad(const wstring& filename)
     // Use the loaded start location
     mGnome->DisableGravity();
     mGnome->SetLocation(mStartX, mStartY);
+
+    Setup();
 }
 
 /**
@@ -415,7 +420,8 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
 void Game::HorizontalCollisionTest(Item* item){
 
     HorizontalCollisionVisitor visitor(item);
-    for (auto oItem: mItems)
+    auto itemsSafe(mItems);
+    for (auto oItem: itemsSafe)
     {
         if(oItem.get()!= item) {
             oItem->Accept(&visitor);
@@ -526,5 +532,35 @@ std::shared_ptr<wxBitmap> Game::GetBitmap(const std::wstring &filename){
     // Return the corresponding bitmap for this image file
     return BitMaps.at(filename);
 }
+
+/**
+ * Resets the game to initial conditions
+ */
+void Game::Reset()
+{
+    Clear();
+}
+
+/**
+ * Setup the game, assuming level is loaded
+ */
+ void Game::Setup()
+{
+     // Create the level timer
+     auto timer = make_shared<ItemLevelTimer>(this);
+     Add(timer);
+}
+
+/**
+ * Get the world x position of the given center offset
+ * @param x The x offset from the center of the screen to convert
+ * @return The world x coordinate
+ */
+int Game::GetScreenToWorldX(int x)
+{
+    auto actualX = x / mScale;
+    return GetGnome()->GetX() + actualX;
+}
+
 
 

@@ -21,6 +21,7 @@ private:
 
 public:
     DrawStaticVisitor(std::shared_ptr<wxGraphicsContext> gc);
+    void VisitItemLevelTimer(ItemLevelTimer* timer) override;
 };
 
 #endif //SPARTYGNOME_DRAWSTATICVISITOR_H

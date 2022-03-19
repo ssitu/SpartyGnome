@@ -70,6 +70,11 @@ public:
      * @param seconds Number of seconds to freeze the game for
      */
     void Freeze(double seconds){ mFreeze = seconds; }
+
+    /**
+     * Freezes the lose screen for the given amount of time in seconds
+     * @param seconds Number of seconds to freeze the game for
+     */
     void FreezeLose(double seconds){ mFreezeLose = seconds; }
 
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
@@ -83,9 +88,9 @@ public:
     void LevelLoad(const std::wstring& filename);
     void LevelLoad(int levelNum);
     void LevelLoadDefault();
-
-
-
+    void Reset();
+    void Setup();
+    int GetScreenToWorldX(int x);
     int GetLevelNum() {return mLevelNum;}
     void SetLevelNum(int levelNumber){mLevelNum = levelNumber;}
     void Save(const wxString &filename);
@@ -97,6 +102,7 @@ public:
     void DisplayLoseMessage();
 
     void HorizontalCollisionTest(Item* item);
+
 };
 
 #endif //SPARTYGNOME_GAME_H

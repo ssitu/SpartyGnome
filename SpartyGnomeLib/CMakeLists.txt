@@ -7,7 +7,7 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnome
         DrawScrollingVisitor.cpp DrawScrollingVisitor.h ItemVisitor.h
         DrawStaticVisitor.cpp DrawStaticVisitor.h CollisionVisitor.cpp CollisionVisitor.h
         SolidCollisionVisitor.cpp SolidCollisionVisitor.h PlatformF.cpp PlatformF.h
-        ItemMessage.cpp ItemMessage.h DrawMessagesVisitor.cpp DrawMessagesVisitor.h HorizontalCollisionVisitor.cpp HorizontalCollisionVisitor.h)
+        ItemMessage.cpp ItemMessage.h DrawMessagesVisitor.cpp DrawMessagesVisitor.h HorizontalCollisionVisitor.cpp HorizontalCollisionVisitor.h ItemLevelTimer.cpp ItemLevelTimer.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
