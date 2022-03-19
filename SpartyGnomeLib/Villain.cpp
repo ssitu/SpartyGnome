@@ -83,5 +83,5 @@ void Villain::Update(double elapsed)
 }
 
 void Villain::OnCollision(Item* item){
-    //this->GetGame()->DisplayLoseMessage();
+    this->GetGame()->DisplayLoseMessage();
 }

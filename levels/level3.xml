@@ -28,12 +28,13 @@
         <background id="i002" x="7680" y="512"/>
         <background id="i002" x="8704" y="512"/>
         <background id="i001" x="5000" y="512"/>
-        <platform id="i005" x="4608" y="1008" width="9216" height="32"/>
+
         <platform id="i004" x="1248" y="944" width="1200" height="32"/>
         <wall id="i006" x="656" y="512" width="32" height="1024"/>
         <villain id="i013" x="1017" y="853"/>
         <villain id="i012" x="1317" y="853"/>
         <villain id="i013" x="1617" y="853"/>
+
         <money id="i008" x="1167" y="592"/>
         <money id="i008" x="1467" y="592"/>
         <money id="i008" x="1767" y="592"/>
@@ -43,6 +44,7 @@
         <money id="i008" x="1167" y="792"/>
         <money id="i008" x="1467" y="792"/>
         <money id="i008" x="1767" y="792"/>
+
         <platformf id="i005" x="1317" y="453" width="160" height="32" duration="0"/>
         <tuition-up id="i010" x="1317" y="348"/>
         <platform id="i004" x="1850" y="500" width="300" height="32"/>
@@ -55,6 +57,7 @@
         <platformf id="i004" x="2794" y="850" width="160" height="32" duration="3"/>
         <money id="i008" x="2794" y="662"/>
         <wall id="i006" x="2992" y="618" width="32" height="256"/>
+
         <money id="i008" x="2450" y="220"/>
         <money id="i008" x="2550" y="220"/>
         <money id="i008" x="2650" y="220"/>
@@ -66,29 +69,61 @@
         <money id="i008" x="2450" y="460"/>
         <money id="i008" x="2550" y="460"/>
         <money id="i008" x="2650" y="460"/>
+
         <platform id="i004" x="3216" y="762" width="480" height="32"/>
         <villain id="i012" x="3126" y="672"/>
+
         <money id="i008" x="3292" y="662"/>
         <money id="i009" x="3292" y="562"/>
         <money id="i008" x="3292" y="462"/>
         <money id="i008" x="3392" y="662"/>
         <money id="i009" x="3392" y="562"/>
         <money id="i008" x="3392" y="462"/>
-        <platform id="i004" x="3968" y="762" width="384" height="32"/>
+
+        <wall id="i006" x="3634" y="183" width="32" height="235"/>
         <platform id="i004" x="3550" y="320" width="200" height="32"/>
         <platform id="i004" x="3550" y="50" width="200" height="32"/>
-        <wall id="i006" x="3634" y="183" width="32" height="208"/>
         <tuition-up id="i010" x="3550" y="185"/>
-        <platform id="i004" x="5920" y="750" width="160" height="32"/>
         <wall id="i006" x="3792" y="650" width="32" height="192"/>
-        <wall id="i007" x="4500" y="703" width="32" height="576"/>
-        <platform id="i004" x="4500" y="400" width="128" height="32"/>
+        <wall id="i007" x="4504" y="703" width="32" height="576"/>
+        <wall id="i007" x="4504" y="96" width="32" height="128"/>
+        <platform id="i004" x="4504" y="400" width="128" height="32"/>
+        <platformf id="i005" x="4728" y="400" width="320" height="32" duration="0.5"/>
+        <platformf id="i005" x="5048" y="400" width="320" height="32" duration="0.5"/>
+        <platformf id="i005" x="5020" y="584" width="320" height="32" duration="0.5"/>
+        <platformf id="i005" x="5320" y="584" width="320" height="32" duration="0.5"/>
+        <wall id="i007" x="4856" y="908" width="32" height="176"/>
+        <wall id="i007" x="5144" y="908" width="32" height="176"/>
+        <platform id="i004" x="5000" y="808" width="320" height="32"/>
         <platform id="i005" x="5000" y="16" width="1024" height="32"/>
         <platform id="i004" x="5000" y="1008" width="1024" height="32"/>
+        <wall id="i007" x="5496" y="321" width="32" height="576"/>
 
+        <money id="i008" x="4500" y="300"/>
+        <money id="i008" x="4625" y="200"/>
+        <money id="i008" x="4750" y="300"/>
+        <money id="i008" x="4825" y="200"/>
+        <money id="i008" x="5000" y="300"/>
+        <money id="i008" x="5125" y="200"/>
 
+        <money id="i009" x="5432" y="100"/>
+        <money id="i009" x="5432" y="200"/>
 
+        <money id="i009" x="4604" y="450"/>
+        <money id="i009" x="4604" y="550"/>
 
+        <money id="i008" x="4807" y="440"/>
+        <money id="i008" x="4932" y="540"/>
+        <money id="i008" x="5075" y="440"/>
+        <money id="i008" x="5182" y="540"/>
+        <money id="i008" x="5307" y="440"/>
+        <money id="i008" x="5432" y="540"/>
+
+        <money id="i009" x="5332" y="700"/>
+        <money id="i009" x="5332" y="800"/>
+        <money id="i009" x="5332" y="900"/>
+
+        <platform id="i004" x="5920" y="750" width="160" height="32"/>
         <platformf id="i005" x="6400" y="559" width="480" height="32" duration="2"/>
         <platform id="i004" x="6400" y="943" width="480" height="32"/>
         <wall id="i007" x="6176" y="751" width="32" height="352"/>
@@ -96,6 +131,7 @@
         <door id="i011" x="6528" y="828"/>
         <platform id="i005" x="6688" y="669" width="96" height="32"/>
         <platform id="i005" x="7008" y="943" width="736" height="32"/>
+
         <money id="i008" x="6408" y="360"/>
         <money id="i008" x="6408" y="440"/>
         <money id="i008" x="6504" y="380"/>
@@ -121,6 +157,7 @@
         <money id="i009" x="7344" y="579"/>
         <money id="i009" x="7344" y="679"/>
         <tuition-up id="i010" x="7276" y="800"/>
+
         <wall id="i006" x="7392" y="512" width="32" height="1024"/>
 
     </items>
