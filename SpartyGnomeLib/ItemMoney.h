@@ -9,7 +9,7 @@
 #define SPARTYGNOME_ITEMMONEY_H
 
 #include "Item.h"
-
+#include "Vector.h"
 /**
  * ItemMoney class
  */
@@ -17,9 +17,13 @@ class ItemMoney : public Item {
 private:
     /// How much this money item is worth upon collection
     double mValue = 0;
-
-public:
+    ///Y velocity of money
+    Vector mM;
     /// disabled default constructor
+public:
+
+
+
     ItemMoney() = delete;
 
     /// disabled copy
@@ -39,7 +43,10 @@ public:
     void Accept(ItemVisitor* visitor) override {visitor->VisitMoney(this);}
 
 
+
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
+
+
 };
 
 #endif //SPARTYGNOME_ITEMMONEY_H

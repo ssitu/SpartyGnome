@@ -19,7 +19,7 @@ class Game;
 class Item {
 private:
     /// The game this item is contained in
-    Game *mGame;
+
 
     /// Path of the image file
     std::wstring mPath;
@@ -49,6 +49,7 @@ private:
     std::shared_ptr<wxBitmap> mItemBitmap;
 
 protected:
+    Game *mGame;
     // Constructors
     Item(Game *game, const std::wstring &filename);
     Item(Game *game);

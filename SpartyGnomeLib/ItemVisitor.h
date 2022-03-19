@@ -22,7 +22,7 @@ class ItemMoney;
 class ItemTuitionUp;
 class ItemMessage;
 class ItemLevelTimer;
-
+class ItemScoreBoard;
 /**
  * The visitor class for item objects
  */
@@ -93,6 +93,8 @@ public:
      * @param timer The ItemLevelTimer to visit
      */
     virtual void VisitItemLevelTimer(ItemLevelTimer* timer) {}
+
+    virtual void VisitItemScoreBoard(ItemScoreBoard* scoreboard) {}
 };
 
 #endif //SPARTYGNOME_ITEMVISITOR_H

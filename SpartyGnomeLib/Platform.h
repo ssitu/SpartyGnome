@@ -60,6 +60,8 @@ public:
      */
     virtual bool IsF() { return false; }
 
+
+
     std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
     bool HitTest(int x, int y) override { return Item::HitTest(x, y); }

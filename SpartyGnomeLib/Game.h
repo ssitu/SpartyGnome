@@ -21,6 +21,10 @@ private:
     /// A member to hold the level number for reloading levels upon death
     int mLevelNum;
 
+    ///score of level
+    int score=0;
+
+
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
     /// All of the images
@@ -100,7 +104,10 @@ public:
     void DisplayStartMessage(int levelNum);
     void RemoveItem(Item* item);
     void DisplayLoseMessage();
-
+    void IncrementScore();
+    void ResetScore();
+    void DisplayScoreBoard();
+    void SetScoreBoard(const std::wstring& message);
     void HorizontalCollisionTest(Item* item);
 
 };

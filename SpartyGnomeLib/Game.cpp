@@ -24,6 +24,7 @@
 #include "ItemMessage.h"
 #include "DrawMessagesVisitor.h"
 #include "ItemLevelTimer.h"
+#include "ItemScoreBoard.h"
 
 using namespace std;
 
@@ -549,6 +550,8 @@ void Game::Reset()
      // Create the level timer
      auto timer = make_shared<ItemLevelTimer>(this);
      Add(timer);
+     auto scoreboard = make_shared<ItemScoreBoard>(this);
+     Add(scoreboard);
 }
 
 /**

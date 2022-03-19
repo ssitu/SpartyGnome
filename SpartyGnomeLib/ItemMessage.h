@@ -60,6 +60,8 @@ protected:
      */
     void PauseDuration(bool pause) { mPauseDuration = pause; }
 
+
+
 public:
     /// disabled default constructor
     ItemMessage() = delete;

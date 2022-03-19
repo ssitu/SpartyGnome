@@ -9,6 +9,7 @@
 
 #include "ItemMoney.h"
 
+
 using namespace std;
 
 const wstring MoneyImageName = L"images/money100.png";
@@ -59,4 +60,7 @@ pair<wxXmlNode*, wxXmlNode*> ItemMoney::XmlSave(wxXmlNode *node1, wxXmlNode *nod
 
     return make_pair(itemNode, nullptr);
 }
+
+
+
 

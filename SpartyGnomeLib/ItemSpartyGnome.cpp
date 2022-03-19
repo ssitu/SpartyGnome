@@ -78,6 +78,8 @@ void ItemSpartyGnome::MoveRight()
     if (mV.X() >= 0) {
         // move right
         mV.SetX(HorizontalSpeed);
+
+
     }
 
 }
