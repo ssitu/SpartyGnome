@@ -86,8 +86,28 @@ void ItemMessage::Update(double elapsed)
  * @param pixelWidth The width to draw for each pixel of the font
  * @param pixelHeight The height to draw for each pixel of the font
  */
-void ItemMessage::SetFontSize(int pixelWidth, int pixelHeight)
+void ItemMessage::SetFontSize(double pixelWidth, double pixelHeight)
 {
-    wxSize fontSize(pixelWidth, pixelHeight);
+    mFontPixelWidth = pixelWidth;
+    mFontPixelHeight = pixelHeight;
+    wxSize fontSize(mFontPixelWidth, mFontPixelHeight);
     mFont = wxFont(fontSize, FontFamily, FontStyle, FontWeight);
+}
+
+/**
+ * Getter for the font pixel width
+ * @return The font pixel width
+ */
+double ItemMessage::GetFontWidth()
+{
+    return mFontPixelWidth;
+}
+
+/**
+ * Getter for the font pixel height
+ * @return The font pixel height
+ */
+double ItemMessage::GetFontHeight()
+{
+    return mFontPixelHeight;
 }

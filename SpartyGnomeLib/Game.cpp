@@ -25,6 +25,7 @@
 #include "DrawMessagesVisitor.h"
 #include "ItemLevelTimer.h"
 #include "ItemScoreBoard.h"
+#include "ItemMessageAnimated.h"
 
 using namespace std;
 

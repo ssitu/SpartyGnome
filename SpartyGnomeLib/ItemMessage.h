@@ -10,6 +10,7 @@
 #define SPARTYGNOME_ITEMMESSAGE_H
 
 #include "Item.h"
+#include "Vector.h"
 
 /**
  * The item that will display a message on the screen
@@ -31,6 +32,12 @@ private:
     /// The font of the message to display
     wxFont mFont;
 
+    /// The font pixel width
+    double mFontPixelWidth;
+
+    /// The font pixel height;
+    double mFontPixelHeight;
+
 protected:
     /**
      * Getter for the displayed message
@@ -44,15 +51,9 @@ protected:
      */
     void SetMessage(std::wstring message) {mMessage = message;}
 
-    /**
-     * Setter for the text RGB color
-     * @param red Red value
-     * @param green Green value
-     * @param blue Blue value
-     */
-    void SetColor(int red, int green, int blue) {mColor = wxColour(red, green, blue); }
-
-    void SetFontSize(int pixelWidth, int pixelHeight);
+    void SetFontSize(double pixelWidth, double pixelHeight);
+    double GetFontWidth();
+    double GetFontHeight();
 
     /**
      * Pause or unpause the duration of the message
@@ -88,6 +89,14 @@ public:
      * @param visitor Visitor to accept
      */
     virtual void Accept(ItemVisitor* visitor) override {visitor->VisitMessage(this);}
+
+    /**
+     * Setter for the text RGB color
+     * @param red Red value
+     * @param green Green value
+     * @param blue Blue value
+     */
+    void SetColor(int red, int green, int blue) {mColor = wxColour(red, green, blue); }
 
     virtual void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
