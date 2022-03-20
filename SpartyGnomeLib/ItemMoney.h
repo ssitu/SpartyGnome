@@ -20,6 +20,8 @@ private:
     ///Y velocity of money
     Vector mM;
     /// disabled default constructor
+    bool mMoneyIncrease = false;
+    double mSpeedY = -600;
 public:
 
 
@@ -46,7 +48,9 @@ public:
 
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 
+    void OnCollision(Item* item);
 
+    void Update(double elapsed);
 };
 
 #endif //SPARTYGNOME_ITEMMONEY_H

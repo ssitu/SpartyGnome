@@ -13,6 +13,8 @@ using namespace std;
 
 const wstring TuitionUpImageName = L"images/stanley.png";
 
+const int RemoveHeight = 1174;
+
 ItemTuitionUp::ItemTuitionUp(Game* game) : Item(game, TuitionUpImageName)
 {
 }
@@ -58,4 +60,23 @@ pair<wxXmlNode*, wxXmlNode*> ItemTuitionUp::XmlSave(wxXmlNode *node1, wxXmlNode 
 
     // return just the itemNode
     return make_pair(itemNode, nullptr);
+}
+
+void ItemTuitionUp::OnCollision(Item *item){
+    //GetGame()->IncrementScore();
+    mTuitionIncrease = true;
+}
+
+void ItemTuitionUp::Update(double elapsed){
+
+    if (mTuitionIncrease){
+
+        Item::Update(elapsed);
+        SetLocation(GetX(),GetY()+mSpeedY*elapsed);
+
+
+//        }
+    }
+
+
 }

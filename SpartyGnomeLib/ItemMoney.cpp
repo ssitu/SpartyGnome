@@ -61,6 +61,23 @@ pair<wxXmlNode*, wxXmlNode*> ItemMoney::XmlSave(wxXmlNode *node1, wxXmlNode *nod
     return make_pair(itemNode, nullptr);
 }
 
+void ItemMoney::OnCollision(Item *item){
+    //GetGame()->IncrementScore();
+    mMoneyIncrease = true;
+}
 
+void ItemMoney::Update(double elapsed){
+
+    if (mMoneyIncrease){
+
+        Item::Update(elapsed);
+        SetLocation(GetX(),GetY()+mSpeedY*elapsed);
+
+
+//        }
+    }
+
+
+}
 
 

@@ -9,11 +9,15 @@
 #define SPARTYGNOME_ITEMTUITIONUP_H
 
 #include "Item.h"
-
+#include "Game.h"
 /**
  * TuitionUp class
  */
 class ItemTuitionUp : public Item {
+private:
+    double mSpeedY = 600;
+
+    bool mTuitionIncrease = false;
 public:
     /// disabled default constructor
     ItemTuitionUp() = delete;
@@ -35,6 +39,10 @@ public:
     void Accept(ItemVisitor* visitor) override {visitor->VisitTuitionUp(this);}
 
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
+
+    void OnCollision(Item* item);
+
+    void Update(double elapsed) override;
 };
 
 #endif //SPARTYGNOME_ITEMTUITIONUP_H

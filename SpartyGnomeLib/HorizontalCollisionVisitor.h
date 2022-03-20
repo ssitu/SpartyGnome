@@ -19,6 +19,10 @@ public:
     void VisitPlatformF(PlatformF* platformF) override;
 
     void VisitVillain(Villain* villain);
+
+    void VisitTuitionUp(ItemTuitionUp* tu);
+
+    void VisitMoney(ItemMoney* money);
 };
 
 #endif //SPARTYGNOME_HORIZONTALCOLLISIONVISITOR_H

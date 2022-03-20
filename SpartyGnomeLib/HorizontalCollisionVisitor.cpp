@@ -7,6 +7,8 @@
 #include "ItemDoor.h"
 #include "Villain.h"
 #include "PlatformF.h"
+#include "ItemTuitionUp.h"
+#include "ItemMoney.h"
 
 /**
  * Collision Test for door
@@ -19,6 +21,14 @@ void HorizontalCollisionVisitor::VisitDoor(ItemDoor* door)
 
 void HorizontalCollisionVisitor::VisitVillain(Villain* villain) {
     CollisionVisitor::CollisionTest(villain);
+}
+
+void HorizontalCollisionVisitor::VisitTuitionUp(ItemTuitionUp* tu) {
+    CollisionVisitor::CollisionTest(tu);
+}
+
+void HorizontalCollisionVisitor::VisitMoney(ItemMoney* money) {
+    CollisionVisitor::CollisionTest(money);
 }
 /**
  * Constructor for this visitor
