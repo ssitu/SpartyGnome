@@ -165,7 +165,7 @@ void ItemSpartyGnome::Update(double elapsed)
                 if (mCount >= 0.04)
                 {
                     // Set the counter to 0
-                    mCount = mCount-0.04;
+                    mCount = 0;
 
                     // set switch to opposite
                     mSwitch = !mSwitch;
