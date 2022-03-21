@@ -82,8 +82,8 @@ void ItemDoor::OnCollision(Item* item){
 
     auto levelnum = GetGame()->GetLevelNum();
     if (levelnum == 1 || levelnum == 2){
-
-        GetGame()->LevelLoad(levelnum+1);
+        GetGame()->SetLevelNum(levelnum+1);
+        GetGame()->DisplayWinMessage();
     }
     if (levelnum == 3){
         GetGame()->LevelLoad(1);

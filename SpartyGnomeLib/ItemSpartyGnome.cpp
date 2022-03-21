@@ -116,52 +116,9 @@ void ItemSpartyGnome::Update(double elapsed)
 {
     // Call Item::Update
     Item::Update(elapsed);
-    // if switch is true
-    if (mSwitch)
-    {
-        // increment counter
-        mCount++;
-
-        // if the counter is >= 5
-        if (mCount >= 5)
-        {
-            // Set the counter to 0
-            mCount = 0;
-
-            // set switch to false
-            mSwitch = false;
-        }
-    }
-    // If switch is false
-    else
-    {
-        // Counter +=1
-        mCount++;
-
-        // if counter >= 5
-        if (mCount >= 5)
-        {
-            // set counter to 0
-            mCount = 0;
-
-            // set switch to true
-            mSwitch = true;
-        }
-    }
 
     // if gravity is enabled...
     if (mGravityEnable) {
-        // if the Y velocity is 0...
-        if (mV.Y() == 0)
-        {
-            // Gnome is not jumping
-            mCheckJump = false;
-        }
-        else
-        {
-            // Gnome is jumping
-            mCheckJump = true;
-        }
 
         // Gravity
         // Compute a new velocity with gravity added in.
@@ -200,6 +157,38 @@ void ItemSpartyGnome::Update(double elapsed)
             if (newV.Y()>0) {
                 // We are falling, stop at the collision point
                 newP.SetY(collided->GetY()-collided->GetHeight()/2-GetHeight()/2-Epsilon);
+                // if switch is true
+                if (mSwitch)
+                {
+                    // increment counter
+                    mCount++;
+
+                    // if the counter is >= 10
+                    if (mCount >= 10)
+                    {
+                        // Set the counter to 0
+                        mCount = 0;
+
+                        // set switch to false
+                        mSwitch = false;
+                    }
+                }
+                    // If switch is false
+                else
+                {
+                    // Counter +=1
+                    mCount++;
+
+                    // if counter >= 10
+                    if (mCount >= 10)
+                    {
+                        // set counter to 0
+                        mCount = 0;
+
+                        // set switch to true
+                        mSwitch = true;
+                    }
+                }
 
             }
             else {
@@ -272,22 +261,12 @@ void ItemSpartyGnome::AnimateGnomeRight()
     std::shared_ptr<wxBitmap> mRight1 = GetGame()->GetBitmap(SpartyGnomeRight1);
     std::shared_ptr<wxBitmap> mRight2 = GetGame()->GetBitmap(SpartyGnomeRight2);
 
-    // The Gnome is not jumping, changing
-    if (!mCheckJump)
-    {
-        if (mSwitch) {
-            SetBitmap(mRight1);
-        }
-        else {
-            SetBitmap(mRight2);
-        }
-    }
-    // The Gnome is jumping, constant
-    else
-    {
+    if (mSwitch) {
         SetBitmap(mRight1);
     }
-
+    else {
+        SetBitmap(mRight2);
+    }
 }
 
 /**
@@ -299,23 +278,12 @@ void ItemSpartyGnome::AnimateGnomeLeft()
     std::shared_ptr<wxBitmap> mLeft1 = GetGame()->GetBitmap(SpartyGnomeLeft1);
     std::shared_ptr<wxBitmap> mLeft2 = GetGame()->GetBitmap(SpartyGnomeLeft2);
 
-    // The Gnome is not jumping, changing
-    if (!mCheckJump)
-    {
-        if (mSwitch) {
-            SetBitmap(mLeft1);
-        }
-        else if (!mSwitch) {
-            SetBitmap(mLeft2);
-        }
-    }
-
-    // The Gnome is jumping, constant
-    else
-    {
+    if (mSwitch) {
         SetBitmap(mLeft1);
     }
-
+    else {
+        SetBitmap(mLeft2);
+    }
 }
 
 /**

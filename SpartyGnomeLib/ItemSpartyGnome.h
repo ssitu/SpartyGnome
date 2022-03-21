@@ -21,8 +21,6 @@ private:
 
     /// Checker for switch
     bool mSwitch = true;
-    /// Checker for jump
-    bool mCheckJump = false;
 
     /// Counter
     int mCount = 0;

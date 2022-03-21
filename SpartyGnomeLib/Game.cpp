@@ -130,16 +130,17 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
  */
 void Game::Update(double elapsed)
 {
-    if (mFreezeLose > 0)
+    if (mFreezeLoseWin > 0)
     {
-        mFreezeLose -= elapsed;
+        mFreezeLoseWin -= elapsed;
     }
     else
     {
-        if (mLost == true)
+        if (mLost == true || mWin == true)
         {
             Game::LevelLoad(mLevelNum);
             mLost = false;
+            mWin = false;
         }
         if (mFreeze>0) {
             //Not concerned about a negative freeze time
@@ -503,8 +504,20 @@ void Game::DisplayLoseMessage()
     wstring message = L"You Lose!";
     Game::FreezeScreenMessage(message);
 
-    Game::FreezeLose(FreezeTime);
+    Game::FreezeLoseWin(FreezeTime);
     mLost = true;
+}
+
+/**
+ * Display the win message
+ */
+void Game::DisplayWinMessage()
+{
+    wstring message = L"Level Complete!";
+    Game::FreezeScreenMessage(message);
+
+    Game::FreezeLoseWin(FreezeTime);
+    mWin = true;
 }
 
 /**

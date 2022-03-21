@@ -41,8 +41,9 @@ private:
 
     /// Number of seconds to freeze the game for
     double mFreeze = 0;
-    double mFreezeLose = 0;
+    double mFreezeLoseWin = 0;
     bool mLost = false;
+    bool mWin = false;
 
     void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
 
@@ -78,10 +79,10 @@ public:
     void Freeze(double seconds){ mFreeze = seconds; }
 
     /**
-     * Freezes the lose screen for the given amount of time in seconds
+     * Freezes the lose/win screen for the given amount of time in seconds
      * @param seconds Number of seconds to freeze the game for
      */
-    void FreezeLose(double seconds){ mFreezeLose = seconds; }
+    void FreezeLoseWin(double seconds){ mFreezeLoseWin = seconds; }
 
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Update(double elapsed);
@@ -106,6 +107,7 @@ public:
     void DisplayStartMessage(int levelNum);
     void RemoveItem(Item* item);
     void DisplayLoseMessage();
+    void DisplayWinMessage();
     void IncrementScore();
     void ResetScore();
     void DisplayScoreBoard();
