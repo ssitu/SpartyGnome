@@ -39,7 +39,7 @@ TEST(GameTest, VerticalCollisionTest)
     item->SetHeight(100);
     game.Add(item);
 
-    //Place gnome in the center of every coordinate in the item's area
+    //Place the center of the gnome in every coordinate in the item's area
     int startX = item->GetX() - item->GetWidth() / 2;
     int startY = item->GetY() - item->GetHeight() / 2;
     int endX = item->GetX() + item->GetWidth() / 2;
@@ -49,7 +49,8 @@ TEST(GameTest, VerticalCollisionTest)
         for (int y = startY; y < endY; y++)
         {
             gnome->SetLocation(x, y);
-            ASSERT_EQ(item, game.VerticalCollisionTest(gnome.get()));
+            auto collision = game.VerticalCollisionTest(gnome.get());
+            ASSERT_EQ(item, collision);
         }
     }
 

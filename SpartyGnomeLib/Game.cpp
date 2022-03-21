@@ -40,10 +40,10 @@ const double FreezeTime = 2;
 
 Game::Game()
 {
-    // Clear the game to make sure it is empty
-    Game::Clear();
     //Add SpartyGnome
     mGnome = make_shared<ItemSpartyGnome>(this);
+    //Add to the list
+    mItems.push_back(mGnome);
 }
 
 /**
