@@ -23,7 +23,7 @@ private:
     bool mSwitch = true;
 
     /// Counter
-    int mCount = 0;
+    double mCount = 0;
 
 public:
     /// Default constructor (disabled)

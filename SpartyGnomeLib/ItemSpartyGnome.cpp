@@ -157,37 +157,18 @@ void ItemSpartyGnome::Update(double elapsed)
             if (newV.Y()>0) {
                 // We are falling, stop at the collision point
                 newP.SetY(collided->GetY()-collided->GetHeight()/2-GetHeight()/2-Epsilon);
-                // if switch is true
-                if (mSwitch)
+
+                // increment counter
+                mCount += elapsed;
+
+                // if the counter is >= 0.4, (Distance per second = 200 pixels/500 pixel speed = 0.4)
+                if (mCount >= 0.4)
                 {
-                    // increment counter
-                    mCount++;
+                    // Set the counter to 0
+                    mCount = mCount-0.4;
 
-                    // if the counter is >= 8, assuming 2 for every 50 pixels.
-                    if (mCount >= 8)
-                    {
-                        // Set the counter to 0
-                        mCount = 0;
-
-                        // set switch to false
-                        mSwitch = false;
-                    }
-                }
-                    // If switch is false
-                else
-                {
-                    // Counter +=1
-                    mCount++;
-
-                    // if counter >= 8
-                    if (mCount >= 8)
-                    {
-                        // set counter to 0
-                        mCount = 0;
-
-                        // set switch to true
-                        mSwitch = true;
-                    }
+                    // set switch to opposite
+                    mSwitch = !mSwitch;
                 }
 
             }
