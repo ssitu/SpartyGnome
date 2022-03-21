@@ -553,8 +553,8 @@ void Game::Reset()
      // Create the level timer
      auto timer = make_shared<ItemLevelTimer>(this);
      Add(timer);
-     auto scoreboard = make_shared<ItemScoreBoard>(this);
-     Add(scoreboard);
+     mBoard = make_shared<ItemScoreBoard>(this);
+     Add(mBoard);
 }
 
 /**
@@ -567,6 +567,14 @@ int Game::GetScreenToWorldX(int x)
     auto actualX = x / mScale;
     return GetGnome()->GetX() + actualX;
 }
+//void Game::IncrementScore(int score1){
+//
+//}
 
+void Game::CallScoreBoard(int x){
+    //auto scoreboard= make_shared<ItemScoreBoard>(this);
+
+    mBoard->IncrementScore(x);
+}
 
 

@@ -24,6 +24,7 @@ private:
     ///score of level
     int score=0;
 
+    double mScore = 0;
 
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
@@ -34,7 +35,7 @@ private:
 
     /// Pointer to the gnome, given at level load
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;
-
+    std::shared_ptr<ItemScoreBoard> mBoard = nullptr;
     long mStartY = 512;       ///<gnome x start location in pixels
     long mStartX = 512;       ///<gnome y start location in pixels
 
@@ -45,7 +46,7 @@ private:
 
     void LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item);
 
-    void Accept(ItemVisitor* visitor);
+
 
 public:
     /// Constructor
@@ -57,6 +58,7 @@ public:
      */
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
+    //std::shared_ptr<ItemScoreBoard> GetBoard() {return mBoard;}
     /**
      * Returns the number of items loaded in the game
      * @return The number of items
@@ -110,6 +112,10 @@ public:
     void SetScoreBoard(const std::wstring& message);
     void HorizontalCollisionTest(Item* item);
 
+    void CallScoreBoard(int x);
+
+    void IncrementScore(int score);
+    void Accept(ItemVisitor* visitor);
 };
 
 #endif //SPARTYGNOME_GAME_H

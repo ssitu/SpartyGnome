@@ -13,7 +13,7 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnome
         ItemLevelTimer.cpp ItemLevelTimer.h
         ItemMessageAnimated.cpp ItemMessageAnimated.h
         ItemScoreBoard.cpp ItemScoreBoard.h
-        )
+        MoneyValueVisitor.cpp MoneyValueVisitor.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

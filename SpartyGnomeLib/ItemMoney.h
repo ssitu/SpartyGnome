@@ -10,6 +10,7 @@
 
 #include "Item.h"
 #include "Vector.h"
+#include "Game.h"
 /**
  * ItemMoney class
  */
@@ -21,7 +22,9 @@ private:
     Vector mM;
     /// disabled default constructor
     bool mMoneyIncrease = false;
-    double mSpeedY = -600;
+    double mSpeedY = -1000;
+
+    bool mCollided = false;
 public:
 
 
@@ -51,6 +54,10 @@ public:
     void OnCollision(Item* item);
 
     void Update(double elapsed);
+
+    void SetValue(double moneyValue);
+
+    int GetValue(){return mValue;}
 };
 
 #endif //SPARTYGNOME_ITEMMONEY_H

@@ -21,12 +21,12 @@ private:
 
 
     std::wstring FormatTime();
-    void IncrementScore();
+
 
 public:
     ItemScoreBoard(Game* game);
     void Update(double elapsed) override;
-
+    void IncrementScore(int score);
 };
 
 

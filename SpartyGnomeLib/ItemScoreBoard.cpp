@@ -55,8 +55,8 @@ std::wstring ItemScoreBoard::FormatTime()
  * Increment the time by the given seconds
  * @param seconds The time to add to the stored time
  */
- void ItemScoreBoard::IncrementScore(){
-     mScore+=100;
+ void ItemScoreBoard::IncrementScore(int score){
+     mScore+=score;
  }
 
 

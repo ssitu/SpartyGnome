@@ -13,7 +13,7 @@
 using namespace std;
 
 const wstring MoneyImageName = L"images/money100.png";
-
+const int scoreValue = 100;
 ItemMoney::ItemMoney(Game* game) : Item(game, MoneyImageName)
 {
 }
@@ -63,7 +63,13 @@ pair<wxXmlNode*, wxXmlNode*> ItemMoney::XmlSave(wxXmlNode *node1, wxXmlNode *nod
 
 void ItemMoney::OnCollision(Item *item){
     //GetGame()->IncrementScore();
-    mMoneyIncrease = true;
+    if(!mCollided){
+        mMoneyIncrease = true;
+        GetGame()->CallScoreBoard(mValue);
+        mCollided = true;
+    }
+
+
 }
 
 void ItemMoney::Update(double elapsed){
@@ -78,6 +84,10 @@ void ItemMoney::Update(double elapsed){
     }
 
 
+}
+
+void ItemMoney::SetValue(double moneyValue){
+    mValue = moneyValue;
 }
 
 

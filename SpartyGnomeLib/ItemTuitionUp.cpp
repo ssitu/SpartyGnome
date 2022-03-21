@@ -8,12 +8,14 @@
 #include <string>
 
 #include "ItemTuitionUp.h"
-
+#include "MoneyValueVisitor.h"
 using namespace std;
 
 const wstring TuitionUpImageName = L"images/stanley.png";
-
+const int scoreValue = 1000;
 const int RemoveHeight = 1174;
+
+const double ValueFactor = 0.1;
 
 ItemTuitionUp::ItemTuitionUp(Game* game) : Item(game, TuitionUpImageName)
 {
@@ -64,7 +66,16 @@ pair<wxXmlNode*, wxXmlNode*> ItemTuitionUp::XmlSave(wxXmlNode *node1, wxXmlNode 
 
 void ItemTuitionUp::OnCollision(Item *item){
     //GetGame()->IncrementScore();
-    mTuitionIncrease = true;
+    if(!mCollided){
+
+        mTuitionIncrease = true;
+        //ItemScoreBoard::IncrementScore();
+
+        mCollided = true;
+        MoneyValueVisitor visitor(ValueFactor);
+        GetGame()->Accept(&visitor);
+    }
+
 }
 
 void ItemTuitionUp::Update(double elapsed){

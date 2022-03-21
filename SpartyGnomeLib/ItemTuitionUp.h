@@ -10,6 +10,8 @@
 
 #include "Item.h"
 #include "Game.h"
+#include "ItemScoreBoard.h"
+
 /**
  * TuitionUp class
  */
@@ -18,6 +20,7 @@ private:
     double mSpeedY = 600;
 
     bool mTuitionIncrease = false;
+    bool mCollided = false;
 public:
     /// disabled default constructor
     ItemTuitionUp() = delete;
