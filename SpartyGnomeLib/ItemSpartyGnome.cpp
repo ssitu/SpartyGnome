@@ -161,11 +161,11 @@ void ItemSpartyGnome::Update(double elapsed)
                 // increment counter
                 mCount += elapsed;
 
-                // if the counter is >= 0.4, (Distance per second = 200 pixels/500 pixel speed = 0.4)
-                if (mCount >= 0.4)
+                // if the counter is >= 0.04, (20 pixels/500 pixel speed = 0.04)
+                if (mCount >= 0.04)
                 {
                     // Set the counter to 0
-                    mCount = mCount-0.4;
+                    mCount = mCount-0.04;
 
                     // set switch to opposite
                     mSwitch = !mSwitch;
