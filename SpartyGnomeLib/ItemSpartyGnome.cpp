@@ -163,8 +163,8 @@ void ItemSpartyGnome::Update(double elapsed)
                     // increment counter
                     mCount++;
 
-                    // if the counter is >= 10
-                    if (mCount >= 10)
+                    // if the counter is >= 8, assuming 2 for every 50 pixels.
+                    if (mCount >= 8)
                     {
                         // Set the counter to 0
                         mCount = 0;
@@ -179,8 +179,8 @@ void ItemSpartyGnome::Update(double elapsed)
                     // Counter +=1
                     mCount++;
 
-                    // if counter >= 10
-                    if (mCount >= 10)
+                    // if counter >= 8
+                    if (mCount >= 8)
                     {
                         // set counter to 0
                         mCount = 0;
