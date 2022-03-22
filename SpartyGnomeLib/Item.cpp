@@ -177,6 +177,7 @@ bool Item::HitTest(int x, int y)
         // We are outside the image
         return false;
     }
+    return true;
 }
 
 /**

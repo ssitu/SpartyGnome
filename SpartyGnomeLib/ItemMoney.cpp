@@ -11,19 +11,23 @@
 
 
 using namespace std;
-///the default image
+/// The default image
 const wstring MoneyImageName = L"money100.png";
-///Message for a $100 bill
-const wstring Message100 = L"$100";
-///message for a 1000$ bill
-const wstring Message1000 = L"$1000";
-///duration for which the message is displayed on collision
+/// The value of a 100 bill
+const int Money100Value = 100;
+/// The value of a 1000 bill
+const int Money1000Value = 1000;
+/// Message for a $100 bill
+const wstring Money100Message = L"$" + std::to_wstring(Money100Value);
+/// Message for a 1000$ bill
+const wstring Money1000Message = L"$" + std::to_wstring(Money1000Value);
+/// Duration for which the message is displayed on collision
 const double Duration = 4;
-///width of message
+/// Width of message
 const int FontWidth = 25;
-///height of message
+/// Height of message
 const int FontHeight = 25;
-///velocity of message
+/// Velocity of message
 const Vector MessageVelocity = Vector(0, -1000);
 
 /**
@@ -91,14 +95,16 @@ void ItemMoney::OnCollision(Item *item)
         mCollided = true;
         if (mValue >= 100 && mValue < 1000)
         {
-            std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), Message100, Duration,
+            auto animatedMessage = std::make_shared<ItemMessageAnimated>(
+                    GetGame(), Money100Message, Duration,
                     FontWidth, FontHeight, MessageVelocity);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
         else
         {
-            std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated>(GetGame(),
-                    Message1000, Duration,FontWidth, FontHeight, MessageVelocity);
+            auto animatedMessage = std::make_shared<ItemMessageAnimated>(
+                    GetGame(),Money1000Message, Duration,
+                    FontWidth, FontHeight, MessageVelocity);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
     }
