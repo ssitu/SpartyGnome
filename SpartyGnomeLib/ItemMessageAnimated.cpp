@@ -37,7 +37,7 @@ ItemMessageAnimated::ItemMessageAnimated(Game* game, const std::wstring& message
     :ItemMessageAnimated(game, message, duration, fontWidth, fontHeight)
 {
     mVelocity = velocity;
-    ItemMessage::SetColor(56,91,67);
+    ItemMessage::SetColor(56,91,67); ///< Color for money (dark green)
 }
 
 /**
@@ -55,7 +55,7 @@ ItemMessageAnimated::ItemMessageAnimated(Game* game, const std::wstring& message
         :ItemMessageAnimated(game, message, duration, fontWidth, fontHeight, velocity)
 {
     mAcceleration = acceleration;
-    ItemMessage::SetColor(57,149,32);
+    ItemMessage::SetColor(57,149,32); ///< Color for tuition (bright green)
 }
 
 /**

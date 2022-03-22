@@ -1,7 +1,7 @@
 /**
  * @file Villain.h
  * 
- * @author Simon Situ, Gabriel Misajlovski
+ * @author Simon Situ, Gabriel Misajlovski, ryanl
  *
  * The villain class
  */
