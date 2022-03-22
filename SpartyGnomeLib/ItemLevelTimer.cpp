@@ -8,17 +8,21 @@
 #include "Game.h"
 #include "ItemLevelTimer.h"
 
-/// Constants for units of time
+/// Constant for Seconds in a minute
 const double SecondsInMinute = 60;
+/// Constant for Minutes in an hour
 const int MinutesInHour = 60;
+/// Constant for Hours in a day
 const int HoursInDay = 24;
 
-/// Font Constants
+/// Constant Font Width size
 const int FontWidth = 10;
+/// Constant Font Height size
 const int FontHeight = 50;
 
-/// Screen Position Constants
+/// Screen X size
 const int ScreenX = -400;
+/// Screen Y size
 const int ScreenY = 50;
 
 /**
