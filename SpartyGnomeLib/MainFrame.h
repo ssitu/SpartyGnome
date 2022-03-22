@@ -1,6 +1,6 @@
 /**
  * @file MainFrame.h
- * @author Gabriel Misajlovski
+ * @author Gabriel Misajlovski, ryanl
  *
  * Declaration of MainFrame
  */

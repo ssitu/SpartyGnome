@@ -47,11 +47,6 @@ public:
     void Stop() { mTimer.Stop(); }
 
     void Initialize(wxFrame* parent);
-    // void OnAddSpartyGnome(wxCommandEvent& event);
-    // void OnAddPlatform(double x, double y);
-    void OnLeftDown(wxMouseEvent &event);
-    void OnLeftUp(wxMouseEvent &event);
-    void OnMouseMove(wxMouseEvent &event);
     void OnKeyDown(wxKeyEvent &event);
     void OnKeyUp(wxKeyEvent &event);
     void OnFileSaveas(wxCommandEvent& event);
