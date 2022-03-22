@@ -11,13 +11,19 @@
 
 
 using namespace std;
-
+///the default image
 const wstring MoneyImageName = L"money100.png";
+///Message for a $100 bill
 const wstring Message100 = L"$100";
+///message for a 1000$ bill
 const wstring Message1000 = L"$1000";
+///duration for which the message is displayed on collision
 const double Duration = 4;
+///width of message
 const int FontWidth = 25;
+///height of message
 const int FontHeight = 25;
+///velocity of message
 Vector Velocity = Vector(0, -1000);
 
 /**
