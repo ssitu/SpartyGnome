@@ -45,6 +45,7 @@ const int GnomeWidth = 108;
 /**
  * Constructor
  * @param game Game this item is a member of
+ * @param SpartyGnomeImageName The default image (idle) of the gnome
  */
 ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 {
@@ -55,7 +56,7 @@ ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 
 /**
  * Jump Event Handler
- * @author Gabriel Misajlovski
+ * Make the gnome jump
  */
 void ItemSpartyGnome::Jump()
 {
@@ -68,7 +69,7 @@ void ItemSpartyGnome::Jump()
 
 /**
  * Move Right Event Handler
- * @author ryanl
+ * Move the gnome right
  */
 void ItemSpartyGnome::MoveRight()
 {
@@ -76,15 +77,12 @@ void ItemSpartyGnome::MoveRight()
     if (mV.X() >= 0) {
         // move right
         mV.SetX(HorizontalSpeed);
-
-
     }
-
 }
 
 /**
  * Move Left Event Handler
- * @author ryanl
+ * Move the gnome left
  */
 void ItemSpartyGnome::MoveLeft()
 {
@@ -98,7 +96,7 @@ void ItemSpartyGnome::MoveLeft()
 
 /**
  * Stop Move Event Handler
- * @author ryanl
+ * Stop the Gnome
  */
 void ItemSpartyGnome::StopMove()
 {
@@ -234,7 +232,7 @@ void ItemSpartyGnome::Update(double elapsed)
 
 /**
  * Animate Right Event Handler
- * @author ryanl
+ * Animates Gnome to the Right
  */
 void ItemSpartyGnome::AnimateGnomeRight()
 {
@@ -251,7 +249,7 @@ void ItemSpartyGnome::AnimateGnomeRight()
 
 /**
  * Animate Left Event Handler
- * @author ryanl
+ * Animates Gnome to the left
  */
 void ItemSpartyGnome::AnimateGnomeLeft()
 {
@@ -270,7 +268,7 @@ void ItemSpartyGnome::AnimateGnomeLeft()
 
 /**
  * Animate Stop Event Handler
- * @author ryanl
+ * Animates Gnome to its idle animation
  */
 void ItemSpartyGnome::AnimateStop()
 {
