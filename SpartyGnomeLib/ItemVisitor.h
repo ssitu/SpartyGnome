@@ -9,7 +9,6 @@
 #ifndef SPARTYGNOME_ITEMVISITOR_H
 #define SPARTYGNOME_ITEMVISITOR_H
 
-
 /// Forward references to all item types
 class ItemSpartyGnome;
 class Platform;
@@ -95,6 +94,10 @@ public:
      */
     virtual void VisitItemLevelTimer(ItemLevelTimer* timer) {}
 
+    /**
+     * Visit a ItemScoreBoard
+     * @param scoreboard The ItemScoreBoard to visit
+     */
     virtual void VisitItemScoreBoard(ItemScoreBoard* scoreboard) {}
 };
 

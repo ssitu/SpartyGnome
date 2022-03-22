@@ -16,6 +16,7 @@ const wstring BackGroundImageName = L"backgroundForest.png";
 /**
  * Constructor
  * @param game Game this image is a part of
+ * @param BackGroundImageName Default background image for the game
  */
 BackgroundImage::BackgroundImage(Game* game) : Item(game, BackGroundImageName)
 {

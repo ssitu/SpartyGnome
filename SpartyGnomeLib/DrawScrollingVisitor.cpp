@@ -101,7 +101,7 @@ void DrawScrollingVisitor::VisitTuitionUp(ItemTuitionUp* tuition)
 
 /**
  * Visit ItemMessage
- * @param tuition ItemMessage to visit
+ * @param message ItemMessage to visit
  */
 void DrawScrollingVisitor::VisitMessage(ItemMessage* message)
 {

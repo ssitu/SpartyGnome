@@ -101,7 +101,17 @@ public:
     void Reset();
     void Setup();
     int GetScreenToWorldX(int x);
+
+    /**
+     * Get the current level
+     * @return int value of the level
+     */
     int GetLevelNum() {return mLevelNum;}
+
+    /**
+     * Set the current level
+     * @param levelNumber int value of the level to be changed to
+     */
     void SetLevelNum(int levelNumber){mLevelNum = levelNumber;}
     void Save(const wxString &filename);
     std::shared_ptr<Item> SolidCollisionTest(Item* item);

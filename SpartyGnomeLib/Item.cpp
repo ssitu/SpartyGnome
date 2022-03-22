@@ -13,6 +13,7 @@
 
 using namespace std;
 
+/// Image Directory
 const wstring ImageDir = L"images/";
 
 /**
