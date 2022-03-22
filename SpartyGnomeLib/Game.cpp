@@ -282,8 +282,7 @@ void Game::LevelLoad(const wstring& filename)
  * @param declarations_table The table, mapping ids to declarations
  * @param item The particular item to load
  */
-void Game::LoadXmlItem(const std::unordered_map<wxString,
-                                                wxXmlNode*>& declarations_table, const wxXmlNode* item)
+void Game::LoadXmlItem(const std::unordered_map<wxString, wxXmlNode*>& declarations_table, const wxXmlNode* item)
 {
     // Type of item based on Node Name
     auto type = item->GetName();
@@ -459,10 +458,10 @@ void Game::LevelLoad(int levelNum)
     // Clear the game
     Game::Clear();
     // Store the level number for reloading level upon death
-    //mLevelNum = levelNum;
+    // mLevelNum = levelNum;
 
-    //mLevelNum = levelNum;
-    //setting the level number
+    // mLevelNum = levelNum;
+    // setting the level number
     Game::SetLevelNum(levelNum);
     // create directory to load
     wstring filename = LevelsDir + LevelPrefix + to_wstring(levelNum) + L".xml";
@@ -483,7 +482,6 @@ void Game::DisplayStartMessage(int levelNum)
     mGnome->AnimateStop();
     wstring message = L"Level " + to_wstring(levelNum) + L" Begin!";
     Game::FreezeScreenMessage(message);
-    mGnome->EnableGravity();
 }
 
 /**
@@ -561,6 +559,7 @@ std::shared_ptr<wxBitmap> Game::GetBitmap(const std::wstring &filename){
 void Game::Reset()
 {
     Clear();
+    mGnome->DisableGravity();
 }
 
 /**
@@ -573,6 +572,7 @@ void Game::Reset()
      Add(timer);
      mBoard = make_shared<ItemScoreBoard>(this);
      Add(mBoard);
+     mGnome->EnableGravity();
 }
 
 /**
