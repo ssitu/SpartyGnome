@@ -13,6 +13,10 @@
 using namespace std;
 const wstring BackGroundImageName = L"backgroundForest.png";
 
+/**
+ * Initialize the background image into the game
+ * @param game The game this background is a part of
+ */
 BackgroundImage::BackgroundImage(Game* game) : Item(game, BackGroundImageName)
 {
 }
