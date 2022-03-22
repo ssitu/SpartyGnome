@@ -20,7 +20,7 @@
 #include "DrawStaticVisitor.h"
 #include "DrawScrollingVisitor.h"
 #include "SolidCollisionVisitor.h"
-#include "HorizontalCollisionVisitor.h"
+#include "InteractionCollisionVisitor.h"
 #include "ItemMessage.h"
 #include "DrawMessagesVisitor.h"
 #include "ItemLevelTimer.h"
@@ -394,11 +394,11 @@ void Game::Save(const wxString& filename)
 }
 
 /**
- * Returns the item that the given item is vertically collided with, nullptr otherwise
+ * Returns the solid item that the given item has collided with, nullptr otherwise
  * @param item The item to determine collisions with
- * @return The item that is colliding with the given item, nullptr otherwise
+ * @return The item that is considered to be solid that is colliding with the given item, nullptr otherwise
  */
-shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
+shared_ptr<Item> Game::SolidCollisionTest(Item* item)
 {
     // Create a visitor to test collisions.
     SolidCollisionVisitor visitor(item);
@@ -423,9 +423,13 @@ shared_ptr<Item> Game::VerticalCollisionTest(Item* item)
     return nullptr;
 }
 
-void Game::HorizontalCollisionTest(Item* item){
-
-    HorizontalCollisionVisitor visitor(item);
+/**
+ * The collision test for interactable items
+ * @param item The item to test collisions with
+ */
+void Game::InteractableCollisionTest(Item* item)
+{
+    InteractionCollisionVisitor visitor(item);
     auto itemsSafe(mItems);
     for (auto oItem: itemsSafe)
     {
@@ -436,7 +440,6 @@ void Game::HorizontalCollisionTest(Item* item){
             }
         }
     }
-
 }
 
 /**
@@ -540,16 +543,16 @@ void Game::FreezeScreenMessage(const wstring& message)
  * @return the bitmap of the specified image file
  */
 std::shared_ptr<wxBitmap> Game::GetBitmap(const std::wstring &filename){
-    // If the bitmap for the specific file is not in BitMaps...
-    if(BitMaps.count(filename)==0) {
-        // Add the bitmap to BitMaps
+    // If the bitmap for the specific file is not in mBitmaps...
+    if(mBitmaps.count(filename)==0) {
+        // Add the bitmap to mBitmaps
         auto imagePath = ImageDir + filename;
         mImages.insert(std::pair<const wstring, shared_ptr<wxImage>>(filename, make_shared<wxImage>(imagePath)));
-        BitMaps.insert(std::pair<const wstring, shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*mImages.at(filename))));
+        mBitmaps.insert(std::pair<const wstring, shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*mImages.at(filename))));
     }
 
     // Return the corresponding bitmap for this image file
-    return BitMaps.at(filename);
+    return mBitmaps.at(filename);
 }
 
 /**
@@ -582,14 +585,14 @@ int Game::GetScreenToWorldX(int x)
     auto actualX = x / mScale;
     return GetGnome()->GetX() + actualX;
 }
-//void Game::IncrementScore(int score1){
-//
-//}
 
-void Game::CallScoreBoard(int x){
-    //auto scoreboard= make_shared<ItemScoreBoard>(this);
-
-    mBoard->IncrementScore(x);
+/**
+ * Add to the score count
+ * @param change The amount to add
+ */
+void Game::IncrementScore(int change)
+{
+    mBoard->IncrementScore(change);
 }
 
 

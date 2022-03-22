@@ -10,8 +10,6 @@
 #include "ItemScoreBoard.h"
 
 
-
-
 /// Font Constants
 const int FontWidth = 10;
 const int FontHeight = 50;
@@ -21,42 +19,36 @@ const int ScreenX = 400;
 const int ScreenY = 50;
 
 /**
- * The constructor for the timer
+ * The constructor for the scoreboard
  * @param game The Game this item is apart of
  */
 ItemScoreBoard::ItemScoreBoard(Game* game)
-        : ItemMessage(game, FormatTime(), 0)
+        : ItemMessage(game, FormatScore(), 0)
 {
     ItemMessage::PauseDuration(true);
     ItemMessage::SetFontSize(FontWidth, FontHeight);
-    // Do an empty update to set up the message and timer correctly
+    // Do an empty update to set up the message position
     Update(0);
 }
 
 /**
- * Create a formatted string for time stored
+ * Create a formatted string for score stored
  * @return The formatted string
  */
-std::wstring ItemScoreBoard::FormatTime()
+std::wstring ItemScoreBoard::FormatScore()
 {
     std::wstring score = std::to_wstring((int)mScore);
-    // Pad with zero
-
     score = L"$ " + score;
-
-
-
-
-
     return score;
 }
 
 /**
- * Increment the time by the given seconds
- * @param seconds The time to add to the stored time
+ * Increment the score
+ * @param score The score to add to the count
  */
- void ItemScoreBoard::IncrementScore(int score){
-     mScore+=score;
+ void ItemScoreBoard::IncrementScore(int score)
+ {
+     mScore += score;
  }
 
 
@@ -68,13 +60,7 @@ std::wstring ItemScoreBoard::FormatTime()
 void ItemScoreBoard::Update(double elapsed)
 {
     ItemMessage::Update(elapsed);
-
-    ItemMessage::SetMessage(FormatTime());
-//    auto gnome = GetGame()->GetGnome();
-//    auto gnomeX = gnome->GetX();
-//    auto scale = GetGame()->GetScale();
-//    auto centerX = 400 / scale;
-//    SetLocation(gnomeX - centerX, 100);
+    ItemMessage::SetMessage(FormatScore());
     auto newX = GetGame()->GetScreenToWorldX(ScreenX);
     auto newY = ScreenY;
     SetLocation(newX, newY);

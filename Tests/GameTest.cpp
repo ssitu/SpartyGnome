@@ -49,7 +49,7 @@ TEST(GameTest, VerticalCollisionTest)
         for (int y = startY; y < endY; y++)
         {
             gnome->SetLocation(x, y);
-            auto collision = game.VerticalCollisionTest(gnome.get());
+            auto collision = game.SolidCollisionTest(gnome.get());
             ASSERT_EQ(item, collision);
         }
     }
@@ -61,7 +61,7 @@ TEST(GameTest, VerticalCollisionTest)
         for (int y = endY + gnome->GetHeight(); y < endY + gnome->GetHeight() + PixelsToTest; y++)
         {
             gnome->SetLocation(x, y);
-            auto collision = game.VerticalCollisionTest(gnome.get());
+            auto collision = game.SolidCollisionTest(gnome.get());
             ASSERT_EQ(nullptr, collision);
         }
     }

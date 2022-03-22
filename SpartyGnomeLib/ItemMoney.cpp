@@ -13,7 +13,6 @@
 using namespace std;
 
 const wstring MoneyImageName = L"money100.png";
-const int scoreValue1 = 100;
 const wstring message = L"$100";
 const wstring message1 = L"$1000";
 const double duration = 4;
@@ -21,7 +20,10 @@ const int fontWidth1 = 25;
 const int fontHeight1 = 25;
 Vector velocity1 = Vector(0, -1000);
 
-
+/**
+ * Base constructor for this item
+ * @param game Game that this item is apart of
+ */
 ItemMoney::ItemMoney(Game* game) : Item(game, MoneyImageName)
 {
 }
@@ -58,7 +60,8 @@ pair<wxXmlNode*, wxXmlNode*> ItemMoney::XmlSave(wxXmlNode *node1, wxXmlNode *nod
     itemNode->DeleteAttribute(L"height");
 
     // Check to see if we need to add a child to declarations
-    if (declarationNode!=nullptr) {
+    if (declarationNode!=nullptr)
+    {
         declarationNode->SetName(L"money");
 
         // Value is added only to declarationNode
@@ -69,44 +72,51 @@ pair<wxXmlNode*, wxXmlNode*> ItemMoney::XmlSave(wxXmlNode *node1, wxXmlNode *nod
     return make_pair(itemNode, nullptr);
 }
 
-void ItemMoney::OnCollision(Item *item){
-    //GetGame()->IncrementScore();
-    if(!mCollided){
+/**
+ * On collision handler for this item
+ * @param item The item that collided with this item
+ */
+void ItemMoney::OnCollision(Item *item)
+{
+    if(!mCollided)
+    {
         mMoneyIncrease = true;
-        GetGame()->CallScoreBoard(mValue);
+        GetGame()->IncrementScore(mValue);
         mCollided = true;
-//        GetGame()->Add(ItemMessageAnimated(GetGame(), )
-        if (mValue >= 100 && mValue < 1000){
+        if (mValue >= 100 && mValue < 1000)
+        {
             std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), message, duration,
                     fontWidth1, fontHeight1, velocity1);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
-        else {
+        else
+        {
             std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated>(GetGame(),
                     message1, duration,fontWidth1, fontHeight1, velocity1);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
-
     }
-
-
 }
 
-void ItemMoney::Update(double elapsed){
-
+/**
+ * The update handler for this item
+ * @param elapsed The time elapsed since the last update call
+ */
+void ItemMoney::Update(double elapsed)
+{
     if (mMoneyIncrease){
 
         Item::Update(elapsed);
         SetLocation(GetX(),GetY()+mSpeedY*elapsed);
-
-
-//        }
     }
-
-
 }
 
-void ItemMoney::SetValue(double moneyValue){
+/**
+ * Setter for the value of this money item
+ * @param moneyValue The new value to replace the current value
+ */
+void ItemMoney::SetValue(double moneyValue)
+{
     mValue = moneyValue;
 }
 
