@@ -2,7 +2,7 @@
  * @file SpartyGnomeView.h
  * @author ryanl
  *
- *
+ * The view class for the game
  */
 
 #ifndef SPARTYGNOME_SPARTYGNOMEVIEW_H
@@ -10,6 +10,9 @@
 
 #include "Game.h"
 
+/**
+ * The view class for the SpartyGnome game
+ */
 class SpartyGnomeView : public wxWindow {
 private:
     void OnPaint(wxPaintEvent& event);

@@ -2,7 +2,7 @@
  * @file Game.h
  * @author Gabriel Misajlovski, SimonSitu, ryanl, ashrey, Connor
  *
- * Initialization of Game Class
+ * The game class that will manage game logic and hold items
  */
 
 #ifndef SPARTYGNOME_GAME_H
@@ -13,6 +13,9 @@
 #include "Platform.h"
 #include <map>
 
+/**
+ * The game class to hold items and game logic
+ */
 class Game {
 private:
     /// The scale for items when drawing
@@ -63,7 +66,6 @@ public:
      */
     std::shared_ptr<ItemSpartyGnome> GetGnome() { return mGnome; }
 
-    //std::shared_ptr<ItemScoreBoard> GetBoard() {return mBoard;}
     /**
      * Returns the number of items loaded in the game
      * @return The number of items

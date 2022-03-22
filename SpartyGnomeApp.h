@@ -10,7 +10,10 @@
 
 #include <wx/wx.h>
 
-class SpartyGnomeApp : public wxApp{
+/**
+ * The application class for SpartyGnome game
+ */
+class SpartyGnomeApp : public wxApp {
 public:
     virtual bool OnInit() override;
 

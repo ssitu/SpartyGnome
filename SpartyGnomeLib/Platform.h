@@ -10,6 +10,9 @@
 
 #include "Item.h"
 
+/**
+ * The platform class
+ */
 class Platform : public Item {
 protected:
     Platform(Game *game, const std::wstring &filename, const std::wstring &filename2,

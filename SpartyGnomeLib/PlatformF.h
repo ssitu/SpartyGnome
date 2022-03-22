@@ -10,6 +10,9 @@
 
 #include "Platform.h"
 
+/**
+ * The Platform F class
+ */
 class PlatformF : public Platform {
 private:
     /// The duration in seconds to keep this platform alive for after being collided with

@@ -11,6 +11,9 @@
 #include "Vector.h"
 #include "Item.h"
 
+/**
+ * The gnome class
+ */
 class ItemSpartyGnome : public Item {
 private:
     /// Vector containing both current X and Y velocities of Gnome
