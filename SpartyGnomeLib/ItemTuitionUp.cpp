@@ -11,7 +11,7 @@
 #include "MoneyValueVisitor.h"
 using namespace std;
 
-const wstring TuitionUpImageName = L"images/stanley.png";
+const wstring TuitionUpImageName = L"stanley.png";
 const int scoreValue = 1000;
 const int removeHeight = 1174;
 

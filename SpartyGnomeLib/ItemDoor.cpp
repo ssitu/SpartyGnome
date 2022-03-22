@@ -15,7 +15,7 @@ using namespace std;
 const double CollisionDistance = 20;
 
 /// A default door image
-const wstring DoorImageName = L"images/door.png";
+const wstring DoorImageName = L"door.png";
 
 ItemDoor::ItemDoor(Game* game) : Item(game, DoorImageName)
 {

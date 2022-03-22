@@ -9,11 +9,12 @@
 #include <wx/graphics.h>
 
 #include "Platform.h"
+#include "Game.h"
 
 using namespace std;
 
 /// Default image filepath
-const wstring PlatformName = L"images/snow.png";
+const wstring PlatformName = L"snow.png";
 /// Image directory
 const wstring ImageDir = L"images/";
 /// Size of individual platform image tiles
@@ -45,22 +46,13 @@ Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item, Game* ga
             wxBITMAP_TYPE_ANY);
     SetBitmap(make_shared<wxBitmap>(*image));
 
-    // Save the file path for saving into an xml.
-    mMidPath = declaration->GetAttribute(L"mid-image").ToStdWstring();
-
     //Load the middle image
-    mMidImage = make_shared<wxImage>(
-            ImageDir+mMidPath,
-            wxBITMAP_TYPE_ANY);
-    mMidBitmap = make_shared<wxBitmap>(*mMidImage);
-
-    mRightPath = declaration->GetAttribute(L"right-image").ToStdWstring();
+    mMidPath = declaration->GetAttribute(L"mid-image").ToStdWstring();
+    mMidBitmap = GetGame()->GetBitmap(mMidPath);
 
     //Load the right image
-    mRightImage = make_shared<wxImage>(
-            ImageDir+mRightPath,
-            wxBITMAP_TYPE_ANY);
-    mRightBitmap = make_shared<wxBitmap>(*mRightImage);
+    mRightPath = declaration->GetAttribute(L"right-image").ToStdWstring();
+    mRightBitmap = GetGame()->GetBitmap(mRightPath);
 }
 
 /**
@@ -79,26 +71,18 @@ Platform::Platform(Game* game, const std::wstring& filename, const std::wstring&
         :Item(game, filename, filename2, filename3)
 {
     //Load the left image
-    auto image = make_shared<wxImage>(
-            GetPath(this->GetImage()),
-            wxBITMAP_TYPE_ANY);
-    SetBitmap(make_shared<wxBitmap>(*image));
+    SetPath(filename);
+    SetBitmap(GetGame()->GetBitmap(GetPath()));
 
-    mMidPath = filename2;
 
     //Load the middle image
-    mMidImage = make_shared<wxImage>(
-            ImageDir + mMidPath,
-            wxBITMAP_TYPE_ANY);
-    mMidBitmap = make_shared<wxBitmap>(*mMidImage);
+    mMidPath = filename2;
+    mMidBitmap = GetGame()->GetBitmap(mMidPath);
 
-    mRightPath = filename3;
 
     //Load the right image
-    mRightImage = make_shared<wxImage>(
-            ImageDir + mRightPath,
-            wxBITMAP_TYPE_ANY);
-    mRightBitmap = make_shared<wxBitmap>(*mRightImage);
+    mRightPath = filename3;
+    mRightBitmap = GetGame()->GetBitmap(mRightPath);
 }
 
 /**

@@ -13,7 +13,7 @@
 using namespace std;
 
 /// Default wall image filepath
-const wstring imageWallName = L"images/wall1.png";
+const wstring imageWallName = L"wall1.png";
 
 /// Wall tile size
 const int TileSize = 32;

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const wstring villainImageName = L"images/UofM.png";
+const wstring villainImageName = L"UofM.png";
 
 /**
  * Villain Constructor

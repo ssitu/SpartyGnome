@@ -81,11 +81,16 @@ protected:
     void SetImage(const std::shared_ptr<wxImage>& image) {mItemImage = image;}
 
     /**
-     * Set the image for this item
-     * @param image the image for this item
+     * Getter for the image path for this item
      * @return path to the image file
      */
-    std::wstring GetPath(const std::shared_ptr<wxImage>& image) { return mPath; }
+    std::wstring GetPath() { return mPath; }
+
+    /**
+     * Getter for the image path for this item
+     * @return path to the image file
+     */
+    void SetPath(const std::wstring& path) { mPath = path; }
 
     /**
      * Get the bitmap for this item

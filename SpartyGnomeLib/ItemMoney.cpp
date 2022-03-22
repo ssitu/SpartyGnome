@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const wstring MoneyImageName = L"images/money100.png";
+const wstring MoneyImageName = L"money100.png";
 const int scoreValue1 = 100;
 const wstring message = L"$100";
 const wstring message1 = L"$1000";

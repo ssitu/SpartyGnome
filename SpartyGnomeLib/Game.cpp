@@ -32,6 +32,7 @@ using namespace std;
 /// Game area height in virtual pixels
 const static int Height = 1024;
 
+const wstring ImageDir = L"images/";
 const wstring LevelsDir = L"levels/";
 const wstring LevelPrefix = L"level";
 
@@ -542,7 +543,8 @@ std::shared_ptr<wxBitmap> Game::GetBitmap(const std::wstring &filename){
     // If the bitmap for the specific file is not in BitMaps...
     if(BitMaps.count(filename)==0) {
         // Add the bitmap to BitMaps
-        mImages.insert(std::pair<const wstring, shared_ptr<wxImage>>(filename, make_shared<wxImage>(filename, wxBITMAP_TYPE_ANY)));
+        auto imagePath = ImageDir + filename;
+        mImages.insert(std::pair<const wstring, shared_ptr<wxImage>>(filename, make_shared<wxImage>(imagePath)));
         BitMaps.insert(std::pair<const wstring, shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*mImages.at(filename))));
     }
 

@@ -27,16 +27,16 @@ const double JumpSpeed = -800;
 const double Epsilon = 0.01;
 
 /// Default SpartyGnomeImage
-const wstring SpartyGnomeImageName = L"images/gnome.png";
+const wstring SpartyGnomeImageName = L"gnome.png";
 
 /// Walk left image 1
-const wstring SpartyGnomeLeft1 = L"images/gnome-walk-left-1.png";
+const wstring SpartyGnomeLeft1 = L"gnome-walk-left-1.png";
 /// Walk Left Image 2
-const wstring SpartyGnomeLeft2 = L"images/gnome-walk-left-2.png";
+const wstring SpartyGnomeLeft2 = L"gnome-walk-left-2.png";
 /// Walk Right Image 1
-const wstring SpartyGnomeRight1 = L"images/gnome-walk-right-1.png";
+const wstring SpartyGnomeRight1 = L"gnome-walk-right-1.png";
 /// Walk Right Image 2
-const wstring SpartyGnomeRight2 = L"images/gnome-walk-right-2.png";
+const wstring SpartyGnomeRight2 = L"gnome-walk-right-2.png";
 /// Height of gnome image
 const int GnomeHeight = 200;
 /// Width of Gnome image
