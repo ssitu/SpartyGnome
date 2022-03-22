@@ -10,12 +10,14 @@
 #include "ItemScoreBoard.h"
 
 
-/// Font Constants
+/// Constant Font Width
 const int FontWidth = 10;
+/// Constant Font Height
 const int FontHeight = 50;
 
-/// Screen Position Constants
+/// Screen X Position
 const int ScreenX = 400;
+/// Screen Y Position
 const int ScreenY = 50;
 
 /**

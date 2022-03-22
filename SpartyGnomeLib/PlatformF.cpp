@@ -14,7 +14,7 @@ using namespace std;
 
 class Game;
 
-// The default duration in seconds if a duration is not specified
+/// The default duration in seconds if a duration is not specified
 const double DefaultDuration = 0;
 
 /**

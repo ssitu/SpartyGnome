@@ -12,6 +12,7 @@
 
 using namespace std;
 
+/// Default Villain Image
 const wstring villainImageName = L"UofM.png";
 
 /**

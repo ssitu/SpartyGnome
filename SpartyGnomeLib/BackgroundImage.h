@@ -25,7 +25,6 @@ public:
     /// disabled assignment
     void operator=(const BackgroundImage&) = delete;
 
-    /// New constructor
     BackgroundImage(Game* game);
 
     /**

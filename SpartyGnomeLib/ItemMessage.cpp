@@ -13,16 +13,22 @@
 
 using namespace std;
 
-/// Default Text color
+/// Default Red color
 const int DefaultRed = 50;
+/// Default Green color
 const int DefaultGreen = 50;
+/// Default Blue color
 const int DefaultBlue = 200;
 
-/// Default Font specifications
+/// Default Font Width
 const int DefaultPixelWidth = 10;
+/// Default Font Height
 const int DefaultPixelHeight = 120;
+/// Default Font Family
 const auto FontFamily = wxFONTFAMILY_SWISS;
+/// Default Font Style
 const auto FontStyle = wxFONTSTYLE_NORMAL;
+/// Default Font Weight
 const auto FontWeight = wxFONTWEIGHT_NORMAL;
 
 /**
