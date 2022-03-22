@@ -2,6 +2,7 @@
  * @file ItemSpartyGnome.cpp
  * @author ryanl, ashrey, Gabriel Misajlovski
  */
+
 #include "pch.h"
 
 #include <string>
@@ -60,8 +61,9 @@ ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
  */
 void ItemSpartyGnome::Jump()
 {
-    // If the gnome is not moving vertically...
-    if (mV.Y() == 0) {
+    // If the gnome is not moving vertically
+    if (mV.Y() == 0)
+    {
         // Jump
         mV.SetY(JumpSpeed);
     }
@@ -73,9 +75,10 @@ void ItemSpartyGnome::Jump()
  */
 void ItemSpartyGnome::MoveRight()
 {
-    // if gnome is not moving horizontally or moving to the
-    if (mV.X() >= 0) {
-        // move right
+    // If the vector movement is moving towards the right
+    if (mV.X() >= 0)
+    {
+        // Move the gnome right
         mV.SetX(HorizontalSpeed);
     }
 }
@@ -86,12 +89,12 @@ void ItemSpartyGnome::MoveRight()
  */
 void ItemSpartyGnome::MoveLeft()
 {
-    // if gnome is not moving horizontally or is moving right
-    if (mV.X() <= 0) {
-        // move left
+    // If the vector movement is moving towards the left
+    if (mV.X() <= 0)
+    {
+        // Move the gnome left
         mV.SetX(0-HorizontalSpeed);
     }
-
 }
 
 /**
@@ -113,8 +116,9 @@ void ItemSpartyGnome::Update(double elapsed)
     // Call Item::Update
     Item::Update(elapsed);
 
-    // if gravity is enabled...
-    if (mGravityEnable) {
+    // If gravity is enabled...
+    if (mGravityEnable)
+    {
 
         // Gravity
         // Compute a new velocity with gravity added in.
@@ -127,34 +131,33 @@ void ItemSpartyGnome::Update(double elapsed)
         // Animation Controls
         if (newV.X() > 0)
         {
-            // Moving to the right
+            // Animate the gnome to the right
             AnimateGnomeRight();
         }
         else if (newV.X() < 0)
         {
-            // Moving to the left
+            // Animate the gnome to the left
             AnimateGnomeLeft();
         }
         else
         {
-            // Not moving
+            // Animate the gnome to idle/default
             AnimateStop();
         }
 
-        //
-        // Try updating the Y location.
-        //
+        // Updating the Y location
         SetLocation(p.X(), newP.Y());
 
         // Test for collision
         auto collided = GetGame()->SolidCollisionTest(this);
         if (collided != nullptr)
         {
-            if (newV.Y()>0) {
+            if (newV.Y()>0)
+            {
                 // We are falling, stop at the collision point
                 newP.SetY(collided->GetY()-collided->GetHeight()/2-GetHeight()/2-Epsilon);
 
-                // increment counter
+                // Increment counter
                 mCount += elapsed;
 
                 // if the counter is >= 0.2, (100 pixels/500 pixel speed = 0.2)
@@ -166,19 +169,19 @@ void ItemSpartyGnome::Update(double elapsed)
                     // set switch to opposite
                     mSwitch = !mSwitch;
                 }
-
             }
-            else {
+            else
+            {
                 // We are rising, stop at the collision point
                 newP.SetY(collided->GetY()+collided->GetHeight()/2+GetHeight()/2+Epsilon);
-
             }
 
             // If we collide, we cancel any velocity
             // in the Y direction
 
             // If you are bonking your head move down a little before finishing Y-axis changes
-            if (mV.Y() < 0) {
+            if (mV.Y() < 0)
+            {
                 mV.SetY(-mV.Y());
             }
 
@@ -186,9 +189,7 @@ void ItemSpartyGnome::Update(double elapsed)
             newV.SetY(0);
         }
 
-        //
-        // Try updating the X location
-        //
+        // Updating the X location
         SetLocation(newP.X(), p.Y());
 
         // Test for collision
@@ -199,13 +200,11 @@ void ItemSpartyGnome::Update(double elapsed)
             {
                 // We are moving to the right, stop at the collision point
                 newP.SetX(collided->GetX() - collided->GetWidth() / 2 - GetWidth() / 2 - Epsilon);
-
             }
             else
             {
                 // We are moving to the left, stop at the collision point
                 newP.SetX(collided->GetX() + collided->GetWidth() / 2 + GetWidth() / 2 + Epsilon);
-
             }
 
             // If we collide, we cancel any velocity
@@ -223,8 +222,10 @@ void ItemSpartyGnome::Update(double elapsed)
     // In the case that an OnCollision would update the gnome position, it would get overwritten before this point
     GetGame()->InteractableCollisionTest(this);
 
+    // If the current height/position exceeds the death height, Lose
     auto deathHeight = GetGame()->GetGameAreaHeight() + GetHeight() / 2;
-    if (GetY() >= deathHeight) {
+    if (GetY() >= deathHeight)
+    {
         DisableGravity();
         this->GetGame()->DisplayLoseMessage();
     }
@@ -239,10 +240,12 @@ void ItemSpartyGnome::AnimateGnomeRight()
     std::shared_ptr<wxBitmap> mRight1 = GetGame()->GetBitmap(SpartyGnomeRight1);
     std::shared_ptr<wxBitmap> mRight2 = GetGame()->GetBitmap(SpartyGnomeRight2);
 
-    if (mSwitch) {
+    if (mSwitch)
+    {
         SetBitmap(mRight1);
     }
-    else {
+    else
+    {
         SetBitmap(mRight2);
     }
 }
