@@ -42,7 +42,7 @@ void SolidCollisionVisitor::VisitPlatform(Platform* platform)
 
 /**
  * Vertical collision test for platformf
- * @param platform PlatformF to test
+ * @param platformF PlatformF to test
  */
 void SolidCollisionVisitor::VisitPlatformF(PlatformF* platformF)
 {
