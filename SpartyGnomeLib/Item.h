@@ -24,7 +24,6 @@ private:
     /// Path of the image file
     std::wstring mPath;
 
-    // Item location in the game
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
     double  mInitialX = 0;     ///< X Initial (for movement calculations)
@@ -38,9 +37,6 @@ private:
 
     /// The XML id of this item
     std::wstring mId = L"i000";
-
-    /// The image for this item
-    std::shared_ptr<wxImage> mItemImage;
 
     /// The bitmap for this item
     std::shared_ptr<wxBitmap> mItemBitmap;
