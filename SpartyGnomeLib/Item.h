@@ -24,9 +24,6 @@ private:
     /// Path of the image file
     std::wstring mPath;
 
-    /// Check if grounded or not
-    bool mGrounded = true;
-
     // Item location in the game
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
@@ -67,18 +64,6 @@ protected:
      */
     Item(Game* game, const std::wstring &filename, const std::wstring &filename2, const std::wstring &filename3)
             : mGame(game) {}
-
-    /**
-     * Get the image for this item
-     * @return The item image
-     */
-    std::shared_ptr<wxImage> GetImage() {return mItemImage;}
-
-    /**
-     * Set the image for this item
-     * @param image the image for this item
-     */
-    void SetImage(const std::shared_ptr<wxImage>& image) {mItemImage = image;}
 
     /**
      * Getter for the image path for this item

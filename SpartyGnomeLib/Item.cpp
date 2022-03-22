@@ -57,21 +57,13 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
     // Example format:
     // declaration: <background id="i001" image="backgroundForest.png"/>
     // item: <background id="i001" x="512" y="512"/>
+
     // Get image path
-
     auto imageAttribute = declaration->GetAttribute(L"image");
-
-    auto imageAttribute2 = declaration->GetAttribute(L"left-image");
+    mPath = imageAttribute.ToStdWstring();
     if (imageAttribute != wxEmptyString)
     {
-        //TODO: image loading should not be here to avoid loading an image more than once
-        mPath = imageAttribute.ToStdWstring();
-        auto image = make_shared<wxImage>(ImageDir + mPath, wxBITMAP_TYPE_ANY);
-        mItemBitmap = make_shared<wxBitmap>(*image);
-    } else if (imageAttribute2 != wxEmptyString) {
-        mPath = imageAttribute2.ToStdWstring();
-        auto image = make_shared<wxImage>(ImageDir + mPath, wxBITMAP_TYPE_ANY);
-        mItemBitmap = make_shared<wxBitmap>(*image);
+        mItemBitmap = GetGame()->GetBitmap(mPath);
     }
 
     // Loading generic item information
@@ -82,8 +74,6 @@ Item::Item(const wxXmlNode* declaration, const wxXmlNode* item, Game* game)
     item->GetAttribute(L"width").ToDouble(&mWidth);
     item->GetAttribute(L"height").ToDouble(&mHeight);
     mId = declaration->GetAttribute(L"id").ToStdWstring();
-
-
 }
 
 /**
