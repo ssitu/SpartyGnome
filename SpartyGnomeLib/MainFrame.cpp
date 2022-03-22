@@ -1,12 +1,11 @@
 /**
  * @file MainFrame.cpp
- * @author Gabriel Misajlovski
+ * @author Gabriel Misajlovski, ryanl
  */
 
 #include "pch.h"
 #include "MainFrame.h"
 #include "SpartyGnomeView.h"
-#include "ids.h"
 
 /**
  * Initialize the MainFrame window.
@@ -34,7 +33,6 @@ void MainFrame::Initialize()
     // Add options to menuBar
     menuBar->Append(fileMenu, L"&File" );
     menuBar->Append(levelMenu, L"Levels");
-    menuBar->Append(itemMenu, L"&Add Item");
     menuBar->Append(helpMenu, L"&Help");
     fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
 
@@ -50,10 +48,6 @@ void MainFrame::Initialize()
 
     // Add helpMenu option
     helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
-
-    // Add itemMenu options
-    itemMenu->Append(IDM_ADDSPARTYGNOME, L"&Sparty Gnome", L"Add a Sparty Gnome");
-    itemMenu->Append(IDM_ADDPLATFORM, L"&Platform", L"Add a Platform");
 
     // Set the menuBar
     SetMenuBar(menuBar);

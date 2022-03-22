@@ -1,6 +1,6 @@
 /**
  * @file ItemSpartyGnome.h
- * @author ashre, Gabriel Misajlovski
+ * @author ryanl, ashre, Gabriel Misajlovski
  *
  * The class for our Gnome
  */

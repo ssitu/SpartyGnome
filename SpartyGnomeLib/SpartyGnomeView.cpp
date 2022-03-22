@@ -9,7 +9,6 @@
 #include <wx/graphics.h>
 #include <wx/file.h>
 
-#include "ids.h"
 #include "Game.h"
 #include "SpartyGnomeView.h"
 
@@ -33,14 +32,9 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
 
     // New Bindings to default wx Event Handlers
     Bind(wxEVT_PAINT, &SpartyGnomeView::OnPaint, this);
-    Bind(wxEVT_LEFT_DOWN, &SpartyGnomeView::OnLeftDown, this);
-    Bind(wxEVT_LEFT_UP, &SpartyGnomeView::OnLeftUp, this);
-    Bind(wxEVT_MOTION, &SpartyGnomeView::OnMouseMove, this);
     Bind(wxEVT_KEY_DOWN, &SpartyGnomeView::OnKeyDown, this);
     Bind(wxEVT_KEY_UP, &SpartyGnomeView::OnKeyUp, this);
     Bind(wxEVT_TIMER, &SpartyGnomeView::OnTimer, this);
-//    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddSpartyGnome, this, IDM_ADDSPARTYGNOME);
-//    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnAddPlatform, this, IDM_ADDPLATFORM);
 
     // Binding Save and Load functions.
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &SpartyGnomeView::OnFileSaveas, this, wxID_SAVEAS);
@@ -63,18 +57,6 @@ void SpartyGnomeView::Initialize(wxFrame* parent)
     // Load the default level on startup
     mGame.LevelLoadDefault();
 }
-
-//void SpartyGnomeView::OnAddSpartyGnome(wxCommandEvent& event)
-//{
-//    auto gnome = make_shared<ItemSpartyGnome>(&mGame);
-//    mGame.AddGnome(gnome);
-//}
-
-// void SpartyGnomeView::OnAddPlatform(double x, double y)
-// {
-//     auto platform = make_shared<Platform>(&mGame);
-//     mGame.Add(platform, x, y);
-// }
 
 /**
  * New handler for paint event
@@ -118,59 +100,6 @@ void SpartyGnomeView::OnPaint(wxPaintEvent& event)
  * @param event wxEVT_TIMER
  */
 void SpartyGnomeView::OnTimer(wxTimerEvent& event) { Refresh(); }
-
-
-/**
- * Handle the left mouse button down event
- * @param event wxEVT_DOWN
- */
-void SpartyGnomeView::OnLeftDown(wxMouseEvent &event)
-{
-//    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
-//    if (mGrabbedItem != nullptr)
-//    {
-//        // We have selected an item
-//        // Move it to the end of the list of items
-//        // you'll need code here to do that...
-//        mGame.NewOrder(mGrabbedItem);
-//    }
-}
-
-/**
-* Handle the left mouse button down event
-* @param event wxEVT_UP
-*/
-void SpartyGnomeView::OnLeftUp(wxMouseEvent &event)
-{
-//    OnMouseMove(event);
-}
-
-/**
-* Handle the left mouse button down event
-* @param event wxEVT_MOTION
-*/
-void SpartyGnomeView::OnMouseMove(wxMouseEvent &event)
-{
-//    // See if an item is currently being moved by the mouse
-//    if (mGrabbedItem != nullptr)
-//    {
-//        // If an item is being moved, we only continue to
-//        // move it while the left button is down.
-//        if (event.LeftIsDown())
-//        {
-//            mGrabbedItem->SetLocation(event.GetX(), event.GetY());
-//        }
-//        else
-//        {
-//            // When the left button is released, we release the
-//            // item.
-//            mGrabbedItem = nullptr;
-//        }
-//
-//        // Force the screen to redraw
-//        Refresh();
-//    }
-}
 
 /**
  * Handler for key down event
