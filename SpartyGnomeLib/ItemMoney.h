@@ -19,8 +19,6 @@ class ItemMoney : public Item {
 private:
     /// How much this money item is worth upon collection
     double mValue = 0;
-    ///Y velocity of money
-    Vector mM;
     /// disabled default constructor
     bool mMoneyIncrease = false;
     ///speed of money item disappearing

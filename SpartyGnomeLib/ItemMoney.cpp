@@ -24,7 +24,7 @@ const int FontWidth = 25;
 ///height of message
 const int FontHeight = 25;
 ///velocity of message
-Vector Velocity = Vector(0, -1000);
+const Vector MessageVelocity = Vector(0, -1000);
 
 /**
  * Base constructor for this item
@@ -92,13 +92,13 @@ void ItemMoney::OnCollision(Item *item)
         if (mValue >= 100 && mValue < 1000)
         {
             std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), Message100, Duration,
-                    FontWidth, FontHeight, Velocity);
+                    FontWidth, FontHeight, MessageVelocity);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
         else
         {
             std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated>(GetGame(),
-                    Message1000, Duration,FontWidth, FontHeight, Velocity);
+                    Message1000, Duration,FontWidth, FontHeight, MessageVelocity);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
     }
@@ -113,7 +113,7 @@ void ItemMoney::Update(double elapsed)
     if (mMoneyIncrease)
     {
         Item::Update(elapsed);
-        SetLocation(GetX(),GetY()+mSpeedY*elapsed);
+        SetLocation(GetX(),GetY() + mSpeedY * elapsed);
     }
 }
 

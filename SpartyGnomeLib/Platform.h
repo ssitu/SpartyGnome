@@ -15,8 +15,8 @@
  */
 class Platform : public Item {
 protected:
-    Platform(Game *game, const std::wstring &filename, const std::wstring &filename2,
-            const std::wstring &filename3);
+    Platform(Game *game, const std::wstring &leftImageFilename, const std::wstring &midImageFilename,
+            const std::wstring &rightImageFilename);
 
 private:
     /// The bitmap for the middle segment
@@ -50,14 +50,6 @@ public:
      * @param visitor Visitor to accept
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitPlatform(this);}
-
-    /**
-     * check for if the platform is one that disappears or not
-     * @return bool
-     */
-    virtual bool IsF() { return false; }
-
-
 
     std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;

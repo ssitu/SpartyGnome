@@ -59,27 +59,27 @@ Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item, Game* ga
  * @author Gabriel Misajlovski
  *
  * @param game game item the platform is in
- * @param filename left image
- * @param filename2 mid image
- * @param filename3 right image
+ * @param leftImageFilename left image
+ * @param midImageFilename mid image
+ * @param rightImageFilename right image
  */
 
-Platform::Platform(Game* game, const std::wstring& filename, const std::wstring& filename2,
-        const std::wstring& filename3)
-        :Item(game, filename, filename2, filename3)
+Platform::Platform(Game* game, const std::wstring& leftImageFilename, const std::wstring& midImageFilename,
+        const std::wstring& rightImageFilename)
+        :Item(game, leftImageFilename, midImageFilename, rightImageFilename)
 {
     //Load the left image
-    SetPath(filename);
+    SetPath(leftImageFilename);
     SetBitmap(GetGame()->GetBitmap(GetPath()));
 
 
     //Load the middle image
-    mMidPath = filename2;
+    mMidPath = midImageFilename;
     mMidBitmap = GetGame()->GetBitmap(mMidPath);
 
 
     //Load the right image
-    mRightPath = filename3;
+    mRightPath = rightImageFilename;
     mRightBitmap = GetGame()->GetBitmap(mRightPath);
 }
 

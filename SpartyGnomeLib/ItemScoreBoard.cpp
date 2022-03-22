@@ -14,6 +14,9 @@
 const int FontWidth = 10;
 /// Constant Font Height
 const int FontHeight = 50;
+const int FontRed = 112;
+const int FontGreen = 147;
+const int FontBlue = 219;
 
 /// Screen X Position
 const int ScreenX = 400;
@@ -29,7 +32,7 @@ ItemScoreBoard::ItemScoreBoard(Game* game)
 {
     ItemMessage::PauseDuration(true);
     ItemMessage::SetFontSize(FontWidth, FontHeight);
-    ItemMessage::SetColor(112,147,219);
+    ItemMessage::SetColor(FontRed,FontGreen,FontBlue);
     // Do an empty update to set up the message position
     Update(0);
 }
