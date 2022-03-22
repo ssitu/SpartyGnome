@@ -147,7 +147,7 @@ void Game::Update(double elapsed)
  * Add an item to the game
  * @param item item to add to the game
  */
-void Game::Add(shared_ptr<Item> item)
+void Game::Add(std::shared_ptr<Item> item)
 {
     mItems.push_back(item);
 }
@@ -178,7 +178,7 @@ void Game::Clear()
  *
  * @param wstring The xml filename for the level
  */
-void Game::LevelLoad(const wstring& filename)
+void Game::LevelLoad(const std::wstring& filename)
 {
     wxXmlDocument xml;
     if (!xml.Load(filename)) {

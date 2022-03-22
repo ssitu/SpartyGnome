@@ -27,7 +27,7 @@ Item::~Item()
  * @param game The game this item is a member of
  * @param filename the name of the imagefile for this item
  */
-Item::Item(Game *game, const wstring &filename) : mGame(game)
+Item::Item(Game *game, const std::wstring &filename) : mGame(game)
 {
     mPath = filename;
     mItemBitmap = game->GetBitmap(filename);

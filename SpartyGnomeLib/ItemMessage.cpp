@@ -31,7 +31,7 @@ const auto FontWeight = wxFONTWEIGHT_NORMAL;
  * @param message The message to display
  * @param duration The number of seconds to keep the message displayed
  */
-ItemMessage::ItemMessage(Game* game, const wstring& message, double duration)
+ItemMessage::ItemMessage(Game* game, const std::wstring& message, double duration)
         : Item(game)
 {
     mMessage = message;
