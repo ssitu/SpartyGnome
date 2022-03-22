@@ -25,6 +25,16 @@ const int ScreenX = -400;
 /// Screen Y size
 const int ScreenY = 50;
 
+/// Font red value
+const int FontRed = 112;
+/// Font green value
+const int FontGreen = 147;
+/// Font blue value
+const int FontBlue = 219;
+
+/// Unit of time width in digits
+const int Padding = 2;
+
 /**
  * The constructor for the timer
  * @param game The Game this item is apart of
@@ -34,7 +44,7 @@ ItemLevelTimer::ItemLevelTimer(Game* game)
 {
     ItemMessage::PauseDuration(true);
     ItemMessage::SetFontSize(FontWidth, FontHeight);
-    ItemMessage::SetColor(112,147,219);
+    ItemMessage::SetColor(FontRed,FontGreen,FontBlue);
     // Do an empty update to set up the message and timer correctly
     Update(0);
 }
@@ -47,7 +57,7 @@ std::wstring ItemLevelTimer::FormatTime()
 {
     std::wstring seconds = std::to_wstring((int)mSeconds);
     // Pad with zero
-    if (seconds.size() < 2)
+    if (seconds.size() < Padding)
     {
         seconds = L"0" + seconds;
     }
