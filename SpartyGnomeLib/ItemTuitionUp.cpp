@@ -13,9 +13,17 @@ using namespace std;
 
 const wstring TuitionUpImageName = L"images/stanley.png";
 const int scoreValue = 1000;
-const int RemoveHeight = 1174;
+const int removeHeight = 1174;
 
 const double ValueFactor = 0.1;
+
+const wstring message = L"Tuition Increase!";
+const double duration = 4;
+int fontWidth = 25;
+int fontHeight = 25;
+Vector velocity = Vector(0, -800);
+Vector acceleration = Vector(0,-150);
+Vector sizeChange = Vector(3,3)  ;
 
 ItemTuitionUp::ItemTuitionUp(Game* game) : Item(game, TuitionUpImageName)
 {
@@ -74,6 +82,12 @@ void ItemTuitionUp::OnCollision(Item *item){
         mCollided = true;
         MoneyValueVisitor visitor(ValueFactor);
         GetGame()->Accept(&visitor);
+
+        std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), message, duration,
+                fontWidth, fontHeight, velocity, acceleration);
+        animatedMessage->SetSizeChange(sizeChange);
+        GetGame()->Add(animatedMessage, GetX(),GetY());
+
     }
 
 }
@@ -85,9 +99,10 @@ void ItemTuitionUp::Update(double elapsed){
         Item::Update(elapsed);
         SetLocation(GetX(),GetY()+mSpeedY*elapsed);
 
+        if(GetY()>removeHeight){
 
-//        }
+            GetGame()->RemoveItem(this);
+        }
     }
-
 
 }

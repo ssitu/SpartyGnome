@@ -11,7 +11,7 @@
 #include "Item.h"
 #include "Game.h"
 #include "ItemScoreBoard.h"
-
+#include "ItemMessageAnimated.h"
 /**
  * TuitionUp class
  */
@@ -21,6 +21,7 @@ private:
 
     bool mTuitionIncrease = false;
     bool mCollided = false;
+
 public:
     /// disabled default constructor
     ItemTuitionUp() = delete;

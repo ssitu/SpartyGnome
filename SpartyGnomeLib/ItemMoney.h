@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Vector.h"
 #include "Game.h"
+#include "ItemMessageAnimated.h"
 /**
  * ItemMoney class
  */

@@ -13,7 +13,15 @@
 using namespace std;
 
 const wstring MoneyImageName = L"images/money100.png";
-const int scoreValue = 100;
+const int scoreValue1 = 100;
+const wstring message = L"$100";
+const wstring message1 = L"$1000";
+const double duration = 4;
+const int fontWidth1 = 25;
+const int fontHeight1 = 25;
+Vector velocity1 = Vector(0, -1000);
+
+
 ItemMoney::ItemMoney(Game* game) : Item(game, MoneyImageName)
 {
 }
@@ -67,6 +75,18 @@ void ItemMoney::OnCollision(Item *item){
         mMoneyIncrease = true;
         GetGame()->CallScoreBoard(mValue);
         mCollided = true;
+//        GetGame()->Add(ItemMessageAnimated(GetGame(), )
+        if (mValue >= 100 && mValue < 1000){
+            std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), message, duration,
+                    fontWidth1, fontHeight1, velocity1);
+            GetGame()->Add(animatedMessage, GetX(),GetY());
+        }
+        else {
+            std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated>(GetGame(),
+                    message1, duration,fontWidth1, fontHeight1, velocity1);
+            GetGame()->Add(animatedMessage, GetX(),GetY());
+        }
+
     }
 
 
