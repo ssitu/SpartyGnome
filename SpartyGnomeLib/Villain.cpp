@@ -33,8 +33,8 @@ Villain::Villain(const wxXmlNode* declaration, const wxXmlNode* item, Game* game
         :Item(declaration, item, game)
 {
     // Set the hitbox length and width for collisions
-    this->SetWidth(120);
-    this->SetHeight(150);
+    this->SetWidth(125);
+    this->SetHeight(140);
 }
 
 /**
@@ -82,6 +82,10 @@ void Villain::Update(double elapsed)
 
 }
 
+/**
+ * Give game over when running into a villain
+ * @param item the item collided with
+ */
 void Villain::OnCollision(Item* item){
     this->GetGame()->DisplayLoseMessage();
 }
