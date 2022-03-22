@@ -1,6 +1,6 @@
 /**
  * @file ItemDoor.cpp
- * @author ashrey, Gabriel Misajlovski
+ * @author ashrey, Gabriel Misajlovski, ryanl
  */
 
 #include "pch.h"
