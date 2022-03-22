@@ -46,7 +46,6 @@ const int GnomeWidth = 108;
 /**
  * Constructor
  * @param game Game this item is a member of
- * @param SpartyGnomeImageName The default image (idle) of the gnome
  */
 ItemSpartyGnome::ItemSpartyGnome(Game *game) : Item(game, SpartyGnomeImageName)
 {
@@ -109,6 +108,7 @@ void ItemSpartyGnome::StopMove()
 
 /**
  * Update Function
+ * Update the gnome
  * @param elapsed time elapsed
  */
 void ItemSpartyGnome::Update(double elapsed)
