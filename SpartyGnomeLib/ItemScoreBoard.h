@@ -2,26 +2,23 @@
  * @file ItemScoreBoard.h
  * @author Cameron O'Connor
  *
- *
+ * The scoreboard item
  */
 
 #ifndef SPARTYGNOME_ITEMSCOREBOARD_H
 #define SPARTYGNOME_ITEMSCOREBOARD_H
 
 #include "ItemMessage.h"
+
 /**
- * The item that will display a message on the screen
+ * The item that will display the money score on the screen
  */
-
-
 class ItemScoreBoard : public ItemMessage {
 private:
-    /// The seconds component of the time
+    /// The score count
     double mScore = 0;
 
-
-    std::wstring FormatTime();
-
+    std::wstring FormatScore();
 
 public:
     ItemScoreBoard(Game* game);

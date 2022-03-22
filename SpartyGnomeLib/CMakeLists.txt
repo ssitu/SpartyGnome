@@ -9,7 +9,7 @@ set(SOURCE_FILES MainFrame.cpp MainFrame.h pch.h SpartyGnomeView.cpp SpartyGnome
         SolidCollisionVisitor.cpp SolidCollisionVisitor.h PlatformF.cpp PlatformF.h
         ItemMessage.cpp ItemMessage.h
         DrawMessagesVisitor.cpp DrawMessagesVisitor.h
-        HorizontalCollisionVisitor.cpp HorizontalCollisionVisitor.h
+        InteractionCollisionVisitor.cpp InteractionCollisionVisitor.h
         ItemLevelTimer.cpp ItemLevelTimer.h
         ItemMessageAnimated.cpp ItemMessageAnimated.h
         ItemScoreBoard.cpp ItemScoreBoard.h

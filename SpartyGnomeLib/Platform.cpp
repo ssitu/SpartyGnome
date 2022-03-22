@@ -41,10 +41,8 @@ Platform::Platform(const wxXmlNode* declaration, const wxXmlNode* item, Game* ga
         :Item(declaration, item, game)
 {
     //Load the left image
-    auto image = make_shared<wxImage>(
-            ImageDir+declaration->GetAttribute(L"left-image").ToStdWstring(),
-            wxBITMAP_TYPE_ANY);
-    SetBitmap(make_shared<wxBitmap>(*image));
+    SetPath(declaration->GetAttribute(L"left-image").ToStdWstring());
+    SetBitmap(GetGame()->GetBitmap(GetPath()));
 
     //Load the middle image
     mMidPath = declaration->GetAttribute(L"mid-image").ToStdWstring();

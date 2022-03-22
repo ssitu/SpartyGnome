@@ -4,6 +4,7 @@
  * @author Simon Situ
  */
 
+#include "pch.h"
 #include "ItemMessageAnimated.h"
 
 /**
