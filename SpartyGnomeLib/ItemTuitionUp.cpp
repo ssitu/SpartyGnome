@@ -65,7 +65,8 @@ pair<wxXmlNode*, wxXmlNode*> ItemTuitionUp::XmlSave(wxXmlNode *node1, wxXmlNode 
     itemNode->DeleteAttribute(L"height");
 
     // If a declarationNode for this item does not already exist...
-    if (declarationNode!=nullptr) {
+    if (declarationNode!=nullptr)
+    {
         // Add the declarationNode
         declarationNode->SetName(L"tuition-up");
 
@@ -81,7 +82,8 @@ pair<wxXmlNode*, wxXmlNode*> ItemTuitionUp::XmlSave(wxXmlNode *node1, wxXmlNode 
  * The collision handler for this item
  * @param item The item that collided with this item
  */
-void ItemTuitionUp::OnCollision(Item *item){
+void ItemTuitionUp::OnCollision(Item *item)
+{
     if(!mCollided)
     {
         mTuitionIncrease = true;
@@ -101,16 +103,14 @@ void ItemTuitionUp::OnCollision(Item *item){
  * @param elapsed The seconds elapses since the last update call
  */
 void ItemTuitionUp::Update(double elapsed){
-
-    if (mTuitionIncrease){
-
+    if (mTuitionIncrease)
+    {
         Item::Update(elapsed);
-        SetLocation(GetX(),GetY()+mSpeedY*elapsed);
-        auto removeHeight = GetGame()->GetGameAreaHeight() + GetHeight();
-        if(GetY() > removeHeight){
-
+        SetLocation(GetX(),GetY() + mSpeedY * elapsed);
+        auto removeHeight = GetGame()->GetGameAreaHeight() + GetHeight() / 2;
+        if(GetY() > removeHeight)
+        {
             GetGame()->RemoveItem(this);
         }
     }
-
 }

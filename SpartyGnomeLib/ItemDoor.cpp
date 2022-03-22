@@ -17,6 +17,10 @@ const double CollisionDistance = 20;
 /// A default door image
 const wstring DoorImageName = L"door.png";
 
+/**
+ * The base constructor for this item
+ * @param game The game this item is apart of
+ */
 ItemDoor::ItemDoor(Game* game) : Item(game, DoorImageName)
 {
 
@@ -53,7 +57,8 @@ pair<wxXmlNode*, wxXmlNode*> ItemDoor::XmlSave(wxXmlNode *node1, wxXmlNode *node
     itemNode->DeleteAttribute(L"height");
 
     // Add declaration node if not already exists
-    if (declarationNode!=nullptr) {
+    if (declarationNode!=nullptr)
+    {
         declarationNode->SetName(L"door");
 
         // return pair of itemNode and declarationNode

@@ -10,7 +10,7 @@
 #define SPARTYGNOME_ITEMVISITOR_H
 
 
-// Forward references to all item types
+/// Forward references to all item types
 class ItemSpartyGnome;
 class Platform;
 class PlatformF;
@@ -23,6 +23,7 @@ class ItemTuitionUp;
 class ItemMessage;
 class ItemLevelTimer;
 class ItemScoreBoard;
+
 /**
  * The visitor class for item objects
  */
