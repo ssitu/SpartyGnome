@@ -47,7 +47,7 @@ private:
 
 protected:
     Game *mGame;
-    // Constructors
+    /// Constructors
     Item(Game *game, const std::wstring &filename);
     Item(Game *game);
     Item(const wxXmlNode* declaration, const wxXmlNode* item, Game* game);
@@ -181,16 +181,26 @@ public:
      * @return Pointer to Game object
      */
     Game* GetGame() { return mGame; }
-
+    /**
+     * Setter for setting pointer to game object to game
+     * @param game
+     */
     void SetGame(Game* game){mGame = game;}
 
     virtual std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2);
     virtual bool HitTest(int x, int y);
+    /**
+     * Accept function for accepting a visitor
+     * @param visitor
+     */
     virtual void Accept(ItemVisitor* visitor) = 0;
 
     //try adding const
     virtual bool CollisionTest(Item* item);
-
+    /**
+     * Testing collision between gnome and different items
+     * @param item
+     */
     virtual void OnCollision(Item* item);
 };
 
