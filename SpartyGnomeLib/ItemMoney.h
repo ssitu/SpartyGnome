@@ -23,8 +23,9 @@ private:
     Vector mM;
     /// disabled default constructor
     bool mMoneyIncrease = false;
+    ///speed of money item disappearing
     double mSpeedY = -1000;
-
+    ///if item and gnome has collided
     bool mCollided = false;
 public:
 
@@ -57,7 +58,10 @@ public:
     void Update(double elapsed);
 
     void SetValue(double moneyValue);
-
+    /**
+     * Getter for the valueof money
+     * @return mValue the value of money
+     */
     int GetValue(){return mValue;}
 };
 
