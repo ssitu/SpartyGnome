@@ -17,9 +17,11 @@
  */
 class ItemTuitionUp : public Item {
 private:
+    ///speed of the tuitionup item disappearing
     double mSpeedY = 600;
-
+    ///checking if the tuition increased
     bool mTuitionIncrease = false;
+    ///checking if gnome has collided with tuitionup item
     bool mCollided = false;
 
 public:

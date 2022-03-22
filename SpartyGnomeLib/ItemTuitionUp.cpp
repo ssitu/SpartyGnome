@@ -19,11 +19,17 @@ const double ValueFactor = 0.1;
 
 /// Pickup Message Specifications
 const wstring MessageTuitionIncrease = L"Tuition Increase!";
+///Duration for which the message is shown on pickup
 const double Duration = 4;
+///Width of text
 int FontWidth = 25;
+///height of the text
 int FontHeight = 25;
+///Velocity of the message
 Vector MessageVelocity = Vector(0, -800);
+///Acceleration of the message
 Vector MessageAcceleration = Vector(0,-150);
+///size change rate of the message
 Vector MessageSizeChange = Vector(3,3);
 
 /**
