@@ -13,12 +13,12 @@
 using namespace std;
 
 const wstring MoneyImageName = L"money100.png";
-const wstring message = L"$100";
-const wstring message1 = L"$1000";
-const double duration = 4;
-const int fontWidth1 = 25;
-const int fontHeight1 = 25;
-Vector velocity1 = Vector(0, -1000);
+const wstring Message100 = L"$100";
+const wstring Message1000 = L"$1000";
+const double Duration = 4;
+const int FontWidth = 25;
+const int FontHeight = 25;
+Vector Velocity = Vector(0, -1000);
 
 /**
  * Base constructor for this item
@@ -85,14 +85,14 @@ void ItemMoney::OnCollision(Item *item)
         mCollided = true;
         if (mValue >= 100 && mValue < 1000)
         {
-            std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), message, duration,
-                    fontWidth1, fontHeight1, velocity1);
+            std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), Message100, Duration,
+                    FontWidth, FontHeight, Velocity);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
         else
         {
             std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated>(GetGame(),
-                    message1, duration,fontWidth1, fontHeight1, velocity1);
+                    Message1000, Duration,FontWidth, FontHeight, Velocity);
             GetGame()->Add(animatedMessage, GetX(),GetY());
         }
     }
@@ -104,8 +104,8 @@ void ItemMoney::OnCollision(Item *item)
  */
 void ItemMoney::Update(double elapsed)
 {
-    if (mMoneyIncrease){
-
+    if (mMoneyIncrease)
+    {
         Item::Update(elapsed);
         SetLocation(GetX(),GetY()+mSpeedY*elapsed);
     }

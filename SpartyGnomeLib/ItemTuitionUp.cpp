@@ -11,20 +11,25 @@
 #include "MoneyValueVisitor.h"
 using namespace std;
 
+/// The default image
 const wstring TuitionUpImageName = L"stanley.png";
-const int scoreValue = 1000;
-const int removeHeight = 1174;
 
+/// The value to increase money by on pickup
 const double ValueFactor = 0.1;
 
-const wstring message = L"Tuition Increase!";
-const double duration = 4;
-int fontWidth = 25;
-int fontHeight = 25;
-Vector velocity = Vector(0, -800);
-Vector acceleration = Vector(0,-150);
-Vector sizeChange = Vector(3,3)  ;
+/// Pickup Message Specifications
+const wstring MessageTuitionIncrease = L"Tuition Increase!";
+const double Duration = 4;
+int FontWidth = 25;
+int FontHeight = 25;
+Vector MessageVelocity = Vector(0, -800);
+Vector MessageAcceleration = Vector(0,-150);
+Vector MessageSizeChange = Vector(3,3);
 
+/**
+ * The base item constructor
+ * @param game The Game that this item is apart of
+ */
 ItemTuitionUp::ItemTuitionUp(Game* game) : Item(game, TuitionUpImageName)
 {
 }
@@ -60,7 +65,8 @@ pair<wxXmlNode*, wxXmlNode*> ItemTuitionUp::XmlSave(wxXmlNode *node1, wxXmlNode 
     itemNode->DeleteAttribute(L"height");
 
     // If a declarationNode for this item does not already exist...
-    if (declarationNode!=nullptr) {
+    if (declarationNode!=nullptr)
+    {
         // Add the declarationNode
         declarationNode->SetName(L"tuition-up");
 
@@ -72,37 +78,39 @@ pair<wxXmlNode*, wxXmlNode*> ItemTuitionUp::XmlSave(wxXmlNode *node1, wxXmlNode 
     return make_pair(itemNode, nullptr);
 }
 
-void ItemTuitionUp::OnCollision(Item *item){
-    //GetGame()->IncrementScore();
-    if(!mCollided){
-
+/**
+ * The collision handler for this item
+ * @param item The item that collided with this item
+ */
+void ItemTuitionUp::OnCollision(Item *item)
+{
+    if(!mCollided)
+    {
         mTuitionIncrease = true;
-        //ItemScoreBoard::IncrementScore();
-
         mCollided = true;
         MoneyValueVisitor visitor(ValueFactor);
         GetGame()->Accept(&visitor);
 
-        std::shared_ptr<ItemMessageAnimated> animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), message, duration,
-                fontWidth, fontHeight, velocity, acceleration);
-        animatedMessage->SetSizeChange(sizeChange);
+        auto animatedMessage = std::make_shared<ItemMessageAnimated> (GetGame(), MessageTuitionIncrease, Duration,
+                FontWidth, FontHeight, MessageVelocity, MessageAcceleration);
+        animatedMessage->SetSizeChange(MessageSizeChange);
         GetGame()->Add(animatedMessage, GetX(),GetY());
-
     }
-
 }
 
+/**
+ * The update function
+ * @param elapsed The seconds elapses since the last update call
+ */
 void ItemTuitionUp::Update(double elapsed){
-
-    if (mTuitionIncrease){
-
+    if (mTuitionIncrease)
+    {
         Item::Update(elapsed);
-        SetLocation(GetX(),GetY()+mSpeedY*elapsed);
-
-        if(GetY()>removeHeight){
-
+        SetLocation(GetX(),GetY() + mSpeedY * elapsed);
+        auto removeHeight = GetGame()->GetGameAreaHeight() + GetHeight() / 2;
+        if(GetY() > removeHeight)
+        {
             GetGame()->RemoveItem(this);
         }
     }
-
 }

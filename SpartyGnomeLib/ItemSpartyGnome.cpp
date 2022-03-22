@@ -41,8 +41,6 @@ const wstring SpartyGnomeRight2 = L"gnome-walk-right-2.png";
 const int GnomeHeight = 200;
 /// Width of Gnome image
 const int GnomeWidth = 108;
-/// the death barrier
-const int DeathHeight = 1124;
 
 /**
  * Constructor
@@ -227,7 +225,8 @@ void ItemSpartyGnome::Update(double elapsed)
     // In the case that an OnCollision would update the gnome position, it would get overwritten before this point
     GetGame()->InteractableCollisionTest(this);
 
-    if (GetY() >= DeathHeight) {
+    auto deathHeight = GetGame()->GetGameAreaHeight() + GetHeight() / 2;
+    if (GetY() >= deathHeight) {
         DisableGravity();
         this->GetGame()->DisplayLoseMessage();
     }
@@ -259,10 +258,12 @@ void ItemSpartyGnome::AnimateGnomeLeft()
     std::shared_ptr<wxBitmap> mLeft1 = GetGame()->GetBitmap(SpartyGnomeLeft1);
     std::shared_ptr<wxBitmap> mLeft2 = GetGame()->GetBitmap(SpartyGnomeLeft2);
 
-    if (mSwitch) {
+    if (mSwitch)
+    {
         SetBitmap(mLeft1);
     }
-    else {
+    else
+    {
         SetBitmap(mLeft2);
     }
 }

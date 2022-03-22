@@ -382,7 +382,7 @@ void Game::Save(const wxString& filename)
         }
     }
 
-    // Set seclarations and items as the root's children
+    // Set declarations and items as the root's children
     root->SetChildren(declarations);
     declarations->SetNext(items);
 
@@ -593,6 +593,15 @@ int Game::GetScreenToWorldX(int x)
 void Game::IncrementScore(int change)
 {
     mBoard->IncrementScore(change);
+}
+
+/**
+ * Obtain the height of the game area in unscaled pixels
+ * @return The game area in unscaled pixels
+ */
+int Game::GetGameAreaHeight()
+{
+    return Height;
 }
 
 
