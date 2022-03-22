@@ -56,7 +56,6 @@ ItemMessageAnimated::ItemMessageAnimated(Game* game, const std::wstring& message
 {
     mAcceleration = acceleration;
     ItemMessage::SetColor(57,149,32);
-
 }
 
 /**
