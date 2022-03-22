@@ -19,14 +19,8 @@ protected:
             const std::wstring &filename3);
 
 private:
-    /// The image for the middle segment
-    std::shared_ptr<wxImage> mMidImage;
-
     /// The bitmap for the middle segment
     std::shared_ptr<wxBitmap> mMidBitmap;
-
-    /// The image for the middle segment
-    std::shared_ptr<wxImage> mRightImage;
 
     /// The bitmap for the middle segment
     std::shared_ptr<wxBitmap> mRightBitmap;
