@@ -1,6 +1,6 @@
 /**
  * @file Item.h
- * @author Gabriel Misajlovski
+ * @author Gabriel Misajlovski, ryanl
  *
  * Declaration of Item Class
  */

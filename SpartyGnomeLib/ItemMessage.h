@@ -1,7 +1,7 @@
 /**
  * @file ItemMessage.h
  *
- * @author Simon Situ
+ * @author Simon Situ, ryanl
  *
  * An item that displays a message on the screen
  */

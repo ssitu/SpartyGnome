@@ -1,10 +1,7 @@
-
-
-
 /**
  * @file ItemMessage.cpp
  *
- * @author Simon Situ
+ * @author Simon Situ, ryanl
  */
 
 #include "pch.h"
