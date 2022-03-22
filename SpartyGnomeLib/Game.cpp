@@ -25,18 +25,20 @@
 #include "DrawMessagesVisitor.h"
 #include "ItemLevelTimer.h"
 #include "ItemScoreBoard.h"
-#include "ItemMessageAnimated.h"
 
 using namespace std;
 
 /// Game area height in virtual pixels
 const static int Height = 1024;
-
+/// Image Directory
 const wstring ImageDir = L"images/";
+/// Levels Directory
 const wstring LevelsDir = L"levels/";
+/// LevelPrefix Directory
 const wstring LevelPrefix = L"level";
-
+/// Default Level to start
 const int DefaultLevel = 1;
+/// Time for freeze
 const double FreezeTime = 2;
 
 Game::Game()
