@@ -30,6 +30,7 @@ ItemLevelTimer::ItemLevelTimer(Game* game)
 {
     ItemMessage::PauseDuration(true);
     ItemMessage::SetFontSize(FontWidth, FontHeight);
+    ItemMessage::SetColor(112,147,219);
     // Do an empty update to set up the message and timer correctly
     Update(0);
 }
