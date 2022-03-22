@@ -93,20 +93,15 @@ void ItemMoney::OnCollision(Item *item)
         mMoneyIncrease = true;
         GetGame()->IncrementScore(mValue);
         mCollided = true;
-        if (mValue >= 100 && mValue < 1000)
+        auto message = Money100Message;
+        if (mValue >= Money1000Value)
         {
-            auto animatedMessage = std::make_shared<ItemMessageAnimated>(
-                    GetGame(), Money100Message, Duration,
-                    FontWidth, FontHeight, MessageVelocity);
-            GetGame()->Add(animatedMessage, GetX(),GetY());
+            message = Money1000Message;
         }
-        else
-        {
-            auto animatedMessage = std::make_shared<ItemMessageAnimated>(
-                    GetGame(),Money1000Message, Duration,
-                    FontWidth, FontHeight, MessageVelocity);
-            GetGame()->Add(animatedMessage, GetX(),GetY());
-        }
+        auto animatedMessage = std::make_shared<ItemMessageAnimated>(
+                GetGame(), message, Duration,
+                FontWidth, FontHeight, MessageVelocity);
+        GetGame()->Add(animatedMessage, GetX(),GetY());
     }
 }
 
