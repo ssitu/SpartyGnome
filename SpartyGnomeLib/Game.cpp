@@ -177,8 +177,7 @@ void Game::Clear()
 
 /**
  * Load a level
- *
- * @param wstring The xml filename for the level
+ * @param filename The xml filename for the level
  */
 void Game::LevelLoad(const std::wstring& filename)
 {
