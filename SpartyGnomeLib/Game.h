@@ -92,11 +92,8 @@ public:
 
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Update(double elapsed);
-    void NewOrder(std::shared_ptr<Item> grabbedItem);
-    std::shared_ptr<Item>HitTest(int x, int y);
     void Add(std::shared_ptr<Item> item);
     void Add(std::shared_ptr<Item> item, double x, double y);
-    void AddGnome(std::shared_ptr<ItemSpartyGnome> item);
     void Clear();
     void LevelLoad(const std::wstring& filename);
     void LevelLoad(int levelNum);
