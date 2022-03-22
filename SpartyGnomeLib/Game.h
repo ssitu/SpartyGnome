@@ -115,6 +115,7 @@ public:
     void InteractableCollisionTest(Item* item);
     void IncrementScore(int change);
     void Accept(ItemVisitor* visitor);
+    int GetGameAreaHeight();
 };
 
 #endif //SPARTYGNOME_GAME_H
