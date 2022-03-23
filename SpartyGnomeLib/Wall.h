@@ -35,11 +35,6 @@ public:
     void Accept(ItemVisitor* visitor) override {visitor->VisitWall(this);}
 
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
-
-    /**
-    * draws item
-    * @param gc Graphics context shared pointer
-    */
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
 };
