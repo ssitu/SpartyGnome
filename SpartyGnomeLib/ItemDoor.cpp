@@ -18,7 +18,7 @@ const double CollisionDistance = 20;
 const wstring DoorImageName = L"door.png";
 
 /// The bottom of the level range
-const int LevelRangeBottom = 3;
+const int LevelRangeBottom = 1;
 
 /// THe top of the level range
 const int LevelRangeTop = 3;
@@ -107,7 +107,7 @@ void ItemDoor::OnCollision(Item* item)
     }
     else
     {
-        GetGame()->SetLevelNum(LevelRangeBottom);
+        GetGame()->SetLevelNum(LevelRangeTop);
     }
     GetGame()->DisplayWinMessage();
 }
