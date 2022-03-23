@@ -18,7 +18,7 @@ const double CollisionDistance = 20;
 const wstring DoorImageName = L"door.png";
 
 /// The bottom of the level range
-const int LevelRangeBottom = 1;
+const int LevelRangeBottom = 3;
 
 /// THe top of the level range
 const int LevelRangeTop = 3;
