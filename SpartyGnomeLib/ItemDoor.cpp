@@ -107,7 +107,7 @@ void ItemDoor::OnCollision(Item* item)
     }
     else
     {
-        GetGame()->SetLevelNum(LevelRangeBottom);
+        GetGame()->SetLevelNum(LevelRangeTop);
     }
     GetGame()->DisplayWinMessage();
 }
