@@ -15,8 +15,6 @@ using namespace std;
 
 /// Default image filepath
 const wstring PlatformName = L"snow.png";
-/// Image directory
-const wstring ImageDir = L"images/";
 /// Size of individual platform image tiles
 const int TileSize = 32;
 
