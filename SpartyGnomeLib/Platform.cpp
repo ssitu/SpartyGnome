@@ -100,7 +100,8 @@ std::pair<wxXmlNode*,wxXmlNode*> Platform::XmlSave(wxXmlNode* node1, wxXmlNode* 
     itemNode->SetName(L"platform");
 
     // if the declarationNode is not already in declarations
-    if (declarationNode!=nullptr) {
+    if (declarationNode != nullptr)
+    {
         // Create the declaration (platform takes 3 images in its declaration)
         declarationNode->SetName(L"platform");
         declarationNode->AddAttribute(L"left-image", declarationNode->GetAttribute("image").ToStdWstring());
@@ -134,12 +135,14 @@ void Platform::Draw(std::shared_ptr<wxGraphicsContext> gc)
             Item::GetHeight());
 
     // If only one tile needed then return here
-    if (Item::GetWidth()<=32) {
+    if (Item::GetWidth() <= 32)
+    {
         return;
     }
 
     // While we are more than 32 pixels away from the right edge of the item...
-    for (int i = TileSize; i<=(Item::GetWidth()-(TileSize)); i += TileSize) {
+    for (int i = TileSize; i<=(Item::GetWidth()-(TileSize)); i += TileSize)
+    {
         // Draw a middle tile, then move 32 pixels to the right
         gc->DrawBitmap(*mMidBitmap,
                 leftStart+i,

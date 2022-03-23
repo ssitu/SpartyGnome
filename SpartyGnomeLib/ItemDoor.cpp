@@ -17,6 +17,12 @@ const double CollisionDistance = 20;
 /// A default door image
 const wstring DoorImageName = L"door.png";
 
+/// The bottom of the level range
+const int LevelRangeBottom = 1;
+
+/// THe top of the level range
+const int LevelRangeTop = 3;
+
 /**
  * The base constructor for this item
  * @param game The game this item is apart of
@@ -83,16 +89,16 @@ bool ItemDoor::CollisionTest(Item* item)
     return false;
 }
 
-void ItemDoor::OnCollision(Item* item){
-
-    auto levelnum = GetGame()->GetLevelNum();
-    if (levelnum == 1 || levelnum == 2){
-        GetGame()->SetLevelNum(levelnum+1);
-        GetGame()->DisplayWinMessage();
+void ItemDoor::OnCollision(Item* item)
+{
+    auto levelNum = GetGame()->GetLevelNum();
+    if (LevelRangeBottom <= levelNum && levelNum < LevelRangeTop)
+    {
+        GetGame()->SetLevelNum(levelNum + 1);
     }
-    if (levelnum == 3){
-        GetGame()->LevelLoad(1);
+    else
+    {
+        GetGame()->SetLevelNum(LevelRangeBottom);
     }
-
-
+    GetGame()->DisplayWinMessage();
 }
