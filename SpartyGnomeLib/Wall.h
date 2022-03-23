@@ -34,11 +34,6 @@ public:
      */
     void Accept(ItemVisitor* visitor) override {visitor->VisitWall(this);}
 
-    /**
-    * Save this item to an XML node
-    * @param node The parent node we are going to be a child of
-    * @return 1-2 nodes that were added to the XML file
-    */
     std::pair<wxXmlNode*,wxXmlNode*> XmlSave(wxXmlNode* node1, wxXmlNode* node2) override;
 
     /**

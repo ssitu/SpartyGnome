@@ -34,9 +34,6 @@ private:
     /// The last stopwatch time
     long mTime = 0;
 
-    /// Any item we are currently dragging
-    std::shared_ptr<Item> mGrabbedItem;
-
 public:
     /**
      * Obtains the size of the window

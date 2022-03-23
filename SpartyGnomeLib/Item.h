@@ -187,7 +187,6 @@ public:
      */
     virtual void Accept(ItemVisitor* visitor) = 0;
 
-    //try adding const
     virtual bool CollisionTest(Item* item);
     /**
      * Testing collision between gnome and different items
