@@ -75,9 +75,14 @@ pair<wxXmlNode*, wxXmlNode*> ItemDoor::XmlSave(wxXmlNode *node1, wxXmlNode *node
     return make_pair(itemNode, nullptr);
 }
 
+/**
+ * The collision test function for this door
+ * @param item The item to test collisions with
+ * @return true if the test found a collision, false otherwise
+ */
 bool ItemDoor::CollisionTest(Item* item)
 {
-    // Collision for door is different than other items
+    // Collision for door is different from other items
     double dx = item->GetX() - GetX();
     double dy = item->GetY() - GetY();
     double distance = sqrt(dx * dx + dy * dy);
@@ -89,6 +94,10 @@ bool ItemDoor::CollisionTest(Item* item)
     return false;
 }
 
+/**
+ * The collision handler for this item
+ * @param item The item that collided with this item
+ */
 void ItemDoor::OnCollision(Item* item)
 {
     auto levelNum = GetGame()->GetLevelNum();
