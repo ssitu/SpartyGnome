@@ -11,7 +11,7 @@
 #include "Item.h"
 #include "ItemSpartyGnome.h"
 #include "Platform.h"
-#include <map>
+#include <unordered_map>
 
 /**
  * The game class to hold items and game logic
@@ -27,11 +27,8 @@ private:
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 
-    /// A mapping from filenames to images
-    std::map<const std::wstring, std::shared_ptr<wxImage>> mImages;
-
     /// A mapping from filenames to bitmaps
-    std::map<const std::wstring, std::shared_ptr<wxBitmap>> mBitmaps;
+    std::unordered_map<std::wstring, std::shared_ptr<wxBitmap>> mBitmaps;
 
     /// Pointer to the gnome
     std::shared_ptr<ItemSpartyGnome> mGnome = nullptr;

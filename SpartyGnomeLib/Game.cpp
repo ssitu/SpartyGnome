@@ -182,7 +182,8 @@ void Game::Clear()
 void Game::LevelLoad(const std::wstring& filename)
 {
     wxXmlDocument xml;
-    if (!xml.Load(filename)) {
+    if (!xml.Load(filename))
+    {
         wxMessageBox(L"Error loading XML: cannot load XML file\nfile: "+filename);
         return;
     }
@@ -191,24 +192,23 @@ void Game::LevelLoad(const std::wstring& filename)
 
     // Get the root node, should be level
     auto root = xml.GetRoot();
-    wxASSERT(root->GetName()==L"level");
     // <level width="1024" height="1024" start-y="572" start-x="468">
     long width;
-    root->GetAttribute(L"width", L"100").ToLong(&width);
+    root->GetAttribute(L"width", L"0").ToLong(&width);
     long height;
-    root->GetAttribute(L"height", L"100").ToLong(&height);
-    root->GetAttribute(L"start-y", L"100").ToLong(&mStartY);
-    root->GetAttribute(L"start-x", L"100").ToLong(&mStartX);
+    root->GetAttribute(L"height", L"0").ToLong(&height);
+    root->GetAttribute(L"start-y", L"0").ToLong(&mStartY);
+    root->GetAttribute(L"start-x", L"0").ToLong(&mStartX);
 
     // Get item declarations
     auto declarations = root->GetChildren();
-    wxASSERT(declarations->GetName()==L"declarations");
 
     // Need a way to store the id with its respective information for that item type
     // Using hashtable to map ids to its respective XML node
     std::unordered_map<wxString, wxXmlNode*> declarations_table;
     // Iterate over declarations
-    for (auto decl = declarations->GetChildren(); decl; decl = decl->GetNext()) {
+    for (auto decl = declarations->GetChildren(); decl; decl = decl->GetNext())
+    {
         // Store info
         // item type
         auto type = decl->GetName(); // Can be used to test for correct format of the XML, unused for now
@@ -222,7 +222,6 @@ void Game::LevelLoad(const std::wstring& filename)
 
     // Get item list
     auto items = declarations->GetNext();
-    wxASSERT(items->GetName()==L"items");
 
     // Iterate over items
     for (auto item = items->GetChildren(); item; item = item->GetNext()) {
@@ -502,11 +501,12 @@ void Game::FreezeScreenMessage(const wstring& message)
  */
 std::shared_ptr<wxBitmap> Game::GetBitmap(const std::wstring &filename){
     // If the bitmap for the specific file is not in mBitmaps...
-    if(mBitmaps.count(filename)==0) {
+    if(mBitmaps.count(filename) == 0)
+    {
         // Add the bitmap to mBitmaps
         auto imagePath = ImageDir + filename;
-        mImages.insert(std::pair<const wstring, shared_ptr<wxImage>>(filename, make_shared<wxImage>(imagePath)));
-        mBitmaps.insert(std::pair<const wstring, shared_ptr<wxBitmap>>(filename, make_shared<wxBitmap>(*mImages.at(filename))));
+        wxImage image(imagePath, wxBITMAP_TYPE_ANY);
+        mBitmaps[filename] = make_shared<wxBitmap>(image);
     }
 
     // Return the corresponding bitmap for this image file
