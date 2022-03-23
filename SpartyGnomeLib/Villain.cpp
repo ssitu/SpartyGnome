@@ -18,7 +18,6 @@ const wstring villainImageName = L"UofM.png";
 /**
  * Villain Constructor
  * @param game The game holding this item
- * @param imagePath The path to the image for this item
  */
 Villain::Villain(Game* game) : Item(game, villainImageName)
 {
@@ -40,7 +39,8 @@ Villain::Villain(const wxXmlNode* declaration, const wxXmlNode* item, Game* game
 
 /**
  * Save this item to an XML node
- * @param node The parent node we are going to be a child of
+ * @param node1 The parent node we are going to be a child of
+ * @param node2 The second parent node we are going to be a child of
  * @return 1-2 nodes that were added to the XML file
  */
 std::pair<wxXmlNode*, wxXmlNode*> Villain::XmlSave(wxXmlNode* node1, wxXmlNode* node2)

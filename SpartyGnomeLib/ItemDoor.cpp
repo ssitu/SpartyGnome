@@ -71,7 +71,7 @@ pair<wxXmlNode*, wxXmlNode*> ItemDoor::XmlSave(wxXmlNode *node1, wxXmlNode *node
 
 bool ItemDoor::CollisionTest(Item* item)
 {
-    // Collision for door is different then other items
+    // Collision for door is different than other items
     double dx = item->GetX() - GetX();
     double dy = item->GetY() - GetY();
     double distance = sqrt(dx * dx + dy * dy);

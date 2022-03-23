@@ -15,6 +15,7 @@
  */
 class MoneyValueVisitor: public ItemVisitor {
 private:
+    /// A value that increments by 0.1 if gnome touches tuition up item
     double mValueFactor;
 public:
     MoneyValueVisitor(double valueFactor);

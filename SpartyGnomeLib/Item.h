@@ -50,8 +50,6 @@ protected:
     /**
      * this is a constructor strictly for testing purposes of Platform
      *
-     * @author Gabriel Misajlovski
-     *
      * @param game game the item is in
      * @param filename left image
      * @param filename2 mid image
@@ -183,7 +181,6 @@ public:
     void SetGame(Game* game){mGame = game;}
 
     virtual std::pair<wxXmlNode*, wxXmlNode*> XmlSave(wxXmlNode *node1, wxXmlNode *node2);
-    virtual bool HitTest(int x, int y);
     /**
      * Accept function for accepting a visitor
      * @param visitor

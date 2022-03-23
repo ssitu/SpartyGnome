@@ -95,7 +95,8 @@ void Item::Draw(shared_ptr<wxGraphicsContext> gc)
 
 /**
  * Save this item to an XML node
- * @param node The parent node we are going to be a child of
+ * @param node1 The parent node we are going to be a child of
+ * @param node2 the second parent node we are going to be a child of
  * @return pair of wxXmlNodes that we saved the item and declaration into
  */
 pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
@@ -155,30 +156,6 @@ pair<wxXmlNode*, wxXmlNode*>Item::XmlSave(wxXmlNode *node1, wxXmlNode *node2)
     // If the declarationNode already exists in declarations, return
     // just the itemNode with declarationNode as nullptr
     return make_pair(itemNode, nullptr);
-}
-
-/**
- * Test to see if we hit this object with a mouse.
- * @param x X position to test
- * @param y Y position to test
- * @return true if hit.
- */
-bool Item::HitTest(int x, int y)
-{
-
-    // Make x and y relative to the top-left corner of the bitmap image
-    // Subtracting the center makes x, y relative to the image center
-    // Adding half the size makes x, y relative to the image top corner
-    double testX = x - GetX() + mWidth / 2;
-    double testY = y - GetY() + mHeight / 2;
-
-    // Test to see if x, y are in the image
-    if (testX < 0 || testY < 0 || testX >= mWidth || testY >= mHeight)
-    {
-        // We are outside the image
-        return false;
-    }
-    return true;
 }
 
 /**
